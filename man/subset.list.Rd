@@ -3,10 +3,10 @@
 \alias{subset.list}
 \title{Return subsets of a list which meet conditions.}
 \usage{
-\method{subset}{list}(list, subset = TRUE, select = NULL, ...)
+\method{subset}{list}(x, subset = TRUE, select = NULL, ...)
 }
 \arguments{
-\item{list}{The list to be subsetted}
+\item{x}{The list to be subsetted}
 
 \item{subset}{A logical expression that specifies the subsetting condition}
 

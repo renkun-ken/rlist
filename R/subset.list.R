@@ -1,6 +1,6 @@
 #' Return subsets of a list which meet conditions.
 #'
-#' @param list The list to be subsetted
+#' @param x The list to be subsetted
 #' @param subset A logical expression that specifies the subsetting condition
 #' @param select An expression that is evaluated for each item that satisfies the subsetting condition
 #' @param ... Additional arguments
@@ -15,10 +15,10 @@
 #' subset(x,select=score)
 #' subset(x,type=="B" & score>=8,paste(type,score,sep=":"))
 #' }
-subset.list <- function(list,subset=TRUE,select=NULL,...) {
+subset.list <- function(x,subset=TRUE,select=NULL,...) {
   subset <- substitute(subset)
   select <- substitute(select)
-  items <- lapply(list,function(item) {
+  items <- lapply(x,function(item) {
     env <- list2env(item,parent = parent.frame(n=3))
     if(eval(subset,envir = env)) {
       if(is.null(select)) {
@@ -28,7 +28,7 @@ subset.list <- function(list,subset=TRUE,select=NULL,...) {
       }
     }
   })
-  names(items) <- names(list)
+  names(items) <- names(x)
   items[vapply(items,is.null,logical(1))] <- NULL
   items
 }
