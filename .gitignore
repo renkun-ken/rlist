@@ -9,3 +9,6 @@
 
 # R project files
 .Rproj.user
+
+# R profile
+.Rprofile
