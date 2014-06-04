@@ -19,15 +19,19 @@ subset.list <- function(x,subset=TRUE,select=NULL,...) {
   subset <- substitute(subset)
   select <- substitute(select)
   items <- lapply(x,function(item) {
-    env <- list2env(item,parent = parent.frame(n=3))
-    if(eval(subset,envir = env)) {
+    result <- eval(subset,envir = item,enclos = parent.frame(3))
+    if(length(result) > 1) stop("More than one results are returned")
+    if(result) {
       if(is.null(select)) {
         item
       } else {
-        eval(select,envir = env)
+        eval(select,envir = item,enclos = parent.frame(3))
       }
+    } else {
+      NULL
     }
   })
+
   names(items) <- names(x)
   items[vapply(items,is.null,logical(1))] <- NULL
   items
