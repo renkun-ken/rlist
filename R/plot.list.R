@@ -1,3 +1,3 @@
-plot.list <- function(...) {
+plot.list <- function(x,...) {
   message("Not implemented")
 }

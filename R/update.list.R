@@ -1,3 +1,3 @@
-update.list <- function(list,subset=TRUE,...) {
+update.list <- function(object,subset=TRUE,...) {
   message("Not implemented")
 }

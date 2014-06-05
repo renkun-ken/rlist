@@ -1,3 +1,3 @@
-summary.list <- function(list,...) {
+summary.list <- function(object,...) {
   message("Not implemented")
 }
