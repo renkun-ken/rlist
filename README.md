@@ -90,6 +90,7 @@ The principle is simple: evaluate the select expression for each list item that 
 
 ```
 help(package = rlist)
+```
 
 ## License
 
