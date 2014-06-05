@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset='utf-8' />
+    <meta http-equiv="X-UA-Compatible" content="chrome=1" />
+    <meta name="description" content="rlist : A set of tools for working with list objects" />
+
+    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+
+    <title>rlist</title>
+  </head>
+
+  <body>
+
+    <!-- HEADER -->
+    <div id="header_wrap" class="outer">
+        <header class="inner">
+          <a id="forkme_banner" href="https://github.com/renkun-ken/rlist">View on GitHub</a>
+
+          <h1 id="project_title">rlist</h1>
+          <h2 id="project_tagline">A set of tools for working with list objects</h2>
+
+            <section id="downloads">
+              <a class="zip_download_link" href="https://github.com/renkun-ken/rlist/zipball/master">Download this project as a .zip file</a>
+              <a class="tar_download_link" href="https://github.com/renkun-ken/rlist/tarball/master">Download this project as a tar.gz file</a>
+            </section>
+        </header>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div id="main_content_wrap" class="outer">
+      <section id="main_content" class="inner">
+        <h1>
+<a name="rlist" class="anchor" href="#rlist"><span class="octicon octicon-link"></span></a>rlist</h1>
+
+<p><a href="https://travis-ci.org/renkun-ken/rlist"><img src="https://travis-ci.org/renkun-ken/rlist.png?branch=master" alt="Build Status"></a></p>
+
+<p>rlist is a set of tools for working with list objects. It has two main goals:</p>
+
+<ul>
+<li><p>Make it easier to work with list objects used to store data in more flexible structures than data frames.</p></li>
+<li><p>Quickly perform a wide range of functions and manipulations on non-relational data structured as list objects.</p></li>
+</ul><p><em>Currently, this package is still on a very early stage. Its functions and implmentations may change overtime and cannot guarantee the backward compatibility. Please be cautious when you use it in production.</em></p>
+
+<h2>
+<a name="installation" class="anchor" href="#installation"><span class="octicon octicon-link"></span></a>Installation</h2>
+
+<p>You can install the latest development version from GitHub with</p>
+
+<pre><code>devtools::install_github("rlist","renkun-ken")
+</code></pre>
+
+<h2>
+<a name="getting-started" class="anchor" href="#getting-started"><span class="octicon octicon-link"></span></a>Getting started</h2>
+
+<p>A simple list will be generated to demonstrate the functions.</p>
+
+<p>Suppose we have a list of developers, each of which has a name, age, some interests and a list of programming langauge they use and the number of years they have been using them.</p>
+
+<pre><code>developers &lt;- 
+  list(
+    p1=list(name="Ken",age=24,
+      interest=c("reading","music","movies"),
+      lang=list(r=2,csharp=4,python=3)),
+    p2=list(name="James",age=25,
+      interest=c("sports","music"),
+      lang=list(r=3,java=2,cpp=5)),
+    p3=list(name="Penny",age=24,
+      interest=c("movies","reading"),
+      lang=list(r=1,cpp=4,python=2)))
+</code></pre>
+
+<h3>
+<a name="subsetting" class="anchor" href="#subsetting"><span class="octicon octicon-link"></span></a>Subsetting</h3>
+
+<p>If we want to know the names of those whose age is below 25, we can write</p>
+
+<pre><code>library(rlist)
+subset(developers,age &lt; 25, name)
+</code></pre>
+
+<p>The output is</p>
+
+<pre><code>$p1
+[1] "Ken"
+
+$p3
+[1] "Penny"
+</code></pre>
+
+<p>If we want to know the names and ages of those who like music and uses C++, we can write</p>
+
+<pre><code>subset(developers,"music" %in% interest &amp; "cpp" %in% names(lang),list(name=name,age=age))
+</code></pre>
+
+<p>The output is </p>
+
+<pre><code>$p2
+$p2$name
+[1] "James"
+
+$p2$age
+[1] 25
+</code></pre>
+
+<p>If we want to know, instead, how long they have been using R for those who use Python, we can write</p>
+
+<pre><code>subset(developers, "python" %in% names(lang), lang$r)
+</code></pre>
+
+<p>The output is</p>
+
+<pre><code>$p1
+[1] 2
+
+$p3
+[1] 1
+</code></pre>
+
+<p>The principle is simple: evaluate the select expression for each list item that satifies the subset expression.</p>
+
+<h2>
+<a name="help-overview" class="anchor" href="#help-overview"><span class="octicon octicon-link"></span></a>Help overview</h2>
+
+<pre><code>help(package = rlist)
+</code></pre>
+
+<h2>
+<a name="license" class="anchor" href="#license"><span class="octicon octicon-link"></span></a>License</h2>
+
+<p>This package is under <a href="http://opensource.org/licenses/MIT">MIT License</a>.</p>
+      </section>
+    </div>
+
+    <!-- FOOTER  -->
+    <div id="footer_wrap" class="outer">
+      <footer class="inner">
+        <p class="copyright">rlist maintained by <a href="https://github.com/renkun-ken">renkun-ken</a></p>
+        <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
+      </footer>
+    </div>
+
+              <script type="text/javascript">
+            var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+            document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+          </script>
+          <script type="text/javascript">
+            try {
+              var pageTracker = _gat._getTracker("UA-47159422-1");
+            pageTracker._trackPageview();
+            } catch(err) {}
+          </script>
+
+
+  </body>
+</html>
