@@ -16,3 +16,4 @@ URL: http://renkun.me/rlist,
     https://github.com/renkun-ken/rlist
 BugReports: https://github.com/renkun-ken/rlist/issues
 Roxygen: list(wrap = FALSE)
+ByteCompile: TRUE
