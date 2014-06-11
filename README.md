@@ -13,7 +13,7 @@ rlist is a set of tools for working with list objects. It has two main goals:
 
 You can install the latest development version from GitHub with
 
-```
+```s
 devtools::install_github("rlist","renkun-ken")
 ```
 
@@ -23,7 +23,7 @@ A simple list will be generated to demonstrate the functions.
 
 Suppose we have a list of developers, each of which has a name, age, some interests and a list of programming langauge they use and the number of years they have been using them.
 
-```
+```s
 developers <- 
   list(
     p1=list(name="Ken",age=24,
@@ -41,12 +41,12 @@ developers <-
 
 If we want to know the names of those whose age is below 25, we can write
 
-```
+```s
 library(rlist)
 subset(developers,age < 25, name)
 ```
 The output is
-```
+```s
 $p1
 [1] "Ken"
 
@@ -56,11 +56,11 @@ $p3
 
 If we want to know the names and ages of those who like music and uses C++, we can write
 
-```
+```s
 subset(developers,"music" %in% interest & "cpp" %in% names(lang),list(name=name,age=age))
 ```
 The output is 
-```
+```s
 $p2
 $p2$name
 [1] "James"
@@ -71,11 +71,11 @@ $p2$age
 
 If we want to know, instead, how long they have been using R for those who use Python, we can write
 
-```
+```s
 subset(developers, "python" %in% names(lang), lang$r)
 ```
 The output is
-```
+```s
 $p1
 [1] 2
 
@@ -87,7 +87,7 @@ The principle is simple: evaluate the select expression for each list item that 
 
 ## Help overview
 
-```
+```s
 help(package = rlist)
 ```
 
