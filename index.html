@@ -1,37 +1,36 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
   <head>
-    <meta charset='utf-8'>
+    <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <link href='https://fonts.googleapis.com/css?family=Chivo:900' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen" />
-    <link rel="stylesheet" type="text/css" href="stylesheets/pygment_trac.css" media="screen" />
-    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print" />
+    <title>rlist by renkun-ken</title>
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <script src="javascripts/scale.fix.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
     <!--[if lt IE 9]>
     <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
-    <title>rlist by renkun-ken</title>
   </head>
-
   <body>
-    <div id="container">
-      <div class="inner">
+    <div class="wrapper">
+      <header>
+        <h1 class="header">rlist</h1>
+        <p class="header">A set of tools for working with list objects</p>
 
-        <header>
-          <h1>rlist</h1>
-          <h2>A set of tools for working with list objects</h2>
-        </header>
+        <ul>
+          <li class="download"><a class="buttons" href="https://github.com/renkun-ken/rlist/zipball/master">Download ZIP</a></li>
+          <li class="download"><a class="buttons" href="https://github.com/renkun-ken/rlist/tarball/master">Download TAR</a></li>
+          <li><a class="buttons github" href="https://github.com/renkun-ken/rlist">View On GitHub</a></li>
+        </ul>
 
-        <section id="downloads" class="clearfix">
-          <a href="https://github.com/renkun-ken/rlist/zipball/master" id="download-zip" class="button"><span>Download .zip</span></a>
-          <a href="https://github.com/renkun-ken/rlist/tarball/master" id="download-tar-gz" class="button"><span>Download .tar.gz</span></a>
-          <a href="https://github.com/renkun-ken/rlist" id="view-on-github" class="button"><span>View on GitHub</span></a>
-        </section>
+        <p class="header">This project is maintained by <a class="header name" href="https://github.com/renkun-ken">renkun-ken</a></p>
 
-        <hr>
 
-        <section id="main_content">
-          <h1>
+      </header>
+      <section>
+        <h1>
 <a name="rlist" class="anchor" href="#rlist"><span class="octicon octicon-link"></span></a>rlist</h1>
 
 <p><a href="https://travis-ci.org/renkun-ken/rlist"><img src="https://travis-ci.org/renkun-ken/rlist.png?branch=master" alt="Build Status"></a></p>
@@ -48,8 +47,8 @@
 
 <p>You can install the latest development version from GitHub with</p>
 
-<pre><code>devtools::install_github("rlist","renkun-ken")
-</code></pre>
+<div class="highlight highlight-s"><pre>devtools<span class="o">::</span>install_github<span class="p">(</span><span class="s">"rlist"</span><span class="p">,</span><span class="s">"renkun-ken"</span><span class="p">)</span>
+</pre></div>
 
 <h2>
 <a name="getting-started" class="anchor" href="#getting-started"><span class="octicon octicon-link"></span></a>Getting started</h2>
@@ -58,86 +57,85 @@
 
 <p>Suppose we have a list of developers, each of which has a name, age, some interests and a list of programming langauge they use and the number of years they have been using them.</p>
 
-<pre><code>developers &lt;- 
-  list(
-    p1=list(name="Ken",age=24,
-      interest=c("reading","music","movies"),
-      lang=list(r=2,csharp=4,python=3)),
-    p2=list(name="James",age=25,
-      interest=c("sports","music"),
-      lang=list(r=3,java=2,cpp=5)),
-    p3=list(name="Penny",age=24,
-      interest=c("movies","reading"),
-      lang=list(r=1,cpp=4,python=2)))
-</code></pre>
+<div class="highlight highlight-s"><pre>developers <span class="o">&lt;-</span> 
+  list<span class="p">(</span>
+    p1<span class="o">=</span>list<span class="p">(</span>name<span class="o">=</span><span class="s">"Ken"</span><span class="p">,</span>age<span class="o">=</span><span class="m">24</span><span class="p">,</span>
+      interest<span class="o">=</span>c<span class="p">(</span><span class="s">"reading"</span><span class="p">,</span><span class="s">"music"</span><span class="p">,</span><span class="s">"movies"</span><span class="p">),</span>
+      lang<span class="o">=</span>list<span class="p">(</span>r<span class="o">=</span><span class="m">2</span><span class="p">,</span>csharp<span class="o">=</span><span class="m">4</span><span class="p">,</span>python<span class="o">=</span><span class="m">3</span><span class="p">)),</span>
+    p2<span class="o">=</span>list<span class="p">(</span>name<span class="o">=</span><span class="s">"James"</span><span class="p">,</span>age<span class="o">=</span><span class="m">25</span><span class="p">,</span>
+      interest<span class="o">=</span>c<span class="p">(</span><span class="s">"sports"</span><span class="p">,</span><span class="s">"music"</span><span class="p">),</span>
+      lang<span class="o">=</span>list<span class="p">(</span>r<span class="o">=</span><span class="m">3</span><span class="p">,</span>java<span class="o">=</span><span class="m">2</span><span class="p">,</span>cpp<span class="o">=</span><span class="m">5</span><span class="p">)),</span>
+    p3<span class="o">=</span>list<span class="p">(</span>name<span class="o">=</span><span class="s">"Penny"</span><span class="p">,</span>age<span class="o">=</span><span class="m">24</span><span class="p">,</span>
+      interest<span class="o">=</span>c<span class="p">(</span><span class="s">"movies"</span><span class="p">,</span><span class="s">"reading"</span><span class="p">),</span>
+      lang<span class="o">=</span>list<span class="p">(</span>r<span class="o">=</span><span class="m">1</span><span class="p">,</span>cpp<span class="o">=</span><span class="m">4</span><span class="p">,</span>python<span class="o">=</span><span class="m">2</span><span class="p">)))</span>
+</pre></div>
 
 <h3>
 <a name="subsetting" class="anchor" href="#subsetting"><span class="octicon octicon-link"></span></a>Subsetting</h3>
 
 <p>If we want to know the names of those whose age is below 25, we can write</p>
 
-<pre><code>library(rlist)
-subset(developers,age &lt; 25, name)
-</code></pre>
+<div class="highlight highlight-s"><pre>library<span class="p">(</span>rlist<span class="p">)</span>
+subset<span class="p">(</span>developers<span class="p">,</span>age <span class="o">&lt;</span> <span class="m">25</span><span class="p">,</span> name<span class="p">)</span>
+</pre></div>
 
 <p>The output is</p>
 
-<pre><code>$p1
-[1] "Ken"
+<div class="highlight highlight-s"><pre><span class="o">$</span>p1
+<span class="p">[</span><span class="m">1</span><span class="p">]</span> <span class="s">"Ken"</span>
 
-$p3
-[1] "Penny"
-</code></pre>
+<span class="o">$</span>p3
+<span class="p">[</span><span class="m">1</span><span class="p">]</span> <span class="s">"Penny"</span>
+</pre></div>
 
 <p>If we want to know the names and ages of those who like music and uses C++, we can write</p>
 
-<pre><code>subset(developers,"music" %in% interest &amp; "cpp" %in% names(lang),list(name=name,age=age))
-</code></pre>
+<div class="highlight highlight-s"><pre>subset<span class="p">(</span>developers<span class="p">,</span><span class="s">"music"</span> <span class="o">%in%</span> interest <span class="o">&amp;</span> <span class="s">"cpp"</span> <span class="o">%in%</span> names<span class="p">(</span>lang<span class="p">),</span>list<span class="p">(</span>name<span class="o">=</span>name<span class="p">,</span>age<span class="o">=</span>age<span class="p">))</span>
+</pre></div>
 
 <p>The output is </p>
 
-<pre><code>$p2
-$p2$name
-[1] "James"
+<div class="highlight highlight-s"><pre><span class="o">$</span>p2
+<span class="o">$</span>p2<span class="o">$</span>name
+<span class="p">[</span><span class="m">1</span><span class="p">]</span> <span class="s">"James"</span>
 
-$p2$age
-[1] 25
-</code></pre>
+<span class="o">$</span>p2<span class="o">$</span>age
+<span class="p">[</span><span class="m">1</span><span class="p">]</span> <span class="m">25</span>
+</pre></div>
 
 <p>If we want to know, instead, how long they have been using R for those who use Python, we can write</p>
 
-<pre><code>subset(developers, "python" %in% names(lang), lang$r)
-</code></pre>
+<div class="highlight highlight-s"><pre>subset<span class="p">(</span>developers<span class="p">,</span> <span class="s">"python"</span> <span class="o">%in%</span> names<span class="p">(</span>lang<span class="p">),</span> lang<span class="o">$</span>r<span class="p">)</span>
+</pre></div>
 
 <p>The output is</p>
 
-<pre><code>$p1
-[1] 2
+<div class="highlight highlight-s"><pre><span class="o">$</span>p1
+<span class="p">[</span><span class="m">1</span><span class="p">]</span> <span class="m">2</span>
 
-$p3
-[1] 1
-</code></pre>
+<span class="o">$</span>p3
+<span class="p">[</span><span class="m">1</span><span class="p">]</span> <span class="m">1</span>
+</pre></div>
 
 <p>The principle is simple: evaluate the select expression for each list item that satifies the subset expression.</p>
 
 <h2>
 <a name="help-overview" class="anchor" href="#help-overview"><span class="octicon octicon-link"></span></a>Help overview</h2>
 
-<pre><code>help(package = rlist)
-</code></pre>
+<div class="highlight highlight-s"><pre>help<span class="p">(</span>package <span class="o">=</span> rlist<span class="p">)</span>
+</pre></div>
 
 <h2>
 <a name="license" class="anchor" href="#license"><span class="octicon octicon-link"></span></a>License</h2>
 
 <p>This package is under <a href="http://opensource.org/licenses/MIT">MIT License</a>.</p>
-        </section>
-
-        <footer>
-          rlist is maintained by <a href="https://github.com/renkun-ken">renkun-ken</a><br>
-          This page was generated by <a href="http://pages.github.com">GitHub Pages</a>. Tactile theme by <a href="https://twitter.com/jasonlong">Jason Long</a>.
-        </footer>
-
-                  <script type="text/javascript">
+      </section>
+      <footer>
+        <p><small>Hosted on <a href="http://pages.github.com">GitHub Pages</a> using the Dinky theme</small></p>
+      </footer>
+    </div>
+    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
+		          <script type="text/javascript">
             var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
             document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
           </script>
@@ -148,7 +146,5 @@ $p3
             } catch(err) {}
           </script>
 
-      </div>
-    </div>
   </body>
 </html>
