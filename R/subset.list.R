@@ -13,27 +13,31 @@
 #'        p3 = list(type="B",score=list(c1=9,c2=7)))
 #' subset(x,type=="B")
 #' subset(x,select=score)
-#' subset(x,min(score$c1,score$c2)>=8,data.frame(score))
+#' subset(x,min(score$c1,score$c2) >= 8,data.frame(score))
 #' do.call(rbind,
-#'    subset(x,min(score$c1,score$c2)>=8,data.frame(score)))
+#'    subset(x,min(score$c1,score$c2) >= 8,data.frame(score)))
 #' }
 subset.list <- function(x,subset=TRUE,select=NULL,...) {
   subset <- substitute(subset)
   select <- substitute(select)
-  items <- lapply(x,function(item) {
-    result <- eval(subset,envir = item,enclos = parent.frame(3))
+  items <- lapply(x,function(.) {
+    if(is.list(.) || is.environment(.)) {
+      env <- .
+    } else {
+      env <- environment()
+    }
+    result <- eval(subset,envir = env,enclos = parent.frame(3))
     if(length(result) > 1) stop("More than one results are returned")
     if(result) {
       if(is.null(select)) {
-        item
+        .
       } else {
-        eval(select,envir = item,enclos = parent.frame(3))
+        eval(select,envir = env,enclos = parent.frame(3))
       }
     } else {
       NULL
     }
   })
-
   names(items) <- names(x)
   items[vapply(items,is.null,logical(1))] <- NULL
   items
