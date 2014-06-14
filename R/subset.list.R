@@ -20,19 +20,23 @@
 subset.list <- function(x,subset=TRUE,select=NULL,...) {
   subset <- substitute(subset)
   select <- substitute(select)
-  items <- lapply(x,function(.) {
-    if(is.list(.) || is.environment(.)) {
-      env <- .
+  enclos <- new.env(FALSE,parent.frame(),1)
+  items <- lapply(x,function(item) {
+    enclos$. <- item
+    if(is.list(item) || is.environment(item)) {
+      env <- item
+    } else if(is.vector(item)) {
+      env <- as.list(item)
     } else {
-      env <- environment()
+      env <- enclos
     }
-    result <- eval(subset,envir = env,enclos = parent.frame(3))
+    result <- eval(subset,env,enclos)
     if(length(result) > 1) stop("More than one results are returned")
     if(result) {
       if(is.null(select)) {
-        .
+        item
       } else {
-        eval(select,envir = env,enclos = parent.frame(3))
+        eval(select,env,enclos)
       }
     } else {
       NULL
