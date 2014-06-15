@@ -2,7 +2,10 @@
 #'
 #' @param x The list to be subsetted
 #' @param subset A logical expression that specifies the subsetting condition
-#' @param select An expression that is evaluated for each item that satisfies the subsetting condition
+#' @param select An expression that is evaluated for each item
+#' that satisfies the subsetting condition
+#' @param item.symbol The symbol to represent the list item, \code{.}
+#' in default.
 #' @param ... Additional arguments
 #' @name subset.list
 #' @export
@@ -17,12 +20,12 @@
 #' do.call(rbind,
 #'    subset(x,min(score$c1,score$c2) >= 8,data.frame(score)))
 #' }
-subset.list <- function(x,subset=TRUE,select=NULL,...) {
+subset.list <- function(x,subset=TRUE,select=NULL,item.symbol=".",...) {
   subset <- substitute(subset)
   select <- substitute(select)
   enclos <- new.env(FALSE,parent.frame(),1)
   items <- lapply(x,function(item) {
-    enclos$. <- item
+    assign(item.symbol,item,envir = enclos)
     if(is.list(item) || is.environment(item)) {
       env <- item
     } else if(is.vector(item)) {

@@ -10,6 +10,9 @@ test_that("list subsetting works as expected", {
   expect_identical(subset(x,type=="B"),x[c(2,3)])
   expect_identical(subset(x,type=="B",score$c1),list(p2=9,p3=9))
 
+  expect_identical(subset(x,type=="B",item$score$c2,item.symbol = "item"),
+    list(p2=9,p3=7))
+
   # list of vectors
   x <- list(a=c(x=1,y=2),b=c(x=3,y=4))
   expect_identical(subset(x,x>=2,y),list(b=4))

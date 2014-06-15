@@ -3,14 +3,19 @@
 \alias{subset.list}
 \title{Return subsets of a list which meet conditions.}
 \usage{
-\method{subset}{list}(x, subset = TRUE, select = NULL, ...)
+\method{subset}{list}(x, subset = TRUE, select = NULL, item.symbol = ".",
+  ...)
 }
 \arguments{
 \item{x}{The list to be subsetted}
 
 \item{subset}{A logical expression that specifies the subsetting condition}
 
-\item{select}{An expression that is evaluated for each item that satisfies the subsetting condition}
+\item{select}{An expression that is evaluated for each item
+that satisfies the subsetting condition}
+
+\item{item.symbol}{The symbol to represent the list item, \code{.}
+in default.}
 
 \item{...}{Additional arguments}
 }
