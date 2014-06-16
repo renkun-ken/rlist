@@ -1,0 +1,14 @@
+<!--
+%\VignetteEngine{knitr}
+%\VignetteIndexEntry{List summary}
+-->
+
+```{r, echo = FALSE, message = FALSE}
+library(rlist)
+knitr::opts_chunk$set(
+  comment = "#>",
+  error = FALSE,
+  tidy = FALSE)
+```
+
+# List summary
