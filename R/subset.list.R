@@ -20,24 +20,24 @@
 #' do.call(rbind,
 #'    subset(x,min(score$c1,score$c2) >= 8,data.frame(score)))
 #' }
-subset.list <- function(x,subset=TRUE,select=NULL,item.symbol=".",...) {
+subset.list <- function(x,subset=TRUE,select=NULL,item=".",...) {
   subset <- substitute(subset)
   select <- substitute(select)
   enclos <- new.env(FALSE,parent.frame(),1)
-  items <- lapply(x,function(item) {
-    assign(item.symbol,item,envir = enclos)
-    if(is.list(item) || is.environment(item)) {
-      env <- item
-    } else if(is.vector(item)) {
-      env <- as.list(item)
+  items <- lapply(x,function(i) {
+    assign(item,i,envir = enclos)
+    if(is.list(i) || is.environment(i)) {
+      env <- i
+    } else if(is.vector(i)) {
+      env <- as.list(i)
     } else {
       env <- enclos
     }
     result <- eval(subset,env,enclos)
     if(length(result) > 1) stop("More than one results are returned")
-    if(result) {
+    if(is.logical(result) && result) {
       if(is.null(select)) {
-        item
+        i
       } else {
         eval(select,env,enclos)
       }

@@ -3,8 +3,7 @@
 \alias{subset.list}
 \title{Return subsets of a list which meet conditions.}
 \usage{
-\method{subset}{list}(x, subset = TRUE, select = NULL, item.symbol = ".",
-  ...)
+\method{subset}{list}(x, subset = TRUE, select = NULL, item = ".", ...)
 }
 \arguments{
 \item{x}{The list to be subsetted}
