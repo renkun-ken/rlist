@@ -4,8 +4,9 @@
 #' @param subset A logical expression that specifies the subsetting condition
 #' @param select An expression that is evaluated for each item
 #' that satisfies the subsetting condition
-#' @param item.symbol The symbol to represent the list item, \code{.}
-#' in default.
+#' @param item The symbol to represent the list item, \code{.} in default
+#' @param keep.names Whether to keep the names of list x
+#' @param keep.null Whether to keep \code{NULL} items in the result
 #' @param ... Additional arguments
 #' @name subset.list
 #' @export
@@ -20,7 +21,8 @@
 #' do.call(rbind,
 #'    subset(x,min(score$c1,score$c2) >= 8,data.frame(score)))
 #' }
-subset.list <- function(x,subset=TRUE,select=NULL,item=".",...) {
+subset.list <- function(x,subset=TRUE,select=NULL,
+  item=".",keep.names=TRUE,keep.null=FALSE,...) {
   subset <- substitute(subset)
   select <- substitute(select)
   enclos <- new.env(FALSE,parent.frame(),1)
@@ -45,7 +47,7 @@ subset.list <- function(x,subset=TRUE,select=NULL,item=".",...) {
       NULL
     }
   })
-  names(items) <- names(x)
-  items[vapply(items,is.null,logical(1))] <- NULL
+  if(!keep.names) names(items) <- NULL
+  if(!keep.null) items[vapply(items,is.null,logical(1))] <- NULL
   items
 }
