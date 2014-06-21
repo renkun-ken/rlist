@@ -16,6 +16,7 @@
 #' transform(x,high=max(score$c1,score$c2),low=min(score$c1,score$c2))
 #' transform(x,exams=length(score))
 #' transform(x,grade=ifelse(type=="A",score$c1,score$c2))
+#' transform(x,score=list(min=0,max=10))
 #' }
 transform.list <- function(`_data`,...,
   item=".",keep.names=TRUE,keep.null=FALSE,keep.val.null=FALSE) {
