@@ -5,7 +5,7 @@
 #' @param item The symbol to represent the list item, \code{.} in default
 #' @param keep.names Whether to keep the names of list x
 #' @param keep.null Whether to keep \code{NULL} items in the result
-#' @param keep.val.null Whether to keep \code{NULL} values in the transformed lsit item
+#' @param keep.val.null Whether to keep \code{NULL} values in the transformed list item
 #' @name transform.list
 #' @export
 #' @examples

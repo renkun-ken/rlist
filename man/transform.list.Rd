@@ -17,7 +17,7 @@
 
 \item{keep.null}{Whether to keep \code{NULL} items in the result}
 
-\item{keep.val.null}{Whether to keep \code{NULL} values in the transformed lsit item}
+\item{keep.val.null}{Whether to keep \code{NULL} values in the transformed list item}
 }
 \description{
 Transform a list by modifying its elements.
