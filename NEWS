@@ -1,4 +1,5 @@
 Version 0.1
 ===
-Implement `subset.list` function to allow list subsetting.
-Implement `transform.list` function to allow list transforming.
+Implement `subset.list` function.
+Implement `transform.list` function.
+Implement `summary.list` function
