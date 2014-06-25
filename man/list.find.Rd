@@ -3,17 +3,12 @@
 \alias{list.find}
 \title{Find a specific number of members in a list that meeting given condition}
 \usage{
-list.find(x, cond = TRUE, n = 1, item = ".", keep.names = TRUE,
-  keep.null = FALSE)
+list.find(x, ..., keep.names = TRUE, keep.null = FALSE)
 }
 \arguments{
-\item{x}{The list to be filtered}
+\item{x}{The list}
 
-\item{cond}{A logical expression that specifies the lookup condition}
-
-\item{n}{The maximal number of members to return, 1 by default}
-
-\item{item}{The symbol to represent the list item, \code{.} in default}
+\item{...}{Parameters passed to \code{list.findi}}
 
 \item{keep.names}{Whether to keep the names of list x}
 
