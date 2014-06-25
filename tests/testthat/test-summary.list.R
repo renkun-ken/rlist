@@ -1,6 +1,6 @@
-context("list summary")
+context("summary.list")
 
-test_that("list summary works as expected", {
+test_that("summary.list", {
 
   # simple list
   x <- list(p1 = list(type="A",score=list(c1=10,c2=8)),

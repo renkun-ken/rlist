@@ -1,6 +1,6 @@
 context("list mapping")
 
-test_that("list.map works as expected", {
+test_that("list.map", {
 
   # simple list
   x <- list(p1 = list(type="A",score=list(c1=10,c2=8)),

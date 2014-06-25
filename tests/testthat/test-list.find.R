@@ -1,6 +1,6 @@
 context("list.find")
 
-test_that("list.find works as expected", {
+test_that("list.find", {
 
   # simple list
   x <- list(p1 = list(type="A",score=list(c1=10,c2=8)),

@@ -1,6 +1,6 @@
-context("list transforming")
+context("transform.list")
 
-test_that("list transforming works as expected", {
+test_that("transform.list", {
 
   # simple list
   x <- list(p1 = list(type="A",score=list(c1=10,c2=8)),

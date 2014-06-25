@@ -1,6 +1,6 @@
 context("list subsetting")
 
-test_that("list subsetting works as expected", {
+test_that("subset.list", {
 
   # simple list
   x <- list(p1 = list(type="A",score=list(c1=10,c2=8)),

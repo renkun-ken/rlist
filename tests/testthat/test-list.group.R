@@ -1,6 +1,6 @@
 context("list.group")
 
-test_that("list.group works as expected", {
+test_that("list.group", {
 
   # simple list
   x <- list(a=1,b=2,c=3,d=2,e=3,f=1)
@@ -10,5 +10,5 @@ test_that("list.group works as expected", {
     p2 = list(type="B",score=list(c1=9,c2=9)),
     p3 = list(type="B",score=list(c1=9,c2=7)))
   expect_identical(list.group(x,type),list(A=x["p1"],B=x[c("p2","p3")]))
-  expect_identical(list.group(x,mean(unlist(score))),list(`9`=x["p2"],`8`=x[c("p1","p3")]))
+  expect_identical(list.group(x,mean(unlist(score))),list(`9`=x[c("p1","p2")],`8`=x["p3"]))
 })

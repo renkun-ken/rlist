@@ -1,6 +1,6 @@
 context("list.filter")
 
-test_that("list.filter works as expected", {
+test_that("list.filter", {
 
   # simple list
   x <- list(p1 = list(type="A",score=list(c1=10,c2=8)),
