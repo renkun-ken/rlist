@@ -21,23 +21,21 @@ list.find <- function(x,cond=TRUE,
   cond <- substitute(cond)
   enclos <- new.env(FALSE,parent.frame(),1)
   items <- list()
-  N <- 0
   for(i in seq_along(x)) {
-    it <- x[i]
-    assign(item,it,envir = enclos)
-    if(is.list(it) || is.environment(it)) {
-      env <- it
-    } else if(is.vector(it)) {
-      env <- as.list(it)
+    xi <- x[[i]]
+    assign(item,xi,envir = enclos)
+    if(is.list(xi) || is.environment(xi)) {
+      env <- xi
+    } else if(is.vector(xi)) {
+      env <- as.list(xi)
     } else {
       env <- enclos
     }
     result <- eval(cond,env,enclos)
     if(length(result) > 1) stop("More than one results are returned")
-    if(N < n) {
+    if(length(items) < n) {
       if(is.logical(result) && result) {
-        items <- c(items,it)
-        N <- N+1
+        items <- c(items,x[i])
       }
     } else {
       break
