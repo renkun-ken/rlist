@@ -107,3 +107,19 @@ test_that("list.match", {
     p3 = list(type="B",score=list(c1=9,c2=7)))
   expect_identical(list.match(x,"p[12]"),x[c("p1","p2")])
 })
+
+
+
+test_that("list.take, list.skip", {
+  # simple list
+  x <- list(a=1,b=2)
+  expect_identical(list.take(x,1),x[1])
+  expect_identical(list.skip(x,1),x[2])
+})
+
+test_that("list.takeWhile, list.skipWhile", {
+  # simple list
+  x <- list(a=1,b=2)
+  expect_identical(list.takeWhile(x,.<=1),x[1])
+  expect_identical(list.skipWhile(x,.<=1),x[2])
+})
