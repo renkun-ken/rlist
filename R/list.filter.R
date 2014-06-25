@@ -1,7 +1,7 @@
 #' Filter a list by a condition.
 #'
 #' @param x The list to be filtered
-#' @param subset A logical expression that specifies the filtering condition
+#' @param filter A logical expression that specifies the filtering condition
 #' @param item The symbol to represent the list item, \code{.} in default
 #' @param keep.names Whether to keep the names of list x
 #' @param keep.null Whether to keep \code{NULL} items in the result

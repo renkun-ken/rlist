@@ -3,7 +3,7 @@ list.remove <- function(x,range=integer()) {
     x[-range]
   } else if(is.character) {
     names <- names(x)
-    exclude <- vapply(range,identical,logical(1),y=) ## not implemented yet
+    # exclude <- vapply(range,identical,logical(1),y=) ## not implemented yet
   }
   x[-range]
 }

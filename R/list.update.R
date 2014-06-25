@@ -1,6 +1,6 @@
 #' Update a list by modifying its elements.
 #'
-#' @param _data The list to be transformed
+#' @param x The list to be transformed
 #' @param ... The elements to transform
 #' @param item The symbol to represent the list item, \code{.} in default
 #' @param keep.names Whether to keep the names of list x

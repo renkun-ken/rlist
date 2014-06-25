@@ -32,7 +32,6 @@ list.find <- function(x,cond=TRUE,
     } else {
       env <- enclos
     }
-    browser()
     result <- eval(cond,env,enclos)
     if(length(result) > 1) stop("More than one results are returned")
     if(N < n) {
