@@ -82,3 +82,16 @@ test_that("list.merge", {
   expect_identical(list.merge(x,list(c=list(z=3))),list(a=1,b=2,c=list(x=1,y=2,z=3)))
 
 })
+
+test_that("list.rbind", {
+  x <- lapply(1:10,function(i) data.frame(a=i,b=i^2))
+  expect_identical(list.rbind(x),do.call(rbind,x))
+})
+
+test_that("list.cbind", {
+  x <- list(
+    data.frame(a=rnorm(10),b=rnorm(10)),
+    data.frame(c=rnorm(10),d=rnorm(10)),
+    data.frame(e=rnorm(10),f=rnorm(10)))
+  expect_identical(list.cbind(x),do.call(cbind,x))
+})
