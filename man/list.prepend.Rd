@@ -3,12 +3,12 @@
 \alias{list.prepend}
 \title{Prepend a list}
 \usage{
-list.prepend(x, val)
+list.prepend(x, ...)
 }
 \arguments{
 \item{x}{The original list}
 
-\item{val}{A vector or list that is to be prepended before \code{x}}
+\item{...}{A vector or list that is to be prepended before \code{x}}
 }
 \description{
 Prepend a list

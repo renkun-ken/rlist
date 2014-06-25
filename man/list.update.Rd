@@ -7,7 +7,7 @@ list.update(x, ..., item = ".", keep.names = TRUE, keep.null = FALSE,
   keep.val.null = FALSE)
 }
 \arguments{
-\item{_data}{The list to be transformed}
+\item{x}{The list to be transformed}
 
 \item{...}{The elements to transform}
 
