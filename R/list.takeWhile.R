@@ -32,7 +32,8 @@ list.takeWhile <- function(x,cond=TRUE,
     }
     result <- eval(cond,env,enclos)
     if(length(result) > 1) stop("More than one results are returned")
-    if(is.logical(result) && result) {
+    if(!is.logical(result)) stop("Undetermined condition")
+    if(result) {
       index <- i
     } else {
       break

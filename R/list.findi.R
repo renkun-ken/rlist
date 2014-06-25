@@ -33,7 +33,8 @@ list.findi <- function(x,cond=TRUE,n=1,item=".") {
     result <- eval(cond,env,enclos)
     if(length(result) > 1) stop("More than one results are returned")
     if(length(indices) < n) {
-      if(is.logical(result) && result) {
+      if(!is.logical(result)) stop("Undetermined condition")
+      if(result) {
         indices <- c(indices,i)
       }
     } else {
