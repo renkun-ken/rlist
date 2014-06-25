@@ -95,3 +95,15 @@ test_that("list.cbind", {
     data.frame(e=rnorm(10),f=rnorm(10)))
   expect_identical(list.cbind(x),do.call(cbind,x))
 })
+
+test_that("list.match", {
+  # simple list
+  x <- list(a=1,b=2)
+  expect_identical(list.match(x,"a"),x["a"])
+  expect_identical(list.match(x,"[ab]"),x)
+
+  x <- list(p1 = list(type="A",score=list(c1=10,c2=8)),
+    p2 = list(type="B",score=list(c1=9,c2=9)),
+    p3 = list(type="B",score=list(c1=9,c2=7)))
+  expect_identical(list.match(x,"p[12]"),x[c("p1","p2")])
+})
