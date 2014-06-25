@@ -1,3 +1,17 @@
+#' Load a list from file
+#'
+#' @param file The file as input
+#' @param type The type of input which is by default determined
+#'    by file extension
+#' @param ... Additional parameters passed to the loader function
+#' @name list.load
+#' @export
+#' @examples
+#' \dontrun{
+#' list.load("list.rdata")
+#' list.load("list.yaml")
+#' list.load("list.json")
+#' }
 list.load <- function(file,type=tolower(tools::file_ext(file)),...) {
   fun <- paste("list.load",type,sep = ".")
   if(existsFunction(fun)) {
@@ -19,12 +33,14 @@ list.load.yaml <- function(file,...) {
   yaml::yaml.load_file(file,...)
 }
 
-list.load.xml <- function(file,...) {
+list.load.yml <- list.load.yaml
 
+list.load.xml <- function(file,...) {
+  stop("Not implemented yet")
 }
 
-list.load.rdata <- function(file,...) {
+list.load.rdata <- function(file,name="x") {
   env <- new.env(parent = parent.frame())
   load(file,env)
-  env$x
+  get(name,envir = env)
 }
