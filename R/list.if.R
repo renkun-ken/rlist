@@ -18,7 +18,7 @@ list.if <- function(x,cond,keep.names=TRUE) {
   cond <- substitute(cond)
   l <- lambda(cond)
   enclos <- new.env(FALSE,parent.frame(),1)
-  result <- vapply(x,function(xi) {
+  results <- vapply(x,function(xi) {
     assign(l$symbol,xi,envir = enclos)
     if(is.list(xi) || is.environment(xi)) {
       env <- xi
@@ -32,6 +32,6 @@ list.if <- function(x,cond,keep.names=TRUE) {
     if(!is.logical(result)) stop("Undetermined condition")
     result
   },logical(1))
-  if(!keep.names) names(result) <- NULL
-  result
+  if(!keep.names) names(results) <- NULL
+  results
 }
