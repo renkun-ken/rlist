@@ -4,7 +4,6 @@
 #' @param subset A logical expression that specifies the subsetting condition
 #' @param select An expression that is evaluated for each item
 #' that satisfies the subsetting condition
-#' @param item The symbol to represent the list item, \code{.} in default
 #' @param keep.names Whether to keep the names of list x
 #' @param keep.null Whether to keep \code{NULL} items in the result
 #' @param ... Additional arguments
@@ -21,13 +20,16 @@
 #' do.call(rbind,
 #'    subset(x,min(score$c1,score$c2) >= 8,data.frame(score)))
 #' }
-subset.list <- function(x,subset=TRUE,select=NULL,
-  item=".",keep.names=TRUE,keep.null=FALSE,...) {
+subset.list <- function(x,subset=TRUE,select=.,
+  keep.names=TRUE,keep.null=FALSE,...) {
   subset <- substitute(subset)
   select <- substitute(select)
-  enclos <- new.env(FALSE,parent.frame(),1)
+  l.subset <- lambda(subset)
+  l.select <- lambda(select)
+  enclos.subset <- new.env(FALSE,parent.frame(),1)
+  enclos.select <- new.env(FALSE,parent.frame(),1)
   items <- lapply(x,function(i) {
-    assign(item,i,envir = enclos)
+    assign(l.subset$symbol,i,envir = enclos.subset)
     if(is.list(i) || is.environment(i)) {
       env <- i
     } else if(is.vector(i)) {
@@ -35,16 +37,12 @@ subset.list <- function(x,subset=TRUE,select=NULL,
     } else {
       env <- enclos
     }
-    result <- eval(subset,env,enclos)
+    result <- eval(l.subset$expr,env,enclos.subset)
     if(length(result) > 1) stop("More than one results are returned")
-    if(is.logical(result) && result) {
-      if(is.null(select)) {
-        i
-      } else {
-        eval(select,env,enclos)
-      }
-    } else {
-      NULL
+    if(!is.logical(result)) stop("Undetermined condition")
+    if(result) {
+      assign(l.select$symbol,i,envir = enclos.select)
+      eval(l.select$expr,env,enclos.select)
     }
   })
   if(!keep.names) names(items) <- NULL

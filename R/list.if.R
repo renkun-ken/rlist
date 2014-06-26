@@ -3,7 +3,6 @@
 #'
 #' @param x A list
 #' @param cond A logical expression that specifies the condition
-#' @param item The symbol to represent the list item, \code{.} in default
 #' @param keep.names Whether to keep the names of list x
 #' @name list.if
 #' @export
@@ -15,11 +14,12 @@
 #' list.if(x,type=="B")
 #' list.if(x,min(score$c1,score$c2) >= 8)
 #' }
-list.if <- function(x,cond,item=".",keep.names=TRUE) {
+list.if <- function(x,cond,keep.names=TRUE) {
   cond <- substitute(cond)
+  l <- lambda(cond)
   enclos <- new.env(FALSE,parent.frame(),1)
   result <- vapply(x,function(xi) {
-    assign(item,xi,envir = enclos)
+    assign(l$symbol,xi,envir = enclos)
     if(is.list(xi) || is.environment(xi)) {
       env <- xi
     } else if(is.vector(xi)) {
@@ -27,7 +27,7 @@ list.if <- function(x,cond,item=".",keep.names=TRUE) {
     } else {
       env <- enclos
     }
-    result <- eval(cond,env,enclos)
+    result <- eval(l$expr,env,enclos)
     if(length(result) > 1) stop("More than one results are returned")
     if(!is.logical(result)) stop("Undetermined condition")
     result

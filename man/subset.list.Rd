@@ -3,8 +3,8 @@
 \alias{subset.list}
 \title{Return subsets of a list which meet conditions.}
 \usage{
-\method{subset}{list}(x, subset = TRUE, select = NULL, item = ".",
-  keep.names = TRUE, keep.null = FALSE, ...)
+\method{subset}{list}(x, subset = TRUE, select = ., keep.names = TRUE,
+  keep.null = FALSE, ...)
 }
 \arguments{
 \item{x}{The list to be subsetted}
@@ -13,8 +13,6 @@
 
 \item{select}{An expression that is evaluated for each item
 that satisfies the subsetting condition}
-
-\item{item}{The symbol to represent the list item, \code{.} in default}
 
 \item{keep.names}{Whether to keep the names of list x}
 

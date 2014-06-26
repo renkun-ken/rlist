@@ -3,14 +3,12 @@
 \alias{list.map}
 \title{Map each member of a list by an expression.}
 \usage{
-list.map(x, expr, item = ".", keep.names = TRUE, keep.null = FALSE)
+list.map(x, expr, keep.names = TRUE, keep.null = FALSE)
 }
 \arguments{
 \item{x}{The list to perform mapping}
 
 \item{expr}{An expression that is evaluated for each item}
-
-\item{item}{The symbol to represent the list item, \code{.} in default}
 
 \item{keep.names}{Whether to keep the names of list x}
 

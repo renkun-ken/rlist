@@ -3,15 +3,12 @@
 \alias{list.takeWhile}
 \title{Take out members until the given condition is broken}
 \usage{
-list.takeWhile(x, cond = TRUE, item = ".", keep.names = TRUE,
-  keep.null = FALSE)
+list.takeWhile(x, cond = TRUE, keep.names = TRUE, keep.null = FALSE)
 }
 \arguments{
 \item{x}{The list}
 
 \item{cond}{The condition}
-
-\item{item}{The symbol to represent the list item, \code{.} in default}
 
 \item{keep.names}{Whether to keep the names of list x}
 

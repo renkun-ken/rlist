@@ -4,14 +4,12 @@
 \title{Iterate a list by evaluating an expression on
 each list member.}
 \usage{
-list.iter(x, expr, item = ".")
+list.iter(x, expr)
 }
 \arguments{
 \item{x}{The list to iterate}
 
 \item{expr}{An expression that is evaluated for each item}
-
-\item{item}{The symbol to represent the list item, \code{.} in default}
 }
 \description{
 Iterate a list by evaluating an expression on

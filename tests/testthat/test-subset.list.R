@@ -10,7 +10,7 @@ test_that("subset.list", {
   expect_identical(subset(x,type=="B"),x[c(2,3)])
   expect_identical(subset(x,type=="B",score$c1),list(p2=9,p3=9))
 
-  expect_identical(subset(x,type=="B",item$score$c2,item = "item"),
+  expect_identical(subset(x,type=="B",item ~ item$score$c2),
     list(p2=9,p3=7))
 
   # list of vectors
@@ -21,7 +21,8 @@ test_that("subset.list", {
   # list of lists
 
   l1 <- list(a=list(x=1,y=2),b=list(x=2,y=3))
-  expect_identical(subset(l1,sum(unlist(.))<=4,unlist(.)),list(a=c(x=1,y=2)))
+  expect_identical(subset(l1,sum(unlist(.))<=4,unlist(.)),
+    list(a=c(x=1,y=2)))
 
   # list of objects of list mode
   l2 <- lapply(1:10, function(i) {

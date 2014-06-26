@@ -2,7 +2,6 @@
 #'
 #' @param x The list to perform mapping
 #' @param expr An expression that is evaluated for each item
-#' @param item The symbol to represent the list item, \code{.} in default
 #' @param keep.names Whether to keep the names of list x
 #' @param keep.null Whether to keep \code{NULL} items in the result
 #' @name list.map
@@ -16,11 +15,12 @@
 #' list.map(x,min(score$c1,score$c2))
 #' }
 list.map <- function(x,expr,
-  item=".",keep.names=TRUE,keep.null=FALSE) {
+  keep.names=TRUE,keep.null=FALSE) {
   expr <- substitute(expr)
+  l <- lambda(expr)
   enclos <- new.env(FALSE,parent.frame(),1)
   items <- lapply(x,function(i) {
-    assign(item,i,envir = enclos)
+    assign(l$symbol,i,envir = enclos)
     if(is.list(i) || is.environment(i)) {
       env <- i
     } else if(is.vector(i)) {
@@ -28,7 +28,7 @@ list.map <- function(x,expr,
     } else {
       env <- enclos
     }
-    eval(expr,env,enclos)
+    eval(l$expr,env,enclos)
   })
   if(!keep.names) names(items) <- NULL
   if(!keep.null) items[vapply(items,is.null,logical(1))] <- NULL

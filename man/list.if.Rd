@@ -4,14 +4,12 @@
 \title{Return a logical vector that indicates if each member of a list
 satisfies a given condition}
 \usage{
-list.if(x, cond, item = ".", keep.names = TRUE)
+list.if(x, cond, keep.names = TRUE)
 }
 \arguments{
 \item{x}{A list}
 
 \item{cond}{A logical expression that specifies the condition}
-
-\item{item}{The symbol to represent the list item, \code{.} in default}
 
 \item{keep.names}{Whether to keep the names of list x}
 }

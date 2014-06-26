@@ -4,7 +4,7 @@
 \title{Find the indices of a number of members in a list that
 meet given condition}
 \usage{
-list.findi(x, cond = TRUE, n = 1, item = ".")
+list.findi(x, cond, n = 1)
 }
 \arguments{
 \item{x}{The list}
@@ -12,8 +12,6 @@ list.findi(x, cond = TRUE, n = 1, item = ".")
 \item{cond}{The condition}
 
 \item{n}{The maximal number of members to find out}
-
-\item{item}{The symbol to represent the list item, \code{.} in default}
 }
 \description{
 Find the indices of a number of members in a list that

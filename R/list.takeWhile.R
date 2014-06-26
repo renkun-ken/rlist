@@ -2,7 +2,6 @@
 #'
 #' @param x The list
 #' @param cond The condition
-#' @param item The symbol to represent the list item, \code{.} in default
 #' @param keep.names Whether to keep the names of list x
 #' @param keep.null Whether to keep \code{NULL} items in the result
 #' @name list.takeWhile
@@ -16,13 +15,14 @@
 #' list.takeWhile(x,min(score$c1,score$c2) >= 8)
 #' }
 list.takeWhile <- function(x,cond=TRUE,
-  item=".",keep.names=TRUE,keep.null=FALSE) {
+  keep.names=TRUE,keep.null=FALSE) {
   cond <- substitute(cond)
+  l <- lambda(cond)
   enclos <- new.env(FALSE,parent.frame(),1)
   index <- 0
   for(i in seq_along(x)) {
     xi <- x[[i]]
-    assign(item,xi,envir = enclos)
+    assign(l$symbol,xi,envir = enclos)
     if(is.list(xi) || is.environment(xi)) {
       env <- xi
     } else if(is.vector(xi)) {
@@ -30,7 +30,7 @@ list.takeWhile <- function(x,cond=TRUE,
     } else {
       env <- enclos
     }
-    result <- eval(cond,env,enclos)
+    result <- eval(l$expr,env,enclos)
     if(length(result) > 1) stop("More than one results are returned")
     if(!is.logical(result)) stop("Undetermined condition")
     if(result) {

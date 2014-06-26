@@ -3,15 +3,12 @@
 \alias{list.group}
 \title{Group a list by the value of an expression evaluated for each member.}
 \usage{
-list.group(x, key, item = ".", keep.group.names = TRUE,
-  keep.item.names = TRUE)
+list.group(x, key, keep.group.names = TRUE, keep.item.names = TRUE)
 }
 \arguments{
 \item{x}{The list to be filtered}
 
 \item{key}{An expression that determines the key of the group}
-
-\item{item}{The symbol to represent the list item, \code{.} in default}
 
 \item{keep.group.names}{Whether to keep the names of the groups}
 

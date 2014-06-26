@@ -2,7 +2,6 @@
 #'
 #' @param x The list to be filtered
 #' @param key An expression that determines the key of the group
-#' @param item The symbol to represent the list item, \code{.} in default
 #' @param keep.group.names Whether to keep the names of the groups
 #' @param keep.item.names Whether to keep the names of the items in the result
 #' @name list.group
@@ -16,11 +15,12 @@
 #' list.group(x,mean(unlist(score)))
 #' }
 list.group <- function(x,key,
-  item=".",keep.group.names=TRUE,keep.item.names=TRUE) {
+  keep.group.names=TRUE,keep.item.names=TRUE) {
   key <- substitute(key)
+  l <- lambda(key)
   enclos <- new.env(FALSE,parent.frame(),1)
   keys <- lapply(x,function(i) {
-    assign(item,i,envir = enclos)
+    assign(l$symbol,i,envir = enclos)
     if(is.list(i) || is.environment(i)) {
       env <- i
     } else if(is.vector(i)) {
@@ -28,7 +28,7 @@ list.group <- function(x,key,
     } else {
       env <- enclos
     }
-    eval(key,env,enclos)
+    eval(l$expr,env,enclos)
   })
   unikeys <- unique(keys)
   if(keep.group.names) names(unikeys) <- as.character(unikeys)

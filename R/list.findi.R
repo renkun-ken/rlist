@@ -4,7 +4,6 @@
 #' @param x The list
 #' @param cond The condition
 #' @param n The maximal number of members to find out
-#' @param item The symbol to represent the list item, \code{.} in default
 #' @name list.findi
 #' @export
 #' @examples
@@ -16,13 +15,14 @@
 #' list.findi(x,min(score$c1,score$c2) >= 8)
 #' list.findi(x,min(score$c1,score$c2) <= 8,2)
 #' }
-list.findi <- function(x,cond=TRUE,n=1,item=".") {
+list.findi <- function(x,cond,n=1) {
   cond <- substitute(cond)
+  l <- lambda(cond)
   enclos <- new.env(FALSE,parent.frame(),1)
   indices <- integer()
   for(i in seq_along(x)) {
     xi <- x[[i]]
-    assign(item,xi,envir = enclos)
+    assign(l$symbol,xi,envir = enclos)
     if(is.list(xi) || is.environment(xi)) {
       env <- xi
     } else if(is.vector(xi)) {
@@ -30,7 +30,7 @@ list.findi <- function(x,cond=TRUE,n=1,item=".") {
     } else {
       env <- enclos
     }
-    result <- eval(cond,env,enclos)
+    result <- eval(l$expr,env,enclos)
     if(length(result) > 1) stop("More than one results are returned")
     if(length(indices) < n) {
       if(!is.logical(result)) stop("Undetermined condition")
