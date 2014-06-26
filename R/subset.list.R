@@ -1,3 +1,5 @@
+. <- NULL
+
 #' Return subsets of a list which meet conditions.
 #'
 #' @param x The list to be subsetted
@@ -35,7 +37,7 @@ subset.list <- function(x,subset=TRUE,select=.,
     } else if(is.vector(i)) {
       env <- as.list(i)
     } else {
-      env <- enclos
+      env <- enclos.subset
     }
     result <- eval(l.subset$expr,env,enclos.subset)
     if(length(result) > 1) stop("More than one results are returned")
