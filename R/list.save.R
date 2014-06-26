@@ -37,6 +37,7 @@ list.save.yaml <- function(x,file,...) {
 list.save.yml <- list.save.yaml
 
 list.save.xml <- function(x,file,...) {
+  warning("Not fully implemented yet")
   root <- XML::newXMLNode("root")
   root <- list.to.xml(root,x)
   XML::saveXML(root,file,...)
