@@ -194,7 +194,7 @@ There are much more functions are provided than the examples show. Please read t
 
 Pipeline operators may hugely improve the readibility of the code especially when a chain of commands are executed. [pipeR package](http://renkun.me/pipeR) is recommended to cowork with this package.
 
-If we want to know the developers whose age is no more than 24 and create a data frame where they are sorted by the number of years using R in descending order and each row tells us the name, years of using R, and the average years using all languages they know.
+If we want to know the developers whose age is no more than 24 and create a data frame where they are sorted by the number of years using R in descending order and each row tells us the name, years of using R, and the longest time using a language they know.
 
 
 ```r
