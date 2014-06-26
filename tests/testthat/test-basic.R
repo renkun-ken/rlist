@@ -41,13 +41,6 @@ test_that("list.extract", {
   expect_identical(list.extract(x,"a"),x[["a"]])
 })
 
-test_that("list.select", {
-  # simple list
-  x <- list(a=1,b=2,c=3)
-  expect_identical(list.select(x,1),x[1])
-  expect_identical(list.select(x,"a"),x["a"])
-})
-
 test_that("list.count", {
 
   # simple list
