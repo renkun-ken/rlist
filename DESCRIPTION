@@ -5,11 +5,12 @@ Version: 0.1
 Author: Kun Ren <renkun@outlook.com>
 Maintainer: Kun Ren <renkun@outlook.com>
 Description: A toolset for working with lists as dataset,
-    including subsetting, transforming, summarizing, and visualizing
-    functions.
+    including filtering, mapping, grouping, sorting, updating, and
+    many other functions, which allow functional programming
+    style applied in list operations.
 Depends:
     R (>= 2.15)
-Date: 2014-06-01
+Date: 2014-06-26
 Suggests:
     testthat,
     knitr

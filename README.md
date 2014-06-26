@@ -28,18 +28,6 @@ Suppose we have a list of developers, each of which has a name, age, some intere
 
 ```r
 library(rlist)
-```
-
-```
-
-Attaching package: 'rlist'
-
-The following objects are masked _by_ '.GlobalEnv':
-
-    list.insert, list.iter, list.remove
-```
-
-```r
 devs <- 
   list(
     p1=list(name="Ken",age=24,
@@ -223,6 +211,54 @@ devs %>>%
     name r longest
 p1   Ken 2       4
 p3 Penny 1       4
+```
+
+### Lambda expression
+
+Most functions in this package supports lambda expressions like `x ~ f(x)` or `x -> f(x)` where `x` refers to the list member itself. Otherwise, `.` will by default be used to represent it.
+
+
+```r
+nums <- list(a=c(1,2,3),b=c(2,3,4),c=c(3,4,5))
+nums %>>%
+  list.map(data.frame(min=min(.),max=max(.))) %>>%
+  list.rbind
+```
+
+```
+  min max
+a   1   3
+b   2   4
+c   3   5
+```
+
+```r
+nums %>>%
+  list.map(x ~ sum(x))
+```
+
+```
+$a
+[1] 6
+
+$b
+[1] 9
+
+$c
+[1] 12
+```
+
+```r
+nums %>>%
+  list.filter(x -> mean(x)>=3)
+```
+
+```
+$b
+[1] 2 3 4
+
+$c
+[1] 3 4 5
 ```
 
 ## Help overview
