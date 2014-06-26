@@ -43,7 +43,7 @@ devs <-
 
 ### Filtering
 
-If we want to know the names of those whose age is no less than 25, we can call `list.filter` to filter the list.
+Filter members whose age is no less than 25 by calling `list.filter`.
 
 
 ```r
@@ -64,7 +64,7 @@ List of 1
 
 ### Mapping
 
-If we want to know the name of each person, we can call `list.map` to map each member by an expression.
+Get the name of each person by calling `list.map` that maps each member by an expression.
 
 
 ```r
@@ -82,7 +82,7 @@ $p3
 [1] "Penny"
 ```
 
-If we want to know the programming language each person has been using for the longest time
+Get the programming language each person has been using for the longest time by calling `list.map`.
 
 
 ```r
@@ -103,9 +103,51 @@ cpp
   4 
 ```
 
+### Selecting
+
+Select the name and age of each member by calling `list.select`.
+
+
+```r
+str(list.select(devs,name,age))
+```
+
+```
+List of 3
+ $ p1:List of 2
+  ..$ name: chr "Ken"
+  ..$ age : num 24
+ $ p2:List of 2
+  ..$ name: chr "James"
+  ..$ age : num 25
+ $ p3:List of 2
+  ..$ name: chr "Penny"
+  ..$ age : num 24
+```
+
+Select the name and evaluate the range of the number of years using programming languages.
+
+
+```r
+str(list.select(devs,name,score.range=range(unlist(lang))))
+```
+
+```
+List of 3
+ $ p1:List of 2
+  ..$ name       : chr "Ken"
+  ..$ score.range: num [1:2] 2 4
+ $ p2:List of 2
+  ..$ name       : chr "James"
+  ..$ score.range: num [1:2] 2 5
+ $ p3:List of 2
+  ..$ name       : chr "Penny"
+  ..$ score.range: num [1:2] 1 4
+```
+
 ### Grouping
 
-If we want to build a list that contains sublists each represents an age group, we can call `list.group`.
+Build a list that contains sublists each represents an age group by calling `list.group`.
 
 
 ```r
@@ -144,7 +186,7 @@ List of 2
 
 ### Sorting
 
-If we want to sort the developers by the number of interests in descending order, then by the number of years they have been using R in descending order, we can call `list.sort`.
+Sort the developers by the number of interests in descending order, then by the number of years they have been using R in descending order by calling `list.sort`.
 
 
 ```r
@@ -164,6 +206,8 @@ $p3
 ```
 
 ### Updating
+
+Use `list.update` to update the list by removing `age` and `lang` columns and introducing the number of languages each member uses as `nlang`.
 
 
 ```r

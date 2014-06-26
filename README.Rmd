@@ -49,7 +49,7 @@ devs <-
 
 ### Filtering
 
-If we want to know the names of those whose age is no less than 25, we can call `list.filter` to filter the list.
+Filter members whose age is no less than 25 by calling `list.filter`.
 
 ```{r}
 str(list.filter(devs,age >= 25))
@@ -57,21 +57,35 @@ str(list.filter(devs,age >= 25))
 
 ### Mapping
 
-If we want to know the name of each person, we can call `list.map` to map each member by an expression.
+Get the name of each person by calling `list.map` that maps each member by an expression.
 
 ```{r}
 list.map(devs, name)
 ```
 
-If we want to know the programming language each person has been using for the longest time
+Get the programming language each person has been using for the longest time by calling `list.map`.
 
 ```{r}
 list.map(devs, sort(unlist(lang),decreasing = T)[1])
 ```
 
+### Selecting
+
+Select the name and age of each member by calling `list.select`.
+
+```{r}
+str(list.select(devs,name,age))
+```
+
+Select the name and evaluate the range of the number of years using programming languages.
+
+```{r}
+str(list.select(devs,name,score.range=range(unlist(lang))))
+```
+
 ### Grouping
 
-If we want to build a list that contains sublists each represents an age group, we can call `list.group`.
+Build a list that contains sublists each represents an age group by calling `list.group`.
 
 ```{r}
 str(list.group(devs,age))
@@ -79,7 +93,7 @@ str(list.group(devs,age))
 
 ### Sorting
 
-If we want to sort the developers by the number of interests in descending order, then by the number of years they have been using R in descending order, we can call `list.sort`.
+Sort the developers by the number of interests in descending order, then by the number of years they have been using R in descending order by calling `list.sort`.
 
 ```{r}
 sorted <- list.sort(devs,desc(length(interest)),desc(lang$r))
@@ -87,6 +101,8 @@ list.map(sorted,name)
 ```
 
 ### Updating
+
+Use `list.update` to update the list by removing `age` and `lang` columns and introducing the number of languages each member uses as `nlang`.
 
 ```{r}
 str(list.update(devs,age=NULL,lang=NULL,nlang=length(lang)))
