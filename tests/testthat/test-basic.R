@@ -28,6 +28,11 @@ test_that("list.prepend", {
   expect_identical(list.prepend(x,p0=list(p0)),c(p0=list(p0),x))
 })
 
+test_that("list.insert", {
+  x <- list(a=1,b=2,c=3)
+  expect_identical(list.insert(x,2,q=0),list(a=1,q=0,b=2,c=3))
+})
+
 test_that("list.extract", {
 
   # simple list
