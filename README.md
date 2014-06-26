@@ -28,6 +28,18 @@ Suppose we have a list of developers, each of which has a name, age, some intere
 
 ```r
 library(rlist)
+```
+
+```
+
+Attaching package: 'rlist'
+
+The following objects are masked _by_ '.GlobalEnv':
+
+    list.insert, list.iter, list.remove
+```
+
+```r
 devs <- 
   list(
     p1=list(name="Ken",age=24,
@@ -188,7 +200,7 @@ List of 3
 
 ### More functions
 
-There are much more functions are provided than the examples show. Please read the documentation of the package.
+Much more functions are provided than the examples show. Please read the documentation of the package.
 
 ### Working with pipeline
 
