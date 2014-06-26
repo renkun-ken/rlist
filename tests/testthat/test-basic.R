@@ -81,6 +81,13 @@ test_that("list.merge", {
   expect_identical(list.merge(x,list(b=5)),list(a=1,b=5,c=list(x=1,y=2)))
   expect_identical(list.merge(x,list(c=list(z=3))),list(a=1,b=2,c=list(x=1,y=2,z=3)))
 
+  # multiple lists
+  l1 <- list(a=1,b=list(x=1,y=1))
+  l2 <- list(a=2,b=list(z=2))
+  l3 <- list(a=2,b=list(x=3))
+  expect_identical(list.merge(l1,l2,l3),
+    modifyList(modifyList(l1,l2),l3))
+
 })
 
 test_that("list.rbind", {

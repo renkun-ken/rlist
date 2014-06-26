@@ -1,15 +1,20 @@
-#' Merge two lists
-#' @param x The original list
-#' @param val A vector or list that is to be appended after \code{x}
-#' @param keep.null Whether to keep \code{NULL} items
+#' Merge a series of lists
+#' @param ... A series of lists
 #' @name list.merge
 #' @export
 #' @examples
 #' \dontrun{
-#' x <- list(a=1,b=2,c=list(x=1,y=2))
-#' list.merge(x,list(b=5))
-#' list.merge(x,list(c=list(z=3)))
+#' l1 <- list(a=1,b=list(x=1,y=1))
+#' l2 <- list(a=2,b=list(z=2))
+#' l3 <- list(a=2,b=list(x=3))
+#' list.merge(l1,l2,l3)
 #' }
-list.merge <- modifyList
+list.merge <- function(...) {
+  updates <- list(...)
+  result <- list()
+  for (update in updates) {
+    result <- modifyList(result, update)
+  }
+  result
+}
 
-## implement mutiple merge
