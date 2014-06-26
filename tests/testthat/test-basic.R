@@ -135,3 +135,10 @@ test_that("list.takeWhile, list.skipWhile", {
   expect_identical(list.takeWhile(x,.<=1),x[1])
   expect_identical(list.skipWhile(x,.<=1),x[2])
 })
+
+test_that("list.remove", {
+  x <- list(a=1,b=2)
+  expect_identical(list.remove(x,1),x[2])
+  expect_identical(list.remove(x,"b"),x["a"])
+  expect_identical(list.remove(x,c("a","b")),x[0])
+})
