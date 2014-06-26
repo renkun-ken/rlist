@@ -19,12 +19,12 @@ list.map <- function(x,expr,
   expr <- substitute(expr)
   l <- lambda(expr)
   enclos <- new.env(FALSE,parent.frame(),1)
-  items <- lapply(x,function(i) {
-    assign(l$symbol,i,envir = enclos)
-    if(is.list(i) || is.environment(i)) {
-      env <- i
-    } else if(is.vector(i)) {
-      env <- as.list(i)
+  items <- lapply(x,function(xi) {
+    assign(l$symbol,xi,envir = enclos)
+    if(is.list(xi) || is.environment(xi)) {
+      env <- xi
+    } else if(is.vector(xi)) {
+      env <- as.list(xi)
     } else {
       env <- enclos
     }
