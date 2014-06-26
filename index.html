@@ -41,7 +41,7 @@
 <ul>
 <li>Make it easier to work with list objects used to store data in more flexible structures than data frames.</li>
 <li>Perform a wide range of functions on non-relational data using list constructs.</li>
-</ul><p><em>Currently, this package is still on a early stage. Its functions and implmentations may change overtime and cannot guarantee the backward compatibility. Please be cautious when you use it in production.</em></p>
+</ul><p><em>This package may not be stable enough for production purpose. Its functions and implmentations may change overtime and cannot guarantee the backward compatibility at the moment. Please be cautious when you use it in production.</em></p>
 
 <h2>
 <a name="installation" class="anchor" href="#installation"><span class="octicon octicon-link"></span></a>Installation</h2>
@@ -75,7 +75,7 @@ devs <span class="o">&lt;-</span>
 <h3>
 <a name="filtering" class="anchor" href="#filtering"><span class="octicon octicon-link"></span></a>Filtering</h3>
 
-<p>If we want to know the names of those whose age is no less than 25, we can call <code>list.filter</code> to filter the list.</p>
+<p>Filter members whose age is no less than 25 by calling <code>list.filter</code>.</p>
 
 <div class="highlight highlight-r"><pre>str<span class="p">(</span>list.filter<span class="p">(</span>devs<span class="p">,</span>age <span class="o">&gt;=</span> <span class="m">25</span><span class="p">))</span>
 </pre></div>
@@ -94,7 +94,7 @@ devs <span class="o">&lt;-</span>
 <h3>
 <a name="mapping" class="anchor" href="#mapping"><span class="octicon octicon-link"></span></a>Mapping</h3>
 
-<p>If we want to know the name of each person, we can call <code>list.map</code> to map each member by an expression.</p>
+<p>Get the name of each person by calling <code>list.map</code> that maps each member by an expression.</p>
 
 <div class="highlight highlight-r"><pre>list.map<span class="p">(</span>devs<span class="p">,</span> name<span class="p">)</span>
 </pre></div>
@@ -109,7 +109,7 @@ $p3
 [1] "Penny"
 </code></pre>
 
-<p>If we want to know the programming language each person has been using for the longest time</p>
+<p>Get the programming language each person has been using for the longest time by calling <code>list.map</code>.</p>
 
 <div class="highlight highlight-r"><pre>list.map<span class="p">(</span>devs<span class="p">,</span> <span class="kp">sort</span><span class="p">(</span><span class="kp">unlist</span><span class="p">(</span>lang<span class="p">),</span>decreasing <span class="o">=</span> <span class="bp">T</span><span class="p">)[</span><span class="m">1</span><span class="p">])</span>
 </pre></div>
@@ -128,9 +128,46 @@ cpp
 </code></pre>
 
 <h3>
+<a name="selecting" class="anchor" href="#selecting"><span class="octicon octicon-link"></span></a>Selecting</h3>
+
+<p>Select the name and age of each member by calling <code>list.select</code>.</p>
+
+<div class="highlight highlight-r"><pre>str<span class="p">(</span>list.select<span class="p">(</span>devs<span class="p">,</span>name<span class="p">,</span>age<span class="p">))</span>
+</pre></div>
+
+<pre><code>List of 3
+ $ p1:List of 2
+  ..$ name: chr "Ken"
+  ..$ age : num 24
+ $ p2:List of 2
+  ..$ name: chr "James"
+  ..$ age : num 25
+ $ p3:List of 2
+  ..$ name: chr "Penny"
+  ..$ age : num 24
+</code></pre>
+
+<p>Select the name and evaluate the range of the number of years using programming languages.</p>
+
+<div class="highlight highlight-r"><pre>str<span class="p">(</span>list.select<span class="p">(</span>devs<span class="p">,</span>name<span class="p">,</span>score.range<span class="o">=</span><span class="kp">range</span><span class="p">(</span><span class="kp">unlist</span><span class="p">(</span>lang<span class="p">))))</span>
+</pre></div>
+
+<pre><code>List of 3
+ $ p1:List of 2
+  ..$ name       : chr "Ken"
+  ..$ score.range: num [1:2] 2 4
+ $ p2:List of 2
+  ..$ name       : chr "James"
+  ..$ score.range: num [1:2] 2 5
+ $ p3:List of 2
+  ..$ name       : chr "Penny"
+  ..$ score.range: num [1:2] 1 4
+</code></pre>
+
+<h3>
 <a name="grouping" class="anchor" href="#grouping"><span class="octicon octicon-link"></span></a>Grouping</h3>
 
-<p>If we want to build a list that contains sublists each represents an age group, we can call <code>list.group</code>.</p>
+<p>Build a list that contains sublists each represents an age group by calling <code>list.group</code>.</p>
 
 <div class="highlight highlight-r"><pre>str<span class="p">(</span>list.group<span class="p">(</span>devs<span class="p">,</span>age<span class="p">))</span>
 </pre></div>
@@ -167,7 +204,7 @@ cpp
 <h3>
 <a name="sorting" class="anchor" href="#sorting"><span class="octicon octicon-link"></span></a>Sorting</h3>
 
-<p>If we want to sort the developers by the number of interests in descending order, then by the number of years they have been using R in descending order, we can call <code>list.sort</code>.</p>
+<p>Sort the developers by the number of interests in descending order, then by the number of years they have been using R in descending order by calling <code>list.sort</code>.</p>
 
 <div class="highlight highlight-r"><pre>sorted <span class="o">&lt;-</span> list.sort<span class="p">(</span>devs<span class="p">,</span>desc<span class="p">(</span><span class="kp">length</span><span class="p">(</span>interest<span class="p">)),</span>desc<span class="p">(</span>lang<span class="o">$</span>r<span class="p">))</span>
 list.map<span class="p">(</span>sorted<span class="p">,</span>name<span class="p">)</span>
@@ -185,6 +222,8 @@ $p3
 
 <h3>
 <a name="updating" class="anchor" href="#updating"><span class="octicon octicon-link"></span></a>Updating</h3>
+
+<p>Use <code>list.update</code> to update the list by removing <code>age</code> and <code>lang</code> columns and introducing the number of languages each member uses as <code>nlang</code>.</p>
 
 <div class="highlight highlight-r"><pre>str<span class="p">(</span>list.update<span class="p">(</span>devs<span class="p">,</span>age<span class="o">=</span><span class="kc">NULL</span><span class="p">,</span>lang<span class="o">=</span><span class="kc">NULL</span><span class="p">,</span>nlang<span class="o">=</span><span class="kp">length</span><span class="p">(</span>lang<span class="p">)))</span>
 </pre></div>
