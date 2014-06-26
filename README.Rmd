@@ -16,7 +16,7 @@ rlist is a set of tools for working with list objects. It has two main goals:
 - Make it easier to work with list objects used to store data in more flexible structures than data frames.
 - Perform a wide range of functions on non-relational data using list constructs.
 
-*Currently, this package is still on a early stage. Its functions and implmentations may change overtime and cannot guarantee the backward compatibility. Please be cautious when you use it in production.*
+*This package may not be stable enough for production purpose. Its functions and implmentations may change overtime and cannot guarantee the backward compatibility at the moment. Please be cautious when you use it in production.*
 
 ## Installation
 
