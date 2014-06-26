@@ -3,15 +3,13 @@
 \alias{list.update}
 \title{Update a list by modifying its elements.}
 \usage{
-list.update(x, ..., item = ".", keep.names = TRUE, keep.null = FALSE,
+list.update(x, ..., keep.names = TRUE, keep.null = FALSE,
   keep.val.null = FALSE)
 }
 \arguments{
 \item{x}{The list to be transformed}
 
-\item{...}{The elements to transform}
-
-\item{item}{The symbol to represent the list item, \code{.} in default}
+\item{...}{The elements to update}
 
 \item{keep.names}{Whether to keep the names of list x}
 
