@@ -59,17 +59,7 @@
 <p>Suppose we have a list of developers, each of which has a name, age, some interests and a list of programming langauge they use and the number of years they have been using them.</p>
 
 <div class="highlight highlight-r"><pre><span class="kn">library</span><span class="p">(</span>rlist<span class="p">)</span>
-</pre></div>
-
-<pre><code>
-Attaching package: 'rlist'
-
-The following objects are masked _by_ '.GlobalEnv':
-
-    list.insert, list.iter, list.remove
-</code></pre>
-
-<div class="highlight highlight-r"><pre>devs <span class="o">&lt;-</span> 
+devs <span class="o">&lt;-</span> 
   <span class="kt">list</span><span class="p">(</span>
     p1<span class="o">=</span><span class="kt">list</span><span class="p">(</span>name<span class="o">=</span><span class="s">"Ken"</span><span class="p">,</span>age<span class="o">=</span><span class="m">24</span><span class="p">,</span>
       interest<span class="o">=</span><span class="kt">c</span><span class="p">(</span><span class="s">"reading"</span><span class="p">,</span><span class="s">"music"</span><span class="p">,</span><span class="s">"movies"</span><span class="p">),</span>
@@ -238,6 +228,48 @@ devs <span class="o">%&gt;&gt;%</span>
 <pre><code>    name r longest
 p1   Ken 2       4
 p3 Penny 1       4
+</code></pre>
+
+<h3>
+<a name="lambda-expression" class="anchor" href="#lambda-expression"><span class="octicon octicon-link"></span></a>Lambda expression</h3>
+
+<p>Most functions in this package supports lambda expressions like <code>x ~ f(x)</code> or <code>x -&gt; f(x)</code> where <code>x</code> refers to the list member itself. Otherwise, <code>.</code> will by default be used to represent it.</p>
+
+<div class="highlight highlight-r"><pre>nums <span class="o">&lt;-</span> <span class="kt">list</span><span class="p">(</span>a<span class="o">=</span><span class="kt">c</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="m">2</span><span class="p">,</span><span class="m">3</span><span class="p">),</span>b<span class="o">=</span><span class="kt">c</span><span class="p">(</span><span class="m">2</span><span class="p">,</span><span class="m">3</span><span class="p">,</span><span class="m">4</span><span class="p">),</span><span class="kt">c</span><span class="o">=</span><span class="kt">c</span><span class="p">(</span><span class="m">3</span><span class="p">,</span><span class="m">4</span><span class="p">,</span><span class="m">5</span><span class="p">))</span>
+nums <span class="o">%&gt;&gt;%</span>
+  list.map<span class="p">(</span><span class="kt">data.frame</span><span class="p">(</span>min<span class="o">=</span><span class="kp">min</span><span class="p">(</span><span class="m">.</span><span class="p">),</span>max<span class="o">=</span><span class="kp">max</span><span class="p">(</span><span class="m">.</span><span class="p">)))</span> <span class="o">%&gt;&gt;%</span>
+  list.rbind
+</pre></div>
+
+<pre><code>  min max
+a   1   3
+b   2   4
+c   3   5
+</code></pre>
+
+<div class="highlight highlight-r"><pre>nums <span class="o">%&gt;&gt;%</span>
+  list.map<span class="p">(</span>x <span class="o">~</span> <span class="kp">sum</span><span class="p">(</span>x<span class="p">))</span>
+</pre></div>
+
+<pre><code>$a
+[1] 6
+
+$b
+[1] 9
+
+$c
+[1] 12
+</code></pre>
+
+<div class="highlight highlight-r"><pre>nums <span class="o">%&gt;&gt;%</span>
+  list.filter<span class="p">(</span>x <span class="o">-&gt;</span> <span class="kp">mean</span><span class="p">(</span>x<span class="p">)</span><span class="o">&gt;=</span><span class="m">3</span><span class="p">)</span>
+</pre></div>
+
+<pre><code>$b
+[1] 2 3 4
+
+$c
+[1] 3 4 5
 </code></pre>
 
 <h2>
