@@ -1,35 +1,36 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
+
   <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <title>rlist by renkun-ken</title>
+    <meta charset='utf-8' />
+    <meta http-equiv="X-UA-Compatible" content="chrome=1" />
+    <meta name="description" content="rlist : A set of tools for working with list objects" />
 
-    <link rel="stylesheet" href="stylesheets/styles.css">
-    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
-    <script src="javascripts/scale.fix.js"></script>
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
-    <!--[if lt IE 9]>
-    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
+    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+
+    <title>rlist</title>
   </head>
+
   <body>
-    <div class="wrapper">
-      <header>
-        <h1 class="header">rlist</h1>
-        <p class="header">A set of tools for working with list objects</p>
 
-        <ul>
-          <li class="download"><a class="buttons" href="https://github.com/renkun-ken/rlist/zipball/master">Download ZIP</a></li>
-          <li class="download"><a class="buttons" href="https://github.com/renkun-ken/rlist/tarball/master">Download TAR</a></li>
-          <li><a class="buttons github" href="https://github.com/renkun-ken/rlist">View On GitHub</a></li>
-        </ul>
+    <!-- HEADER -->
+    <div id="header_wrap" class="outer">
+        <header class="inner">
+          <a id="forkme_banner" href="https://github.com/renkun-ken/rlist">View on GitHub</a>
 
-        <p class="header">This project is maintained by <a class="header name" href="https://github.com/renkun-ken">renkun-ken</a></p>
+          <h1 id="project_title">rlist</h1>
+          <h2 id="project_tagline">A set of tools for working with list objects</h2>
 
+            <section id="downloads">
+              <a class="zip_download_link" href="https://github.com/renkun-ken/rlist/zipball/master">Download this project as a .zip file</a>
+              <a class="tar_download_link" href="https://github.com/renkun-ken/rlist/tarball/master">Download this project as a tar.gz file</a>
+            </section>
+        </header>
+    </div>
 
-      </header>
-      <section>
+    <!-- MAIN CONTENT -->
+    <div id="main_content_wrap" class="outer">
+      <section id="main_content" class="inner">
         <h1>
 <a name="rlist" class="anchor" href="#rlist"><span class="octicon octicon-link"></span></a>rlist</h1>
 
@@ -39,90 +40,200 @@
 
 <ul>
 <li>Make it easier to work with list objects used to store data in more flexible structures than data frames.</li>
-<li>Quickly perform a wide range of functions and manipulations on non-relational data structured as list objects.</li>
-</ul><p><em>Currently, this package is still on a very early stage. Its functions and implmentations may change overtime and cannot guarantee the backward compatibility. Please be cautious when you use it in production.</em></p>
+<li>Perform a wide range of functions on non-relational data using list constructs.</li>
+</ul><p><em>Currently, this package is still on a early stage. Its functions and implmentations may change overtime and cannot guarantee the backward compatibility. Please be cautious when you use it in production.</em></p>
 
 <h2>
 <a name="installation" class="anchor" href="#installation"><span class="octicon octicon-link"></span></a>Installation</h2>
 
 <p>You can install the latest development version from GitHub with</p>
 
-<div class="highlight highlight-s"><pre>devtools<span class="o">::</span>install_github<span class="p">(</span><span class="s">"rlist"</span><span class="p">,</span><span class="s">"renkun-ken"</span><span class="p">)</span>
+<div class="highlight highlight-r"><pre>devtools<span class="o">::</span>install_github<span class="p">(</span><span class="s">"rlist"</span><span class="p">,</span><span class="s">"renkun-ken"</span><span class="p">)</span>
 </pre></div>
 
 <h2>
-<a name="getting-started" class="anchor" href="#getting-started"><span class="octicon octicon-link"></span></a>Getting started</h2>
+<a name="functions" class="anchor" href="#functions"><span class="octicon octicon-link"></span></a>Functions</h2>
 
-<p>A simple list will be generated to demonstrate the functions.</p>
+<p>A wide range of functions are provided to work with list objects.</p>
 
 <p>Suppose we have a list of developers, each of which has a name, age, some interests and a list of programming langauge they use and the number of years they have been using them.</p>
 
-<div class="highlight highlight-s"><pre>developers <span class="o">&lt;-</span> 
-  list<span class="p">(</span>
-    p1<span class="o">=</span>list<span class="p">(</span>name<span class="o">=</span><span class="s">"Ken"</span><span class="p">,</span>age<span class="o">=</span><span class="m">24</span><span class="p">,</span>
-      interest<span class="o">=</span>c<span class="p">(</span><span class="s">"reading"</span><span class="p">,</span><span class="s">"music"</span><span class="p">,</span><span class="s">"movies"</span><span class="p">),</span>
-      lang<span class="o">=</span>list<span class="p">(</span>r<span class="o">=</span><span class="m">2</span><span class="p">,</span>csharp<span class="o">=</span><span class="m">4</span><span class="p">,</span>python<span class="o">=</span><span class="m">3</span><span class="p">)),</span>
-    p2<span class="o">=</span>list<span class="p">(</span>name<span class="o">=</span><span class="s">"James"</span><span class="p">,</span>age<span class="o">=</span><span class="m">25</span><span class="p">,</span>
-      interest<span class="o">=</span>c<span class="p">(</span><span class="s">"sports"</span><span class="p">,</span><span class="s">"music"</span><span class="p">),</span>
-      lang<span class="o">=</span>list<span class="p">(</span>r<span class="o">=</span><span class="m">3</span><span class="p">,</span>java<span class="o">=</span><span class="m">2</span><span class="p">,</span>cpp<span class="o">=</span><span class="m">5</span><span class="p">)),</span>
-    p3<span class="o">=</span>list<span class="p">(</span>name<span class="o">=</span><span class="s">"Penny"</span><span class="p">,</span>age<span class="o">=</span><span class="m">24</span><span class="p">,</span>
-      interest<span class="o">=</span>c<span class="p">(</span><span class="s">"movies"</span><span class="p">,</span><span class="s">"reading"</span><span class="p">),</span>
-      lang<span class="o">=</span>list<span class="p">(</span>r<span class="o">=</span><span class="m">1</span><span class="p">,</span>cpp<span class="o">=</span><span class="m">4</span><span class="p">,</span>python<span class="o">=</span><span class="m">2</span><span class="p">)))</span>
+<div class="highlight highlight-r"><pre><span class="kn">library</span><span class="p">(</span>rlist<span class="p">)</span>
+devs <span class="o">&lt;-</span> 
+  <span class="kt">list</span><span class="p">(</span>
+    p1<span class="o">=</span><span class="kt">list</span><span class="p">(</span>name<span class="o">=</span><span class="s">"Ken"</span><span class="p">,</span>age<span class="o">=</span><span class="m">24</span><span class="p">,</span>
+      interest<span class="o">=</span><span class="kt">c</span><span class="p">(</span><span class="s">"reading"</span><span class="p">,</span><span class="s">"music"</span><span class="p">,</span><span class="s">"movies"</span><span class="p">),</span>
+      lang<span class="o">=</span><span class="kt">list</span><span class="p">(</span>r<span class="o">=</span><span class="m">2</span><span class="p">,</span>csharp<span class="o">=</span><span class="m">4</span><span class="p">,</span>python<span class="o">=</span><span class="m">3</span><span class="p">)),</span>
+    p2<span class="o">=</span><span class="kt">list</span><span class="p">(</span>name<span class="o">=</span><span class="s">"James"</span><span class="p">,</span>age<span class="o">=</span><span class="m">25</span><span class="p">,</span>
+      interest<span class="o">=</span><span class="kt">c</span><span class="p">(</span><span class="s">"sports"</span><span class="p">,</span><span class="s">"music"</span><span class="p">),</span>
+      lang<span class="o">=</span><span class="kt">list</span><span class="p">(</span>r<span class="o">=</span><span class="m">3</span><span class="p">,</span>java<span class="o">=</span><span class="m">2</span><span class="p">,</span>cpp<span class="o">=</span><span class="m">5</span><span class="p">)),</span>
+    p3<span class="o">=</span><span class="kt">list</span><span class="p">(</span>name<span class="o">=</span><span class="s">"Penny"</span><span class="p">,</span>age<span class="o">=</span><span class="m">24</span><span class="p">,</span>
+      interest<span class="o">=</span><span class="kt">c</span><span class="p">(</span><span class="s">"movies"</span><span class="p">,</span><span class="s">"reading"</span><span class="p">),</span>
+      lang<span class="o">=</span><span class="kt">list</span><span class="p">(</span>r<span class="o">=</span><span class="m">1</span><span class="p">,</span>cpp<span class="o">=</span><span class="m">4</span><span class="p">,</span>python<span class="o">=</span><span class="m">2</span><span class="p">)))</span>
 </pre></div>
 
 <h3>
-<a name="subsetting" class="anchor" href="#subsetting"><span class="octicon octicon-link"></span></a>Subsetting</h3>
+<a name="filtering" class="anchor" href="#filtering"><span class="octicon octicon-link"></span></a>Filtering</h3>
 
-<p>If we want to know the names of those whose age is below 25, we can write</p>
+<p>If we want to know the names of those whose age is no less than 25, we can call <code>list.filter</code> to filter the list.</p>
 
-<div class="highlight highlight-s"><pre>library<span class="p">(</span>rlist<span class="p">)</span>
-subset<span class="p">(</span>developers<span class="p">,</span>age <span class="o">&lt;</span> <span class="m">25</span><span class="p">,</span> name<span class="p">)</span>
+<div class="highlight highlight-r"><pre>str<span class="p">(</span>list.filter<span class="p">(</span>devs<span class="p">,</span>age <span class="o">&gt;=</span> <span class="m">25</span><span class="p">))</span>
 </pre></div>
 
-<p>The output is</p>
+<pre><code>List of 1
+ $ p2:List of 4
+  ..$ name    : chr "James"
+  ..$ age     : num 25
+  ..$ interest: chr [1:2] "sports" "music"
+  ..$ lang    :List of 3
+  .. ..$ r   : num 3
+  .. ..$ java: num 2
+  .. ..$ cpp : num 5
+</code></pre>
 
-<div class="highlight highlight-s"><pre><span class="o">$</span>p1
-<span class="p">[</span><span class="m">1</span><span class="p">]</span> <span class="s">"Ken"</span>
+<h3>
+<a name="mapping" class="anchor" href="#mapping"><span class="octicon octicon-link"></span></a>Mapping</h3>
 
-<span class="o">$</span>p3
-<span class="p">[</span><span class="m">1</span><span class="p">]</span> <span class="s">"Penny"</span>
+<p>If we want to know the name of each person, we can call <code>list.map</code> to map each member by an expression.</p>
+
+<div class="highlight highlight-r"><pre>list.map<span class="p">(</span>devs<span class="p">,</span> name<span class="p">)</span>
 </pre></div>
 
-<p>If we want to know the names and ages of those who like music and uses C++, we can write</p>
+<pre><code>$p1
+[1] "Ken"
 
-<div class="highlight highlight-s"><pre>subset<span class="p">(</span>developers<span class="p">,</span><span class="s">"music"</span> <span class="o">%in%</span> interest <span class="o">&amp;</span> <span class="s">"cpp"</span> <span class="o">%in%</span> names<span class="p">(</span>lang<span class="p">),</span>list<span class="p">(</span>name<span class="o">=</span>name<span class="p">,</span>age<span class="o">=</span>age<span class="p">))</span>
+$p2
+[1] "James"
+
+$p3
+[1] "Penny"
+</code></pre>
+
+<p>If we want to know the programming language each person has been using for the longest time</p>
+
+<div class="highlight highlight-r"><pre>list.map<span class="p">(</span>devs<span class="p">,</span> <span class="kp">sort</span><span class="p">(</span><span class="kp">unlist</span><span class="p">(</span>lang<span class="p">),</span>decreasing <span class="o">=</span> <span class="bp">T</span><span class="p">)[</span><span class="m">1</span><span class="p">])</span>
 </pre></div>
 
-<p>The output is </p>
+<pre><code>$p1
+csharp 
+     4 
 
-<div class="highlight highlight-s"><pre><span class="o">$</span>p2
-<span class="o">$</span>p2<span class="o">$</span>name
-<span class="p">[</span><span class="m">1</span><span class="p">]</span> <span class="s">"James"</span>
+$p2
+cpp 
+  5 
 
-<span class="o">$</span>p2<span class="o">$</span>age
-<span class="p">[</span><span class="m">1</span><span class="p">]</span> <span class="m">25</span>
+$p3
+cpp 
+  4 
+</code></pre>
+
+<h3>
+<a name="grouping" class="anchor" href="#grouping"><span class="octicon octicon-link"></span></a>Grouping</h3>
+
+<p>If we want to build a list that contains sublists each represents an age group, we can call <code>list.group</code>.</p>
+
+<div class="highlight highlight-r"><pre>str<span class="p">(</span>list.group<span class="p">(</span>devs<span class="p">,</span>age<span class="p">))</span>
 </pre></div>
 
-<p>If we want to know, instead, how long they have been using R for those who use Python, we can write</p>
+<pre><code>List of 2
+ $ 24:List of 2
+  ..$ p1:List of 4
+  .. ..$ name    : chr "Ken"
+  .. ..$ age     : num 24
+  .. ..$ interest: chr [1:3] "reading" "music" "movies"
+  .. ..$ lang    :List of 3
+  .. .. ..$ r     : num 2
+  .. .. ..$ csharp: num 4
+  .. .. ..$ python: num 3
+  ..$ p3:List of 4
+  .. ..$ name    : chr "Penny"
+  .. ..$ age     : num 24
+  .. ..$ interest: chr [1:2] "movies" "reading"
+  .. ..$ lang    :List of 3
+  .. .. ..$ r     : num 1
+  .. .. ..$ cpp   : num 4
+  .. .. ..$ python: num 2
+ $ 25:List of 1
+  ..$ p2:List of 4
+  .. ..$ name    : chr "James"
+  .. ..$ age     : num 25
+  .. ..$ interest: chr [1:2] "sports" "music"
+  .. ..$ lang    :List of 3
+  .. .. ..$ r   : num 3
+  .. .. ..$ java: num 2
+  .. .. ..$ cpp : num 5
+</code></pre>
 
-<div class="highlight highlight-s"><pre>subset<span class="p">(</span>developers<span class="p">,</span> <span class="s">"python"</span> <span class="o">%in%</span> names<span class="p">(</span>lang<span class="p">),</span> lang<span class="o">$</span>r<span class="p">)</span>
+<h3>
+<a name="sorting" class="anchor" href="#sorting"><span class="octicon octicon-link"></span></a>Sorting</h3>
+
+<p>If we want to sort the developers by the number of interests in descending order, then by the number of years they have been using R in descending order, we can call <code>list.sort</code>.</p>
+
+<div class="highlight highlight-r"><pre>sorted <span class="o">&lt;-</span> list.sort<span class="p">(</span>devs<span class="p">,</span>desc<span class="p">(</span><span class="kp">length</span><span class="p">(</span>interest<span class="p">)),</span>desc<span class="p">(</span>lang<span class="o">$</span>r<span class="p">))</span>
+list.map<span class="p">(</span>sorted<span class="p">,</span>name<span class="p">)</span>
 </pre></div>
 
-<p>The output is</p>
+<pre><code>$p1
+[1] "Ken"
 
-<div class="highlight highlight-s"><pre><span class="o">$</span>p1
-<span class="p">[</span><span class="m">1</span><span class="p">]</span> <span class="m">2</span>
+$p2
+[1] "James"
 
-<span class="o">$</span>p3
-<span class="p">[</span><span class="m">1</span><span class="p">]</span> <span class="m">1</span>
+$p3
+[1] "Penny"
+</code></pre>
+
+<h3>
+<a name="updating" class="anchor" href="#updating"><span class="octicon octicon-link"></span></a>Updating</h3>
+
+<div class="highlight highlight-r"><pre>str<span class="p">(</span>list.update<span class="p">(</span>devs<span class="p">,</span>age<span class="o">=</span><span class="kc">NULL</span><span class="p">,</span>lang<span class="o">=</span><span class="kc">NULL</span><span class="p">,</span>nlang<span class="o">=</span><span class="kp">length</span><span class="p">(</span>lang<span class="p">)))</span>
 </pre></div>
 
-<p>The principle is simple: evaluate the select expression for each list item that satifies the subset expression.</p>
+<pre><code>List of 3
+ $ p1:List of 3
+  ..$ name    : chr "Ken"
+  ..$ interest: chr [1:3] "reading" "music" "movies"
+  ..$ nlang   : int 3
+ $ p2:List of 3
+  ..$ name    : chr "James"
+  ..$ interest: chr [1:2] "sports" "music"
+  ..$ nlang   : int 3
+ $ p3:List of 3
+  ..$ name    : chr "Penny"
+  ..$ interest: chr [1:2] "movies" "reading"
+  ..$ nlang   : int 3
+</code></pre>
+
+<h3>
+<a name="more-functions" class="anchor" href="#more-functions"><span class="octicon octicon-link"></span></a>More functions</h3>
+
+<p>There are much more functions are provided than the examples show. Please read the documentation of the package.</p>
+
+<h3>
+<a name="working-with-pipeline" class="anchor" href="#working-with-pipeline"><span class="octicon octicon-link"></span></a>Working with pipeline</h3>
+
+<p>Pipeline operators may hugely improve the readibility of the code especially when a chain of commands are executed. <a href="http://renkun.me/pipeR">pipeR package</a> is recommended to cowork with this package.</p>
+
+<p>If we want to know the developers whose age is no more than 24 and create a data frame where they are sorted by the number of years using R in descending order and each row tells us the name, years of using R, and the longest time using a language they know.</p>
+
+<div class="highlight highlight-r"><pre><span class="kn">library</span><span class="p">(</span>pipeR<span class="p">)</span>
+devs <span class="o">%&gt;&gt;%</span>
+  list.filter<span class="p">(</span>age <span class="o">&lt;=</span> <span class="m">24</span><span class="p">)</span> <span class="o">%&gt;&gt;%</span>
+  list.sort<span class="p">(</span>desc<span class="p">(</span>lang<span class="o">$</span>r<span class="p">))</span> <span class="o">%&gt;&gt;%</span>
+  list.map<span class="p">(</span><span class="kt">data.frame</span><span class="p">(</span>name<span class="o">=</span>name<span class="p">,</span>r<span class="o">=</span>lang<span class="o">$</span>r<span class="p">,</span>
+    longest<span class="o">=</span><span class="kp">max</span><span class="p">(</span><span class="kp">unlist</span><span class="p">(</span>lang<span class="p">))))</span> <span class="o">%&gt;&gt;%</span>
+  list.rbind
+</pre></div>
+
+<pre><code>    name r longest
+p1   Ken 2       4
+p3 Penny 1       4
+</code></pre>
 
 <h2>
 <a name="help-overview" class="anchor" href="#help-overview"><span class="octicon octicon-link"></span></a>Help overview</h2>
 
-<div class="highlight highlight-s"><pre>help<span class="p">(</span>package <span class="o">=</span> rlist<span class="p">)</span>
+<div class="highlight highlight-r"><pre>help<span class="p">(</span>package <span class="o">=</span> rlist<span class="p">)</span>
 </pre></div>
 
 <h2>
@@ -130,12 +241,17 @@ subset<span class="p">(</span>developers<span class="p">,</span>age <span class=
 
 <p>This package is under <a href="http://opensource.org/licenses/MIT">MIT License</a>.</p>
       </section>
-      <footer>
-        <p><small>Hosted on <a href="http://pages.github.com">GitHub Pages</a> using the Dinky theme</small></p>
+    </div>
+
+    <!-- FOOTER  -->
+    <div id="footer_wrap" class="outer">
+      <footer class="inner">
+        <p class="copyright">rlist maintained by <a href="https://github.com/renkun-ken">renkun-ken</a></p>
+        <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
       </footer>
     </div>
-    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
-		          <script type="text/javascript">
+
+              <script type="text/javascript">
             var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
             document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
           </script>
@@ -145,6 +261,7 @@ subset<span class="p">(</span>developers<span class="p">,</span>age <span class=
             pageTracker._trackPageview();
             } catch(err) {}
           </script>
+
 
   </body>
 </html>
