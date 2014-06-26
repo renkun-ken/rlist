@@ -1,3 +1,4 @@
+context("list.select")
 test_that("list.select", {
   # simple list
   x <- list(p1 = list(type="A",score=list(c1=10,c2=8)),
