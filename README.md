@@ -13,7 +13,13 @@ rlist is a set of tools for working with list objects. It has two main goals:
 
 ## Installation
 
-You can install the latest development version from GitHub with
+Install from CRAN with
+
+```r
+install.packages("rlist")
+```
+
+or install the latest development version from GitHub with
 
 ```r
 devtools::install_github("rlist","renkun-ken")
@@ -23,7 +29,7 @@ devtools::install_github("rlist","renkun-ken")
 
 A wide range of functions are provided to work with list objects.
 
-Suppose we have a list of developers, each of which has a name, age, some interests and a list of programming langauge they use and the number of years they have been using them.
+Suppose we have a list of developers, each of which has a name, age, some interests and a list of programming language they use and the number of years they have been using them.
 
 
 ```r
@@ -236,7 +242,7 @@ Much more functions are provided than the examples show. Please read the documen
 
 ### Working with pipeline
 
-Pipeline operators may hugely improve the readibility of the code especially when a chain of commands are executed. [pipeR package](http://renkun.me/pipeR) is recommended to cowork with this package.
+Pipeline operators may hugely improve the readability of the code especially when a chain of commands are executed. [pipeR package](http://renkun.me/pipeR) is recommended to co-work with this package.
 
 If we want to know the developers whose age is no more than 24 and create a data frame where they are sorted by the number of years using R in descending order and each row tells us the name, years of using R, and the longest time using a language they know.
 

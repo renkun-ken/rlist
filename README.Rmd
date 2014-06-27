@@ -20,7 +20,13 @@ rlist is a set of tools for working with list objects. It has two main goals:
 
 ## Installation
 
-You can install the latest development version from GitHub with
+Install from CRAN with
+
+```r
+install.packages("rlist")
+```
+
+or install the latest development version from GitHub with
 
 ```r
 devtools::install_github("rlist","renkun-ken")
