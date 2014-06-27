@@ -18,7 +18,7 @@ list.group <- function(x,key,
   keep.group.names=TRUE,keep.item.names=TRUE) {
   key <- substitute(key)
   l <- lambda(key)
-  enclos <- new.env(parent = parent.frame(),size = 3)
+  enclos <- new.env(FALSE,parent.frame())
   xnames <- if(is.null(names(x))) character(length(x)) else names(x)
   keys <- Map(function(xi,i,name) {
     enclos[[l$symbol]] <- xi

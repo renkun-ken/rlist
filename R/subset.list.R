@@ -28,8 +28,8 @@ subset.list <- function(x,subset=TRUE,select=.,
   select <- substitute(select)
   l.subset <- lambda(subset)
   l.select <- lambda(select)
-  enclos.subset <- new.env(parent = parent.frame(),size = 3)
-  enclos.select <- new.env(parent = parent.frame(),size = 3)
+  enclos.subset <- new.env(FALSE,parent.frame())
+  enclos.select <- new.env(FALSE,parent.frame())
   xnames <- if(is.null(names(x))) character(length(x)) else names(x)
   items <- Map(function(xi,i,name) {
     enclos.subset[[l.subset$symbol]] <- xi

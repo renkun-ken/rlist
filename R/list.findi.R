@@ -18,7 +18,7 @@
 list.findi <- function(x,cond,n=1) {
   cond <- substitute(cond)
   l <- lambda(cond)
-  enclos <- new.env(parent = parent.frame(),size = 3)
+  enclos <- new.env(FALSE,parent.frame())
   indices <- integer()
   xnames <- names(x)
   for(i in seq_along(x)) {

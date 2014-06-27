@@ -17,7 +17,7 @@
 list.iter <- function(x,expr) {
   expr <- substitute(expr)
   l <- lambda(expr)
-  enclos <- new.env(parent = parent.frame(),size = 1)
+  enclos <- new.env(FALSE,parent.frame())
   xnames <- if(is.null(names(x))) character(length(x)) else names(x)
   items <- Map(function(xi,i,name) {
     enclos[[l$symbol]] <- xi

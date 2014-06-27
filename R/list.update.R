@@ -25,7 +25,7 @@ list.update <- function(x,...,
     arg <- substitute(arg)
     args[[i]] <- lambda(arg)
   }
-  enclos <- new.env(parent = parent.frame(),size = 3)
+  enclos <- new.env(FALSE,parent.frame())
   xnames <- if(is.null(names(x))) character(length(x)) else names(x)
   items <- Map(function(xi,i,name) {
     enclos$.i <- i

@@ -18,7 +18,7 @@ list.map <- function(x,expr,
   keep.names=TRUE,keep.null=FALSE) {
   expr <- substitute(expr)
   l <- lambda(expr)
-  enclos <- new.env(parent = parent.frame(),size = 3)
+  enclos <- new.env(FALSE,parent.frame())
   xnames <- if(is.null(names(x))) character(length(x)) else names(x)
   items <- Map(function(xi,i,name) {
     enclos[[l$symbol]] <- xi
