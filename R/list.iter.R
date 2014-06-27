@@ -18,10 +18,10 @@
 list.iter <- function(x,expr) {
   expr <- substitute(expr)
   l <- lambda(expr)
-  enclos <- new.env(FALSE,parent.frame(),1)
+  enclos <- new.env(parent = parent.frame(),size = 1)
   xnames <- if(is.null(names(x))) character(length(x)) else names(x)
   items <- Map(function(xi,i,name) {
-    assign(l$symbol,xi,envir = enclos)
+    enclos[[l$symbol]] <- xi
     enclos$.i <- i
     enclos$.name <- name
     env <- list.env(xi,enclos)

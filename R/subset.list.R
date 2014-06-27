@@ -28,11 +28,11 @@ subset.list <- function(x,subset=TRUE,select=.,
   select <- substitute(select)
   l.subset <- lambda(subset)
   l.select <- lambda(select)
-  enclos.subset <- new.env(FALSE,parent.frame(),1)
-  enclos.select <- new.env(FALSE,parent.frame(),1)
+  enclos.subset <- new.env(parent = parent.frame(),size = 3)
+  enclos.select <- new.env(parent = parent.frame(),size = 3)
   xnames <- if(is.null(names(x))) character(length(x)) else names(x)
   items <- Map(function(xi,i,name) {
-    assign(l.subset$symbol,xi,envir = enclos.subset)
+    enclos.subset[[l.subset$symbol]] <- xi
     enclos.subset$.i <- i
     enclos.subset$.name <- name
     env <- list.env(xi,enclos.subset)
@@ -40,7 +40,7 @@ subset.list <- function(x,subset=TRUE,select=.,
     if(length(result) > 1) stop("More than one results are returned")
     if(!is.logical(result)) stop("Undetermined condition")
     if(result) {
-      assign(l.select$symbol,xi,envir = enclos.select)
+      enclos.select[[l.select$symbol]] <- xi
       enclos.select$.i <- i
       enclos.select$.name <- name
       eval(l.select$expr,env,enclos.select)

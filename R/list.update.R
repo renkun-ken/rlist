@@ -25,14 +25,14 @@ list.update <- function(x,...,
     arg <- substitute(arg)
     args[[i]] <- lambda(arg)
   }
-  enclos <- new.env(FALSE,parent.frame(),1)
+  enclos <- new.env(parent = parent.frame(),size = 3)
   xnames <- if(is.null(names(x))) character(length(x)) else names(x)
   items <- Map(function(xi,i,name) {
     enclos$.i <- i
     enclos$.name <- name
     env <- list.env(xi,enclos)
     new.list <- lapply(args,function(arg) {
-      assign(arg$symbol,xi,envir = enclos)
+      enclos[[arg$symbol]] <- xi
       eval(arg$expr,env,enclos)
     })
     modifyList(xi,new.list,keep.null = keep.val.null)

@@ -18,12 +18,12 @@ list.takeWhile <- function(x,cond=TRUE,
   keep.names=TRUE,keep.null=FALSE) {
   cond <- substitute(cond)
   l <- lambda(cond)
-  enclos <- new.env(FALSE,parent.frame(),1)
+  enclos <- new.env(parent = parent.frame(),size = 3)
   xnames <- names(x)
   index <- 0
   for(i in seq_along(x)) {
     xi <- x[[i]]
-    assign(l$symbol,xi,envir = enclos)
+    enclos[[l$symbol]] <- xi
     enclos$.i <- i
     enclos$.name <- xnames[i]
     env <- list.env(xi,enclos)
