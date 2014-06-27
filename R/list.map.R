@@ -28,3 +28,21 @@ list.map <- function(x,expr,
   if(!keep.null) items[vapply(items,is.null,logical(1))] <- NULL
   items
 }
+
+#' Map each member of a list by an expression to a vector.
+#'
+#' @param ... The parameters passed to \code{list.map}
+#' @param use.names Should the names of the results be preserved?
+#' @name list.mapv
+#' @export
+#' @examples
+#' \dontrun{
+#' x <- list(p1 = list(type="A",score=list(c1=10,c2=8)),
+#'        p2 = list(type="B",score=list(c1=9,c2=9)),
+#'        p3 = list(type="B",score=list(c1=9,c2=7)))
+#' list.mapv(x,type)
+#' list.mapv(x,min(score$c1,score$c2))
+#' }
+list.mapv <- function(...,use.names=TRUE) {
+  unlist(list.map(...),use.names = use.names)
+}
