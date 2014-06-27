@@ -6,7 +6,7 @@
 list.group(x, key, keep.group.names = TRUE, keep.item.names = TRUE)
 }
 \arguments{
-\item{x}{The list to be filtered}
+\item{x}{The list to group}
 
 \item{key}{An expression that determines the key of the group}
 

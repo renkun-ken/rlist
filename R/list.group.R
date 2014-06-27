@@ -1,6 +1,6 @@
 #' Group a list by the value of an expression evaluated for each member.
 #'
-#' @param x The list to be filtered
+#' @param x The list to group
 #' @param key An expression that determines the key of the group
 #' @param keep.group.names Whether to keep the names of the groups
 #' @param keep.item.names Whether to keep the names of the items in the result
