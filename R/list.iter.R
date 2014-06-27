@@ -4,7 +4,6 @@
 #' @param x The list to iterate
 #' @param expr An expression that is evaluated for each item
 #' @name list.iter
-#' @return NULL
 #' @export
 #' @examples
 #' \dontrun{
@@ -27,5 +26,5 @@ list.iter <- function(x,expr) {
     env <- list.env(xi,enclos)
     eval(l$expr,env,enclos)
   },x,seq_along(x),xnames)
-  invisible(NULL)
+  invisible()
 }
