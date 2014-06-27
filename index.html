@@ -46,7 +46,12 @@
 <h2>
 <a name="installation" class="anchor" href="#installation"><span class="octicon octicon-link"></span></a>Installation</h2>
 
-<p>You can install the latest development version from GitHub with</p>
+<p>Install from CRAN with</p>
+
+<div class="highlight highlight-r"><pre>install.packages<span class="p">(</span><span class="s">"rlist"</span><span class="p">)</span>
+</pre></div>
+
+<p>or install the latest development version from GitHub with</p>
 
 <div class="highlight highlight-r"><pre>devtools<span class="o">::</span>install_github<span class="p">(</span><span class="s">"rlist"</span><span class="p">,</span><span class="s">"renkun-ken"</span><span class="p">)</span>
 </pre></div>
@@ -56,7 +61,7 @@
 
 <p>A wide range of functions are provided to work with list objects.</p>
 
-<p>Suppose we have a list of developers, each of which has a name, age, some interests and a list of programming langauge they use and the number of years they have been using them.</p>
+<p>Suppose we have a list of developers, each of which has a name, age, some interests and a list of programming language they use and the number of years they have been using them.</p>
 
 <div class="highlight highlight-r"><pre><span class="kn">library</span><span class="p">(</span>rlist<span class="p">)</span>
 devs <span class="o">&lt;-</span> 
@@ -251,7 +256,7 @@ $p3
 <h3>
 <a name="working-with-pipeline" class="anchor" href="#working-with-pipeline"><span class="octicon octicon-link"></span></a>Working with pipeline</h3>
 
-<p>Pipeline operators may hugely improve the readibility of the code especially when a chain of commands are executed. <a href="http://renkun.me/pipeR">pipeR package</a> is recommended to cowork with this package.</p>
+<p>Pipeline operators may hugely improve the readability of the code especially when a chain of commands are executed. <a href="http://renkun.me/pipeR">pipeR package</a> is recommended to co-work with this package.</p>
 
 <p>If we want to know the developers whose age is no more than 24 and create a data frame where they are sorted by the number of years using R in descending order and each row tells us the name, years of using R, and the longest time using a language they know.</p>
 
