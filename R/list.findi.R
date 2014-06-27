@@ -20,9 +20,12 @@ list.findi <- function(x,cond,n=1) {
   l <- lambda(cond)
   enclos <- new.env(FALSE,parent.frame(),1)
   indices <- integer()
+  xnames <- names(x)
   for(i in seq_along(x)) {
     xi <- x[[i]]
     assign(l$symbol,xi,envir = enclos)
+    enclos$.i <- i
+    enclos$.name <- xnames[i]
     env <- list.env(xi,enclos)
     result <- eval(l$expr,env,enclos)
     if(length(result) > 1) stop("More than one results are returned")

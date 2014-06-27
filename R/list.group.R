@@ -19,11 +19,14 @@ list.group <- function(x,key,
   key <- substitute(key)
   l <- lambda(key)
   enclos <- new.env(FALSE,parent.frame(),1)
-  keys <- lapply(x,function(xi) {
+  xnames <- if(is.null(names(x))) character(length(x)) else names(x)
+  keys <- Map(function(xi,i,name) {
     assign(l$symbol,xi,envir = enclos)
+    enclos$.i <- i
+    enclos$.name <- name
     env <- list.env(xi,enclos)
     eval(l$expr,env,enclos)
-  })
+  },x,seq_along(x),xnames)
   unikeys <- unique(keys)
   if(keep.group.names) names(unikeys) <- as.character(unikeys)
   groups <- lapply(unikeys,function(k) {

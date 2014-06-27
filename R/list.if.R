@@ -18,14 +18,16 @@ list.if <- function(x,cond,keep.names=TRUE) {
   cond <- substitute(cond)
   l <- lambda(cond)
   enclos <- new.env(FALSE,parent.frame(),1)
-  results <- vapply(x,function(xi) {
+  xnames <- if(is.null(names(x))) character(length(x)) else names(x)
+  results <- unlist(Map(function(xi,i,name) {
     assign(l$symbol,xi,envir = enclos)
+    enclos$.i <- i
+    enclos$.name <- name
     env <- list.env(xi,enclos)
     result <- eval(l$expr,env,enclos)
     if(length(result) > 1) stop("More than one results are returned")
     if(!is.logical(result)) stop("Undetermined condition")
     result
-  },logical(1))
-  if(!keep.names) names(results) <- NULL
+  },x,seq_along(x),xnames),use.names=keep.names)
   results
 }

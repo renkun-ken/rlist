@@ -28,12 +28,15 @@ list.select <- function(x,...) {
     args[[i]] <- lambda(arg)
   }
   enclos <- new.env(FALSE,parent.frame(),1)
-  items <- lapply(x,function(xi) {
+  xnames <- if(is.null(names(x))) character(length(x)) else names(x)
+  items <- Map(function(xi,i,name) {
     env <- list.env(xi,enclos)
+    enclos$.i <- i
+    enclos$.name <- name
     lapply(args,function(arg) {
       assign(arg$symbol,xi,envir = enclos)
       eval(arg$expr,env,enclos)
     })
-  })
+  },x,seq_along(x),xnames)
   items
 }

@@ -19,10 +19,13 @@ list.iter <- function(x,expr) {
   expr <- substitute(expr)
   l <- lambda(expr)
   enclos <- new.env(FALSE,parent.frame(),1)
-  items <- lapply(x,function(xi) {
+  xnames <- if(is.null(names(x))) character(length(x)) else names(x)
+  items <- Map(function(xi,i,name) {
     assign(l$symbol,xi,envir = enclos)
+    enclos$.i <- i
+    enclos$.name <- name
     env <- list.env(xi,enclos)
     eval(l$expr,env,enclos)
-  })
+  },x,seq_along(x),xnames)
   invisible(NULL)
 }
