@@ -27,13 +27,7 @@ list.update <- function(x,...,
   }
   enclos <- new.env(FALSE,parent.frame(),1)
   items <- lapply(x,function(xi) {
-    if(is.list(xi) || is.environment(xi)) {
-      env <- xi
-    } else if(is.vector(xi)) {
-      env <- as.list(xi)
-    } else {
-      env <- enclos
-    }
+    env <- list.env(xi,enclos)
     new.list <- lapply(args,function(arg) {
       assign(arg$symbol,xi,envir = enclos)
       eval(arg$expr,env,enclos)

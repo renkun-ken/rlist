@@ -30,20 +30,14 @@ subset.list <- function(x,subset=TRUE,select=.,
   l.select <- lambda(select)
   enclos.subset <- new.env(FALSE,parent.frame(),1)
   enclos.select <- new.env(FALSE,parent.frame(),1)
-  items <- lapply(x,function(i) {
-    assign(l.subset$symbol,i,envir = enclos.subset)
-    if(is.list(i) || is.environment(i)) {
-      env <- i
-    } else if(is.vector(i)) {
-      env <- as.list(i)
-    } else {
-      env <- enclos.subset
-    }
+  items <- lapply(x,function(xi) {
+    assign(l.subset$symbol,xi,envir = enclos.subset)
+    env <- list.env(xi,enclos)
     result <- eval(l.subset$expr,env,enclos.subset)
     if(length(result) > 1) stop("More than one results are returned")
     if(!is.logical(result)) stop("Undetermined condition")
     if(result) {
-      assign(l.select$symbol,i,envir = enclos.select)
+      assign(l.select$symbol,xi,envir = enclos.select)
       eval(l.select$expr,env,enclos.select)
     }
   })

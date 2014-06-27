@@ -21,13 +21,7 @@ list.map <- function(x,expr,
   enclos <- new.env(FALSE,parent.frame(),1)
   items <- lapply(x,function(xi) {
     assign(l$symbol,xi,envir = enclos)
-    if(is.list(xi) || is.environment(xi)) {
-      env <- xi
-    } else if(is.vector(xi)) {
-      env <- as.list(xi)
-    } else {
-      env <- enclos
-    }
+    env <- list.env(xi,enclos)
     eval(l$expr,env,enclos)
   })
   if(!keep.names) names(items) <- NULL

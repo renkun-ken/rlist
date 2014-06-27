@@ -20,13 +20,7 @@ list.if <- function(x,cond,keep.names=TRUE) {
   enclos <- new.env(FALSE,parent.frame(),1)
   results <- vapply(x,function(xi) {
     assign(l$symbol,xi,envir = enclos)
-    if(is.list(xi) || is.environment(xi)) {
-      env <- xi
-    } else if(is.vector(xi)) {
-      env <- as.list(xi)
-    } else {
-      env <- enclos
-    }
+    env <- list.env(xi,enclos)
     result <- eval(l$expr,env,enclos)
     if(length(result) > 1) stop("More than one results are returned")
     if(!is.logical(result)) stop("Undetermined condition")

@@ -19,15 +19,9 @@ list.group <- function(x,key,
   key <- substitute(key)
   l <- lambda(key)
   enclos <- new.env(FALSE,parent.frame(),1)
-  keys <- lapply(x,function(i) {
-    assign(l$symbol,i,envir = enclos)
-    if(is.list(i) || is.environment(i)) {
-      env <- i
-    } else if(is.vector(i)) {
-      env <- as.list(i)
-    } else {
-      env <- enclos
-    }
+  keys <- lapply(x,function(xi) {
+    assign(l$symbol,xi,envir = enclos)
+    env <- list.env(xi,enclos)
     eval(l$expr,env,enclos)
   })
   unikeys <- unique(keys)

@@ -23,13 +23,7 @@ list.findi <- function(x,cond,n=1) {
   for(i in seq_along(x)) {
     xi <- x[[i]]
     assign(l$symbol,xi,envir = enclos)
-    if(is.list(xi) || is.environment(xi)) {
-      env <- xi
-    } else if(is.vector(xi)) {
-      env <- as.list(xi)
-    } else {
-      env <- enclos
-    }
+    env <- list.env(xi,enclos)
     result <- eval(l$expr,env,enclos)
     if(length(result) > 1) stop("More than one results are returned")
     if(length(indices) < n) {

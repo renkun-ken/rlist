@@ -7,3 +7,13 @@ lambda <- function(expr) {
     list(symbol=".",expr=expr)
   }
 }
+
+list.env <- function(x,default) {
+  if(is.list(x) || is.environment(x)) {
+    x
+  } else if(is.vector(x)) {
+    as.vector(x,"list")
+  } else {
+    default
+  }
+}
