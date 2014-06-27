@@ -18,21 +18,22 @@
 list.findi <- function(x,cond,n=1) {
   cond <- substitute(cond)
   l <- lambda(cond)
-  enclos <- new.env(FALSE,parent.frame())
-  indices <- integer()
+  genv <- new.env(FALSE,parent.frame(),3)
   xnames <- names(x)
+  indices <- integer()
   for(i in seq_along(x)) {
     xi <- x[[i]]
-    enclos[[l$symbol]] <- xi
-    enclos$.i <- i
-    enclos$.name <- xnames[i]
-    env <- list.env(xi,enclos)
+    args <- `names<-`(list(xi,i,xnames[i]),l$symbols)
+    enclos <- list2env(args,genv)
+    env <- list.env(xi)
     result <- eval(l$expr,env,enclos)
-    if(length(result) > 1) stop("More than one results are returned")
     if(length(indices) < n) {
-      if(!is.logical(result)) stop("Undetermined condition")
-      if(result) {
-        indices <- c(indices,i)
+      if(is.logical(result)) {
+        if(length(result) == 1L && result) {
+          indices <- c(indices,i)
+        } else if(length(result) > 1L) {
+          stop("Multiple values are encountered")
+        }
       }
     } else {
       break

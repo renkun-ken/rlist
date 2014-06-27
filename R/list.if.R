@@ -17,17 +17,20 @@
 list.if <- function(x,cond,keep.names=TRUE) {
   cond <- substitute(cond)
   l <- lambda(cond)
-  enclos <- new.env(FALSE,parent.frame())
+  genv <- new.env(FALSE,parent.frame(),3)
   xnames <- if(is.null(names(x))) character(length(x)) else names(x)
-  results <- unlist(Map(function(xi,i,name) {
-    enclos[[l$symbol]] <- xi
-    enclos$.i <- i
-    enclos$.name <- name
-    env <- list.env(xi,enclos)
+  results <- unlist(Map(function(...) {
+    args <- `names<-`(list(...),l$symbols)
+    enclos <- list2env(args,genv)
+    env <- list.env(args[[1]])
     result <- eval(l$expr,env,enclos)
-    if(length(result) > 1) stop("More than one results are returned")
-    if(!is.logical(result)) stop("Undetermined condition")
-    result
+    if(is.logical(result)) {
+      if(length(result)==1L) result
+      else if(length(result>1L)) stop("Multiple values are encountered")
+      else NA
+    } else {
+      NA
+    }
   },x,seq_along(x),xnames),use.names=keep.names)
   results
 }

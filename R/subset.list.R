@@ -26,24 +26,24 @@ subset.list <- function(x,subset=TRUE,select=.,
   keep.names=TRUE,keep.null=FALSE,...) {
   subset <- substitute(subset)
   select <- substitute(select)
-  l.subset <- lambda(subset)
-  l.select <- lambda(select)
-  enclos.subset <- new.env(FALSE,parent.frame())
-  enclos.select <- new.env(FALSE,parent.frame())
+  lsubset <- lambda(subset)
+  lselect <- lambda(select)
+  genv <- new.env(FALSE,parent.frame(),3)
   xnames <- if(is.null(names(x))) character(length(x)) else names(x)
-  items <- Map(function(xi,i,name) {
-    enclos.subset[[l.subset$symbol]] <- xi
-    enclos.subset$.i <- i
-    enclos.subset$.name <- name
-    env <- list.env(xi,enclos.subset)
-    result <- eval(l.subset$expr,env,enclos.subset)
-    if(length(result) > 1) stop("More than one results are returned")
-    if(!is.logical(result)) stop("Undetermined condition")
-    if(result) {
-      enclos.select[[l.select$symbol]] <- xi
-      enclos.select$.i <- i
-      enclos.select$.name <- name
-      eval(l.select$expr,env,enclos.select)
+  items <- Map(function(...) {
+    args <- list(...)
+    names(args) <- lsubset$symbols
+    enclos <- list2env(args,genv)
+    env <- list.env(args[[1]])
+    result <- eval(lsubset$expr,env,enclos)
+    if(is.logical(result)) {
+      if(length(result) == 1L && result) {
+        names(args) <- lselect$symbols
+        enclos <- list2env(args,genv)
+        eval(lselect$expr,env,enclos)
+      } else if(length(result) > 1L) {
+        stop("Multiple values are encountered")
+      }
     }
   },x,seq_along(x),xnames)
   if(!keep.names) names(items) <- NULL
