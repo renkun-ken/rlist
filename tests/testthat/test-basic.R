@@ -135,3 +135,32 @@ test_that("list.remove", {
   expect_identical(list.remove(x,"b"),x["a"])
   expect_identical(list.remove(x,c("a","b")),x[0])
 })
+
+test_that("list.sample", {
+  x <- list(a=1,b=2,c=3)
+  expect_equal(length(list.sample(x,2,weight = .)),2)
+})
+
+test_that("list.cases", {
+  x <- list(p1 = list(type="A",score=list(c1=10,c2=8)),
+    p2 = list(type="B",score=list(c1=9,c2=9)),
+    p3 = list(type="B",score=list(c1=9,c2=7)))
+  expect_equal(list.cases(x,type,sort=T),c("A","B"))
+  expect_equal(list.cases(x,mean(unlist(score))),c(8,9))
+})
+
+test_that("list.all", {
+  x <- list(p1 = list(type="A",score=list(c1=10,c2=8)),
+    p2 = list(type="B",score=list(c1=9,c2=9)),
+    p3 = list(type="B",score=list(c1=9,c2=7)))
+  expect_equal(list.all(x,type=="B"),FALSE)
+  expect_equal(list.all(x,mean(unlist(score))>=6),TRUE)
+})
+
+test_that("list.any", {
+  x <- list(p1 = list(type="A",score=list(c1=10,c2=8)),
+    p2 = list(type="B",score=list(c1=9,c2=9)),
+    p3 = list(type="B",score=list(c1=9,c2=7)))
+  expect_equal(list.any(x,type=="B"),TRUE)
+  expect_equal(list.any(x,mean(unlist(score))>=20),FALSE)
+})
