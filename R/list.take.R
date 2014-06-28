@@ -12,5 +12,5 @@
 #' list.take(x,10)
 #' }
 list.take <- function(x,n,force=FALSE) {
-  x[0:ifelse(force,n,min(length(x),n))]
+  x[0L:ifelse(force,n,min(length(x),n))]
 }

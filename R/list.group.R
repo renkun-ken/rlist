@@ -18,18 +18,18 @@ list.group <- function(x,key,
   keep.group.names=TRUE,keep.item.names=TRUE) {
   key <- substitute(key)
   l <- lambda(key)
-  genv <- new.env(FALSE,parent.frame(),3)
+  genv <- new.env(FALSE,parent.frame(),3L)
   xnames <- if(is.null(names(x))) character(length(x)) else names(x)
   keys <- Map(function(...) {
     args <- `names<-`(list(...),l$symbols)
     enclos <- list2env(args,genv)
-    env <- list.env(args[[1]])
+    env <- list.env(args[[1L]])
     eval(l$expr,env,enclos)
   },x,seq_along(x),xnames)
   unikeys <- unique(keys)
   if(keep.group.names) names(unikeys) <- as.character(unikeys)
   groups <- lapply(unikeys,function(k) {
-    selector <- vapply(keys,identical,logical(1),y=k)
+    selector <- vapply(keys,identical,logical(1L),y=k)
     result <- x[selector]
     if(!keep.item.names) names(result) <- NULL
     result

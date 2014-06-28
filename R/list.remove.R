@@ -21,7 +21,7 @@ list.remove <- function(x,range=integer()) {
   } else if(is.character(range)) {
     names <- names(x)
     m <- vapply(range,`==`,logical(length(x)),names)
-    selector <- apply(m,1,any)
+    selector <- apply(m,1L,any)
     x[!selector]
   }
 }

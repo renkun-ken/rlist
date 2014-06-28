@@ -28,13 +28,13 @@ subset.list <- function(x,subset=TRUE,select=.,
   select <- substitute(select)
   lsubset <- lambda(subset)
   lselect <- lambda(select)
-  genv <- new.env(FALSE,parent.frame(),3)
+  genv <- new.env(FALSE,parent.frame(),3L)
   xnames <- if(is.null(names(x))) character(length(x)) else names(x)
   items <- Map(function(...) {
     args <- list(...)
     names(args) <- lsubset$symbols
     enclos <- list2env(args,genv)
-    env <- list.env(args[[1]])
+    env <- list.env(args[[1L]])
     result <- eval(lsubset$expr,env,enclos)
     if(is.logical(result)) {
       if(length(result) == 1L && result) {
@@ -47,6 +47,6 @@ subset.list <- function(x,subset=TRUE,select=.,
     }
   },x,seq_along(x),xnames)
   if(!keep.names) names(items) <- NULL
-  if(!keep.null) items[vapply(items,is.null,logical(1))] <- NULL
+  if(!keep.null) items[vapply(items,is.null,logical(1L))] <- NULL
   items
 }

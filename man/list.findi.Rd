@@ -4,7 +4,7 @@
 \title{Find the indices of a number of members in a list that
 meet given condition}
 \usage{
-list.findi(x, cond, n = 1)
+list.findi(x, cond, n = 1L)
 }
 \arguments{
 \item{x}{The list}

@@ -17,6 +17,6 @@
 list.find <- function(x,...,keep.names=TRUE,keep.null=FALSE) {
   items <- x[list.findi(x,...)]
   if(!keep.names) names(items) <- NULL
-  if(!keep.null) items[vapply(items,is.null,logical(1))] <- NULL
+  if(!keep.null) items[vapply(items,is.null,logical(1L))] <- NULL
   items
 }

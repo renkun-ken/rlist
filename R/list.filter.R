@@ -15,6 +15,6 @@
 #' }
 list.filter <- function(x,...,keep.null=FALSE) {
   items <- x[list.if(x,...)]
-  if(!keep.null) items[vapply(items,is.null,logical(1))] <- NULL
+  if(!keep.null) items[vapply(items,is.null,logical(1L))] <- NULL
   items
 }

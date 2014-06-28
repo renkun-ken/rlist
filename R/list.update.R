@@ -25,11 +25,11 @@ list.update <- function(x,...,
     arg <- substitute(arg)
     args[[i]] <- lambda(arg)
   }
-  genv <- new.env(FALSE,parent.frame(),3)
+  genv <- new.env(FALSE,parent.frame(),3L)
   xnames <- if(is.null(names(x))) character(length(x)) else names(x)
   items <- Map(function(...) {
     largs <- list(...)
-    xi <- largs[[1]]
+    xi <- largs[[1L]]
     env <- list.env(xi)
     new.list <- lapply(args,function(arg) {
       largs <- `names<-`(largs,arg$symbols)
@@ -39,6 +39,6 @@ list.update <- function(x,...,
     modifyList(xi,new.list,keep.null = keep.val.null)
   },x,seq_along(x),xnames)
   if(!keep.names) names(items) <- NULL
-  if(!keep.null) items[vapply(items,is.null,logical(1))] <- NULL
+  if(!keep.null) items[vapply(items,is.null,logical(1L))] <- NULL
   items
 }

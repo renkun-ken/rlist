@@ -17,12 +17,12 @@
 list.if <- function(x,cond,keep.names=TRUE) {
   cond <- substitute(cond)
   l <- lambda(cond)
-  genv <- new.env(FALSE,parent.frame(),3)
+  genv <- new.env(FALSE,parent.frame(),3L)
   xnames <- if(is.null(names(x))) character(length(x)) else names(x)
   results <- unlist(Map(function(...) {
     args <- `names<-`(list(...),l$symbols)
     enclos <- list2env(args,genv)
-    env <- list.env(args[[1]])
+    env <- list.env(args[[1L]])
     result <- eval(l$expr,env,enclos)
     if(is.logical(result)) {
       if(length(result)==1L) result

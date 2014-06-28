@@ -11,5 +11,5 @@
 #' list.skip(x,2)
 #' }
 list.skip <- function(x,n) {
-  x[-(1:n)]
+  x[-(1L:n)]
 }

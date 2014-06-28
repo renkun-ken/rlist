@@ -14,5 +14,5 @@
 #' }
 list.insert <- function(x,index,...) {
   lists <- list(...)
-  c(x[0:max(0,index-1)],lists,x[index:length(x)])
+  c(x[0L:max(0L,index-1L)],lists,x[index:length(x)])
 }

@@ -15,10 +15,10 @@
 #' list.findi(x,min(score$c1,score$c2) >= 8)
 #' list.findi(x,min(score$c1,score$c2) <= 8,2)
 #' }
-list.findi <- function(x,cond,n=1) {
+list.findi <- function(x,cond,n=1L) {
   cond <- substitute(cond)
   l <- lambda(cond)
-  genv <- new.env(FALSE,parent.frame(),3)
+  genv <- new.env(FALSE,parent.frame(),3L)
   xnames <- names(x)
   indices <- integer()
   for(i in seq_along(x)) {

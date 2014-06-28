@@ -17,12 +17,12 @@
 list.iter <- function(x,expr) {
   expr <- substitute(expr)
   l <- lambda(expr)
-  genv <- new.env(FALSE,parent.frame(),3)
+  genv <- new.env(FALSE,parent.frame(),3L)
   xnames <- if(is.null(names(x))) character(length(x)) else names(x)
   items <- Map(function(...) {
     args <- `names<-`(list(...),l$symbols)
     enclos <- list2env(args,genv)
-    env <- list.env(args[[1]])
+    env <- list.env(args[[1L]])
     eval(l$expr,env,enclos)
   },x,seq_along(x),xnames)
   invisible()

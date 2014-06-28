@@ -18,9 +18,9 @@ list.skipWhile <- function(x,cond,
   keep.names=TRUE,keep.null=FALSE) {
   cond <- substitute(cond)
   l <- lambda(cond)
-  genv <- new.env(FALSE,parent.frame(),3)
+  genv <- new.env(FALSE,parent.frame(),3L)
   xnames <- names(x)
-  index <- 0
+  index <- 0L
   for(i in seq_along(x)) {
     xi <- x[[i]]
     args <- `names<-`(list(xi,i,xnames[i]),l$symbols)
@@ -36,7 +36,7 @@ list.skipWhile <- function(x,cond,
       stop("Results must be logical")
     }
   }
-  items <- x[(index+1):length(x)]
+  items <- x[(index+1L):length(x)]
   if(!keep.names) names(items) <- NULL
   if(!keep.null) items[vapply(items,is.null,logical(1))] <- NULL
   items

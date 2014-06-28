@@ -31,7 +31,7 @@ list.class <- function(x,expr,
   if(keep.case.names) names(cases) <- cases
   if(sort.cases)  cases <- sort(cases)
   classes <- lapply(cases,function(case) {
-    selector <- vapply(values,function(vi) case %in% vi,logical(1))
+    selector <- vapply(values,function(vi) case %in% vi,logical(1L))
     indices <- which(selector)
     result <- x[indices]
     if(!keep.item.names) names(result) <- NULL
