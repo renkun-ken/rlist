@@ -17,7 +17,7 @@ lambda <- function(expr) {
       symbols <- as.character(as.list(symbols)[-1])
       result$symbols[seq_along(symbols)] <- symbols
     } else {
-      stop("Incorrect lambda expression")
+      stop("Invalid lambda expression")
     }
   }
   result
