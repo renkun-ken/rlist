@@ -41,7 +41,9 @@
 <ul>
 <li>Make it easier to work with list objects used to store data in more flexible structures than data frames.</li>
 <li>Perform a wide range of functions on non-relational data using list constructs.</li>
-</ul><p><em>This package may not be stable enough for production purpose. Its functions and implmentations may change overtime and cannot guarantee the backward compatibility at the moment. Please be cautious when you use it in production.</em></p>
+</ul><p><a href="https://github.com/renkun-ken/rlist/releases">Release notes</a></p>
+
+<p><em>Notice: Currently, this package may not be stable enough for production purpose. Its functions and implmentations may change overtime and cannot guarantee the backward compatibility at the moment. Please be cautious when you use it in production.</em></p>
 
 <h2>
 <a name="installation" class="anchor" href="#installation"><span class="octicon octicon-link"></span></a>Installation</h2>
@@ -59,9 +61,9 @@
 <h2>
 <a name="functions" class="anchor" href="#functions"><span class="octicon octicon-link"></span></a>Functions</h2>
 
-<p>A wide range of functions are provided to work with list objects.</p>
+<p>The package provides a wide range of functions to work with list objects.</p>
 
-<p>Suppose we have a list of developers, each of which has a name, age, some interests and a list of programming language they use and the number of years they have been using them.</p>
+<p>Suppose we have a list of developers, each of whom has a name, age, a few interests, a list of programming languages they use and the number of years they have been using them.</p>
 
 <div class="highlight highlight-r"><pre><span class="kn">library</span><span class="p">(</span>rlist<span class="p">)</span>
 devs <span class="o">&lt;-</span> 
@@ -76,6 +78,8 @@ devs <span class="o">&lt;-</span>
       interest<span class="o">=</span><span class="kt">c</span><span class="p">(</span><span class="s">"movies"</span><span class="p">,</span><span class="s">"reading"</span><span class="p">),</span>
       lang<span class="o">=</span><span class="kt">list</span><span class="p">(</span>r<span class="o">=</span><span class="m">1</span><span class="p">,</span>cpp<span class="o">=</span><span class="m">4</span><span class="p">,</span>python<span class="o">=</span><span class="m">2</span><span class="p">)))</span>
 </pre></div>
+
+<p>This type of data can be easily stored in JSON or YAML format.</p>
 
 <h3>
 <a name="filtering" class="anchor" href="#filtering"><span class="octicon octicon-link"></span></a>Filtering</h3>
@@ -154,19 +158,19 @@ cpp
 
 <p>Select the name and evaluate the range of the number of years using programming languages.</p>
 
-<div class="highlight highlight-r"><pre>str<span class="p">(</span>list.select<span class="p">(</span>devs<span class="p">,</span>name<span class="p">,</span>score.range<span class="o">=</span><span class="kp">range</span><span class="p">(</span><span class="kp">unlist</span><span class="p">(</span>lang<span class="p">))))</span>
+<div class="highlight highlight-r"><pre>str<span class="p">(</span>list.select<span class="p">(</span>devs<span class="p">,</span>name<span class="p">,</span>range<span class="o">=</span><span class="kp">range</span><span class="p">(</span><span class="kp">unlist</span><span class="p">(</span>lang<span class="p">))))</span>
 </pre></div>
 
 <pre><code>List of 3
  $ p1:List of 2
-  ..$ name       : chr "Ken"
-  ..$ score.range: num [1:2] 2 4
+  ..$ name : chr "Ken"
+  ..$ range: num [1:2] 2 4
  $ p2:List of 2
-  ..$ name       : chr "James"
-  ..$ score.range: num [1:2] 2 5
+  ..$ name : chr "James"
+  ..$ range: num [1:2] 2 5
  $ p3:List of 2
-  ..$ name       : chr "Penny"
-  ..$ score.range: num [1:2] 1 4
+  ..$ name : chr "Penny"
+  ..$ range: num [1:2] 1 4
 </code></pre>
 
 <h3>
@@ -277,7 +281,15 @@ p3 Penny 1       4
 <h3>
 <a name="lambda-expression" class="anchor" href="#lambda-expression"><span class="octicon octicon-link"></span></a>Lambda expression</h3>
 
-<p>Most functions in this package supports lambda expressions like <code>x ~ f(x)</code> or <code>x -&gt; f(x)</code> where <code>x</code> refers to the list member itself. Otherwise, <code>.</code> will by default be used to represent it.</p>
+<p>In this package, all functions that work with expressions support the following forms of lambda expressions, for example,</p>
+
+<ul>
+<li><code>x ~ g(x)</code></li>
+<li><code>x -&gt; g(x)</code></li>
+<li><code>f(x) -&gt; g(x)</code></li>
+<li><code>f(x,i) -&gt; g(x,i)</code></li>
+<li><code>f(x,i,name) -&gt; g(x,i,name)</code></li>
+</ul><p>where <code>x</code> refers to the list member itself, <code>i</code> denotes the index, <code>name</code> denotes the name. If the symbols are not explicitly declared, <code>.</code>, <code>.i</code> and <code>.name</code> will by default be used to represent them, respectively.</p>
 
 <div class="highlight highlight-r"><pre>nums <span class="o">&lt;-</span> <span class="kt">list</span><span class="p">(</span>a<span class="o">=</span><span class="kt">c</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="m">2</span><span class="p">,</span><span class="m">3</span><span class="p">),</span>b<span class="o">=</span><span class="kt">c</span><span class="p">(</span><span class="m">2</span><span class="p">,</span><span class="m">3</span><span class="p">,</span><span class="m">4</span><span class="p">),</span><span class="kt">c</span><span class="o">=</span><span class="kt">c</span><span class="p">(</span><span class="m">3</span><span class="p">,</span><span class="m">4</span><span class="p">,</span><span class="m">5</span><span class="p">))</span>
 nums <span class="o">%&gt;&gt;%</span>
@@ -291,22 +303,14 @@ b   2   4
 c   3   5
 </code></pre>
 
-<div class="highlight highlight-r"><pre>nums <span class="o">%&gt;&gt;%</span>
-  list.map<span class="p">(</span>x <span class="o">~</span> <span class="kp">sum</span><span class="p">(</span>x<span class="p">))</span>
+<div class="highlight highlight-r"><pre>nums <span class="o">%&gt;&gt;%</span> list.mapv<span class="p">(</span>x <span class="o">~</span> <span class="kp">sum</span><span class="p">(</span>x<span class="p">))</span>
 </pre></div>
 
-<pre><code>$a
-[1] 6
-
-$b
-[1] 9
-
-$c
-[1] 12
+<pre><code> a  b  c 
+ 6  9 12 
 </code></pre>
 
-<div class="highlight highlight-r"><pre>nums <span class="o">%&gt;&gt;%</span>
-  list.filter<span class="p">(</span>x <span class="o">-&gt;</span> <span class="kp">mean</span><span class="p">(</span>x<span class="p">)</span><span class="o">&gt;=</span><span class="m">3</span><span class="p">)</span>
+<div class="highlight highlight-r"><pre>nums <span class="o">%&gt;&gt;%</span> list.filter<span class="p">(</span>x <span class="o">-&gt;</span> <span class="kp">mean</span><span class="p">(</span>x<span class="p">)</span><span class="o">&gt;=</span><span class="m">3</span><span class="p">)</span>
 </pre></div>
 
 <pre><code>$b
@@ -314,6 +318,13 @@ $c
 
 $c
 [1] 3 4 5
+</code></pre>
+
+<div class="highlight highlight-r"><pre>nums <span class="o">%&gt;&gt;%</span> list.mapv<span class="p">(</span>f<span class="p">(</span>x<span class="p">,</span>i<span class="p">)</span> <span class="o">-&gt;</span> <span class="kp">sum</span><span class="p">(</span>x<span class="p">,</span>i<span class="p">))</span>
+</pre></div>
+
+<pre><code> a  b  c 
+ 7 11 15 
 </code></pre>
 
 <h2>
