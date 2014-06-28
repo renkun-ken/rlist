@@ -3,14 +3,14 @@
 \alias{list.find}
 \title{Find a specific number of members in a list that meeting given condition}
 \usage{
-list.find(x, ..., keep.names = TRUE)
+list.find(x, cond, n = 1L)
 }
 \arguments{
 \item{x}{The list}
 
-\item{...}{Parameters passed to \code{list.findi}}
+\item{cond}{The condition}
 
-\item{keep.names}{Whether to keep the names of list x}
+\item{n}{The number of items to find}
 }
 \description{
 Find a specific number of members in a list that meeting given condition

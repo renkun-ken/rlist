@@ -1,15 +1,3 @@
-list.iter.internal <- function(x,expr) {
-  l <- lambda(expr)
-  genv <- new.env(FALSE,parent.frame(),3L)
-  xnames <- if(is.null(names(x))) character(length(x)) else names(x)
-  Map(function(...) {
-    args <- `names<-`(list(...),l$symbols)
-    enclos <- list2env(args,genv)
-    env <- list.env(args[[1L]])
-    eval(l$expr,env,enclos)
-  },x,seq_along(x),xnames)
-  invisible()
-}
 #' Iterate a list by evaluating an expression on
 #' each list member.
 #'

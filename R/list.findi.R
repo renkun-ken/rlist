@@ -1,29 +1,3 @@
-list.findi.internal <- function(x,cond,n) {
-  l <- lambda(cond)
-  genv <- new.env(FALSE,parent.frame(),3L)
-  xnames <- names(x)
-  indices <- integer()
-  for(i in seq_along(x)) {
-    xi <- x[[i]]
-    args <- `names<-`(list(xi,i,xnames[i]),l$symbols)
-    enclos <- list2env(args,genv)
-    env <- list.env(xi)
-    result <- eval(l$expr,env,enclos)
-    if(length(indices) < n) {
-      if(is.logical(result)) {
-        if(length(result) == 1L && result) {
-          indices <- c(indices,i)
-        } else if(length(result) > 1L) {
-          stop("Multiple values are encountered")
-        }
-      }
-    } else {
-      break
-    }
-  }
-  indices
-}
-
 #' Find the indices of a number of members in a list that
 #' meet given condition
 #'

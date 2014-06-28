@@ -1,20 +1,7 @@
-list.map.internal <- function(x,expr) {
-  l <- lambda(expr)
-  genv <- new.env(FALSE,parent.frame(),3)
-  xnames <- if(is.null(names(x))) character(length(x)) else names(x)
-  Map(function(...) {
-    args <- `names<-`(list(...),l$symbols)
-    enclos <- list2env(args,genv)
-    env <- list.env(args[[1]])
-    eval(l$expr,env,enclos)
-  },x,seq_along(x),xnames)
-}
-
 #' Map each member of a list by an expression.
 #'
 #' @param x The list to perform mapping
 #' @param expr An expression that is evaluated for each item
-#' @param keep.names Whether to keep the names of list x
 #' @name list.map
 #' @export
 #' @examples
@@ -25,16 +12,15 @@ list.map.internal <- function(x,expr) {
 #' list.map(x,type)
 #' list.map(x,min(score$c1,score$c2))
 #' }
-list.map <- function(x,expr,keep.names=TRUE) {
+list.map <- function(x,expr) {
   expr <- substitute(expr)
-  items <- list.map.internal(x,expr)
-  if(!keep.names) names(items) <- NULL
-  items
+  list.map.internal(x,expr)
 }
 
 #' Map each member of a list by an expression to a vector.
 #'
-#' @param ... The parameters passed to \code{list.map}
+#' @param x The list
+#' @param expr The expression
 #' @param use.names Should the names of the results be preserved?
 #' @name list.mapv
 #' @export
@@ -46,6 +32,8 @@ list.map <- function(x,expr,keep.names=TRUE) {
 #' list.mapv(x,type)
 #' list.mapv(x,min(score$c1,score$c2))
 #' }
-list.mapv <- function(...,use.names=TRUE) {
-  unlist(list.map(...),use.names = use.names)
+list.mapv <- function(x,expr,use.names=TRUE) {
+  expr <- substitute(expr)
+  items <- list.map.internal(x,expr)
+  unlist(items,use.names=use.names)
 }

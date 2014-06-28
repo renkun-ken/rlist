@@ -3,10 +3,12 @@
 \alias{list.mapv}
 \title{Map each member of a list by an expression to a vector.}
 \usage{
-list.mapv(..., use.names = TRUE)
+list.mapv(x, expr, use.names = TRUE)
 }
 \arguments{
-\item{...}{The parameters passed to \code{list.map}}
+\item{x}{The list}
+
+\item{expr}{The expression}
 
 \item{use.names}{Should the names of the results be preserved?}
 }

@@ -1,8 +1,8 @@
 #' Exclude members of a list that meet given condition.
 #'
-#' @param x The list
-#' @param ... The parameters passed to \code{list.if}
-#' @param keep.null Whether to keep \code{NULL} items in the result
+#' @param x \code{list}
+#' @param cond An \code{expression} that returns a logical value
+#'    to exclude items
 #' @name list.exclude
 #' @export
 #' @examples
@@ -13,8 +13,7 @@
 #' list.exclude(x,type=="B")
 #' list.exclude(x,min(score$c1,score$c2) >= 8)
 #' }
-list.exclude <- function(x,...,keep.null=FALSE) {
-  items <- x[!list.if(x,...)]
-  if(!keep.null) items[vapply(items,is.null,logical(1))] <- NULL
-  items
+list.exclude <- function(x,cond) {
+  cond <- substitute(cond)
+  x[!list.if.internal(x,cond,FALSE)]
 }

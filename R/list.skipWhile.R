@@ -2,7 +2,6 @@
 #'
 #' @param x The list
 #' @param cond The condition
-#' @param keep.names Whether to keep the names of list x
 #' @name list.skipWhile
 #' @export
 #' @examples
@@ -13,7 +12,7 @@
 #' list.skipWhile(x,type=="A")
 #' list.skipWhile(x,min(score$c1,score$c2) >= 8)
 #' }
-list.skipWhile <- function(x,cond,keep.names=TRUE) {
+list.skipWhile <- function(x,cond) {
   cond <- substitute(cond)
   l <- lambda(cond)
   genv <- new.env(FALSE,parent.frame(),3L)
@@ -34,7 +33,5 @@ list.skipWhile <- function(x,cond,keep.names=TRUE) {
       stop("Results must be logical")
     }
   }
-  items <- x[(index+1L):length(x)]
-  if(!keep.names) names(items) <- NULL
-  items
+  x[(index+1L):length(x)]
 }

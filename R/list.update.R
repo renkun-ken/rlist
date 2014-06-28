@@ -2,7 +2,6 @@
 #'
 #' @param x The list to be transformed
 #' @param ... The elements to update
-#' @param keep.names Whether to keep the names of list x
 #' @param keep.null Should \code{NULL} values be preserved
 #'    for \code{modifyList}
 #' @name list.update
@@ -17,11 +16,9 @@
 #' list.update(x,grade=ifelse(type=="A",score$c1,score$c2))
 #' list.update(x,score=list(min=0,max=10))
 #' }
-list.update <- function(x,...,keep.names=TRUE,keep.null=FALSE) {
+list.update <- function(x,...,keep.null=FALSE) {
   args <- match.call(expand.dots = FALSE)$`...`
   items <- lapply(args,list.map.internal,x=x)
-  items <- do.call(Map,c(function(x,...)
+  do.call(Map,c(function(x,...)
     modifyList(x,list(...),keep.null = keep.null),list(x),items))
-  if(!keep.names) names(items) <- NULL
-  items
 }

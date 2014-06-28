@@ -3,14 +3,13 @@
 \alias{list.exclude}
 \title{Exclude members of a list that meet given condition.}
 \usage{
-list.exclude(x, ..., keep.null = FALSE)
+list.exclude(x, cond)
 }
 \arguments{
-\item{x}{The list}
+\item{x}{\code{list}}
 
-\item{...}{The parameters passed to \code{list.if}}
-
-\item{keep.null}{Whether to keep \code{NULL} items in the result}
+\item{cond}{An \code{expression} that returns a logical value
+to exclude items}
 }
 \description{
 Exclude members of a list that meet given condition.

@@ -3,10 +3,12 @@
 \alias{list.count}
 \title{Count the number of members that meet given condition}
 \usage{
-list.count(...)
+list.count(x, cond)
 }
 \arguments{
-\item{...}{Parameters passed to \code{list.filter}}
+\item{x}{\code{list}}
+
+\item{cond}{An \code{expression} that returns a logical value}
 }
 \description{
 Count the number of members that meet given condition

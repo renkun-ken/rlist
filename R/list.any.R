@@ -1,6 +1,7 @@
 #' Get whether any list member satisfies the given condition
 #'
-#' @param ... Parameters passed to \code{list.if}
+#' @param x \code{list}
+#' @param cond An \code{expression} that returns logical value
 #' @param na.rm logical. If true all \code{NA} values are removed
 #' @name list.any
 #' @export
@@ -12,6 +13,7 @@
 #' list.any(x,type=="B")
 #' list.any(x,mean(unlist(score))>=6)
 #' }
-list.any <- function(...,na.rm=FALSE) {
-  any(list.if(...),na.rm = na.rm)
+list.any <- function(x,cond,na.rm=FALSE) {
+  cond <- substitute(cond)
+  any(list.if.internal(x,cond,FALSE),na.rm = na.rm)
 }

@@ -1,6 +1,7 @@
 #' Count the number of members that meet given condition
 #'
-#' @param ... Parameters passed to \code{list.filter}
+#' @param x \code{list}
+#' @param cond An \code{expression} that returns a logical value
 #' @name list.count
 #' @export
 #' @examples
@@ -11,6 +12,7 @@
 #' list.count(x,type=="B")
 #' list.count(x,min(unlist(score)) >= 9)
 #' }
-list.count <- function(...) {
-  length(which(list.if(...)))
+list.count <- function(x,cond) {
+  cond <- substitute(cond)
+  length(which(list.if.internal(x,cond,FALSE)))
 }

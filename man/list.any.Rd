@@ -3,10 +3,12 @@
 \alias{list.any}
 \title{Get whether any list member satisfies the given condition}
 \usage{
-list.any(..., na.rm = FALSE)
+list.any(x, cond, na.rm = FALSE)
 }
 \arguments{
-\item{...}{Parameters passed to \code{list.if}}
+\item{x}{\code{list}}
+
+\item{cond}{An \code{expression} that returns logical value}
 
 \item{na.rm}{logical. If true all \code{NA} values are removed}
 }

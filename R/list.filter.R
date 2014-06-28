@@ -1,7 +1,7 @@
 #' Filter a list by a condition.
 #'
-#' @param x The list to be filtered
-#' @param ... The parameters passed to \code{list.if}
+#' @param x The list
+#' @param cond The condition
 #' @name list.filter
 #' @export
 #' @examples
@@ -12,6 +12,7 @@
 #' list.filter(x,type=="B")
 #' list.filter(x,min(score$c1,score$c2) >= 8)
 #' }
-list.filter <- function(x,...) {
-  x[list.if(x,...)]
+list.filter <- function(x,cond) {
+  cond <- substitute(cond)
+  x[list.if.internal(x,cond,FALSE)]
 }

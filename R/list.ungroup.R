@@ -1,7 +1,6 @@
 #' Ungroup a list
 #'
 #' @param x A list
-#' @param ... The additional parameters passed to \code{unlist}
 #' @param sort.names Should the members be sorted after ungrouping?
 #' @name list.ungroup
 #' @export
@@ -13,9 +12,9 @@
 #' xg <- list.group(x,type)
 #' list.ungroup(xg)
 #' }
-list.ungroup <- function(x,...,sort.names=FALSE) {
+list.ungroup <- function(x,sort.names=FALSE) {
   names(x) <- NULL
-  result <- unlist(x,...,recursive = FALSE)
+  result <- unlist(x,recursive = FALSE)
   result.names <- names(result)
   if (sort.names && !is.null(result.names)) {
     result[sort(result.names)]

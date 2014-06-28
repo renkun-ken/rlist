@@ -6,7 +6,6 @@
 #' @param subset A logical expression that specifies the subsetting condition
 #' @param select An expression that is evaluated for each item
 #' that satisfies the subsetting condition
-#' @param keep.names Whether to keep the names of list x
 #' @param ... Additional parameters
 #' @name subset.list
 #' @export
@@ -21,30 +20,29 @@
 #' do.call(rbind,
 #'    subset(x,min(score$c1,score$c2) >= 8,data.frame(score)))
 #' }
-subset.list <- function(x,subset=TRUE,select=.,
-  keep.names=TRUE,...) {
+subset.list <- function(x,subset=TRUE,select=.,...) {
   subset <- substitute(subset)
   select <- substitute(select)
   lsubset <- lambda(subset)
   lselect <- lambda(select)
-  genv <- new.env(FALSE,parent.frame(),3L)
+  envir.subset <- new.env(FALSE,parent.frame(),3L)
+  envir.select <- new.env(FALSE,parent.frame(),3L)
   xnames <- if(is.null(names(x))) character(length(x)) else names(x)
   items <- Map(function(...) {
     args <- list(...)
     names(args) <- lsubset$symbols
-    enclos <- list2env(args,genv)
+    list2env(args,envir.subset)
     env <- list.env(args[[1L]])
-    result <- eval(lsubset$expr,env,enclos)
+    result <- eval(lsubset$expr,env,envir.subset)
     if(is.logical(result)) {
       if(length(result) == 1L && result) {
         names(args) <- lselect$symbols
-        enclos <- list2env(args,genv)
-        eval(lselect$expr,env,enclos)
+        list2env(args,envir.select)
+        eval(lselect$expr,env,envir.select)
       } else if(length(result) > 1L) {
         stop("Multiple values are encountered")
       }
     }
   },x,seq_along(x),xnames)
-  if(!keep.names) names(items) <- NULL
   list.clean(items)
 }

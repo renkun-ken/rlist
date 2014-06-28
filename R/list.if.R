@@ -1,23 +1,3 @@
-list.if.internal <- function(x,cond,use.names=TRUE) {
-  l <- lambda(cond)
-  genv <- new.env(FALSE,parent.frame(),3L)
-  xnames <- if(is.null(names(x))) character(length(x)) else names(x)
-  results <- unlist(Map(function(...) {
-    args <- `names<-`(list(...),l$symbols)
-    enclos <- list2env(args,genv)
-    env <- list.env(args[[1L]])
-    result <- eval(l$expr,env,enclos)
-    if(is.logical(result)) {
-      if(length(result)==1L) result
-      else if(length(result>1L)) stop("Multiple values are encountered")
-      else NA
-    } else {
-      NA
-    }
-  },x,seq_along(x),xnames),use.names=use.names)
-  results
-}
-
 #' Return a logical vector that indicates if each member of a list
 #' satisfies a given condition
 #'

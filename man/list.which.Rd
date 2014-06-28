@@ -4,10 +4,12 @@
 \title{Return a integer vector of the indices of list members that satisfy
 given condition}
 \usage{
-list.which(...)
+list.which(x, cond)
 }
 \arguments{
-\item{...}{The parameters passed to \code{list.if}}
+\item{x}{The list}
+
+\item{cond}{The condition}
 }
 \description{
 Return a integer vector of the indices of list members that satisfy

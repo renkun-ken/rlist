@@ -3,12 +3,12 @@
 \alias{list.filter}
 \title{Filter a list by a condition.}
 \usage{
-list.filter(x, ...)
+list.filter(x, cond)
 }
 \arguments{
-\item{x}{The list to be filtered}
+\item{x}{The list}
 
-\item{...}{The parameters passed to \code{list.if}}
+\item{cond}{The condition}
 }
 \description{
 Filter a list by a condition.

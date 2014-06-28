@@ -1,26 +1,29 @@
+.lambda <- list(symbols=c(".",".i",".name"))
+.nsymbol <- length(.lambda$symbols)
+
 lambda <- function(expr) {
-  result <- list(symbols=c(".",".i",".name"),expr=expr)
+  .lambda$expr <- expr
   if(is.call(expr) && length(expr[[1L]])==1L) {
     symbol <- as.character(expr[[1L]])
     if(symbol == "~") {
       symbols <- expr[[2L]]
-      result$expr <- expr[[3L]]
+      .lambda$expr <- expr[[3L]]
     } else if(symbol == "<-") {
       symbols <- expr[[3L]]
-      result$expr <- expr[[2L]]
+      .lambda$expr <- expr[[2L]]
     } else {
-      return(result)
+      return(.lambda)
     }
     if(is.name(symbols)) {
-      result$symbols[1L] <- as.character(symbols)
+      .lambda$symbols[1L] <- as.character(symbols)
     } else if(is.call(symbols)) {
       symbols <- as.character(as.list(symbols)[-1])
-      result$symbols[seq_along(symbols)] <- symbols
+      .lambda$symbols[seq_along(symbols)] <- symbols
     } else {
       stop("Invalid lambda expression")
     }
   }
-  result
+  .lambda
 }
 
 list.env <- function(x) {
