@@ -16,7 +16,9 @@ rlist is a set of tools for working with list objects. It has two main goals:
 - Make it easier to work with list objects used to store data in more flexible structures than data frames.
 - Perform a wide range of functions on non-relational data using list constructs.
 
-*This package may not be stable enough for production purpose. Its functions and implmentations may change overtime and cannot guarantee the backward compatibility at the moment. Please be cautious when you use it in production.*
+[Release notes](https://github.com/renkun-ken/rlist/releases)
+
+*Notice: Currently, this package may not be stable enough for production purpose. Its functions and implmentations may change overtime and cannot guarantee the backward compatibility at the moment. Please be cautious when you use it in production.*
 
 ## Installation
 
@@ -34,9 +36,9 @@ devtools::install_github("rlist","renkun-ken")
 
 ## Functions
 
-A wide range of functions are provided to work with list objects.
+The package provides a wide range of functions to work with list objects.
 
-Suppose we have a list of developers, each of which has a name, age, some interests and a list of programming language they use and the number of years they have been using them.
+Suppose we have a list of developers, each of whom has a name, age, a few interests, a list of programming languages they use and the number of years they have been using them.
 
 ```{r}
 library(rlist)
@@ -52,6 +54,8 @@ devs <-
       interest=c("movies","reading"),
       lang=list(r=1,cpp=4,python=2)))
 ```
+
+This type of data can be easily stored in JSON or YAML format.
 
 ### Filtering
 
@@ -86,7 +90,7 @@ str(list.select(devs,name,age))
 Select the name and evaluate the range of the number of years using programming languages.
 
 ```{r}
-str(list.select(devs,name,score.range=range(unlist(lang))))
+str(list.select(devs,name,range=range(unlist(lang))))
 ```
 
 ### Grouping
@@ -136,17 +140,24 @@ devs %>>%
 
 ### Lambda expression
 
-Most functions in this package supports lambda expressions like `x ~ f(x)` or `x -> f(x)` where `x` refers to the list member itself. Otherwise, `.` will by default be used to represent it.
+In this package, all functions that work with expressions support the following forms of lambda expressions, for example,
+
+- `x ~ g(x)`
+- `x -> g(x)`
+- `f(x) -> g(x)`
+- `f(x,i) -> g(x,i)`
+- `f(x,i,name) -> g(x,i,name)`
+
+where `x` refers to the list member itself, `i` denotes the index, `name` denotes the name. If the symbols are not explicitly declared, `.`, `.i` and `.name` will by default be used to represent them, respectively.
 
 ```{r}
 nums <- list(a=c(1,2,3),b=c(2,3,4),c=c(3,4,5))
 nums %>>%
   list.map(data.frame(min=min(.),max=max(.))) %>>%
   list.rbind
-nums %>>%
-  list.map(x ~ sum(x))
-nums %>>%
-  list.filter(x -> mean(x)>=3)
+nums %>>% list.mapv(x ~ sum(x))
+nums %>>% list.filter(x -> mean(x)>=3)
+nums %>>% list.mapv(f(x,i) -> sum(x,i))
 ```
 
 ## Help overview

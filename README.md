@@ -9,7 +9,9 @@ rlist is a set of tools for working with list objects. It has two main goals:
 - Make it easier to work with list objects used to store data in more flexible structures than data frames.
 - Perform a wide range of functions on non-relational data using list constructs.
 
-*This package may not be stable enough for production purpose. Its functions and implmentations may change overtime and cannot guarantee the backward compatibility at the moment. Please be cautious when you use it in production.*
+[Release notes](https://github.com/renkun-ken/rlist/releases)
+
+*Notice: Currently, this package may not be stable enough for production purpose. Its functions and implmentations may change overtime and cannot guarantee the backward compatibility at the moment. Please be cautious when you use it in production.*
 
 ## Installation
 
@@ -27,9 +29,9 @@ devtools::install_github("rlist","renkun-ken")
 
 ## Functions
 
-A wide range of functions are provided to work with list objects.
+The package provides a wide range of functions to work with list objects.
 
-Suppose we have a list of developers, each of which has a name, age, some interests and a list of programming language they use and the number of years they have been using them.
+Suppose we have a list of developers, each of whom has a name, age, a few interests, a list of programming languages they use and the number of years they have been using them.
 
 
 ```r
@@ -46,6 +48,8 @@ devs <-
       interest=c("movies","reading"),
       lang=list(r=1,cpp=4,python=2)))
 ```
+
+This type of data can be easily stored in JSON or YAML format.
 
 ### Filtering
 
@@ -135,20 +139,20 @@ Select the name and evaluate the range of the number of years using programming 
 
 
 ```r
-str(list.select(devs,name,score.range=range(unlist(lang))))
+str(list.select(devs,name,range=range(unlist(lang))))
 ```
 
 ```
 List of 3
  $ p1:List of 2
-  ..$ name       : chr "Ken"
-  ..$ score.range: num [1:2] 2 4
+  ..$ name : chr "Ken"
+  ..$ range: num [1:2] 2 4
  $ p2:List of 2
-  ..$ name       : chr "James"
-  ..$ score.range: num [1:2] 2 5
+  ..$ name : chr "James"
+  ..$ range: num [1:2] 2 5
  $ p3:List of 2
-  ..$ name       : chr "Penny"
-  ..$ score.range: num [1:2] 1 4
+  ..$ name : chr "Penny"
+  ..$ range: num [1:2] 1 4
 ```
 
 ### Grouping
@@ -265,7 +269,15 @@ p3 Penny 1       4
 
 ### Lambda expression
 
-Most functions in this package supports lambda expressions like `x ~ f(x)` or `x -> f(x)` where `x` refers to the list member itself. Otherwise, `.` will by default be used to represent it.
+In this package, all functions that work with expressions support the following forms of lambda expressions, for example,
+
+- `x ~ g(x)`
+- `x -> g(x)`
+- `f(x) -> g(x)`
+- `f(x,i) -> g(x,i)`
+- `f(x,i,name) -> g(x,i,name)`
+
+where `x` refers to the list member itself, `i` denotes the index, `name` denotes the name. If the symbols are not explicitly declared, `.`, `.i` and `.name` will by default be used to represent them, respectively.
 
 
 ```r
@@ -283,24 +295,16 @@ c   3   5
 ```
 
 ```r
-nums %>>%
-  list.map(x ~ sum(x))
+nums %>>% list.mapv(x ~ sum(x))
 ```
 
 ```
-$a
-[1] 6
-
-$b
-[1] 9
-
-$c
-[1] 12
+ a  b  c 
+ 6  9 12 
 ```
 
 ```r
-nums %>>%
-  list.filter(x -> mean(x)>=3)
+nums %>>% list.filter(x -> mean(x)>=3)
 ```
 
 ```
@@ -309,6 +313,15 @@ $b
 
 $c
 [1] 3 4 5
+```
+
+```r
+nums %>>% list.mapv(f(x,i) -> sum(x,i))
+```
+
+```
+ a  b  c 
+ 7 11 15 
 ```
 
 ## Help overview
