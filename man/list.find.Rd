@@ -3,7 +3,7 @@
 \alias{list.find}
 \title{Find a specific number of members in a list that meeting given condition}
 \usage{
-list.find(x, ..., keep.names = TRUE, keep.null = FALSE)
+list.find(x, ..., keep.names = TRUE)
 }
 \arguments{
 \item{x}{The list}
@@ -11,8 +11,6 @@ list.find(x, ..., keep.names = TRUE, keep.null = FALSE)
 \item{...}{Parameters passed to \code{list.findi}}
 
 \item{keep.names}{Whether to keep the names of list x}
-
-\item{keep.null}{Whether to keep \code{NULL} items in the result}
 }
 \description{
 Find a specific number of members in a list that meeting given condition

@@ -3,7 +3,6 @@
 #' @param x The list
 #' @param cond The condition
 #' @param keep.names Whether to keep the names of list x
-#' @param keep.null Whether to keep \code{NULL} items in the result
 #' @name list.skipWhile
 #' @export
 #' @examples
@@ -14,8 +13,7 @@
 #' list.skipWhile(x,type=="A")
 #' list.skipWhile(x,min(score$c1,score$c2) >= 8)
 #' }
-list.skipWhile <- function(x,cond,
-  keep.names=TRUE,keep.null=FALSE) {
+list.skipWhile <- function(x,cond,keep.names=TRUE) {
   cond <- substitute(cond)
   l <- lambda(cond)
   genv <- new.env(FALSE,parent.frame(),3L)
@@ -38,6 +36,5 @@ list.skipWhile <- function(x,cond,
   }
   items <- x[(index+1L):length(x)]
   if(!keep.names) names(items) <- NULL
-  if(!keep.null) items[vapply(items,is.null,logical(1))] <- NULL
   items
 }

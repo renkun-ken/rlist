@@ -3,16 +3,12 @@
 \alias{list.group}
 \title{Group a list by the value of an expression evaluated for each member.}
 \usage{
-list.group(x, key, keep.group.names = TRUE, keep.item.names = TRUE)
+list.group(x, key)
 }
 \arguments{
 \item{x}{The list to group}
 
 \item{key}{An expression that determines the key of the group}
-
-\item{keep.group.names}{Whether to keep the names of the groups}
-
-\item{keep.item.names}{Whether to keep the names of the items in the result}
 }
 \description{
 Group a list by the value of an expression evaluated for each member.

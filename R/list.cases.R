@@ -15,7 +15,7 @@
 #' }
 list.cases <- function(x,expr,sort=TRUE) {
   expr <- substitute(expr)
-  cases <- unique(unlist(list.map(x,eval(expr)),use.names = FALSE))
+  cases <- unique(unlist(list.map.internal(x,expr),use.names = FALSE))
   if(sort) {
     sort(cases)
   } else {

@@ -1,9 +1,20 @@
+list.map.internal <- function(x,expr) {
+  l <- lambda(expr)
+  genv <- new.env(FALSE,parent.frame(),3)
+  xnames <- if(is.null(names(x))) character(length(x)) else names(x)
+  Map(function(...) {
+    args <- `names<-`(list(...),l$symbols)
+    enclos <- list2env(args,genv)
+    env <- list.env(args[[1]])
+    eval(l$expr,env,enclos)
+  },x,seq_along(x),xnames)
+}
+
 #' Map each member of a list by an expression.
 #'
 #' @param x The list to perform mapping
 #' @param expr An expression that is evaluated for each item
 #' @param keep.names Whether to keep the names of list x
-#' @param keep.null Whether to keep \code{NULL} items in the result
 #' @name list.map
 #' @export
 #' @examples
@@ -14,20 +25,10 @@
 #' list.map(x,type)
 #' list.map(x,min(score$c1,score$c2))
 #' }
-list.map <- function(x,expr,
-  keep.names=TRUE,keep.null=FALSE) {
+list.map <- function(x,expr,keep.names=TRUE) {
   expr <- substitute(expr)
-  l <- lambda(expr)
-  genv <- new.env(FALSE,parent.frame(),3)
-  xnames <- if(is.null(names(x))) character(length(x)) else names(x)
-  items <- Map(function(...) {
-    args <- `names<-`(list(...),l$symbols)
-    enclos <- list2env(args,genv)
-    env <- list.env(args[[1]])
-    eval(l$expr,env,enclos)
-  },x,seq_along(x),xnames)
+  items <- list.map.internal(x,expr)
   if(!keep.names) names(items) <- NULL
-  if(!keep.null) items[vapply(items,is.null,logical(1))] <- NULL
   items
 }
 

@@ -3,7 +3,6 @@
 #' @param x The list
 #' @param cond The condition
 #' @param keep.names Whether to keep the names of list x
-#' @param keep.null Whether to keep \code{NULL} items in the result
 #' @name list.takeWhile
 #' @export
 #' @examples
@@ -15,7 +14,7 @@
 #' list.takeWhile(x,min(score$c1,score$c2) >= 8)
 #' }
 list.takeWhile <- function(x,cond=TRUE,
-  keep.names=TRUE,keep.null=FALSE) {
+  keep.names=TRUE) {
   cond <- substitute(cond)
   l <- lambda(cond)
   genv <- new.env(FALSE,parent.frame(),3L)
@@ -38,6 +37,5 @@ list.takeWhile <- function(x,cond=TRUE,
   }
   items <- x[0L:index]
   if(!keep.names) names(items) <- NULL
-  if(!keep.null) items[vapply(items,is.null,logical(1))] <- NULL
   items
 }

@@ -7,8 +7,7 @@
 #' @param select An expression that is evaluated for each item
 #' that satisfies the subsetting condition
 #' @param keep.names Whether to keep the names of list x
-#' @param keep.null Whether to keep \code{NULL} items in the result
-#' @param ... Additional arguments
+#' @param ... Additional parameters
 #' @name subset.list
 #' @export
 #' @examples
@@ -23,7 +22,7 @@
 #'    subset(x,min(score$c1,score$c2) >= 8,data.frame(score)))
 #' }
 subset.list <- function(x,subset=TRUE,select=.,
-  keep.names=TRUE,keep.null=FALSE,...) {
+  keep.names=TRUE,...) {
   subset <- substitute(subset)
   select <- substitute(select)
   lsubset <- lambda(subset)
@@ -47,6 +46,5 @@ subset.list <- function(x,subset=TRUE,select=.,
     }
   },x,seq_along(x),xnames)
   if(!keep.names) names(items) <- NULL
-  if(!keep.null) items[vapply(items,is.null,logical(1L))] <- NULL
-  items
+  list.clean(items)
 }

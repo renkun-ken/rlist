@@ -3,7 +3,7 @@
 \alias{list.skipWhile}
 \title{Skip members until the given condition is broken}
 \usage{
-list.skipWhile(x, cond, keep.names = TRUE, keep.null = FALSE)
+list.skipWhile(x, cond, keep.names = TRUE)
 }
 \arguments{
 \item{x}{The list}
@@ -11,8 +11,6 @@ list.skipWhile(x, cond, keep.names = TRUE, keep.null = FALSE)
 \item{cond}{The condition}
 
 \item{keep.names}{Whether to keep the names of list x}
-
-\item{keep.null}{Whether to keep \code{NULL} items in the result}
 }
 \description{
 Skip members until the given condition is broken

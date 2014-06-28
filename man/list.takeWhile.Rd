@@ -3,7 +3,7 @@
 \alias{list.takeWhile}
 \title{Take out members until the given condition is broken}
 \usage{
-list.takeWhile(x, cond = TRUE, keep.names = TRUE, keep.null = FALSE)
+list.takeWhile(x, cond = TRUE, keep.names = TRUE)
 }
 \arguments{
 \item{x}{The list}
@@ -11,8 +11,6 @@ list.takeWhile(x, cond = TRUE, keep.names = TRUE, keep.null = FALSE)
 \item{cond}{The condition}
 
 \item{keep.names}{Whether to keep the names of list x}
-
-\item{keep.null}{Whether to keep \code{NULL} items in the result}
 }
 \description{
 Take out members until the given condition is broken

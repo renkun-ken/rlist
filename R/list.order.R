@@ -16,9 +16,10 @@
 #' }
 list.order <- function(x,...,keep.names=FALSE) {
   args <- as.list(match.call(expand.dots = FALSE))$`...`
+  desc <- `-`
   cols <- lapply(args,function(arg) {
-    desc <- `-`
-    unlist(list.map(x,eval(arg),keep.null=TRUE))
+    if(is.null(arg)) stop("NULL condition")
+    unlist(list.map.internal(x,arg))
   })
   result <- do.call(order,cols)
   if(keep.names) names(result) <- names(x)

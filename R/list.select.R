@@ -16,27 +16,10 @@
 list.select <- function(x,...) {
   args <- as.list(match.call(expand.dots = FALSE))$`...`
   argnames <- names(args)
-  if(is.null(argnames)) {
-    argnames <- character(length(args))
-  }
+  if(is.null(argnames))  argnames <- character(length(args))
   indices <- argnames=="" & vapply(args,is.name,logical(1L))
   argnames[indices] <- vapply(args[indices],as.character,character(1L))
   names(args) <- argnames
-  for(i in seq_along(args)) {
-    arg <- args[[i]]
-    arg <- substitute(arg)
-    args[[i]] <- lambda(arg)
-  }
-  genv <- new.env(FALSE,parent.frame(),3L)
-  xnames <- if(is.null(names(x))) character(length(x)) else names(x)
-  items <- Map(function(...) {
-    largs <- list(...)
-    env <- list.env(largs[[1L]])
-    lapply(args,function(arg) {
-      largs <- `names<-`(largs,arg$symbols)
-      enclos <- list2env(largs,genv)
-      eval(arg$expr,env,enclos)
-    })
-  },x,seq_along(x),xnames)
-  items
+  items <- lapply(args,list.map.internal,x=x)
+  do.call(Map,c(function(x,...) list(...),list(x),items))
 }

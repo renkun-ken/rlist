@@ -3,8 +3,8 @@
 #' @param x The list to be transformed
 #' @param ... The elements to update
 #' @param keep.names Whether to keep the names of list x
-#' @param keep.null Whether to keep \code{NULL} items in the result
-#' @param keep.val.null Whether to keep \code{NULL} values in the transformed list item
+#' @param keep.null Should \code{NULL} values be preserved
+#'    for \code{modifyList}
 #' @name list.update
 #' @export
 #' @examples
@@ -17,28 +17,11 @@
 #' list.update(x,grade=ifelse(type=="A",score$c1,score$c2))
 #' list.update(x,score=list(min=0,max=10))
 #' }
-list.update <- function(x,...,
-  keep.names=TRUE,keep.null=FALSE,keep.val.null=FALSE) {
+list.update <- function(x,...,keep.names=TRUE,keep.null=FALSE) {
   args <- match.call(expand.dots = FALSE)$`...`
-  for(i in seq_along(args)) {
-    arg <- args[[i]]
-    arg <- substitute(arg)
-    args[[i]] <- lambda(arg)
-  }
-  genv <- new.env(FALSE,parent.frame(),3L)
-  xnames <- if(is.null(names(x))) character(length(x)) else names(x)
-  items <- Map(function(...) {
-    largs <- list(...)
-    xi <- largs[[1L]]
-    env <- list.env(xi)
-    new.list <- lapply(args,function(arg) {
-      largs <- `names<-`(largs,arg$symbols)
-      enclos <- list2env(largs,genv)
-      eval(arg$expr,env,enclos)
-    })
-    modifyList(xi,new.list,keep.null = keep.val.null)
-  },x,seq_along(x),xnames)
+  items <- lapply(args,list.map.internal,x=x)
+  items <- do.call(Map,c(function(x,...)
+    modifyList(x,list(...),keep.null = keep.null),list(x),items))
   if(!keep.names) names(items) <- NULL
-  if(!keep.null) items[vapply(items,is.null,logical(1L))] <- NULL
   items
 }

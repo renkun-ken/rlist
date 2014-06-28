@@ -4,7 +4,7 @@
 \title{Return subsets of a list which meet conditions.}
 \usage{
 \method{subset}{list}(x, subset = TRUE, select = ., keep.names = TRUE,
-  keep.null = FALSE, ...)
+  ...)
 }
 \arguments{
 \item{x}{The list to be subsetted}
@@ -16,9 +16,7 @@ that satisfies the subsetting condition}
 
 \item{keep.names}{Whether to keep the names of list x}
 
-\item{keep.null}{Whether to keep \code{NULL} items in the result}
-
-\item{...}{Additional arguments}
+\item{...}{Additional parameters}
 }
 \description{
 Return subsets of a list which meet conditions.

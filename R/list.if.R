@@ -1,21 +1,4 @@
-#' Return a logical vector that indicates if each member of a list
-#' satisfies a given condition
-#'
-#' @param x A list
-#' @param cond A logical expression that specifies the condition
-#' @param keep.names Whether to keep the names of list x
-#' @name list.if
-#' @export
-#' @examples
-#' \dontrun{
-#' x <- list(p1 = list(type="A",score=list(c1=10,c2=8)),
-#'        p2 = list(type="B",score=list(c1=9,c2=9)),
-#'        p3 = list(type="B",score=list(c1=9,c2=7)))
-#' list.if(x,type=="B")
-#' list.if(x,min(score$c1,score$c2) >= 8)
-#' }
-list.if <- function(x,cond,keep.names=TRUE) {
-  cond <- substitute(cond)
+list.if.internal <- function(x,cond,use.names=TRUE) {
   l <- lambda(cond)
   genv <- new.env(FALSE,parent.frame(),3L)
   xnames <- if(is.null(names(x))) character(length(x)) else names(x)
@@ -31,6 +14,27 @@ list.if <- function(x,cond,keep.names=TRUE) {
     } else {
       NA
     }
-  },x,seq_along(x),xnames),use.names=keep.names)
+  },x,seq_along(x),xnames),use.names=use.names)
   results
+}
+
+#' Return a logical vector that indicates if each member of a list
+#' satisfies a given condition
+#'
+#' @param x A list
+#' @param cond A logical expression that specifies the condition
+#' @param use.names Whether to keep the names of list x
+#' @name list.if
+#' @export
+#' @examples
+#' \dontrun{
+#' x <- list(p1 = list(type="A",score=list(c1=10,c2=8)),
+#'        p2 = list(type="B",score=list(c1=9,c2=9)),
+#'        p3 = list(type="B",score=list(c1=9,c2=7)))
+#' list.if(x,type=="B")
+#' list.if(x,min(score$c1,score$c2) >= 8)
+#' }
+list.if <- function(x,cond,use.names=TRUE) {
+  cond <- substitute(cond)
+  list.if.internal(x,cond,use.names)
 }

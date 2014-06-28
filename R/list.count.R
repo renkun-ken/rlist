@@ -12,5 +12,5 @@
 #' list.count(x,min(unlist(score)) >= 9)
 #' }
 list.count <- function(...) {
-  length(list.filter(...,keep.null=FALSE))
+  length(which(list.if(...)))
 }

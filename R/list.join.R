@@ -20,19 +20,30 @@
 #' list.join(l1,l2,.["name","age"])
 #' }
 list.join <- function(x,y,xkey,ykey=NULL,...,keep.order=TRUE) {
-  xkey <- substitute(xkey)
-  ykey <- substitute(ykey)
-  if(is.null(xkey) & is.null(ykey)) stop("At least one key should be specified")
-  if(is.null(ykey)) ykey <- xkey
-  xkeys.list <- list.map(x,data.frame(eval(xkey)))
-  ykeys.list <- list.map(y,data.frame(eval(ykey)))
+  sxkey <- substitute(xkey)
+  sykey <- substitute(ykey)
+
+  if(is.null(sxkey) && is.null(sykey))
+    stop("At least one key should be specified")
+
+  dfsxkey <- substitute(data.frame(xkey))
+  if(is.null(sykey)) {
+    sykey <- sxkey
+    dfsykey <- substitute(data.frame(xkey))
+  } else {
+    dfsykey <- substitute(data.frame(ykey))
+  }
+
+  xkeys.list <- list.map.internal(x,dfsxkey)
+  ykeys.list <- list.map.internal(y,dfsykey)
   xkeys.df <- list.rbind(xkeys.list)
   ykeys.df <- list.rbind(ykeys.list)
-  if(is.name(xkey)) colnames(xkeys.df) <- as.character(xkey)
-  if(is.name(ykey)) colnames(ykeys.df) <- as.character(ykey)
+  if(is.name(sxkey)) colnames(xkeys.df) <- as.character(sxkey)
+  if(is.name(sykey)) colnames(ykeys.df) <- as.character(sykey)
   if(!identical(colnames(xkeys.df),colnames(ykeys.df))) {
     stop("Inconsistent keys")
   }
+
   xkeys <- cbind(.xi=seq_along(xkeys.list),xkeys.df)
   ykeys <- cbind(.yi=seq_along(ykeys.list),ykeys.df)
   df <- merge.data.frame(xkeys,ykeys,by=colnames(xkeys)[-1],...)

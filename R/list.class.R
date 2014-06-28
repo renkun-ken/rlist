@@ -26,16 +26,13 @@
 list.class <- function(x,expr,
   sort.cases=TRUE,keep.case.names=TRUE,keep.item.names=TRUE) {
   expr <- substitute(expr)
-  values <- list.map(x,eval(expr))
+  values <- list.map.internal(x,expr)
   cases <- unique(unlist(values,use.names = FALSE))
   if(keep.case.names) names(cases) <- cases
   if(sort.cases)  cases <- sort(cases)
-  classes <- lapply(cases,function(case) {
-    selector <- vapply(values,function(vi) case %in% vi,logical(1L))
-    indices <- which(selector)
-    result <- x[indices]
+  lapply(cases,function(case) {
+    result <- x[vapply(values,function(vi) case %in% vi,logical(1L))]
     if(!keep.item.names) names(result) <- NULL
     result
   })
-  classes
 }
