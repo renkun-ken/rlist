@@ -1,18 +1,18 @@
 lambda <- function(expr) {
   result <- list(symbols=c(".",".i",".name"),expr=expr)
-  if(is.call(expr)) {
-    symbol <- as.character(expr[[1]])
+  if(is.call(expr) && length(expr[[1L]])==1L) {
+    symbol <- as.character(expr[[1L]])
     if(symbol == "~") {
-      symbols <- expr[[2]]
-      result$expr <- expr[[3]]
+      symbols <- expr[[2L]]
+      result$expr <- expr[[3L]]
     } else if(symbol == "<-") {
-      symbols <- expr[[3]]
-      result$expr <- expr[[2]]
+      symbols <- expr[[3L]]
+      result$expr <- expr[[2L]]
     } else {
       return(result)
     }
     if(is.name(symbols)) {
-      result$symbols[1] <- as.character(symbols)
+      result$symbols[1L] <- as.character(symbols)
     } else if(is.call(symbols)) {
       symbols <- as.character(as.list(symbols)[-1])
       result$symbols[seq_along(symbols)] <- symbols
