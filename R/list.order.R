@@ -16,9 +16,11 @@
 #' }
 list.order <- function(x,...,keep.names=FALSE) {
   args <- as.list(match.call(expand.dots = FALSE))$`...`
-  cols <- lapply(args,function(arg,desc=`-`) {
+  envir <- new.env(FALSE,parent.frame(),.nsymbol)
+  list2env(list.sort.functions,envir)
+  cols <- lapply(args,function(arg) {
     if(is.null(arg)) stop("NULL condition")
-    items <- list.map.internal(x,arg,1L)
+    items <- list.map.internal(x,arg,envir = envir)
     unlist(items)
   })
   result <- do.call(order,cols)

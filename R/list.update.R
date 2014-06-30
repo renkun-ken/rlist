@@ -18,7 +18,8 @@
 #' }
 list.update <- function(x,...,keep.null=FALSE) {
   args <- match.call(expand.dots = FALSE)$`...`
-  items <- lapply(args,list.map.internal,x=x)
+  envir <- new.env(FALSE,parent.frame(),.nsymbol)
+  items <- lapply(args,list.map.internal,x=x,envir=envir)
   do.call(Map,c(function(x,...)
     modifyList(x,list(...),keep.null = keep.null),list(x),items))
 }

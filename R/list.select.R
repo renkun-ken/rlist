@@ -20,6 +20,6 @@ list.select <- function(x,...) {
   indices <- argnames=="" & vapply(args,is.name,logical(1L))
   argnames[indices] <- vapply(args[indices],as.character,character(1L))
   names(args) <- argnames
-  items <- lapply(args,list.map.internal,x=x)
+  items <- lapply(args,list.map.internal,x=x,parent=3L)
   do.call(Map,c(function(x,...) list(...),list(x),items))
 }

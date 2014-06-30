@@ -15,19 +15,19 @@
 list.takeWhile <- function(x,cond) {
   cond <- substitute(cond)
   l <- lambda(cond)
-  genv <- new.env(FALSE,parent.frame(),3L)
+  envir <- new.env(FALSE,parent.frame(),3L)
   xnames <- names(x)
   index <- 0L
   for(i in seq_along(x)) {
     xi <- x[[i]]
     args <- `names<-`(list(xi,i,xnames[i]),l$symbols)
-    enclos <- list2env(args,genv)
+    list2env(args,envir)
     env <- list.env(xi)
-    result <- eval(l$expr,env,enclos)
+    result <- eval(l$expr,env,envir)
     if(is.logical(result)) {
       if(length(result) == 1L && result) index <- i
       else if(length(result) > 1L) stop("Multiple values are encountered")
-      else if(length(result) == 0L) stop("Undetermine value")
+      else if(length(result) == 0L) stop("Undetermined value")
       else break
     } else {
       stop("Results must be logical")

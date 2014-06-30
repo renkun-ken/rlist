@@ -1,6 +1,7 @@
-list.if.internal <- function(x,cond,use.names=TRUE,parent=2L) {
+list.if.internal <- function(x,cond,use.names=TRUE,parent=2L,envir=NULL) {
   l <- lambda(cond)
-  envir <- new.env(FALSE,parent.frame(parent),.nsymbol)
+  envir <- new.env(FALSE,
+    if(is.null(envir)) parent.frame(parent) else envir,.nsymbol)
   xnames <- if(is.null(names(x))) character(length(x)) else names(x)
   results <- Map(function(...) {
     args <- `names<-`(list(...),l$symbols)
@@ -18,9 +19,10 @@ list.if.internal <- function(x,cond,use.names=TRUE,parent=2L) {
   unlist(results,use.names = use.names)
 }
 
-list.findi.internal <- function(x,cond,n,parent=2L) {
+list.findi.internal <- function(x,cond,n,parent=2L,envir=NULL) {
   l <- lambda(cond)
-  envir <- new.env(FALSE,parent.frame(parent),.nsymbol)
+  envir <- new.env(FALSE,
+    if(is.null(envir)) parent.frame(parent) else envir,.nsymbol)
   xnames <- names(x)
   indices <- integer()
   for(i in seq_along(x)) {
@@ -44,9 +46,10 @@ list.findi.internal <- function(x,cond,n,parent=2L) {
   indices
 }
 
-list.group.internal <- function(x,key,parent=2L) {
+list.group.internal <- function(x,key,parent=2L,envir=NULL) {
   l <- lambda(key)
-  envir <- new.env(FALSE,parent.frame(parent),.nsymbol)
+  envir <- new.env(FALSE,
+    if(is.null(envir)) parent.frame(parent) else envir,.nsymbol)
   xnames <- if(is.null(names(x))) character(length(x)) else names(x)
   keys <- Map(function(...) {
     args <- `names<-`(list(...),l$symbols)
@@ -61,22 +64,10 @@ list.group.internal <- function(x,key,parent=2L) {
   })
 }
 
-list.iter.internal <- function(x,expr,parent=2L) {
+list.map.internal <- function(x,expr,parent=2L,envir=NULL) {
   l <- lambda(expr)
-  envir <- new.env(FALSE,parent.frame(parent),.nsymbol)
-  xnames <- if(is.null(names(x))) character(length(x)) else names(x)
-  Map(function(...) {
-    args <- `names<-`(list(...),l$symbols)
-    list2env(args,envir)
-    env <- list.env(args[[1L]])
-    eval(l$expr,env,envir)
-  },x,seq_along(x),xnames)
-  invisible()
-}
-
-list.map.internal <- function(x,expr,parent=2L) {
-  l <- lambda(expr)
-  envir <- new.env(FALSE,parent.frame(parent),.nsymbol)
+  envir <- new.env(FALSE,
+    if(is.null(envir)) parent.frame(parent) else envir,.nsymbol)
   xnames <- if(is.null(names(x))) character(length(x)) else names(x)
   Map(function(...) {
     args <- `names<-`(list(...),l$symbols)
