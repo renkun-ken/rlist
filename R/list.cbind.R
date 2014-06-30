@@ -9,5 +9,5 @@
 #' list.cbind(x)
 #' }
 list.cbind <- function(x) {
-  do.call(cbind,x)
+  list.do(x,cbind)
 }
