@@ -40,7 +40,11 @@ list.parse.matrix <- function(x,...) {
 #' @export
 #' @rdname list.parse
 list.parse.data.frame <- function(x,...) {
-  apply(x,1,as.vector,mode="list")
+  cols <- colnames(x)
+  items <- do.call(Map,c(function(...) {
+   setnames(list(...),cols)
+  },x))
+  setnames(items,rownames(x))
 }
 
 #' @export

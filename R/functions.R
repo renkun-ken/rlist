@@ -39,3 +39,5 @@ list.env <- function(x) {
 }
 
 list.sort.functions <- list(desc=`-`)
+
+setnames <- `names<-`

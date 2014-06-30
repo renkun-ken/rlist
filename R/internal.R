@@ -4,7 +4,7 @@ list.if.internal <- function(x,cond,use.names=TRUE,parent=2L,envir=NULL) {
     if(is.null(envir)) parent.frame(parent) else envir,.nsymbol)
   xnames <- if(is.null(names(x))) character(length(x)) else names(x)
   results <- Map(function(...) {
-    args <- `names<-`(list(...),l$symbols)
+    args <- setnames(list(...),l$symbols)
     list2env(args,envir)
     env <- list.env(args[[1L]])
     result <- eval(l$expr,env,envir)
@@ -27,7 +27,7 @@ list.findi.internal <- function(x,cond,n,parent=2L,envir=NULL) {
   indices <- integer()
   for(i in seq_along(x)) {
     xi <- x[[i]]
-    args <- `names<-`(list(xi,i,xnames[i]),l$symbols)
+    args <- setnames(list(xi,i,xnames[i]),l$symbols)
     list2env(args,envir)
     env <- list.env(xi)
     result <- eval(l$expr,env,envir)
@@ -52,7 +52,7 @@ list.group.internal <- function(x,key,parent=2L,envir=NULL) {
     if(is.null(envir)) parent.frame(parent) else envir,.nsymbol)
   xnames <- if(is.null(names(x))) character(length(x)) else names(x)
   keys <- Map(function(...) {
-    args <- `names<-`(list(...),l$symbols)
+    args <- setnames(list(...),l$symbols)
     list2env(args,envir)
     env <- list.env(args[[1L]])
     eval(l$expr,env,envir)
@@ -70,7 +70,7 @@ list.map.internal <- function(x,expr,parent=2L,envir=NULL) {
     if(is.null(envir)) parent.frame(parent) else envir,.nsymbol)
   xnames <- if(is.null(names(x))) character(length(x)) else names(x)
   Map(function(...) {
-    args <- `names<-`(list(...),l$symbols)
+    args <- setnames(list(...),l$symbols)
     list2env(args,envir)
     env <- list.env(args[[1]])
     eval(l$expr,env,envir)

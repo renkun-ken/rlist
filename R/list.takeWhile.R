@@ -20,7 +20,7 @@ list.takeWhile <- function(x,cond) {
   index <- 0L
   for(i in seq_along(x)) {
     xi <- x[[i]]
-    args <- `names<-`(list(xi,i,xnames[i]),l$symbols)
+    args <- setnames(list(xi,i,xnames[i]),l$symbols)
     list2env(args,envir)
     env <- list.env(xi)
     result <- eval(l$expr,env,envir)
