@@ -16,7 +16,7 @@
 #' }
 list.order <- function(x,...,keep.names=FALSE) {
   args <- as.list(match.call(expand.dots = FALSE))$`...`
-  envir <- new.env(FALSE,parent.frame(),.nsymbol)
+  envir <- lambda.env(parent.frame())
   list2env(list.sort.functions,envir)
   cols <- lapply(args,function(arg) {
     if(is.null(arg)) stop("NULL condition")

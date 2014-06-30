@@ -26,6 +26,10 @@ lambda <- function(expr) {
   .lambda
 }
 
+lambda.env <- function(envir) {
+  new.env(FALSE,envir,.nsymbol)
+}
+
 list.env <- function(x) {
   if(is.list(x)) {
     x

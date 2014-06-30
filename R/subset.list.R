@@ -25,8 +25,8 @@ subset.list <- function(x,subset=TRUE,select=.,...) {
   select <- substitute(select)
   lsubset <- lambda(subset)
   lselect <- lambda(select)
-  envir.subset <- new.env(FALSE,parent.frame(),3L)
-  envir.select <- new.env(FALSE,parent.frame(),3L)
+  envir.subset <- lambda.env(parent.frame())
+  envir.select <- lambda.env(parent.frame())
   xnames <- if(is.null(names(x))) character(length(x)) else names(x)
   items <- Map(function(...) {
     args <- list(...)

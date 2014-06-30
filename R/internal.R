@@ -1,7 +1,6 @@
 list.if.internal <- function(x,cond,use.names=TRUE,parent=2L,envir=NULL) {
   l <- lambda(cond)
-  envir <- new.env(FALSE,
-    if(is.null(envir)) parent.frame(parent) else envir,.nsymbol)
+  envir <- lambda.env(if(is.null(envir)) parent.frame(parent) else envir)
   xnames <- if(is.null(names(x))) character(length(x)) else names(x)
   results <- Map(function(...) {
     args <- setnames(list(...),l$symbols)
@@ -21,8 +20,7 @@ list.if.internal <- function(x,cond,use.names=TRUE,parent=2L,envir=NULL) {
 
 list.findi.internal <- function(x,cond,n,parent=2L,envir=NULL) {
   l <- lambda(cond)
-  envir <- new.env(FALSE,
-    if(is.null(envir)) parent.frame(parent) else envir,.nsymbol)
+  envir <- lambda.env(if(is.null(envir)) parent.frame(parent) else envir)
   xnames <- names(x)
   indices <- integer()
   for(i in seq_along(x)) {
@@ -48,8 +46,7 @@ list.findi.internal <- function(x,cond,n,parent=2L,envir=NULL) {
 
 list.group.internal <- function(x,key,parent=2L,envir=NULL) {
   l <- lambda(key)
-  envir <- new.env(FALSE,
-    if(is.null(envir)) parent.frame(parent) else envir,.nsymbol)
+  envir <- lambda.env(if(is.null(envir)) parent.frame(parent) else envir)
   xnames <- if(is.null(names(x))) character(length(x)) else names(x)
   keys <- Map(function(...) {
     args <- setnames(list(...),l$symbols)
@@ -66,8 +63,7 @@ list.group.internal <- function(x,key,parent=2L,envir=NULL) {
 
 list.map.internal <- function(x,expr,parent=2L,envir=NULL) {
   l <- lambda(expr)
-  envir <- new.env(FALSE,
-    if(is.null(envir)) parent.frame(parent) else envir,.nsymbol)
+  envir <- lambda.env(if(is.null(envir)) parent.frame(parent) else envir)
   xnames <- if(is.null(names(x))) character(length(x)) else names(x)
   Map(function(...) {
     args <- setnames(list(...),l$symbols)

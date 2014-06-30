@@ -15,7 +15,7 @@
 list.skipWhile <- function(x,cond) {
   cond <- substitute(cond)
   l <- lambda(cond)
-  envir <- new.env(FALSE,parent.frame(),3L)
+  envir <- lambda.env(parent.frame())
   xnames <- names(x)
   index <- 0L
   for(i in seq_along(x)) {
