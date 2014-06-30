@@ -14,5 +14,6 @@
 #' as.list(1:10) %>>% list.map(x -> list.do(x,rnorm))
 #' }
 list.do <- function(x,fun,...) {
+  fun <- match.fun(fun)
   do.call(fun,as.list(x),...)
 }
