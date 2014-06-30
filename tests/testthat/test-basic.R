@@ -6,6 +6,8 @@ test_that("list.append", {
   x <- list(a=1,b=2)
   expect_identical(list.append(x,c=3),c(x,c=3))
   expect_identical(list.append(x,list(c=3)),c(x,c=3))
+  expect_identical(lapply(1:2,function(i) list.append(x,list(d=i))),
+    lapply(1:2,function(i) c(x,d=i)))
 
   x <- list(p1 = list(type="A",score=list(c1=10,c2=8)),
     p2 = list(type="B",score=list(c1=9,c2=9)),
@@ -20,6 +22,8 @@ test_that("list.prepend", {
   x <- list(a=1,b=2)
   expect_identical(list.prepend(x,c=3),c(c=3,x))
   expect_identical(list.prepend(x,list(c=3)),c(c=3,x))
+  expect_identical(lapply(1:2,function(i) list.prepend(x,list(d=i))),
+    lapply(1:2,function(i) c(list(d=i),x)))
 
   x <- list(p1 = list(type="A",score=list(c1=10,c2=8)),
     p2 = list(type="B",score=list(c1=9,c2=9)),
@@ -31,6 +35,8 @@ test_that("list.prepend", {
 test_that("list.insert", {
   x <- list(a=1,b=2,c=3)
   expect_identical(list.insert(x,2,q=0),list(a=1,q=0,b=2,c=3))
+  expect_identical(lapply(1:2,function(i) list.insert(x,2,q=i)),
+    lapply(1:2,function(i) list(a=1,q=i,b=2,c=3)))
 })
 
 test_that("list.extract", {
@@ -39,6 +45,8 @@ test_that("list.extract", {
   x <- list(a=1,b=2,c=3)
   expect_identical(list.extract(x,1),x[[1]])
   expect_identical(list.extract(x,"a"),x[["a"]])
+  expect_identical(lapply(1:2,function(i) list.extract(x,i)),
+    lapply(1:2,function(i) x[[i]]))
 })
 
 test_that("list.count", {
@@ -50,7 +58,8 @@ test_that("list.count", {
 
   expect_equal(list.count(x,type=="B"),2)
   expect_equal(list.count(x,score$c1<10),2)
-
+  expect_equal(lapply(c(8,9,10),function(i) list.count(x,score$c1<=i)),
+    list(0,2,3))
 
   # list of vectors
   x <- list(a=c(x=1,y=2),b=c(x=3,y=4))
@@ -126,7 +135,11 @@ test_that("list.takeWhile, list.skipWhile", {
   # simple list
   x <- list(a=1,b=2)
   expect_identical(list.takeWhile(x,.<=1),x[1])
+  expect_equal(length(list.takeWhile(x,.>=3)),0)
+  lapply(1:3,function(i)list.takeWhile(x,. <= i))
   expect_identical(list.skipWhile(x,.<=1),x[2])
+  expect_equal(length(list.skipWhile(x,.>=3)),0)
+  lapply(1:3,function(i)list.skipWhile(x,. <= i))
 })
 
 test_that("list.remove", {
@@ -139,6 +152,7 @@ test_that("list.remove", {
 test_that("list.sample", {
   x <- list(a=1,b=2,c=3)
   expect_equal(length(list.sample(x,2,weight = .)),2)
+  lapply(1:2,function(n) list.sample(x,n))
 })
 
 test_that("list.cases", {
@@ -147,6 +161,7 @@ test_that("list.cases", {
     p3 = list(type="B",score=list(c1=9,c2=7)))
   expect_equal(list.cases(x,type,sort=T),c("A","B"))
   expect_equal(list.cases(x,mean(unlist(score))),c(8,9))
+  lapply(c("A","B"),function(i) list.cases(x,type==i))
 })
 
 test_that("list.all", {
@@ -155,6 +170,7 @@ test_that("list.all", {
     p3 = list(type="B",score=list(c1=9,c2=7)))
   expect_equal(list.all(x,type=="B"),FALSE)
   expect_equal(list.all(x,mean(unlist(score))>=6),TRUE)
+  expect_equal(sapply(8:10,function(i) list.all(x,score$c1>=i)),c(T,T,F))
 })
 
 test_that("list.any", {
@@ -163,4 +179,5 @@ test_that("list.any", {
     p3 = list(type="B",score=list(c1=9,c2=7)))
   expect_equal(list.any(x,type=="B"),TRUE)
   expect_equal(list.any(x,mean(unlist(score))>=20),FALSE)
+  expect_equal(sapply(8:10,function(i) list.any(x,score$c1>=i)),c(T,T,T))
 })

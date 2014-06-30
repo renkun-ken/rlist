@@ -11,4 +11,5 @@ test_that("list.class", {
     p3 = list(type="B",score=list(c1=9,c2=7)))
   expect_identical(list.class(x,unlist(score)),
     list(`7`=x["p3"],`8`=x["p1"],`9`=x[c("p2","p3")],`10`=x["p1"]))
+  lapply(8:10,function(i) list.class(x,score$c1>i))
 })

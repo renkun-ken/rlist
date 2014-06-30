@@ -18,4 +18,6 @@ test_that("list.filter", {
   l1 <- list(a=list(x=1,y=2),b=list(x=2,y=3))
   expect_identical(list.filter(l1,sum(unlist(.)) <= 4),l1["a"])
 
+  # scoping
+  lapply(2:4,function(i) list.filter(l1,sum(unlist(.))<=i))
 })

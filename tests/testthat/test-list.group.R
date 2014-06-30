@@ -11,6 +11,8 @@ test_that("list.group", {
     p3 = list(type="B",score=list(c1=9,c2=7)))
   expect_identical(list.group(x,type),list(A=x["p1"],B=x[c("p2","p3")]))
   expect_identical(list.group(x,mean(unlist(score))),list(`9`=x[c("p1","p2")],`8`=x["p3"]))
+
+  lapply(2:4,function(i) list.group(x,sum(unlist(score))<=i))
 })
 
 test_that("list.ungroup",{

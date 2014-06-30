@@ -12,6 +12,8 @@ test_that("list.map", {
   # list of vectors
   x <- list(a=c(x=1,y=2),b=c(x=3,y=4))
   expect_identical(list.map(x,sum(.)),list(a=3,b=7))
+
+  lapply(1:3,function(i) list.map(x,sum(.)+i))
 })
 
 test_that("list.mapv", {
@@ -26,4 +28,6 @@ test_that("list.mapv", {
   # list of vectors
   x <- list(a=c(x=1,y=2),b=c(x=3,y=4))
   expect_equal(list.mapv(x,sum(.)),c(a=3,b=7))
+
+  lapply(1:3,function(i) list.mapv(x,sum(.)+i))
 })

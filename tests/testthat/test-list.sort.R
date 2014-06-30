@@ -13,6 +13,8 @@ test_that("list.sort", {
   # list of vectors
   x <- list(a=c(x=1,y=2),b=c(x=3,y=4))
   expect_identical(list.sort(x,sum(.)),x[c(1,2)])
+
+  lapply(1:3,function(i) list.sort(x,sum(.)+i))
 })
 
 test_that("list.order", {
@@ -22,4 +24,8 @@ test_that("list.order", {
 
   expect_equal(list.order(x,type,desc(score$c2)),c(1,2,3))
   expect_equal(list.order(x,min(score$c1,score$c2)),c(3,1,2))
+
+  x <- list(a=c(x=1,y=2),b=c(x=3,y=4))
+  expect_equal(lapply(1:3,function(i) list.order(x,sum(.)+i)),
+    list(c(1,2),c(1,2),c(1,2)))
 })

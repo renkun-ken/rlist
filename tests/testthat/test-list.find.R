@@ -18,4 +18,5 @@ test_that("list.find", {
   l1 <- list(a=list(x=1,y=2),b=list(x=2,y=3))
   expect_identical(list.find(l1,sum(unlist(.)) <= 4),l1[1])
 
+  lapply(2:4,function(i) list.find(l1,sum(unlist(.))<=i))
 })

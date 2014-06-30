@@ -13,6 +13,9 @@ test_that("subset.list", {
   expect_identical(subset(x,type=="B",item ~ item$score$c2),
     list(p2=9,p3=7))
 
+  # scoping
+  lapply(1:3,function(i) subset(x,score$c2>=7+i,score$c1+i))
+
   # list of vectors
   x <- list(a=c(x=1,y=2),b=c(x=3,y=4))
   expect_identical(subset(x,x>=2,y),list(b=4))
@@ -64,5 +67,6 @@ test_that("subset.list", {
   # list of S4 objects
 
   # list of other objects
+
 
 })

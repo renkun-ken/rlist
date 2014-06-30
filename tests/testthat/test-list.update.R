@@ -31,4 +31,5 @@ test_that("list.update", {
     lapply(x,function(xi) {
       modifyList(xi,list(n=length(xi),range=range(unlist(xi$score))))
     }))
+  lapply(1:3,function(i) list.update(x,c=i))
 })

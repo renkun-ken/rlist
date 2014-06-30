@@ -30,4 +30,6 @@ test_that("list.select", {
     lapply(x,function(xi) {
       list(n=length(xi),range=range(unlist(xi$score)))
     }))
+
+  lapply(1:3,function(i) list.select(x,p=score$c1+i))
 })
