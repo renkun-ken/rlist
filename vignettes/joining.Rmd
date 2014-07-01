@@ -8,10 +8,58 @@ library(rlist)
 knitr::opts_chunk$set(comment="#",error=FALSE,tidy=FALSE,size=1.5)
 ```
 
-# List join
+# List joining
 
-list.join
+rlist provides `list.join` to perform simple joining of two lists, and `list.merge` to perform modification merge of a series of lists.
 
-list.merge
+```{r}
+devs <- 
+  list(
+    p1=list(name="Ken",age=24,
+      interest=c("reading","music","movies"),
+      lang=list(r=2,csharp=4,python=3)),
+    p2=list(name="James",age=25,
+      interest=c("sports","music"),
+      lang=list(r=3,java=2,cpp=5)),
+    p3=list(name="Penny",age=24,
+      interest=c("movies","reading"),
+      lang=list(r=1,cpp=4,python=2)))
+```
 
+
+## list.join
+
+`list.join` is used to join two lists by a key evaluated from either a common expression for the two lists or two separate expressions for each list.
+
+```{r}
+newinfo <-
+  list(
+    p1=list(name="Ken",email="ken@xyz.com"),
+    p2=list(name="Penny",email="penny@xyz.com"),
+    p3=list(name="James",email="james@xyz.com"))
+str(list.join(devs,newinfo,name))
+```
+
+## list.merge
+
+`list.merge` is used to recursively merge a series of lists with the later always updates the former. It works with two lists, as shown in the example below, in which a revision is merged with the original list.
+
+```{r}
+rev1 <-
+  list(
+    p1=list(age=25),
+    p2=list(lang=list(r=2,cpp=4)),
+    p3=list(lang=list(r=2,python=NULL)))
+str(list.merge(devs,rev1))
+```
+
+The function also works with multiple lists. When the second revision is obtained, the three lists can be merged in order.
+
+```{r}
+rev2 <-
+  list(
+    p1=list(lang=list(csharp=5)),
+    p2=list(age=24,lang=list(r=3)))
+str(list.merge(devs,rev1,rev2))
+```
 
