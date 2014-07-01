@@ -1,0 +1,27 @@
+<!--
+%\VignetteEngine{knitr}
+%\VignetteIndexEntry{List operations}
+-->
+
+```{r, echo = FALSE, message = FALSE}
+library(rlist)
+knitr::opts_chunk$set(comment="#",error=FALSE,tidy=FALSE,size=1.5)
+```
+
+# List operations
+
+list.parse
+
+list.append
+
+list.prepend
+
+list.do
+
+list.rbind
+
+list.cbind
+
+list.clean
+
+summary

@@ -1,0 +1,19 @@
+<!--
+%\VignetteEngine{knitr}
+%\VignetteIndexEntry{List mapping}
+-->
+
+```{r, echo = FALSE, message = FALSE}
+library(rlist)
+knitr::opts_chunk$set(comment="#",error=FALSE,tidy=FALSE,size=1.5)
+```
+
+# List mapping
+
+list.map
+
+list.mapv
+
+list.select
+
+list.iter

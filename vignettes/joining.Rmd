@@ -1,0 +1,17 @@
+<!--
+%\VignetteEngine{knitr}
+%\VignetteIndexEntry{List joining}
+-->
+
+```{r, echo = FALSE, message = FALSE}
+library(rlist)
+knitr::opts_chunk$set(comment="#",error=FALSE,tidy=FALSE,size=1.5)
+```
+
+# List join
+
+list.join
+
+list.merge
+
+

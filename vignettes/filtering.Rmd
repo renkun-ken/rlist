@@ -1,0 +1,37 @@
+<!--
+%\VignetteEngine{knitr}
+%\VignetteIndexEntry{List filtering}
+-->
+
+```{r, echo = FALSE, message = FALSE}
+library(rlist)
+knitr::opts_chunk$set(comment="#",error=FALSE,tidy=FALSE,size=1.5)
+```
+
+# List filtering
+
+list.filter
+
+list.find
+
+list.findi
+
+list.takeWhile
+
+list.skipWhile
+
+list.match
+
+list.if
+
+list.which
+
+list.all
+
+list.any
+
+list.count
+
+list.remove
+
+list.exclude

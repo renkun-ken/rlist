@@ -1,0 +1,19 @@
+<!--
+%\VignetteEngine{knitr}
+%\VignetteIndexEntry{List grouping}
+-->
+
+```{r, echo = FALSE, message = FALSE}
+library(rlist)
+knitr::opts_chunk$set(comment="#",error=FALSE,tidy=FALSE,size=1.5)
+```
+
+# List grouping
+
+list.group
+
+list.ungroup
+
+list.cases
+
+list.class
