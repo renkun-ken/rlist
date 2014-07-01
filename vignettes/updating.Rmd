@@ -10,5 +10,28 @@ knitr::opts_chunk$set(comment="#",error=FALSE,tidy=FALSE,size=1.5)
 
 # List updating
 
-list.update
+List updating is useful when we need to modify the original list but do not want to repeat the data.
+
+```{r}
+devs <- 
+  list(
+    p1=list(name="Ken",age=24,
+      interest=c("reading","music","movies"),
+      lang=list(r=2,csharp=4,python=3)),
+    p2=list(name="James",age=25,
+      interest=c("sports","music"),
+      lang=list(r=3,java=2,cpp=5)),
+    p3=list(name="Penny",age=24,
+      interest=c("movies","reading"),
+      lang=list(r=1,cpp=4,python=2)))
+```
+
+## list.update
+
+`list.update` partially modifies the given list by a number of lists resulted from expressions.
+
+```{r}
+str(list.update(devs,age=age+1))
+str(list.update(devs,interest=NULL,lang=NULL,nlang=length(lang)))
+```
 
