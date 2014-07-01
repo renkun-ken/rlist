@@ -4,7 +4,7 @@
 
 [![Build Status](https://travis-ci.org/renkun-ken/rlist.png?branch=master)](https://travis-ci.org/renkun-ken/rlist)
 
-rlist is a set of tools for working with list objects. It has two main goals:
+rlist is a toolset for working with list objects. It has two main goals:
 
 - Make it easier to work with list objects used to store data in more flexible structures than data frames.
 - Perform a wide range of functions on non-relational data using list constructs.
@@ -15,27 +15,26 @@ rlist is a set of tools for working with list objects. It has two main goals:
 
 ## Installation
 
-Install from CRAN with
+You can install the lastest released version from CRAN with
 
 ```r
 install.packages("rlist")
 ```
 
-or install the latest development version from GitHub with
+or the latest development version from GitHub with
 
 ```r
 devtools::install_github("rlist","renkun-ken")
 ```
 
-## Functions
+## Getting started
 
-The package provides a wide range of functions to work with list objects.
+The package provides a wide range of high-level functions to work with list objects.
 
 Suppose we have a list of developers, each of whom has a name, age, a few interests, a list of programming languages they use and the number of years they have been using them.
 
 
 ```r
-library(rlist)
 devs <- 
   list(
     p1=list(name="Ken",age=24,
@@ -49,227 +48,46 @@ devs <-
       lang=list(r=1,cpp=4,python=2)))
 ```
 
-This type of data can be easily stored in JSON or YAML format.
+This type of data is non-relational since it does not well fit the shape of a data table yet it can be easily stored in JSON or YAML format. In R, list object is powerful enough to represent a wide range of non-relational datasets like this. This package provides a wide range of functions to query this type of data.
 
-### Filtering
-
-Filter members whose age is no less than 25 by calling `list.filter`.
+In the following example, we query the name of each developer who likes music and uses R, and put the results in a data frame.
 
 
 ```r
-str(list.filter(devs,age >= 25))
-```
-
-```
-List of 1
- $ p2:List of 4
-  ..$ name    : chr "James"
-  ..$ age     : num 25
-  ..$ interest: chr [1:2] "sports" "music"
-  ..$ lang    :List of 3
-  .. ..$ r   : num 3
-  .. ..$ java: num 2
-  .. ..$ cpp : num 5
-```
-
-### Mapping
-
-Get the name of each person by calling `list.map` that maps each member by an expression.
-
-
-```r
-list.map(devs, name)
-```
-
-```
-$p1
-[1] "Ken"
-
-$p2
-[1] "James"
-
-$p3
-[1] "Penny"
-```
-
-Get the programming language each person has been using for the longest time by calling `list.map`.
-
-
-```r
-list.map(devs, sort(unlist(lang),decreasing = T)[1])
-```
-
-```
-$p1
-csharp 
-     4 
-
-$p2
-cpp 
-  5 
-
-$p3
-cpp 
-  4 
-```
-
-### Selecting
-
-Select the name and age of each member by calling `list.select`.
-
-
-```r
-str(list.select(devs,name,age))
-```
-
-```
-List of 3
- $ p1:List of 2
-  ..$ name: chr "Ken"
-  ..$ age : num 24
- $ p2:List of 2
-  ..$ name: chr "James"
-  ..$ age : num 25
- $ p3:List of 2
-  ..$ name: chr "Penny"
-  ..$ age : num 24
-```
-
-Select the name and evaluate the range of the number of years using programming languages.
-
-
-```r
-str(list.select(devs,name,range=range(unlist(lang))))
-```
-
-```
-List of 3
- $ p1:List of 2
-  ..$ name : chr "Ken"
-  ..$ range: num [1:2] 2 4
- $ p2:List of 2
-  ..$ name : chr "James"
-  ..$ range: num [1:2] 2 5
- $ p3:List of 2
-  ..$ name : chr "Penny"
-  ..$ range: num [1:2] 1 4
-```
-
-### Grouping
-
-Build a list that contains sublists each represents an age group by calling `list.group`.
-
-
-```r
-str(list.group(devs,age))
-```
-
-```
-List of 2
- $ 24:List of 2
-  ..$ p1:List of 4
-  .. ..$ name    : chr "Ken"
-  .. ..$ age     : num 24
-  .. ..$ interest: chr [1:3] "reading" "music" "movies"
-  .. ..$ lang    :List of 3
-  .. .. ..$ r     : num 2
-  .. .. ..$ csharp: num 4
-  .. .. ..$ python: num 3
-  ..$ p3:List of 4
-  .. ..$ name    : chr "Penny"
-  .. ..$ age     : num 24
-  .. ..$ interest: chr [1:2] "movies" "reading"
-  .. ..$ lang    :List of 3
-  .. .. ..$ r     : num 1
-  .. .. ..$ cpp   : num 4
-  .. .. ..$ python: num 2
- $ 25:List of 1
-  ..$ p2:List of 4
-  .. ..$ name    : chr "James"
-  .. ..$ age     : num 25
-  .. ..$ interest: chr [1:2] "sports" "music"
-  .. ..$ lang    :List of 3
-  .. .. ..$ r   : num 3
-  .. .. ..$ java: num 2
-  .. .. ..$ cpp : num 5
-```
-
-### Sorting
-
-Sort the developers by the number of interests in descending order, then by the number of years they have been using R in descending order by calling `list.sort`.
-
-
-```r
-sorted <- list.sort(devs,desc(length(interest)),desc(lang$r))
-list.map(sorted,name)
-```
-
-```
-$p1
-[1] "Ken"
-
-$p2
-[1] "James"
-
-$p3
-[1] "Penny"
-```
-
-### Updating
-
-Use `list.update` to update the list by removing `age` and `lang` columns and introducing the number of languages each member uses as `nlang`.
-
-
-```r
-str(list.update(devs,age=NULL,lang=NULL,nlang=length(lang)))
-```
-
-```
-List of 3
- $ p1:List of 3
-  ..$ name    : chr "Ken"
-  ..$ interest: chr [1:3] "reading" "music" "movies"
-  ..$ nlang   : int 3
- $ p2:List of 3
-  ..$ name    : chr "James"
-  ..$ interest: chr [1:2] "sports" "music"
-  ..$ nlang   : int 3
- $ p3:List of 3
-  ..$ name    : chr "Penny"
-  ..$ interest: chr [1:2] "movies" "reading"
-  ..$ nlang   : int 3
-```
-
-### More functions
-
-Much more functions are provided than the examples show. Please read the documentation of the package.
-
-### Working with pipeline
-
-Pipeline operators may hugely improve the readability of the code especially when a chain of commands are executed. [pipeR package](http://renkun.me/pipeR) is recommended to co-work with this package.
-
-If we want to know the developers whose age is no more than 24 and create a data frame where they are sorted by the number of years using R in descending order and each row tells us the name, years of using R, and the longest time using a language they know.
-
-
-```r
+library(rlist)
 library(pipeR)
-devs %>>%
-  list.filter(age <= 24) %>>%
-  list.sort(desc(lang$r)) %>>%
-  list.map(data.frame(name=name,r=lang$r,
-    longest=max(unlist(lang)))) %>>%
-  list.rbind
+devs %>>% 
+  list.filter("music" %in% interest & "r" %in% names(lang)) %>>%
+  list.select(name,age) %>>%
+  list.rbind %>>%
+  data.frame
 ```
 
 ```
-    name r longest
-p1   Ken 2       4
-p3 Penny 1       4
+    name age
+p1   Ken  24
+p2 James  25
 ```
 
-### Lambda expression
+The example above uses [`pipeR` package](http://renkun.me/pipeR/) for pipeline operator `%>>%` that chains commands in a fluent style.
 
-In this package, all functions that work with expressions support the following forms of lambda expressions, for example,
+The table below lists the functions currently supported.
+
+- `list.map`: Map each list member by an expression
+- `list.filter`: Filter the list by an logical expression
+- `list.select`: Select by expressions for each list item
+- `list.sort`: Sort the list by an expression
+- `list.group`: Group the list members by an expression
+- `list.class`: Classify the list members by a vector expression
+- `list.join`: Join two lists by an expression
+- `list.update`: Update a list with partial specification
+- `list.parse`: Parse `yaml`, `json` format text, or `data.frame` and `matrix` to a list with identical structure.
+- `list.load`, `list.save`: Load or save a list stored in `yaml`, `json`, `xml` or `RData` file.
+- ...
+
+## Lambda expression
+
+In this package, all functions that work with expressions support the following forms of lambda expressions:
 
 - `x ~ g(x)`
 - `x -> g(x)`
@@ -279,49 +97,22 @@ In this package, all functions that work with expressions support the following 
 
 where `x` refers to the list member itself, `i` denotes the index, `name` denotes the name. If the symbols are not explicitly declared, `.`, `.i` and `.name` will by default be used to represent them, respectively.
 
-
 ```r
 nums <- list(a=c(1,2,3),b=c(2,3,4),c=c(3,4,5))
 nums %>>%
   list.map(data.frame(min=min(.),max=max(.))) %>>%
   list.rbind
-```
-
-```
-  min max
-a   1   3
-b   2   4
-c   3   5
-```
-
-```r
 nums %>>% list.mapv(x ~ sum(x))
-```
-
-```
- a  b  c 
- 6  9 12 
-```
-
-```r
 nums %>>% list.filter(x -> mean(x)>=3)
-```
-
-```
-$b
-[1] 2 3 4
-
-$c
-[1] 3 4 5
-```
-
-```r
 nums %>>% list.mapv(f(x,i) -> sum(x,i))
 ```
 
-```
- a  b  c 
- 7 11 15 
+## Vignettes
+
+The package also provides detailed vignettes for most functions. Read them in R with
+
+```r
+vignette("introduction", package = "rlist")
 ```
 
 ## Help overview
