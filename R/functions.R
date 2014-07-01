@@ -31,12 +31,12 @@ lambda.env <- function(envir) {
 }
 
 list.env <- function(x) {
-  if(is.list(x)) {
+  if(is.list(x) || is.environment(x)) {
     x
-  } else if(is.vector(x)) {
+  } else if(is.vector(x) && !is.null(names(x))) {
     as.vector(x,"list")
-  } else if(is.environment(x)) {
-    x
+  } else if(is.matrix(x)) {
+    list.parse.matrix(x)
   } else {
     NULL
   }
