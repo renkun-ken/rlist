@@ -15,6 +15,9 @@ by file extension}
 
 \item{...}{Additional parameters passed to the output function}
 }
+\value{
+\code{x} will be returned.
+}
 \description{
 Save a list to a file
 }

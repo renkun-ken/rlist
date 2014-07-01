@@ -7,6 +7,7 @@
 #' @param ... Additional parameters passed to the output function
 #' @name list.save
 #' @export
+#' @return \code{x} will be returned.
 #' @examples
 #' \dontrun{
 #' x <- lapply(1:5,function(i) data.frame(a=i,b=i^2))
@@ -22,6 +23,7 @@ list.save <- function(x,file,type=tolower(tools::file_ext(file)),...) {
   } else {
     list.save.rdata(x,file,...)
   }
+  invisible(x)
 }
 
 list.save.json <- function(x,file,...) {
