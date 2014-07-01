@@ -1,0 +1,75 @@
+<!--
+%\VignetteEngine{knitr}
+%\VignetteIndexEntry{Lambda expression}
+-->
+
+```{r, echo = FALSE, message = FALSE}
+library(rlist)
+knitr::opts_chunk$set(comment="#",error=FALSE,tidy=FALSE,size=1.5)
+```
+
+# Lambda expression
+
+Although the list fields of each member are directly accessible in the expression, sometimes we still need to access the list member itself, usually for its meta-information. Lambda expressions provide a mechanism that allows you to use default or customized meta-symbols to access the meta-information of the list member.
+
+In rlist package, all functions that work with expressions support the following types of lambda expressions.
+
+- Implicit lambda expression: An ordinary expression with no special syntax yet the fields of list members are directly accessible. 
+- Explicit lambda expression:
+    - Univariate lambda expression: In contrast to implicit lambda expression, the symbol that refers to the list member is customized in the following formats:
+        * `x -> expression`
+        * `f(x) -> expression`
+    - Multivariate lambda expression: In contrast to univariate lambda expression, the symbols of list member, index, and member name are customized in the following formats:
+        * `f(x,i) -> expression`
+        * `f(x,i,name) -> expression`
+
+## Implicit lambda expression
+
+Implicit lambda expression is an ordinary expression with no special syntax like `~` or `->`. In this case, meta symbols are implicitly defined in default, that is, `.` represents the list member, `.i` represents the index, and `.name` represents the name of the list member.
+
+For example,
+
+```{r}
+x <- list(a=list(x=1,y=2),b=list(x=2,y=3))
+list.map(x,y)
+list.map(x,sum(as.numeric(.)))
+```
+
+In the second mapping above, `.` represents each list member. For the first member, the meta-symbols take the following values:
+
+```r
+. = x[[1]] = list(x=1,y=2)
+.i = 1
+.name = "a"
+```
+
+## Explicit lambda expression
+
+To use other symbols to represent the metadata of a list member, we can use explicit lambda expressions.
+
+```{r}
+x <- list(a=list(x=1,y=2),b=list(x=2,y=3))
+list.map(x, f(item,index) -> unlist(item) * index)
+list.map(x, f(item,index,name) -> list(name=name,sum=sum(unlist(item))))
+```
+
+For unnamed vector members, it is almost necessary to use lambda expressions.
+
+```{r}
+x <- list(a=c(1,2),b=c(3,4))
+list.map(x,sum(.))
+list.map(x,item -> sum(item))
+list.map(x,f(m,i) -> m+i)
+```
+
+For named vector members, their name can also be directly used in the expression.
+
+```{r}
+x <- list(a=c(x=1,y=2),b=c(x=3,y=4))
+list.map(x,sum(y))
+list.map(x,x*y)
+list.map(x,.i)
+list.map(x,x+.i)
+list.map(x,f(.,i) -> . + i)
+list.map(x,.name)
+```
