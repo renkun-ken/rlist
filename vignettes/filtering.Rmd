@@ -143,3 +143,13 @@ list.remove(devs, c(2,3))
 ```{r}
 list.exclude(devs, "sports" %in% interest)
 ```
+
+## subset
+
+`subset` is implemented for list object in a way that combines `list.filter` and `list.map`. This function basically filters a list while at the same time maps the qualified list member by an expression.
+
+```{r}
+subset(devs,age>=24,name)
+subset(devs,"reading" %in% interest, sum(as.numeric(lang)))
+```
+
