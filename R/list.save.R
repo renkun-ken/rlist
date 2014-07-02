@@ -38,28 +38,6 @@ list.save.yaml <- function(x,file,...) {
 
 list.save.yml <- list.save.yaml
 
-list.save.xml <- function(x,file,...) {
-  warning("Not fully implemented yet")
-  root <- XML::newXMLNode("root")
-  root <- list.to.xml(root,x)
-  XML::saveXML(root,file,...)
-}
-
-list.to.xml <- function(node,sublist) {
-  names <- names(sublist)
-  for(i in seq_along(sublist)){
-    item <- sublist[[i]]
-    child <- XML::newXMLNode(names[i], parent=node)
-    if (is.list(item)){
-      list.to.xml(child, item)
-    }
-    else{
-      XML::xmlValue(child) <- item
-    }
-  }
-  node
-}
-
 list.save.rdata <- function(x,file,name="x",...) {
   if(!is.list(x)) stop("x is not a list")
   env <- new.env(parent = parent.frame(), size=1)

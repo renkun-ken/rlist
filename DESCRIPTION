@@ -15,7 +15,8 @@ Suggests:
     testthat,
     knitr
 Imports:
-    yaml,jsonlite,XML
+    yaml,
+    jsonlite
 License: MIT + file LICENSE
 URL: http://renkun.me/rlist,
     https://github.com/renkun-ken/rlist

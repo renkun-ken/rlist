@@ -35,10 +35,6 @@ list.load.yaml <- function(file,...) {
 
 list.load.yml <- list.load.yaml
 
-list.load.xml <- function(file,...) {
-  stop("Not implemented yet")
-}
-
 list.load.rdata <- function(file,name="x") {
   env <- new.env(parent = parent.frame())
   load(file,env)
