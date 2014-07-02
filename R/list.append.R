@@ -7,10 +7,9 @@
 #' @examples
 #' \dontrun{
 #' x <- list(a=1,b=2,c=3)
-#' list.append(x,c(d=4,e=5))
-#' list.append(x,list(d=4,f=c(2,3)))
+#' list.append(x,d=4,e=5)
+#' list.append(x,d=4,f=c(2,3))
 #' }
 list.append <- function(x,...) {
-  c(x,...)
+  c(x,list(...))
 }
-

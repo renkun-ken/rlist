@@ -5,15 +5,14 @@ test_that("list.append", {
   # simple list
   x <- list(a=1,b=2)
   expect_identical(list.append(x,c=3),c(x,c=3))
-  expect_identical(list.append(x,list(c=3)),c(x,c=3))
-  expect_identical(lapply(1:2,function(i) list.append(x,list(d=i))),
+  expect_identical(lapply(1:2,function(i) list.append(x,d=i)),
     lapply(1:2,function(i) c(x,d=i)))
 
   x <- list(p1 = list(type="A",score=list(c1=10,c2=8)),
     p2 = list(type="B",score=list(c1=9,c2=9)),
     p3 = list(type="B",score=list(c1=9,c2=7)))
   p4 <- list(type="A",score=list(c1=10,ce=6))
-  expect_identical(list.append(x,p4=list(p4)),c(x,p4=list(p4)))
+  expect_identical(list.append(x,p4=p4),c(x,p4=list(p4)))
 })
 
 test_that("list.prepend", {
@@ -21,15 +20,14 @@ test_that("list.prepend", {
   # simple list
   x <- list(a=1,b=2)
   expect_identical(list.prepend(x,c=3),c(c=3,x))
-  expect_identical(list.prepend(x,list(c=3)),c(c=3,x))
-  expect_identical(lapply(1:2,function(i) list.prepend(x,list(d=i))),
+  expect_identical(lapply(1:2,function(i) list.prepend(x,d=i)),
     lapply(1:2,function(i) c(list(d=i),x)))
 
   x <- list(p1 = list(type="A",score=list(c1=10,c2=8)),
     p2 = list(type="B",score=list(c1=9,c2=9)),
     p3 = list(type="B",score=list(c1=9,c2=7)))
   p0 <- list(type="A",score=list(c1=10,ce=6))
-  expect_identical(list.prepend(x,p0=list(p0)),c(p0=list(p0),x))
+  expect_identical(list.prepend(x,p0=p0),c(p0=list(p0),x))
 })
 
 test_that("list.insert", {
