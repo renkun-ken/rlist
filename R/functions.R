@@ -5,10 +5,13 @@ lambda <- function(expr) {
   .lambda$expr <- expr
   if(is.call(expr) && length(expr[[1L]])==1L) {
     symbol <- as.character(expr[[1L]])
+    len <- length(expr)
     if(symbol == "~") {
+      if(len != 3L) stop("Invalid lambda expression")
       symbols <- expr[[2L]]
       .lambda$expr <- expr[[3L]]
     } else if(symbol == "<-") {
+      if(len != 3L) stop("Invalid lambda expression")
       symbols <- expr[[3L]]
       .lambda$expr <- expr[[2L]]
     } else {
