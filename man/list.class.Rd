@@ -3,19 +3,14 @@
 \alias{list.class}
 \title{Classify list members into unique cases evaluated by given expression.}
 \usage{
-list.class(x, expr, sort.cases = TRUE, keep.case.names = TRUE,
-  keep.item.names = TRUE)
+list.class(x, expr, sort.cases = TRUE)
 }
 \arguments{
 \item{x}{The list to be classified}
 
 \item{expr}{An expression that determines cases}
 
-\item{sort.cases}{logical. if TRUE the cases will be sorted in ascending order.}
-
-\item{keep.case.names}{Whether to keep the names of the cases}
-
-\item{keep.item.names}{Whether to keep the names of the items in the result}
+\item{sort.cases}{\code{logical}. if \code{TRUE} the cases will be sorted in ascending order.}
 }
 \description{
 Classify list members into unique cases evaluated by given expression.
