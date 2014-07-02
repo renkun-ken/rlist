@@ -1,3 +1,9 @@
-Version 0.1
+Versioon 0.2 (2014-07-02)
+===
+Add `list.join`, `list.mapv`, `list.do`, `list.clean`, `list.parse`
+Add vignettes
+
+
+Version 0.1 (2014-06-27)
 ===
 Implement functions
