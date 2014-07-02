@@ -14,5 +14,5 @@
 #' }
 list.filter <- function(x,cond) {
   cond <- substitute(cond)
-  x[list.if.internal(x,cond,FALSE)]
+  list.clean(x[list.if.internal(x,cond,FALSE)])
 }
