@@ -20,8 +20,7 @@ list.order <- function(x,...,keep.names=FALSE) {
   list2env(list.sort.functions,envir)
   cols <- lapply(args,function(arg) {
     if(is.null(arg)) stop("NULL condition")
-    items <- list.map.internal(x,arg,envir = envir)
-    unlist(items)
+    unlist(list.map.internal(x,arg,envir = envir))
   })
   result <- do.call(order,cols)
   if(keep.names) names(result) <- names(x)

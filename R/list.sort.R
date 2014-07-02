@@ -18,8 +18,7 @@ list.sort <- function(x,...) {
   list2env(list.sort.functions,envir)
   cols <- lapply(args,function(arg) {
     if(is.null(arg)) stop("NULL condition")
-    items <- list.map.internal(x,arg,envir = envir)
-    unlist(items)
+    unlist(list.map.internal(x,arg,envir = envir))
   })
   x[do.call(order,cols)]
 }
