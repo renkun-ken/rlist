@@ -23,6 +23,7 @@ list.serialize <- function(x,file,type=tolower(tools::file_ext(file)),...) {
     serialize(x,conn)
     close(conn)
   }
+  invisible(x)
 }
 
 list.serialize.json <- function(x,file,...) {
