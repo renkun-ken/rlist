@@ -21,7 +21,8 @@ lambda <- function(expr) {
       .lambda$symbols[1L] <- as.character(symbols)
     } else if(is.call(symbols)) {
       symbols <- as.character(as.list(symbols)[-1])
-      .lambda$symbols[seq_along(symbols)] <- symbols
+      indices <- which(symbols != "")
+      .lambda$symbols[indices] <- symbols[indices]
     } else {
       stop("Invalid lambda expression")
     }
