@@ -30,7 +30,7 @@ lambda <- function(expr) {
 }
 
 lambda.env <- function(envir) {
-  new.env(FALSE,envir,.nsymbol)
+  new.env(FALSE,envir)
 }
 
 list.env <- function(x) {
