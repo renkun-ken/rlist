@@ -16,13 +16,7 @@
 #' }
 list.order <- function(x,...,keep.names=FALSE) {
   args <- as.list(match.call(expand.dots = FALSE))$`...`
-  envir <- lambda.env(parent.frame())
-  list2env(list.sort.functions,envir)
-  cols <- lapply(args,function(arg) {
-    if(is.null(arg)) stop("NULL condition")
-    unlist(list.map.internal(x,arg,envir = envir))
-  })
-  result <- do.call(order,cols)
+  result <- list.order.internal(x,args)
   if(keep.names) names(result) <- names(x)
   result
 }

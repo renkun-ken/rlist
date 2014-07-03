@@ -14,11 +14,5 @@
 #' }
 list.sort <- function(x,...) {
   args <- as.list(match.call(expand.dots = FALSE))$`...`
-  envir <- lambda.env(parent.frame())
-  list2env(list.sort.functions,envir)
-  cols <- lapply(args,function(arg) {
-    if(is.null(arg)) stop("NULL condition")
-    unlist(list.map.internal(x,arg,envir = envir))
-  })
-  x[do.call(order,cols)]
+  x[list.order.internal(x,args)]
 }

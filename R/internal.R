@@ -72,3 +72,13 @@ list.map.internal <- function(x,expr,parent=2L,envir=NULL) {
     eval(l$expr,env,envir)
   },x,seq_along(x),xnames)
 }
+
+list.order.internal <- function(x,args,parent=2L,envir=NULL) {
+  envir <- lambda.env(if(is.null(envir)) parent.frame(parent) else envir)
+  list2env(list.sort.functions,envir)
+  cols <- lapply(args,function(arg) {
+    if(is.null(arg)) stop("NULL condition")
+    unlist(list.map.internal(x,arg,envir = envir))
+  })
+  do.call(order,cols)
+}
