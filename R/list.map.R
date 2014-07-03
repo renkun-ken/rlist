@@ -34,6 +34,5 @@ list.map <- function(x,expr) {
 #' }
 list.mapv <- function(x,expr,use.names=TRUE) {
   expr <- substitute(expr)
-  items <- list.map.internal(x,expr)
-  unlist(items,use.names=use.names)
+  unlist(list.map.internal(x,expr),use.names=use.names)
 }
