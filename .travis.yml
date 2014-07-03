@@ -9,7 +9,6 @@ install:
   - ./travis-tool.sh r_binary_install knitr
   - ./travis-tool.sh r_binary_install yaml
   - ./travis-tool.sh r_binary_install jsonlite
-  - ./travis-tool.sh r_binary_install XML
 
 script: ./travis-tool.sh run_tests
 
