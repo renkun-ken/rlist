@@ -3,10 +3,10 @@
 \alias{list.class}
 \title{Classify list members into unique cases evaluated by given expression.}
 \usage{
-list.class(x, expr, sort.cases = TRUE)
+list.class(.data, expr, sort.cases = TRUE)
 }
 \arguments{
-\item{x}{The list to be classified}
+\item{.data}{The list to be classified}
 
 \item{expr}{An expression that determines cases}
 

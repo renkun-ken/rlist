@@ -3,10 +3,10 @@
 \alias{list.mapv}
 \title{Map each member of a list by an expression to a vector.}
 \usage{
-list.mapv(x, expr, use.names = TRUE)
+list.mapv(.data, expr, use.names = TRUE)
 }
 \arguments{
-\item{x}{The list}
+\item{.data}{\code{list}}
 
 \item{expr}{The expression}
 

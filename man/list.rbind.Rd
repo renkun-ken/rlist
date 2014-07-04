@@ -3,10 +3,10 @@
 \alias{list.rbind}
 \title{Bind all list members by row}
 \usage{
-list.rbind(x)
+list.rbind(.data)
 }
 \arguments{
-\item{x}{The list}
+\item{.data}{\code{list}}
 }
 \description{
 Bind all list members by row

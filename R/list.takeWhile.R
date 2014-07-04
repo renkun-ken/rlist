@@ -1,6 +1,6 @@
 #' Take out members until the given condition is broken
 #'
-#' @param x The list
+#' @param .data \code{list}
 #' @param cond The condition
 #' @name list.takeWhile
 #' @export
@@ -12,14 +12,14 @@
 #' list.takeWhile(x,type=="B")
 #' list.takeWhile(x,min(score$c1,score$c2) >= 8)
 #' }
-list.takeWhile <- function(x,cond) {
+list.takeWhile <- function(.data,cond) {
   cond <- substitute(cond)
   l <- lambda(cond)
   envir <- lambda.env(parent.frame())
-  xnames <- names(x)
+  xnames <- names(.data)
   index <- 0L
-  for(i in seq_along(x)) {
-    xi <- x[[i]]
+  for(i in seq_along(.data)) {
+    xi <- .data[[i]]
     args <- setnames(list(xi,i,xnames[i]),l$symbols)
     list2env(args,envir)
     env <- list.env(xi)
@@ -33,5 +33,5 @@ list.takeWhile <- function(x,cond) {
       stop("Results must be logical")
     }
   }
-  x[0L:index]
+  .data[0L:index]
 }

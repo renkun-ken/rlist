@@ -3,10 +3,10 @@
 \alias{list.take}
 \title{Take a number of members from a list}
 \usage{
-list.take(x, n, force = FALSE)
+list.take(.data, n, force = FALSE)
 }
 \arguments{
-\item{x}{The list from which some members are taken}
+\item{.data}{\code{list}}
 
 \item{n}{The number of members to take out}
 

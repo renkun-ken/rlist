@@ -4,10 +4,10 @@
 \title{Return a logical vector that indicates if each member of a list
 satisfies a given condition}
 \usage{
-list.if(x, cond, use.names = TRUE)
+list.if(.data, cond, use.names = TRUE)
 }
 \arguments{
-\item{x}{A list}
+\item{.data}{\code{list}}
 
 \item{cond}{A logical expression that specifies the condition}
 

@@ -1,7 +1,7 @@
 #' Select members of a list that match given regex pattern
 #'
-#' @param x The list to be match
-#' @param pattern The regex pattern to match the name of the members
+#' @param .data \code{list}
+#' @param pattern \code{character}. The regex pattern to match the name of the members
 #' @param ... Additional parameters to pass to \code{grep}
 #' @name list.match
 #' @export
@@ -13,6 +13,6 @@
 #' list.match(x,"p[12]")
 #' list.match(x,"3")
 #' }
-list.match <- function(x,pattern,...) {
-  x[grep(pattern,names(x),...)]
+list.match <- function(.data,pattern,...) {
+  .data[grep(pattern,names(.data),...)]
 }

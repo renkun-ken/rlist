@@ -1,6 +1,6 @@
 #' Classify list members into unique cases evaluated by given expression.
 #'
-#' @param x The list to be classified
+#' @param .data The list to be classified
 #' @param expr An expression that determines cases
 #' @param sort.cases \code{logical}. if \code{TRUE} the cases will be sorted in ascending order.
 #' @name list.class
@@ -21,13 +21,13 @@
 #' list.class(x,interest)
 #' list.class(x,names(lang))
 #' }
-list.class <- function(x,expr,sort.cases=TRUE) {
+list.class <- function(.data,expr,sort.cases=TRUE) {
   expr <- substitute(expr)
-  values <- list.map.internal(x,expr)
+  values <- list.map.internal(.data,expr)
   cases <- unique(unlist(values,use.names = FALSE))
   names(cases) <- cases
   if(sort.cases)  cases <- sort(cases)
   lapply(cases,function(case) {
-    x[vapply(values,function(vi) case %in% vi,logical(1L))]
+    .data[vapply(values,function(vi) case %in% vi,logical(1L))]
   })
 }

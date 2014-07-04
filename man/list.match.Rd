@@ -3,12 +3,12 @@
 \alias{list.match}
 \title{Select members of a list that match given regex pattern}
 \usage{
-list.match(x, pattern, ...)
+list.match(.data, pattern, ...)
 }
 \arguments{
-\item{x}{The list to be match}
+\item{.data}{\code{list}}
 
-\item{pattern}{The regex pattern to match the name of the members}
+\item{pattern}{\code{character}. The regex pattern to match the name of the members}
 
 \item{...}{Additional parameters to pass to \code{grep}}
 }

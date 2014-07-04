@@ -3,10 +3,10 @@
 \alias{list.takeWhile}
 \title{Take out members until the given condition is broken}
 \usage{
-list.takeWhile(x, cond)
+list.takeWhile(.data, cond)
 }
 \arguments{
-\item{x}{The list}
+\item{.data}{\code{list}}
 
 \item{cond}{The condition}
 }

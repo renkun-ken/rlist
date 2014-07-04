@@ -1,6 +1,6 @@
 #' Exclude members of a list that meet given condition.
 #'
-#' @param x \code{list}
+#' @param .data \code{list}
 #' @param cond An \code{expression} that returns a logical value
 #'    to exclude items
 #' @name list.exclude
@@ -13,7 +13,7 @@
 #' list.exclude(x,type=="B")
 #' list.exclude(x,min(score$c1,score$c2) >= 8)
 #' }
-list.exclude <- function(x,cond) {
+list.exclude <- function(.data,cond) {
   cond <- substitute(cond)
-  x[!list.if.internal(x,cond,FALSE)]
+  .data[!list.if.internal(.data,cond,FALSE)]
 }

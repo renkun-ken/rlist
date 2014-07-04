@@ -3,10 +3,10 @@
 \alias{list.prepend}
 \title{Prepend a list}
 \usage{
-list.prepend(x, ...)
+list.prepend(.data, ...)
 }
 \arguments{
-\item{x}{The original list}
+\item{.data}{\code{list}}
 
 \item{...}{A vector or list that is to be prepended before \code{x}}
 }

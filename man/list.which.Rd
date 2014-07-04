@@ -4,10 +4,10 @@
 \title{Return a integer vector of the indices of list members that satisfy
 given condition}
 \usage{
-list.which(x, cond)
+list.which(.data, cond)
 }
 \arguments{
-\item{x}{The list}
+\item{.data}{\code{list}}
 
 \item{cond}{The condition}
 }

@@ -3,10 +3,10 @@
 \alias{list.select}
 \title{Select by name or expression for each member of a list}
 \usage{
-list.select(x, ...)
+list.select(.data, ...)
 }
 \arguments{
-\item{x}{The list}
+\item{.data}{\code{list}}
 
 \item{...}{The members to select}
 }

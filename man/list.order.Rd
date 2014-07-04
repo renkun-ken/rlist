@@ -3,10 +3,10 @@
 \alias{list.order}
 \title{Return the order of each member in a list by expression}
 \usage{
-list.order(x, ..., keep.names = FALSE)
+list.order(.data, ..., keep.names = FALSE)
 }
 \arguments{
-\item{x}{The}
+\item{.data}{\code{list}}
 
 \item{...}{Expressions to evaluate for ordering}
 

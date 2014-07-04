@@ -1,6 +1,6 @@
 #' Call a function with a list of arguments as provided
 #'
-#' @param x The list
+#' @param .data The list
 #' @param fun The function to call
 #' @param ... The additional parameters passed to \code{do.call}
 #' @name list.do
@@ -13,7 +13,7 @@
 #' list.do(x,rbind)
 #' as.list(1:10) %>>% list.map(x -> list.do(x,rnorm))
 #' }
-list.do <- function(x,fun,...) {
+list.do <- function(.data,fun,...) {
   fun <- match.fun(fun)
-  do.call(fun,as.list(x),...)
+  do.call(fun,as.list(.data),...)
 }

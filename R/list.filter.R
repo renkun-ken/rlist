@@ -1,6 +1,6 @@
 #' Filter a list by a condition.
 #'
-#' @param x The list
+#' @param .data \code{list}
 #' @param cond The condition
 #' @name list.filter
 #' @export
@@ -12,7 +12,7 @@
 #' list.filter(x,type=="B")
 #' list.filter(x,min(score$c1,score$c2) >= 8)
 #' }
-list.filter <- function(x,cond) {
+list.filter <- function(.data,cond) {
   cond <- substitute(cond)
-  list.clean(x[list.if.internal(x,cond,FALSE)])
+  list.clean(.data[list.if.internal(.data,cond,FALSE)])
 }

@@ -3,10 +3,10 @@
 \alias{list.find}
 \title{Find a specific number of members in a list that meeting given condition}
 \usage{
-list.find(x, cond, n = 1L)
+list.find(.data, cond, n = 1L)
 }
 \arguments{
-\item{x}{The list}
+\item{.data}{\code{list}}
 
 \item{cond}{The condition}
 

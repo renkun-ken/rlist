@@ -3,10 +3,10 @@
 \alias{list.exclude}
 \title{Exclude members of a list that meet given condition.}
 \usage{
-list.exclude(x, cond)
+list.exclude(.data, cond)
 }
 \arguments{
-\item{x}{\code{list}}
+\item{.data}{\code{list}}
 
 \item{cond}{An \code{expression} that returns a logical value
 to exclude items}

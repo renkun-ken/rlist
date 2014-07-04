@@ -3,10 +3,10 @@
 \alias{list.count}
 \title{Count the number of members that meet given condition}
 \usage{
-list.count(x, cond)
+list.count(.data, cond)
 }
 \arguments{
-\item{x}{\code{list}}
+\item{.data}{\code{list}}
 
 \item{cond}{An \code{expression} that returns a logical value}
 }

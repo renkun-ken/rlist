@@ -1,6 +1,6 @@
 #' Group a list by the value of an expression evaluated for each member.
 #'
-#' @param x The list to group
+#' @param .data \code{list}
 #' @param key An expression that determines the key of the group
 #' @name list.group
 #' @export
@@ -12,7 +12,7 @@
 #' list.group(x,type)
 #' list.group(x,mean(unlist(score)))
 #' }
-list.group <- function(x,key) {
+list.group <- function(.data,key) {
   key <- substitute(key)
-  list.group.internal(x,key)
+  list.group.internal(.data,key)
 }

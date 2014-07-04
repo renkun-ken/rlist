@@ -1,6 +1,6 @@
 #' Sample a list
 #'
-#' @param x The list
+#' @param .data list{code}
 #' @param size The size the sample to take
 #' @param replace Should sampling be with replacement?
 #' @param weight An expression to determine the weight of each list member,
@@ -16,12 +16,12 @@
 #' list.rbind(x)
 #' list.rbind(df)
 #' }
-list.sample <- function(x,size,replace=FALSE,weight=1,prob=NULL) {
+list.sample <- function(.data,size,replace=FALSE,weight=1,prob=NULL) {
   if(is.null(prob)) {
     weight <- substitute(weight)
-    ws <- unlist(list.map.internal(x,weight),use.names = FALSE)
+    ws <- unlist(list.map.internal(.data,weight),use.names = FALSE)
     if(any(ws<0)) stop("Negative weight is not allowed")
     prob <- ws / sum(ws)
   }
-  sample(x,size,replace,prob)
+  sample(.data,size,replace,prob)
 }

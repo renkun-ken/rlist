@@ -1,7 +1,7 @@
 #' Iterate a list by evaluating an expression on
 #' each list member.
 #'
-#' @param x The list to iterate
+#' @param .data \code{list}
 #' @param expr An expression that is evaluated for each item
 #' @name list.iter
 #' @export
@@ -13,8 +13,8 @@
 #' list.iter(x,cat(paste(type,"\n")))
 #' list.iter(x,cat(str(.)))
 #' }
-list.iter <- function(x,expr) {
+list.iter <- function(.data,expr) {
   expr <- substitute(expr)
-  list.map.internal(x,expr)
+  list.map.internal(.data,expr)
   invisible()
 }

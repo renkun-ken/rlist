@@ -1,6 +1,6 @@
 #' Map each member of a list by an expression.
 #'
-#' @param x The list to perform mapping
+#' @param .data \code{list}
 #' @param expr An expression that is evaluated for each item
 #' @name list.map
 #' @export
@@ -12,14 +12,14 @@
 #' list.map(x,type)
 #' list.map(x,min(score$c1,score$c2))
 #' }
-list.map <- function(x,expr) {
+list.map <- function(.data,expr) {
   expr <- substitute(expr)
-  list.map.internal(x,expr)
+  list.map.internal(.data,expr)
 }
 
 #' Map each member of a list by an expression to a vector.
 #'
-#' @param x The list
+#' @param .data \code{list}
 #' @param expr The expression
 #' @param use.names Should the names of the results be preserved?
 #' @name list.mapv
@@ -32,7 +32,7 @@ list.map <- function(x,expr) {
 #' list.mapv(x,type)
 #' list.mapv(x,min(score$c1,score$c2))
 #' }
-list.mapv <- function(x,expr,use.names=TRUE) {
+list.mapv <- function(.data,expr,use.names=TRUE) {
   expr <- substitute(expr)
-  unlist(list.map.internal(x,expr),use.names=use.names)
+  unlist(list.map.internal(.data,expr),use.names=use.names)
 }

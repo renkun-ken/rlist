@@ -4,10 +4,10 @@
 \title{Find the indices of a number of members in a list that
 meet given condition}
 \usage{
-list.findi(x, cond, n = 1L)
+list.findi(.data, cond, n = 1L)
 }
 \arguments{
-\item{x}{The list}
+\item{.data}{\code{list}}
 
 \item{cond}{The condition}
 

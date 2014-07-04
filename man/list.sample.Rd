@@ -3,10 +3,10 @@
 \alias{list.sample}
 \title{Sample a list}
 \usage{
-list.sample(x, size, replace = FALSE, weight = 1, prob = NULL)
+list.sample(.data, size, replace = FALSE, weight = 1, prob = NULL)
 }
 \arguments{
-\item{x}{The list}
+\item{.data}{list{code}}
 
 \item{size}{The size the sample to take}
 

@@ -3,10 +3,10 @@
 \alias{list.clean}
 \title{Clean a list by a function}
 \usage{
-list.clean(x, fun = is.null)
+list.clean(.data, fun = is.null)
 }
 \arguments{
-\item{x}{The list}
+\item{.data}{The list}
 
 \item{fun}{The function for cleaning, by default \code{is.null}.}
 }

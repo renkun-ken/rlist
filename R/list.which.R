@@ -1,7 +1,7 @@
 #' Return a integer vector of the indices of list members that satisfy
 #' given condition
 #'
-#' @param x The list
+#' @param .data \code{list}
 #' @param cond The condition
 #' @name list.which
 #' @export
@@ -13,7 +13,7 @@
 #' list.which(x,type=="B")
 #' list.which(x,min(score$c1,score$c2) >= 8)
 #' }
-list.which <- function(x,cond) {
+list.which <- function(.data,cond) {
   cond <- substitute(cond)
-  which(list.if.internal(x,cond,FALSE))
+  which(list.if.internal(.data,cond,FALSE))
 }

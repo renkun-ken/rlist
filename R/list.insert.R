@@ -1,6 +1,6 @@
 #' Insert a series of lists at the given index
 #'
-#' @param x A list
+#' @param .data \code{list}
 #' @param index The index at which the lists are inserted
 #' @param ... A series of lists
 #' @name list.insert
@@ -12,7 +12,7 @@
 #'        p3 = list(type="B",score=list(c1=9,c2=7)))
 #' list.if(x,2,p2.1=list(type="B",score=list(c1=8,c2=9)))
 #' }
-list.insert <- function(x,index,...) {
+list.insert <- function(.data,index,...) {
   lists <- list(...)
-  c(x[0L:max(0L,index-1L)],lists,x[index:length(x)])
+  c(.data[0L:max(0L,index-1L)],lists,.data[index:length(.data)])
 }

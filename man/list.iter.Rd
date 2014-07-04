@@ -4,10 +4,10 @@
 \title{Iterate a list by evaluating an expression on
 each list member.}
 \usage{
-list.iter(x, expr)
+list.iter(.data, expr)
 }
 \arguments{
-\item{x}{The list to iterate}
+\item{.data}{\code{list}}
 
 \item{expr}{An expression that is evaluated for each item}
 }

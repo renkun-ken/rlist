@@ -3,10 +3,10 @@
 \alias{list.cases}
 \title{Get all unique cases by expression for a list}
 \usage{
-list.cases(x, expr, sort = TRUE)
+list.cases(.data, expr, sort = TRUE)
 }
 \arguments{
-\item{x}{A list}
+\item{.data}{A list}
 
 \item{expr}{The expression to evaluate to find cases}
 

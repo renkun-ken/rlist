@@ -3,10 +3,10 @@
 \alias{list.skipWhile}
 \title{Skip members until the given condition is broken}
 \usage{
-list.skipWhile(x, cond)
+list.skipWhile(.data, cond)
 }
 \arguments{
-\item{x}{The list}
+\item{.data}{\code{list}}
 
 \item{cond}{The condition}
 }

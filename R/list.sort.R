@@ -1,6 +1,6 @@
 #' Sort a list by given expressions in order
 #'
-#' @param x The list to be sorted
+#' @param .data \code{list}
 #' @param ... Expressions to evaluate for sorting
 #' @name list.sort
 #' @export
@@ -12,7 +12,7 @@
 #' list.sort(x,type,desc(score$c2))
 #' list.sort(x,min(score$c1,score$c2))
 #' }
-list.sort <- function(x,...) {
+list.sort <- function(.data,...) {
   args <- as.list(match.call(expand.dots = FALSE))$`...`
-  x[list.order.internal(x,args)]
+  .data[list.order.internal(.data,args)]
 }

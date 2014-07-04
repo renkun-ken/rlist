@@ -3,10 +3,10 @@
 \alias{list.update}
 \title{Update a list by modifying its elements.}
 \usage{
-list.update(x, ..., keep.null = FALSE)
+list.update(.data, ..., keep.null = FALSE)
 }
 \arguments{
-\item{x}{The list to be transformed}
+\item{.data}{\code{list}}
 
 \item{...}{The elements to update}
 

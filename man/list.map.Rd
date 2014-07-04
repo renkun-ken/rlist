@@ -3,10 +3,10 @@
 \alias{list.map}
 \title{Map each member of a list by an expression.}
 \usage{
-list.map(x, expr)
+list.map(.data, expr)
 }
 \arguments{
-\item{x}{The list to perform mapping}
+\item{.data}{\code{list}}
 
 \item{expr}{An expression that is evaluated for each item}
 }

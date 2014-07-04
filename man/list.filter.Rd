@@ -3,10 +3,10 @@
 \alias{list.filter}
 \title{Filter a list by a condition.}
 \usage{
-list.filter(x, cond)
+list.filter(.data, cond)
 }
 \arguments{
-\item{x}{The list}
+\item{.data}{\code{list}}
 
 \item{cond}{The condition}
 }

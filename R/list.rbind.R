@@ -1,6 +1,6 @@
 #' Bind all list members by row
 #'
-#' @param x The list
+#' @param .data \code{list}
 #' @name list.rbind
 #' @export
 #' @examples
@@ -10,6 +10,6 @@
 #' list.rbind(x)
 #' list.rbind(df)
 #' }
-list.rbind <- function(x) {
-  list.do(x,rbind)
+list.rbind <- function(.data) {
+  list.do(.data,rbind)
 }

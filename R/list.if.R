@@ -1,7 +1,7 @@
 #' Return a logical vector that indicates if each member of a list
 #' satisfies a given condition
 #'
-#' @param x A list
+#' @param .data \code{list}
 #' @param cond A logical expression that specifies the condition
 #' @param use.names Whether to keep the names of list x
 #' @name list.if
@@ -14,7 +14,7 @@
 #' list.if(x,type=="B")
 #' list.if(x,min(score$c1,score$c2) >= 8)
 #' }
-list.if <- function(x,cond,use.names=TRUE) {
+list.if <- function(.data,cond,use.names=TRUE) {
   cond <- substitute(cond)
-  list.if.internal(x,cond,use.names)
+  list.if.internal(.data,cond,use.names)
 }

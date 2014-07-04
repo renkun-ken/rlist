@@ -6,7 +6,7 @@
 list.serialize(x, file, type = tolower(tools::file_ext(file)), ...)
 }
 \arguments{
-\item{x}{The list to be serialzied}
+\item{x}{\code{list}}
 
 \item{file}{The file for output}
 

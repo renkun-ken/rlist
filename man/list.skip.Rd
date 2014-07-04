@@ -3,10 +3,10 @@
 \alias{list.skip}
 \title{Skip a number of members in a list}
 \usage{
-list.skip(x, n)
+list.skip(.data, n)
 }
 \arguments{
-\item{x}{The list from which some members are taken}
+\item{.data}{\code{list}}
 
 \item{n}{The number of members to skip}
 }

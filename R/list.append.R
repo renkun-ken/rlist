@@ -1,6 +1,6 @@
 #' Append a list
 #'
-#' @param x The original list
+#' @param .data The original list
 #' @param ... A vector or list that is to be appended after \code{x}
 #' @name list.append
 #' @export
@@ -10,6 +10,6 @@
 #' list.append(x,d=4,e=5)
 #' list.append(x,d=4,f=c(2,3))
 #' }
-list.append <- function(x,...) {
-  c(x,list(...))
+list.append <- function(.data,...) {
+  c(.data,list(...))
 }

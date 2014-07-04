@@ -3,10 +3,10 @@
 \alias{list.group}
 \title{Group a list by the value of an expression evaluated for each member.}
 \usage{
-list.group(x, key)
+list.group(.data, key)
 }
 \arguments{
-\item{x}{The list to group}
+\item{.data}{\code{list}}
 
 \item{key}{An expression that determines the key of the group}
 }

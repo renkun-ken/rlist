@@ -1,6 +1,6 @@
 #' Update a list by modifying its elements.
 #'
-#' @param x The list to be transformed
+#' @param .data \code{list}
 #' @param ... The elements to update
 #' @param keep.null Should \code{NULL} values be preserved
 #'    for \code{modifyList}
@@ -16,10 +16,9 @@
 #' list.update(x,grade=ifelse(type=="A",score$c1,score$c2))
 #' list.update(x,score=list(min=0,max=10))
 #' }
-list.update <- function(x,...,keep.null=FALSE) {
+list.update <- function(.data,...,keep.null=FALSE) {
   args <- match.call(expand.dots = FALSE)$`...`
-  envir <- lambda.env(parent.frame())
-  items <- lapply(args,list.map.internal,x=x,envir=envir)
+  items <- lapply(args,list.map.internal,.data=.data,envir=parent.frame())
   do.call(Map,c(function(.,...)
-    modifyList(.,list(...),keep.null = keep.null),list(x),items))
+    modifyList(.,list(...),keep.null = keep.null),list(.data),items))
 }

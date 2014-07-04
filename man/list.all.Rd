@@ -3,10 +3,10 @@
 \alias{list.all}
 \title{Get whether all list members satisfy the given condition}
 \usage{
-list.all(x, cond, na.rm = FALSE)
+list.all(.data, cond, na.rm = FALSE)
 }
 \arguments{
-\item{x}{\code{list}}
+\item{.data}{\code{list}}
 
 \item{cond}{An \code{expression} that returns logical value}
 

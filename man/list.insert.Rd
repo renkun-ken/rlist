@@ -3,10 +3,10 @@
 \alias{list.insert}
 \title{Insert a series of lists at the given index}
 \usage{
-list.insert(x, index, ...)
+list.insert(.data, index, ...)
 }
 \arguments{
-\item{x}{A list}
+\item{.data}{\code{list}}
 
 \item{index}{The index at which the lists are inserted}
 

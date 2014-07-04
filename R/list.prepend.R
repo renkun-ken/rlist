@@ -1,6 +1,6 @@
 #' Prepend a list
 #'
-#' @param x The original list
+#' @param .data \code{list}
 #' @param ... A vector or list that is to be prepended before \code{x}
 #' @name list.prepend
 #' @export
@@ -10,6 +10,6 @@
 #' list.prepend(x,d=4,e=5)
 #' list.prepend(x,d=4,f=c(2,3))
 #' }
-list.prepend <- function(x,...) {
-  c(list(...),x)
+list.prepend <- function(.data,...) {
+  c(list(...),.data)
 }

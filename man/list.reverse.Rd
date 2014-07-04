@@ -3,10 +3,10 @@
 \alias{list.reverse}
 \title{Reverse a list}
 \usage{
-list.reverse(x)
+list.reverse(.data)
 }
 \arguments{
-\item{x}{The list to be reversed}
+\item{.data}{\code{list}}
 }
 \description{
 Reverse a list

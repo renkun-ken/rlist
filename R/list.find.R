@@ -1,6 +1,6 @@
 #' Find a specific number of members in a list that meeting given condition
 #'
-#' @param x The list
+#' @param .data \code{list}
 #' @param cond The condition
 #' @param n The number of items to find
 #' @name list.find
@@ -13,7 +13,7 @@
 #' list.find(x,type=="B",1)
 #' list.find(x,min(score$c1,score$c2) >= 9)
 #' }
-list.find <- function(x,cond,n=1L) {
+list.find <- function(.data,cond,n=1L) {
   cond <- substitute(cond)
-  x[list.findi.internal(x,cond,n)]
+  .data[list.findi.internal(.data,cond,n)]
 }

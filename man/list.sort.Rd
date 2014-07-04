@@ -3,10 +3,10 @@
 \alias{list.sort}
 \title{Sort a list by given expressions in order}
 \usage{
-list.sort(x, ...)
+list.sort(.data, ...)
 }
 \arguments{
-\item{x}{The list to be sorted}
+\item{.data}{\code{list}}
 
 \item{...}{Expressions to evaluate for sorting}
 }

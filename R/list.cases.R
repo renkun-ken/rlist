@@ -1,6 +1,6 @@
 #' Get all unique cases by expression for a list
 #'
-#' @param x A list
+#' @param .data A list
 #' @param expr The expression to evaluate to find cases
 #' @param sort Should the cases be sorted in ascending order?
 #' @name list.cases
@@ -13,8 +13,8 @@
 #' list.cases(x,type)
 #' list.cases(x,mean(unlist(score)))
 #' }
-list.cases <- function(x,expr,sort=TRUE) {
+list.cases <- function(.data,expr,sort=TRUE) {
   expr <- substitute(expr)
-  cases <- unique(unlist(list.map.internal(x,expr),use.names = FALSE))
+  cases <- unique(unlist(list.map.internal(.data,expr),use.names = FALSE))
   if(sort) sort(cases) else cases
 }

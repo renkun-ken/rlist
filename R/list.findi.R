@@ -1,7 +1,7 @@
 #' Find the indices of a number of members in a list that
 #' meet given condition
 #'
-#' @param x The list
+#' @param .data \code{list}
 #' @param cond The condition
 #' @param n The maximal number of members to find out
 #' @name list.findi
@@ -15,7 +15,7 @@
 #' list.findi(x,min(score$c1,score$c2) >= 8)
 #' list.findi(x,min(score$c1,score$c2) <= 8,2)
 #' }
-list.findi <- function(x,cond,n=1L) {
+list.findi <- function(.data,cond,n=1L) {
   cond <- substitute(cond)
-  list.findi.internal(x,cond,n)
+  list.findi.internal(.data,cond,n)
 }

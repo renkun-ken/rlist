@@ -3,10 +3,10 @@
 \alias{list.any}
 \title{Get whether any list member satisfies the given condition}
 \usage{
-list.any(x, cond, na.rm = FALSE)
+list.any(.data, cond, na.rm = FALSE)
 }
 \arguments{
-\item{x}{\code{list}}
+\item{.data}{\code{list}}
 
 \item{cond}{An \code{expression} that returns logical value}
 

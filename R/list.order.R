@@ -1,6 +1,6 @@
 #' Return the order of each member in a list by expression
 #'
-#' @param x The
+#' @param .data \code{list}
 #' @param ... Expressions to evaluate for ordering
 #' @param keep.names Whether to keep the names of \code{x} in the result
 #' @name list.order
@@ -14,9 +14,9 @@
 #' list.order(x,min(score$c1,score$c2))
 #' list.order(x,min(score$c1,score$c2),keep.names=TRUE)
 #' }
-list.order <- function(x,...,keep.names=FALSE) {
+list.order <- function(.data,...,keep.names=FALSE) {
   args <- as.list(match.call(expand.dots = FALSE))$`...`
-  result <- list.order.internal(x,args)
-  if(keep.names) names(result) <- names(x)
+  result <- list.order.internal(.data,args)
+  if(keep.names) names(result) <- names(.data)
   result
 }

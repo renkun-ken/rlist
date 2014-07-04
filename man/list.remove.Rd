@@ -3,10 +3,10 @@
 \alias{list.remove}
 \title{Remove members from a list by index or name}
 \usage{
-list.remove(x, range = integer())
+list.remove(.data, range = integer())
 }
 \arguments{
-\item{x}{The list}
+\item{.data}{\code{list}}
 
 \item{range}{A numeric vector of indices or
 a character vector of names to remove from \code{x}}

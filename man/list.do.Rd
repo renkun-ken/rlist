@@ -3,10 +3,10 @@
 \alias{list.do}
 \title{Call a function with a list of arguments as provided}
 \usage{
-list.do(x, fun, ...)
+list.do(.data, fun, ...)
 }
 \arguments{
-\item{x}{The list}
+\item{.data}{The list}
 
 \item{fun}{The function to call}
 
