@@ -11,9 +11,9 @@
 #' list.append(x,d=4,f=c(2,3))
 #' }
 list.append <- function(.data,...) {
-  if(is.vector(.data)) {
-    c(.data,...)
-  } else {
+  if(is.list(.data)) {
     c(.data,list(...))
+  } else {
+    c(.data,...)
   }
 }
