@@ -1,4 +1,12 @@
-Versioon 0.2 (2014-07-02)
+Version 0.2.1 (2014-07-04)
+===
+Minor maintainence updates.
+Fixed [#6](https://github.com/renkun-ken/rlist/issues/6)
+Fixed [#11](https://github.com/renkun-ken/rlist/issues/11)
+Fixed [#20](https://github.com/renkun-ken/rlist/issues/20)
+Fixed [#21](https://github.com/renkun-ken/rlist/issues/21)
+
+Version 0.2 (2014-07-02)
 ===
 Add `list.join`, `list.mapv`, `list.do`, `list.clean`, `list.parse`
 Add vignettes
