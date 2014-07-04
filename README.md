@@ -81,6 +81,7 @@ The table below lists the functions currently supported.
 - `list.class`: Classify the list members by a vector expression
 - `list.join`: Join two lists by an expression
 - `list.update`: Update a list with partial specification
+- `list.table`: Create a table for a list by expression
 - `list.parse`: Parse `yaml`, `json` format text, or `data.frame` and `matrix` to a list with identical structure.
 - `list.load`, `list.save`: Load or save a list stored in `yaml`, `json`, `xml` or `RData` file.
 - ...
