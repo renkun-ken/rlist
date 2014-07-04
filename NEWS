@@ -1,5 +1,6 @@
 Version 0.2.1 (2014-07-04)
 ===
+Add new function `list.table`
 Minor maintainence updates.
 Fixed [#6](https://github.com/renkun-ken/rlist/issues/6)
 Fixed [#11](https://github.com/renkun-ken/rlist/issues/11)
