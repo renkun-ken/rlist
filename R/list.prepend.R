@@ -11,5 +11,9 @@
 #' list.prepend(x,d=4,f=c(2,3))
 #' }
 list.prepend <- function(.data,...) {
-  c(list(...),.data)
+  if(is.vector(.data)) {
+    c(...,.data)
+  } else {
+    c(list(...),.data)
+  }
 }

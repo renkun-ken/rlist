@@ -13,5 +13,10 @@
 #' list.if(x,2,p2.1=list(type="B",score=list(c1=8,c2=9)))
 #' }
 list.insert <- function(.data,index,...) {
-  c(.data[0L:max(0L,index-1L)],list(...),.data[index:length(.data)])
+  values <- if(is.vector(.data)) c(...) else list(...)
+  n <- length(.data)
+  if(index < -n) stop("Invalid index")
+  if(index < 0L) index <- n+index+1
+  c(.data[0L:max(0L,index-1L)],values,
+    if(index <= n) .data[index:length(.data)] else NULL)
 }
