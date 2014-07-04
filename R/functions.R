@@ -53,3 +53,15 @@ dots <- function(...) {
 list.sort.functions <- list(desc=`-`)
 
 setnames <- `names<-`
+
+unname <- function(x) {
+  setnames(x,NULL)
+}
+
+set_argnames <- function(args) {
+  argnames <- names(args)
+  if(is.null(argnames))  argnames <- character(length(args))
+  indices <- argnames=="" & vapply(args,is.name,logical(1L))
+  argnames[indices] <- vapply(args[indices],as.character,character(1L))
+  setnames(args,argnames)
+}

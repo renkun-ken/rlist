@@ -179,3 +179,13 @@ test_that("list.any", {
   expect_equal(list.any(x,mean(unlist(score))>=20),FALSE)
   expect_equal(sapply(8:10,function(i) list.any(x,score$c1>=i)),c(T,T,T))
 })
+
+test_that("list.table", {
+  x <- list(p1 = list(type="A",score=list(c1=10,c2=8)),
+    p2 = list(type="B",score=list(c1=9,c2=9)),
+    p3 = list(type="B",score=list(c1=9,c2=7)))
+  x.types <- c("A","B","B")
+  x.c1 <- c(10,9,9)
+  expect_identical(list.table(x,type),table(type=x.types))
+  expect_identical(list.table(x,type,c1=score$c1),table(type=x.types,c1=x.c1))
+})
