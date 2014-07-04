@@ -17,8 +17,7 @@
 #' list.update(x,score=list(min=0,max=10))
 #' }
 list.update <- function(.data,...,keep.null=FALSE) {
-  args <- match.call(expand.dots = FALSE)$`...`
-  items <- lapply(args,list.map.internal,.data=.data,envir=parent.frame())
+  items <- lapply(dots(...),list.map.internal,.data=.data,envir=parent.frame())
   do.call(Map,c(function(.,...)
     modifyList(.,list(...),keep.null = keep.null),list(.data),items))
 }

@@ -14,7 +14,7 @@
 #' list.select(x,type,score.range=range(unlist(score)))
 #' }
 list.select <- function(.data,...) {
-  args <- as.list(match.call(expand.dots = FALSE))$`...`
+  args <- dots(...)
   argnames <- names(args)
   if(is.null(argnames))  argnames <- character(length(args))
   indices <- argnames=="" & vapply(args,is.name,logical(1L))

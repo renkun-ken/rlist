@@ -13,6 +13,5 @@
 #' list.sort(x,min(score$c1,score$c2))
 #' }
 list.sort <- function(.data,...) {
-  args <- as.list(match.call(expand.dots = FALSE))$`...`
-  .data[list.order.internal(.data,args)]
+  .data[list.order.internal(.data,dots(...))]
 }

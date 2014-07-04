@@ -13,6 +13,5 @@
 #' list.if(x,2,p2.1=list(type="B",score=list(c1=8,c2=9)))
 #' }
 list.insert <- function(.data,index,...) {
-  lists <- list(...)
-  c(.data[0L:max(0L,index-1L)],lists,.data[index:length(.data)])
+  c(.data[0L:max(0L,index-1L)],list(...),.data[index:length(.data)])
 }

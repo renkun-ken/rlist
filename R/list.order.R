@@ -15,8 +15,7 @@
 #' list.order(x,min(score$c1,score$c2),keep.names=TRUE)
 #' }
 list.order <- function(.data,...,keep.names=FALSE) {
-  args <- as.list(match.call(expand.dots = FALSE))$`...`
-  result <- list.order.internal(.data,args)
+  result <- list.order.internal(.data,dots(...))
   if(keep.names) names(result) <- names(.data)
   result
 }

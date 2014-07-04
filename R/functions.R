@@ -46,6 +46,10 @@ list.env <- function(x) {
   }
 }
 
+dots <- function(...) {
+  eval(substitute(alist(...)))
+}
+
 list.sort.functions <- list(desc=`-`)
 
 setnames <- `names<-`
