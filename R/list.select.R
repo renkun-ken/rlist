@@ -14,12 +14,7 @@
 #' list.select(x,type,score.range=range(unlist(score)))
 #' }
 list.select <- function(.data,...) {
-  args <- dots(...)
-  argnames <- names(args)
-  if(is.null(argnames))  argnames <- character(length(args))
-  indices <- argnames=="" & vapply(args,is.name,logical(1L))
-  argnames[indices] <- vapply(args[indices],as.character,character(1L))
-  names(args) <- argnames
+  args <- set_argnames(dots(...))
   items <- lapply(args,list.map.internal,.data=.data,envir=parent.frame())
   do.call(Map,c(function(.,...) list(...),list(.data),items))
 }
