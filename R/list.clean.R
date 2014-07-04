@@ -10,6 +10,6 @@
 #' list.clean(x)
 #' }
 list.clean <- function(.data,
-  fun = function(x) is.null(x) || (is.vector(x) && length(x) == 0L)) {
+  fun = function(x) is.null(x) || length(x) == 0L) {
   `[<-`(.data,vapply(.data,fun,logical(1L)),NULL)
 }

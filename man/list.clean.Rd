@@ -3,8 +3,7 @@
 \alias{list.clean}
 \title{Clean a list by a function}
 \usage{
-list.clean(.data, fun = function(x) is.null(x) || (is.vector(x) && length(x)
-  == 0L))
+list.clean(.data, fun = function(x) is.null(x) || length(x) == 0L)
 }
 \arguments{
 \item{.data}{\code{list}}
