@@ -13,6 +13,5 @@
 #' list.group(x,mean(unlist(score)))
 #' }
 list.group <- function(.data,key) {
-  key <- substitute(key)
-  list.group.internal(.data,key)
+  list.group.internal(.data,substitute(key))
 }

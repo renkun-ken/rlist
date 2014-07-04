@@ -14,7 +14,7 @@
 #' list.cases(x,mean(unlist(score)))
 #' }
 list.cases <- function(.data,expr,sort=TRUE) {
-  expr <- substitute(expr)
-  cases <- unique(unlist(list.map.internal(.data,expr),use.names = FALSE))
+  cases <- unique(unlist(list.map.internal(.data,substitute(expr)),
+    use.names = FALSE))
   if(sort) sort(cases) else cases
 }

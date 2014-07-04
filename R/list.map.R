@@ -13,8 +13,7 @@
 #' list.map(x,min(score$c1,score$c2))
 #' }
 list.map <- function(.data,expr) {
-  expr <- substitute(expr)
-  list.map.internal(.data,expr)
+  list.map.internal(.data,substitute(expr))
 }
 
 #' Map each member of a list by an expression to a vector.
@@ -33,6 +32,5 @@ list.map <- function(.data,expr) {
 #' list.mapv(x,min(score$c1,score$c2))
 #' }
 list.mapv <- function(.data,expr,use.names=TRUE) {
-  expr <- substitute(expr)
-  unlist(list.map.internal(.data,expr),use.names=use.names)
+  unlist(list.map.internal(.data,substitute(expr)),use.names=use.names)
 }

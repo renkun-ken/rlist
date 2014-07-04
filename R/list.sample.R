@@ -18,8 +18,7 @@
 #' }
 list.sample <- function(.data,size,replace=FALSE,weight=1,prob=NULL) {
   if(is.null(prob)) {
-    weight <- substitute(weight)
-    ws <- unlist(list.map.internal(.data,weight),use.names = FALSE)
+    ws <- unlist(list.map.internal(.data,substitute(weight)),use.names = FALSE)
     if(any(ws<0)) stop("Negative weight is not allowed")
     prob <- ws / sum(ws)
   }

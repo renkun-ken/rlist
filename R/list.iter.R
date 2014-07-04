@@ -14,7 +14,6 @@
 #' list.iter(x,cat(str(.)))
 #' }
 list.iter <- function(.data,expr) {
-  expr <- substitute(expr)
-  list.map.internal(.data,expr)
+  list.map.internal(.data,substitute(expr))
   invisible()
 }

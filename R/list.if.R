@@ -15,6 +15,5 @@
 #' list.if(x,min(score$c1,score$c2) >= 8)
 #' }
 list.if <- function(.data,cond,use.names=TRUE) {
-  cond <- substitute(cond)
-  list.if.internal(.data,cond,use.names)
+  list.if.internal(.data,substitute(cond),use.names)
 }

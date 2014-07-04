@@ -14,6 +14,5 @@
 #' list.find(x,min(score$c1,score$c2) >= 9)
 #' }
 list.find <- function(.data,cond,n=1L) {
-  cond <- substitute(cond)
-  .data[list.findi.internal(.data,cond,n)]
+  .data[list.findi.internal(.data,substitute(cond),n)]
 }

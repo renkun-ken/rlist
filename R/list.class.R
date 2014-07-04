@@ -22,8 +22,7 @@
 #' list.class(x,names(lang))
 #' }
 list.class <- function(.data,expr,sort.cases=TRUE) {
-  expr <- substitute(expr)
-  values <- list.map.internal(.data,expr)
+  values <- list.map.internal(.data,substitute(expr))
   cases <- unique(unlist(values,use.names = FALSE))
   names(cases) <- cases
   if(sort.cases)  cases <- sort(cases)

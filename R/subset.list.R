@@ -21,10 +21,8 @@
 #'    subset(x,min(score$c1,score$c2) >= 8,data.frame(score)))
 #' }
 subset.list <- function(x,subset=TRUE,select=.,...) {
-  subset <- substitute(subset)
-  select <- substitute(select)
-  lsubset <- lambda(subset)
-  lselect <- lambda(select)
+  lsubset <- lambda(substitute(subset))
+  lselect <- lambda(substitute(select))
   envir.subset <- lambda.env(parent.frame())
   envir.select <- lambda.env(parent.frame())
   xnames <- if(is.null(names(x))) character(length(x)) else names(x)

@@ -13,8 +13,7 @@
 #' list.takeWhile(x,min(score$c1,score$c2) >= 8)
 #' }
 list.takeWhile <- function(.data,cond) {
-  cond <- substitute(cond)
-  l <- lambda(cond)
+  l <- lambda(substitute(cond))
   envir <- lambda.env(parent.frame())
   xnames <- names(.data)
   index <- 0L
