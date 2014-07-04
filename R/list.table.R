@@ -12,6 +12,7 @@
 #'        p3 = list(type="B",score=list(c1=9,c2=7)))
 #' list.table(x,type)
 #' list.table(x,type,c1=score$c1)
+#' list.table(x,type,score$c1,table.args=list(dnn=c("type","c1")))
 #' }
 list.table <- function(.data,...,table.args=NULL) {
   args <- set_argnames(dots(...))
@@ -19,5 +20,5 @@ list.table <- function(.data,...,table.args=NULL) {
   items <- lapply(args,function(arg) {
     unlist(list.map.internal(.data,arg,envir = env),use.names = TRUE)
   })
-  do.call(table,items)
+  do.call(table,c(items,table.args))
 }
