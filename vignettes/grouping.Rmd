@@ -80,3 +80,11 @@ Case classification by `names(lang)`:
 str(list.class(devs, names(lang)))
 ```
 
+## list.table
+
+`table` function is often used to create a table with multiple dimensions. `list.table` is its counterpart that creates a table in which each dimension results from an expression.
+
+```{r}
+list.table(devs, interests=length(interest), age)
+```
+
