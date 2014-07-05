@@ -2,11 +2,10 @@ list.if.internal <- function(.data,cond,use.names=TRUE,parent=2L,envir=NULL) {
   l <- lambda(cond)
   envir <- lambda.env(if(is.null(envir)) parent.frame(parent) else envir)
   xnames <- if(is.null(names(.data))) character(length(.data)) else names(.data)
-  results <- Map(function(...) {
+  results <- Map(function(.,...) {
     args <- setnames(list(...),l$symbols)
     list2env(args,envir)
-    env <- list.env(args[[1L]])
-    result <- eval(l$expr,env,envir)
+    result <- eval(l$expr,list.env(.),envir)
     if(is.logical(result)) {
       if(length(result)==1L) result
       else if(length(result>1L)) stop("Multiple values are encountered")
@@ -14,7 +13,7 @@ list.if.internal <- function(.data,cond,use.names=TRUE,parent=2L,envir=NULL) {
     } else {
       NA
     }
-  },.data,seq_along(.data),xnames)
+  },.data,.data,seq_along(.data),xnames)
   unlist(results,use.names = use.names)
 }
 
@@ -27,8 +26,7 @@ list.findi.internal <- function(.data,cond,n,parent=2L,envir=NULL) {
     xi <- .data[[i]]
     args <- setnames(list(xi,i,xnames[i]),l$symbols)
     list2env(args,envir)
-    env <- list.env(xi)
-    result <- eval(l$expr,env,envir)
+    result <- eval(l$expr,list.env(xi),envir)
     if(length(indices) < n) {
       if(is.logical(result)) {
         if(length(result) == 1L && result) {
@@ -48,12 +46,11 @@ list.group.internal <- function(.data,key,parent=2L,envir=NULL) {
   l <- lambda(key)
   envir <- lambda.env(if(is.null(envir)) parent.frame(parent) else envir)
   xnames <- if(is.null(names(.data))) character(length(.data)) else names(.data)
-  keys <- Map(function(...) {
+  keys <- Map(function(.,...) {
     args <- setnames(list(...),l$symbols)
     list2env(args,envir)
-    env <- list.env(args[[1L]])
-    eval(l$expr,env,envir)
-  },.data,seq_along(.data),xnames)
+    eval(l$expr,list.env(.),envir)
+  },.data,.data,seq_along(.data),xnames)
   unikeys <- unique(keys)
   names(unikeys) <- as.character(unikeys)
   lapply(unikeys,function(k) {
@@ -65,12 +62,11 @@ list.map.internal <- function(.data,expr,parent=2L,envir=NULL) {
   l <- lambda(expr)
   envir <- lambda.env(if(is.null(envir)) parent.frame(parent) else envir)
   xnames <- if(is.null(names(.data))) character(length(.data)) else names(.data)
-  Map(function(...) {
+  Map(function(.,...) {
     args <- setnames(list(...),l$symbols)
     list2env(args,envir)
-    env <- list.env(args[[1]])
-    eval(l$expr,env,envir)
-  },.data,seq_along(.data),xnames)
+    eval(l$expr,list.env(.),envir)
+  },.data,.data,seq_along(.data),xnames)
 }
 
 list.order.internal <- function(.data,args,parent=2L,envir=NULL) {

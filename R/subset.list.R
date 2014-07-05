@@ -26,11 +26,11 @@ subset.list <- function(x,subset=TRUE,select=.,...) {
   envir.subset <- lambda.env(parent.frame())
   envir.select <- lambda.env(parent.frame())
   xnames <- if(is.null(names(x))) character(length(x)) else names(x)
-  items <- Map(function(...) {
+  items <- Map(function(.,...) {
     args <- list(...)
     names(args) <- lsubset$symbols
     list2env(args,envir.subset)
-    env <- list.env(args[[1L]])
+    env <- list.env(.)
     result <- eval(lsubset$expr,env,envir.subset)
     if(is.logical(result)) {
       if(length(result) == 1L && result) {
@@ -41,6 +41,6 @@ subset.list <- function(x,subset=TRUE,select=.,...) {
         stop("Multiple values are encountered")
       }
     }
-  },x,seq_along(x),xnames)
+  },x,x,seq_along(x),xnames)
   list.clean(items)
 }

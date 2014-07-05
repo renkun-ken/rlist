@@ -21,8 +21,7 @@ list.skipWhile <- function(.data,cond) {
     xi <- .data[[i]]
     args <- setnames(list(xi,i,xnames[i]),l$symbols)
     list2env(args,envir)
-    env <- list.env(xi)
-    result <- eval(l$expr,env,envir)
+    result <- eval(l$expr,list.env(xi),envir)
     if(is.logical(result)) {
       if(length(result) == 1L && result) index <- i
       else if(length(result) > 1L) stop("Multiple values are encountered")
