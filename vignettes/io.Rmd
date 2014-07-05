@@ -4,13 +4,17 @@
 -->
 
 ```{r, echo = FALSE, message = FALSE}
-library(rlist)
 knitr::opts_chunk$set(comment="#",error=FALSE,tidy=FALSE)
 ```
 
 # List input/output
 
 rlist provides various mechanisms for list data input/output. 
+
+```{r}
+library(rlist)
+```
+
 
 ## list.parse
 

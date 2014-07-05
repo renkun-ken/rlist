@@ -1,0 +1,57 @@
+<!--
+%\VignetteEngine{knitr}
+%\VignetteIndexEntry{Examples}
+-->
+
+```{r, echo = FALSE, message = FALSE}
+knitr::opts_chunk$set(comment="#",error=FALSE,tidy=FALSE)
+```
+
+# Examples
+
+This document include a list of examples using `rlist` together with `pipeR`.
+
+```{r}
+library(rlist)
+library(pipeR)
+```
+
+## Multiple sampling and aggregation
+
+```{r}
+set.seed(100)
+srcData <- rnorm(1000)
+1:5 %>>% 
+  list.map(sample(srcData,10)) %>>% 
+  list.select(mean=mean(.),median=median(.)) %>>% 
+  list.rbind %>>% 
+  data.frame
+```
+
+## Ungrouping classes of members
+
+```{r}
+students <- '
+A:
+  s1:
+    name: Ken
+    age: 25
+  s2:
+    name: James
+    age: 23
+B:
+  s3:
+    name: Peter
+    age: 25
+  s4:
+    name: Josh
+    age: 24
+'
+students %>>%
+  list.parse(type="yaml") %>>%
+  list.map(f(members,,clsname) -> members %>>% list.update(class=clsname)) %>>%
+  list.ungroup %>>%
+  list.rbind %>>%
+  data.frame
+```
+

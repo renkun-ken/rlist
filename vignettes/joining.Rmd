@@ -4,7 +4,6 @@
 -->
 
 ```{r, echo = FALSE, message = FALSE}
-library(rlist)
 knitr::opts_chunk$set(comment="#",error=FALSE,tidy=FALSE)
 ```
 
@@ -13,6 +12,7 @@ knitr::opts_chunk$set(comment="#",error=FALSE,tidy=FALSE)
 rlist provides `list.join` to perform simple joining of two lists, and `list.merge` to perform modification merge of a series of lists.
 
 ```{r}
+library(rlist)
 devs <- 
   list(
     p1=list(name="Ken",age=24,
