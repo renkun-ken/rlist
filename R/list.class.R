@@ -2,6 +2,7 @@
 #'
 #' @param .data The list to be classified
 #' @param expr An expression that determines cases
+#' @param ... Additional parameters passed to \code{unique}
 #' @param sort.cases \code{logical}. if \code{TRUE} the cases will be sorted in ascending order.
 #' @name list.class
 #' @export
@@ -21,9 +22,9 @@
 #' list.class(x,interest)
 #' list.class(x,names(lang))
 #' }
-list.class <- function(.data,expr,sort.cases=TRUE) {
+list.class <- function(.data,expr,...,sort.cases=TRUE) {
   values <- list.map.internal(.data,substitute(expr))
-  cases <- unique(unlist(values,use.names = FALSE))
+  cases <- unique(unlist(values,use.names = FALSE),...)
   names(cases) <- cases
   if(sort.cases)  cases <- sort(cases)
   lapply(cases,function(case) {
