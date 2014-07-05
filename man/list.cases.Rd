@@ -3,12 +3,15 @@
 \alias{list.cases}
 \title{Get all unique cases by expression for a list}
 \usage{
-list.cases(.data, expr, ..., sort = TRUE)
+list.cases(.data, expr, simplify = TRUE, ..., sort = TRUE)
 }
 \arguments{
 \item{.data}{\code{list}}
 
 \item{expr}{The expression to evaluate to find cases}
+
+\item{simplify}{\code{logical}. Should the values be simplified
+by \code{unlist}?}
 
 \item{...}{Additional parameters passed to \code{unique}}
 

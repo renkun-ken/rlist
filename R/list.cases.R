@@ -2,6 +2,8 @@
 #'
 #' @param .data \code{list}
 #' @param expr The expression to evaluate to find cases
+#' @param simplify \code{logical}. Should the values be simplified
+#'    by \code{unlist}?
 #' @param ... Additional parameters passed to \code{unique}
 #' @param sort \code{logical}. Should the cases be sorted in ascending order?
 #' @name list.cases
@@ -14,11 +16,11 @@
 #' list.cases(x,type)
 #' list.cases(x,mean(unlist(score)))
 #' }
-list.cases <- function(.data,expr,...,sort=TRUE) {
+list.cases <- function(.data,expr,simplify=TRUE,...,sort=TRUE) {
   values <- list.map.internal(.data,substitute(expr))
-  atomic <- vapply(values,is.atomic,logical(1L))
-  if(all(atomic)) {
-    values <- unlist(values,use.names = FALSE)
+  if(simplify) {
+    atomic <- vapply(values,is.atomic,logical(1L))
+    if(all(atomic)) values <- unlist(values,use.names = FALSE)
   }
   cases <- unique(values,...)
   if(sort && is.atomic(cases)) sort(cases) else cases
