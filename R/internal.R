@@ -42,22 +42,6 @@ list.findi.internal <- function(.data,cond,n,parent=2L,envir=NULL) {
   indices
 }
 
-list.group.internal <- function(.data,key,parent=2L,envir=NULL) {
-  l <- lambda(key)
-  envir <- lambda.env(if(is.null(envir)) parent.frame(parent) else envir)
-  xnames <- if(is.null(names(.data))) character(length(.data)) else names(.data)
-  keys <- Map(function(.,...) {
-    args <- setnames(list(...),l$symbols)
-    list2env(args,envir)
-    eval(l$expr,list.env(.),envir)
-  },.data,.data,seq_along(.data),xnames)
-  unikeys <- unique(keys)
-  names(unikeys) <- as.character(unikeys)
-  lapply(unikeys,function(k) {
-    .data[vapply(keys,identical,logical(1L),y=k)]
-  })
-}
-
 list.map.internal <- function(.data,expr,parent=2L,envir=NULL) {
   l <- lambda(expr)
   envir <- lambda.env(if(is.null(envir)) parent.frame(parent) else envir)

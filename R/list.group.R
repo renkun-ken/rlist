@@ -2,6 +2,7 @@
 #'
 #' @param .data \code{list}
 #' @param key An expression that determines the key of the group
+#' @param ... Additional parameters passed to \code{unique}
 #' @name list.group
 #' @export
 #' @examples
@@ -12,6 +13,11 @@
 #' list.group(x,type)
 #' list.group(x,mean(unlist(score)))
 #' }
-list.group <- function(.data,key) {
-  list.group.internal(.data,substitute(key))
+list.group <- function(.data,key,...) {
+  keys <- list.map.internal(.data,substitute(key))
+  unikeys <- unique(keys,...)
+  names(unikeys) <- as.character(unikeys)
+  lapply(unikeys,function(k) {
+    .data[vapply(keys,identical,logical(1L),y=k)]
+  })
 }
