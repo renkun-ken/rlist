@@ -39,8 +39,6 @@ list.env <- function(x) {
     x
   } else if(is.vector(x) && !is.null(names(x))) {
     as.vector(x,"list")
-  } else if(is.matrix(x)) {
-    list.parse.matrix(x)
   } else {
     NULL
   }
