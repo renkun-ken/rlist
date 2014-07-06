@@ -16,6 +16,5 @@
 #' }
 list.order <- function(.data,...,keep.names=FALSE) {
   result <- list.order.internal(.data,dots(...))
-  if(keep.names) names(result) <- names(.data)
-  result
+  if(keep.names) setnames(result,names(.data)) else result
 }

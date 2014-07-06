@@ -18,7 +18,7 @@ list.table <- function(.data,...,table.args=NULL) {
   args <- set_argnames(dots(...))
   env <- parent.frame()
   items <- lapply(args,function(arg) {
-    unlist(list.map.internal(.data,arg,envir = env),use.names = TRUE)
+    unlist(list.map.internal(.data,arg,envir = env),use.names = FALSE)
   })
   do.call(table,c(items,table.args))
 }
