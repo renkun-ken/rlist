@@ -127,7 +127,7 @@ p2 James  25
 </ul><h2>
 <a name="lambda-expression" class="anchor" href="#lambda-expression"><span class="octicon octicon-link"></span></a>Lambda expression</h2>
 
-<p>In this package, almost all functions that work with a single expression support the following forms of lambda expressions:</p>
+<p>In this package, almost all functions that work with expressions accept the following forms of lambda expressions:</p>
 
 <ul>
 <li>Implicit lambda expression: <code>g(x)</code>
@@ -158,7 +158,7 @@ nums <span class="o">%&gt;&gt;%</span> list.filter<span class="p">(</span>x <spa
 nums <span class="o">%&gt;&gt;%</span> list.mapv<span class="p">(</span>f<span class="p">(</span>x<span class="p">,</span>i<span class="p">)</span> <span class="o">-&gt;</span> <span class="kp">sum</span><span class="p">(</span>x<span class="p">,</span>i<span class="p">))</span>
 </pre></div>
 
-<p><em>Note that <code>list.select</code> and <code>list.update</code> both accept a group of expressions as input arguments, but they do not support explicit lambda expressions.</em></p>
+<p><em>Note that <code>list.select</code> only accepts a group of implicit lambda expressions.</em></p>
 
 <h2>
 <a name="vignettes" class="anchor" href="#vignettes"><span class="octicon octicon-link"></span></a>Vignettes</h2>
