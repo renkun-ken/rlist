@@ -21,26 +21,9 @@
 #'    subset(x,min(score$c1,score$c2) >= 8,data.frame(score)))
 #' }
 subset.list <- function(x,subset=TRUE,select=.,...) {
-  lsubset <- lambda(substitute(subset))
-  lselect <- lambda(substitute(select))
-  envir.subset <- lambda.env(parent.frame())
-  envir.select <- lambda.env(parent.frame())
-  xnames <- if(is.null(names(x))) character(length(x)) else names(x)
-  items <- Map(function(.,...) {
-    args <- list(...)
-    names(args) <- lsubset$symbols
-    list2env(args,envir.subset)
-    env <- list.env(.)
-    result <- eval(lsubset$expr,env,envir.subset)
-    if(is.logical(result)) {
-      if(length(result) == 1L && result) {
-        names(args) <- lselect$symbols
-        list2env(args,envir.select)
-        eval(lselect$expr,env,envir.select)
-      } else if(length(result) > 1L) {
-        stop("Multiple values are encountered")
-      }
-    }
-  },x,x,seq_along(x),xnames)
-  list.clean(items)
+  subset <- substitute(subset)
+  select <- substitute(select)
+  subset.items <- x[list.if.internal(x,subset)]
+  select.items <- list.map.internal(subset.items,select)
+  list.clean(select.items)
 }
