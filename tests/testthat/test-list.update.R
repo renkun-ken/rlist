@@ -19,17 +19,5 @@ test_that("list.update", {
     lapply(x,function(xi) {
       modifyList(xi,list(n=length(xi)))
     }))
-  expect_identical(list.update(x,n=xi ~ length(xi)),
-    lapply(x,function(xi) {
-      modifyList(xi,list(n=length(xi)))
-    }))
-  expect_identical(list.update(x,n=xi -> length(xi)),
-    lapply(x,function(xi) {
-      modifyList(xi,list(n=length(xi)))
-    }))
-  expect_identical(list.update(x,n=xi -> length(xi),range=xi~range(unlist(xi$score))),
-    lapply(x,function(xi) {
-      modifyList(xi,list(n=length(xi),range=range(unlist(xi$score))))
-    }))
   lapply(1:3,function(i) list.update(x,c=i))
 })

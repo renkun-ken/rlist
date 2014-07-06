@@ -18,18 +18,5 @@ test_that("list.select", {
     lapply(x,function(xi) {
       list(n=length(xi))
     }))
-  expect_identical(list.select(x,n=xi ~ length(xi)),
-    lapply(x,function(xi) {
-      list(n=length(xi))
-    }))
-  expect_identical(list.select(x,n=xi -> length(xi)),
-    lapply(x,function(xi) {
-      list(n=length(xi))
-    }))
-  expect_identical(list.select(x,n=xi -> length(xi),range=xi~range(unlist(xi$score))),
-    lapply(x,function(xi) {
-      list(n=length(xi),range=range(unlist(xi$score)))
-    }))
-
   lapply(1:3,function(i) list.select(x,p=score$c1+i))
 })
