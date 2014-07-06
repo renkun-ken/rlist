@@ -96,7 +96,7 @@ test_that("list.merge", {
 })
 
 test_that("list.rbind", {
-  x <- lapply(1:10,function(i) data.frame(a=i,b=i^2))
+  x <- lapply(1:10,function(i) c(a=i,b=i^2))
   expect_identical(list.rbind(x),do.call(rbind,x))
 })
 
@@ -106,6 +106,11 @@ test_that("list.cbind", {
     data.frame(c=rnorm(10),d=rnorm(10)),
     data.frame(e=rnorm(10),f=rnorm(10)))
   expect_identical(list.cbind(x),do.call(cbind,x))
+})
+
+test_that("list.stack", {
+  x <- lapply(1:10,function(i) list(a=i,b=i^2))
+  expect_false(is.null(list.stack(x)))
 })
 
 test_that("list.match", {

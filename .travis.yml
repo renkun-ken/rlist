@@ -7,6 +7,7 @@ before_install:
   - ./travis-tool.sh github_package testthat
 install:
   - ./travis-tool.sh r_binary_install knitr
+  - ./travis-tool.sh r_binary_install data.table
   - ./travis-tool.sh r_binary_install yaml
   - ./travis-tool.sh r_binary_install jsonlite
 

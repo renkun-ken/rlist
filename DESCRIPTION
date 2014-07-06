@@ -15,6 +15,7 @@ Suggests:
     testthat,
     knitr
 Imports:
+    data.table,
     yaml,
     jsonlite
 License: MIT + file LICENSE
