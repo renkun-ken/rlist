@@ -88,13 +88,16 @@ The table below lists the functions currently supported.
 
 ## Lambda expression
 
-In this package, all functions that work with expressions support the following forms of lambda expressions:
+In this package, almost all functions that work with a single expression support the following forms of lambda expressions:
 
-- `x ~ g(x)`
-- `x -> g(x)`
-- `f(x) -> g(x)`
-- `f(x,i) -> g(x,i)`
-- `f(x,i,name) -> g(x,i,name)`
+- Implicit lambda expression: `g(x)`
+- Univariate lambda expressions: 
+    * `x ~ g(x)`
+    * `x -> g(x)`
+    * `f(x) -> g(x)`
+- Multivariate lambda expressions:
+    * `f(x,i) -> g(x,i)`
+    * `f(x,i,name) -> g(x,i,name)`
 
 where `x` refers to the list member itself, `i` denotes the index, `name` denotes the name. If the symbols are not explicitly declared, `.`, `.i` and `.name` will by default be used to represent them, respectively.
 
@@ -107,6 +110,8 @@ nums %>>% list.mapv(x ~ sum(x))
 nums %>>% list.filter(x -> mean(x)>=3)
 nums %>>% list.mapv(f(x,i) -> sum(x,i))
 ```
+
+*Note that `list.select` and `list.update` both accept a group of expressions as input arguments, but they do not support explicit lambda expressions.*
 
 ## Vignettes
 
