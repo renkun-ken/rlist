@@ -11,5 +11,5 @@
 #' }
 list.clean <- function(.data,
   fun = function(x) is.null(x) || length(x) == 0L) {
-  `[<-`(.data,vapply(.data,fun,logical(1L)),NULL)
+  setmembers(.data,vapply(.data,fun,logical(1L)),NULL)
 }
