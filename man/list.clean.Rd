@@ -8,7 +8,7 @@ list.clean(.data, fun = function(x) is.null(x) || length(x) == 0L)
 \arguments{
 \item{.data}{\code{list}}
 
-\item{fun}{The function for cleaning, by default \code{is.null}.}
+\item{fun}{A logical \code{function} for clean}
 }
 \description{
 Clean a list by a function

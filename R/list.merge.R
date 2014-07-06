@@ -1,5 +1,5 @@
 #' Merge a series of lists
-#' @param ... A series of lists
+#' @param ... A group of lists
 #' @name list.merge
 #' @export
 #' @examples

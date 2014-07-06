@@ -1,12 +1,13 @@
 #' Sample a list
 #'
-#' @param .data list{code}
-#' @param size The size the sample to take
-#' @param replace Should sampling be with replacement?
-#' @param weight An expression to determine the weight of each list member,
-#'    which does only takes effectt if \code{prob} is \code{NULL}.
-#' @param prob A vector of probability weights for obtaining the elements of the
-#'    list being sampled.
+#' @param .data \code{list}
+#' @param size \code{integer}. The size of the sample
+#' @param replace \code{logical}. Should sampling be with replacement?
+#' @param weight A lambda expression to determine the weight of
+#' each list member, which does only takes effect if \code{prob}
+#' is \code{NULL}.
+#' @param prob A \code{vector} of probability weights for
+#' obtaining the elements of the list being sampled.
 #' @name list.sample
 #' @export
 #' @examples

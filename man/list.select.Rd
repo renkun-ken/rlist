@@ -8,7 +8,7 @@ list.select(.data, ...)
 \arguments{
 \item{.data}{\code{list}}
 
-\item{...}{The members to select}
+\item{...}{A group of implicit labmda expressions}
 }
 \description{
 Select by name or expression for each member of a list

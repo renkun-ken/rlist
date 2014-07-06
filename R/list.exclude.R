@@ -1,7 +1,7 @@
 #' Exclude members of a list that meet given condition.
 #'
 #' @param .data \code{list}
-#' @param cond An \code{expression} that returns a logical value
+#' @param cond A logical lambda expression
 #'    to exclude items
 #' @name list.exclude
 #' @export

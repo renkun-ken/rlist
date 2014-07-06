@@ -9,9 +9,9 @@ list.if(.data, cond, use.names = TRUE)
 \arguments{
 \item{.data}{\code{list}}
 
-\item{cond}{A logical expression that specifies the condition}
+\item{cond}{A logical lambda expression}
 
-\item{use.names}{Whether to keep the names of list x}
+\item{use.names}{\code{logical} Should the names of \code{.data} be kept?}
 }
 \description{
 Return a logical vector that indicates if each member of a list

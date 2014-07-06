@@ -1,7 +1,7 @@
 #' Classify list members into unique cases evaluated by given expression.
 #'
-#' @param .data The list to be classified
-#' @param expr An expression that determines cases
+#' @param .data \code{list}
+#' @param expr A lambda expression
 #' @param ... Additional parameters passed to \code{unique}
 #' @param sort.cases \code{logical}. if \code{TRUE} the cases will be sorted in ascending order.
 #' @name list.class

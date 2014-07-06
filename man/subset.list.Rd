@@ -8,10 +8,9 @@
 \arguments{
 \item{x}{The list to be subsetted}
 
-\item{subset}{A logical expression that specifies the subsetting condition}
+\item{subset}{A logical lambda expression of subsetting condition}
 
-\item{select}{An expression that is evaluated for each item
-that satisfies the subsetting condition}
+\item{select}{A lambda expression to evaluate for each selected item}
 
 \item{...}{Additional parameters}
 }

@@ -8,7 +8,7 @@ list.find(.data, cond, n = 1L)
 \arguments{
 \item{.data}{\code{list}}
 
-\item{cond}{The condition}
+\item{cond}{A logical lambda expression}
 
 \item{n}{The number of items to find}
 }

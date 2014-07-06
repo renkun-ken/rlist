@@ -2,7 +2,7 @@
 #'
 #' @param .data \code{list}
 #' @param range A numeric vector of indices or
-#' a character vector of names to remove from \code{x}
+#' a character vector of names to remove from \code{.data}
 #' @name list.remove
 #' @export
 #' @examples

@@ -2,7 +2,7 @@
 #' given condition
 #'
 #' @param .data \code{list}
-#' @param cond The condition
+#' @param cond A logical lambda expression
 #' @name list.which
 #' @export
 #' @examples

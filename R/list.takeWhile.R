@@ -1,7 +1,7 @@
 #' Take out members until the given condition is broken
 #'
 #' @param .data \code{list}
-#' @param cond The condition
+#' @param cond A logical lambda expression
 #' @name list.takeWhile
 #' @export
 #' @examples

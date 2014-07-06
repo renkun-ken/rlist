@@ -8,7 +8,7 @@ list.table(.data, ..., table.args = NULL)
 \arguments{
 \item{.data}{\code{list}}
 
-\item{...}{The expressions to generate a table}
+\item{...}{A group of lambda expressions}
 
 \item{table.args}{\code{list}. The additional parameters
 passed to \code{table}}

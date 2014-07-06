@@ -2,7 +2,7 @@
 #' meet given condition
 #'
 #' @param .data \code{list}
-#' @param cond The condition
+#' @param cond A logical lambda expression
 #' @param n The maximal number of members to find out
 #' @name list.findi
 #' @export

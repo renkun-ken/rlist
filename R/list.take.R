@@ -1,7 +1,7 @@
 #' Take a number of members from a list
 #'
 #' @param .data \code{list}
-#' @param n The number of members to take out
+#' @param n \code{integer}. The number to take
 #' @param force \code{TRUE} disables the length check
 #' @name list.take
 #' @export

@@ -1,7 +1,7 @@
 #' Clean a list by a function
 #'
 #' @param .data \code{list}
-#' @param fun The function for cleaning, by default \code{is.null}.
+#' @param fun A logical \code{function} for clean
 #' @name list.clean
 #' @export
 #' @examples

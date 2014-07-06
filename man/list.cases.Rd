@@ -8,7 +8,7 @@ list.cases(.data, expr, simplify = TRUE, ..., sort = TRUE)
 \arguments{
 \item{.data}{\code{list}}
 
-\item{expr}{The expression to evaluate to find cases}
+\item{expr}{A lambda expression}
 
 \item{simplify}{\code{logical}. Should the values be simplified
 by \code{unlist}?}

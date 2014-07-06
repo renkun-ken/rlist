@@ -3,9 +3,8 @@
 #' Return subsets of a list which meet conditions.
 #'
 #' @param x The list to be subsetted
-#' @param subset A logical expression that specifies the subsetting condition
-#' @param select An expression that is evaluated for each item
-#' that satisfies the subsetting condition
+#' @param subset A logical lambda expression of subsetting condition
+#' @param select A lambda expression to evaluate for each selected item
 #' @param ... Additional parameters
 #' @name subset.list
 #' @export

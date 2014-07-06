@@ -2,7 +2,7 @@
 #' each list member.
 #'
 #' @param .data \code{list}
-#' @param expr An expression that is evaluated for each item
+#' @param expr A lambda expression
 #' @name list.iter
 #' @export
 #' @examples

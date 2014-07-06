@@ -1,8 +1,8 @@
 #' Join two lists by single or multiple keys
 #' @param x The first list
 #' @param y The second list
-#' @param xkey An expression that determines the key for list \code{x}
-#' @param ykey An expression that determines the key for list \code{y},
+#' @param xkey A lambda expression that determines the key for list \code{x}
+#' @param ykey A lambda expression that determines the key for list \code{y},
 #'    same to \code{xkey} if \code{NULL} is taken
 #' @param ... The additional parameters passed to \code{merge.data.frame}
 #' @param keep.order Should the order of \code{x} be kept?

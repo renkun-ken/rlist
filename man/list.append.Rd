@@ -8,7 +8,7 @@ list.append(.data, ...)
 \arguments{
 \item{.data}{The original list}
 
-\item{...}{A vector or list that is to be appended after \code{x}}
+\item{...}{A \code{vector} or \code{list} to append after \code{x}}
 }
 \description{
 Append a list

@@ -10,7 +10,7 @@ list.insert(.data, index, ...)
 
 \item{index}{The index at which the lists are inserted}
 
-\item{...}{A series of lists}
+\item{...}{A group of lists}
 }
 \description{
 Insert a series of lists at the given index

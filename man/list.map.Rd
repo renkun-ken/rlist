@@ -8,7 +8,7 @@ list.map(.data, expr)
 \arguments{
 \item{.data}{\code{list}}
 
-\item{expr}{An expression that is evaluated for each item}
+\item{expr}{A lambda expression}
 }
 \description{
 Map each member of a list by an expression.

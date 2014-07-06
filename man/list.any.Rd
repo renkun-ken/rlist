@@ -8,7 +8,7 @@ list.any(.data, cond, na.rm = FALSE)
 \arguments{
 \item{.data}{\code{list}}
 
-\item{cond}{An \code{expression} that returns logical value}
+\item{cond}{A logical lambda expression}
 
 \item{na.rm}{logical. If true all \code{NA} values are removed}
 }

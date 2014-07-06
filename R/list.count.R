@@ -1,7 +1,7 @@
 #' Count the number of members that meet given condition
 #'
 #' @param .data \code{list}
-#' @param cond An \code{expression} that returns a logical value
+#' @param cond A logical lambda expression
 #' @name list.count
 #' @export
 #' @examples

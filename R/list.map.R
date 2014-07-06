@@ -1,7 +1,7 @@
 #' Map each member of a list by an expression.
 #'
 #' @param .data \code{list}
-#' @param expr An expression that is evaluated for each item
+#' @param expr A lambda expression
 #' @name list.map
 #' @export
 #' @examples

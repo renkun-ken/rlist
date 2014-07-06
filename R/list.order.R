@@ -1,7 +1,7 @@
 #' Return the order of each member in a list by expression
 #'
 #' @param .data \code{list}
-#' @param ... Expressions to evaluate for ordering
+#' @param ... A group of implicit lambda expressions
 #' @param keep.names Whether to keep the names of \code{x} in the result
 #' @name list.order
 #' @export

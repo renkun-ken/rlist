@@ -10,9 +10,9 @@ list.join(x, y, xkey, ykey = NULL, ..., keep.order = TRUE)
 
 \item{y}{The second list}
 
-\item{xkey}{An expression that determines the key for list \code{x}}
+\item{xkey}{A lambda expression that determines the key for list \code{x}}
 
-\item{ykey}{An expression that determines the key for list \code{y},
+\item{ykey}{A lambda expression that determines the key for list \code{y},
 same to \code{xkey} if \code{NULL} is taken}
 
 \item{...}{The additional parameters passed to \code{merge.data.frame}}

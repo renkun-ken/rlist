@@ -9,7 +9,7 @@ list.remove(.data, range = integer())
 \item{.data}{\code{list}}
 
 \item{range}{A numeric vector of indices or
-a character vector of names to remove from \code{x}}
+a character vector of names to remove from \code{.data}}
 }
 \description{
 Remove members from a list by index or name

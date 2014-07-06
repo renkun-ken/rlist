@@ -8,7 +8,7 @@ list.group(.data, key, ...)
 \arguments{
 \item{.data}{\code{list}}
 
-\item{key}{An expression that determines the key of the group}
+\item{key}{A lambda expression for the group key}
 
 \item{...}{Additional parameters passed to \code{unique}}
 }

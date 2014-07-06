@@ -1,7 +1,7 @@
 #' Skip a number of members in a list
 #'
 #' @param .data \code{list}
-#' @param n The number of members to skip
+#' @param n \code{integer}. The number to skip
 #' @name list.skip
 #' @export
 #' @examples

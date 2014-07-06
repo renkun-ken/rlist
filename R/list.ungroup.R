@@ -1,7 +1,8 @@
 #' Ungroup a list
 #'
 #' @param .data \code{list}
-#' @param sort.names Should the members be sorted after ungrouping?
+#' @param sort.names \code{logical}. Should the members be sorted
+#' after ungrouping?
 #' @name list.ungroup
 #' @export
 #' @examples

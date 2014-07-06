@@ -8,7 +8,7 @@ list.take(.data, n, force = FALSE)
 \arguments{
 \item{.data}{\code{list}}
 
-\item{n}{The number of members to take out}
+\item{n}{\code{integer}. The number to take}
 
 \item{force}{\code{TRUE} disables the length check}
 }

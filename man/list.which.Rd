@@ -9,7 +9,7 @@ list.which(.data, cond)
 \arguments{
 \item{.data}{\code{list}}
 
-\item{cond}{The condition}
+\item{cond}{A logical lambda expression}
 }
 \description{
 Return a integer vector of the indices of list members that satisfy

@@ -1,7 +1,7 @@
 #' Get all unique cases by expression for a list
 #'
 #' @param .data \code{list}
-#' @param expr The expression to evaluate to find cases
+#' @param expr A lambda expression
 #' @param simplify \code{logical}. Should the values be simplified
 #'    by \code{unlist}?
 #' @param ... Additional parameters passed to \code{unique}

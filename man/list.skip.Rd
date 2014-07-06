@@ -8,7 +8,7 @@ list.skip(.data, n)
 \arguments{
 \item{.data}{\code{list}}
 
-\item{n}{The number of members to skip}
+\item{n}{\code{integer}. The number to skip}
 }
 \description{
 Skip a number of members in a list

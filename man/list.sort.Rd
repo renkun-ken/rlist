@@ -8,7 +8,7 @@ list.sort(.data, ...)
 \arguments{
 \item{.data}{\code{list}}
 
-\item{...}{Expressions to evaluate for sorting}
+\item{...}{A group of implicit lambda expressions}
 }
 \description{
 Sort a list by given expressions in order

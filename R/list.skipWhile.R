@@ -1,7 +1,7 @@
 #' Skip members until the given condition is broken
 #'
 #' @param .data \code{list}
-#' @param cond The condition
+#' @param cond A logical lambda expression
 #' @name list.skipWhile
 #' @export
 #' @examples

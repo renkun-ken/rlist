@@ -6,7 +6,7 @@
 list.cbind(.data)
 }
 \arguments{
-\item{.data}{The list}
+\item{.data}{\code{list}}
 }
 \description{
 Bind all list members by row

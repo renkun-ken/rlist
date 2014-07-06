@@ -1,7 +1,7 @@
 #' Sort a list by given expressions in order
 #'
 #' @param .data \code{list}
-#' @param ... Expressions to evaluate for sorting
+#' @param ... A group of implicit lambda expressions
 #' @name list.sort
 #' @export
 #' @examples

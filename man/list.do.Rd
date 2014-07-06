@@ -6,9 +6,9 @@
 list.do(.data, fun, ...)
 }
 \arguments{
-\item{.data}{The list}
+\item{.data}{\code{list}}
 
-\item{fun}{The function to call}
+\item{fun}{The \code{function} to call}
 
 \item{...}{The additional parameters passed to \code{do.call}}
 }

@@ -1,6 +1,6 @@
 #' Generate a table for a list by expression
 #' @param .data \code{list}
-#' @param ... The expressions to generate a table
+#' @param ... A group of lambda expressions
 #' @param table.args \code{list}. The additional parameters
 #'    passed to \code{table}
 #' @name list.table

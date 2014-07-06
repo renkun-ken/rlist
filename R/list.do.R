@@ -1,7 +1,7 @@
 #' Call a function with a list of arguments as provided
 #'
-#' @param .data The list
-#' @param fun The function to call
+#' @param .data \code{list}
+#' @param fun The \code{function} to call
 #' @param ... The additional parameters passed to \code{do.call}
 #' @name list.do
 #' @export

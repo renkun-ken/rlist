@@ -8,7 +8,7 @@ list.prepend(.data, ...)
 \arguments{
 \item{.data}{\code{list}}
 
-\item{...}{A vector or list that is to be prepended before \code{x}}
+\item{...}{The \code{vector} or \code{list} to prepend before \code{x}}
 }
 \description{
 Prepend a list

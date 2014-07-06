@@ -1,6 +1,6 @@
 #' Bind all list members by row
 #'
-#' @param .data The list
+#' @param .data \code{list}
 #' @name list.cbind
 #' @export
 #' @examples

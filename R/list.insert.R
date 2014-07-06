@@ -2,7 +2,7 @@
 #'
 #' @param .data \code{list}
 #' @param index The index at which the lists are inserted
-#' @param ... A series of lists
+#' @param ... A group of lists
 #' @name list.insert
 #' @export
 #' @examples

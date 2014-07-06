@@ -6,9 +6,9 @@
 list.class(.data, expr, ..., sort.cases = TRUE)
 }
 \arguments{
-\item{.data}{The list to be classified}
+\item{.data}{\code{list}}
 
-\item{expr}{An expression that determines cases}
+\item{expr}{A lambda expression}
 
 \item{...}{Additional parameters passed to \code{unique}}
 

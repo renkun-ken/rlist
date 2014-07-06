@@ -8,7 +8,8 @@ list.ungroup(.data, sort.names = FALSE)
 \arguments{
 \item{.data}{\code{list}}
 
-\item{sort.names}{Should the members be sorted after ungrouping?}
+\item{sort.names}{\code{logical}. Should the members be sorted
+after ungrouping?}
 }
 \description{
 Ungroup a list

@@ -6,7 +6,7 @@
 list.merge(...)
 }
 \arguments{
-\item{...}{A series of lists}
+\item{...}{A group of lists}
 }
 \description{
 Merge a series of lists

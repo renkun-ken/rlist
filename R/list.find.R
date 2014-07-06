@@ -1,7 +1,7 @@
 #' Find a specific number of members in a list that meeting given condition
 #'
 #' @param .data \code{list}
-#' @param cond The condition
+#' @param cond A logical lambda expression
 #' @param n The number of items to find
 #' @name list.find
 #' @export

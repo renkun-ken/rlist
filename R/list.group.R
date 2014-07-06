@@ -1,7 +1,7 @@
 #' Group a list by the value of an expression evaluated for each member.
 #'
 #' @param .data \code{list}
-#' @param key An expression that determines the key of the group
+#' @param key A lambda expression for the group key
 #' @param ... Additional parameters passed to \code{unique}
 #' @name list.group
 #' @export

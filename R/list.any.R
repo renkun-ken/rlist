@@ -1,7 +1,7 @@
 #' Get whether any list member satisfies the given condition
 #'
 #' @param .data \code{list}
-#' @param cond An \code{expression} that returns logical value
+#' @param cond A logical lambda expression
 #' @param na.rm logical. If true all \code{NA} values are removed
 #' @name list.any
 #' @export

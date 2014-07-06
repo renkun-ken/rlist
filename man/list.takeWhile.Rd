@@ -8,7 +8,7 @@ list.takeWhile(.data, cond)
 \arguments{
 \item{.data}{\code{list}}
 
-\item{cond}{The condition}
+\item{cond}{A logical lambda expression}
 }
 \description{
 Take out members until the given condition is broken

@@ -9,7 +9,7 @@ list.findi(.data, cond, n = 1L)
 \arguments{
 \item{.data}{\code{list}}
 
-\item{cond}{The condition}
+\item{cond}{A logical lambda expression}
 
 \item{n}{The maximal number of members to find out}
 }

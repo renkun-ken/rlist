@@ -6,17 +6,18 @@
 list.sample(.data, size, replace = FALSE, weight = 1, prob = NULL)
 }
 \arguments{
-\item{.data}{list{code}}
+\item{.data}{\code{list}}
 
-\item{size}{The size the sample to take}
+\item{size}{\code{integer}. The size of the sample}
 
-\item{replace}{Should sampling be with replacement?}
+\item{replace}{\code{logical}. Should sampling be with replacement?}
 
-\item{weight}{An expression to determine the weight of each list member,
-which does only takes effectt if \code{prob} is \code{NULL}.}
+\item{weight}{A lambda expression to determine the weight of
+each list member, which does only takes effect if \code{prob}
+is \code{NULL}.}
 
-\item{prob}{A vector of probability weights for obtaining the elements of the
-list being sampled.}
+\item{prob}{A \code{vector} of probability weights for
+obtaining the elements of the list being sampled.}
 }
 \description{
 Sample a list
