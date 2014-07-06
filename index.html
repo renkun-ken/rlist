@@ -127,14 +127,26 @@ p2 James  25
 </ul><h2>
 <a name="lambda-expression" class="anchor" href="#lambda-expression"><span class="octicon octicon-link"></span></a>Lambda expression</h2>
 
-<p>In this package, all functions that work with expressions support the following forms of lambda expressions:</p>
+<p>In this package, almost all functions that work with a single expression support the following forms of lambda expressions:</p>
+
+<ul>
+<li>Implicit lambda expression: <code>g(x)</code>
+</li>
+<li>Univariate lambda expressions: 
 
 <ul>
 <li><code>x ~ g(x)</code></li>
 <li><code>x -&gt; g(x)</code></li>
 <li><code>f(x) -&gt; g(x)</code></li>
+</ul>
+</li>
+<li>Multivariate lambda expressions:
+
+<ul>
 <li><code>f(x,i) -&gt; g(x,i)</code></li>
 <li><code>f(x,i,name) -&gt; g(x,i,name)</code></li>
+</ul>
+</li>
 </ul><p>where <code>x</code> refers to the list member itself, <code>i</code> denotes the index, <code>name</code> denotes the name. If the symbols are not explicitly declared, <code>.</code>, <code>.i</code> and <code>.name</code> will by default be used to represent them, respectively.</p>
 
 <div class="highlight highlight-r"><pre>nums <span class="o">&lt;-</span> <span class="kt">list</span><span class="p">(</span>a<span class="o">=</span><span class="kt">c</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="m">2</span><span class="p">,</span><span class="m">3</span><span class="p">),</span>b<span class="o">=</span><span class="kt">c</span><span class="p">(</span><span class="m">2</span><span class="p">,</span><span class="m">3</span><span class="p">,</span><span class="m">4</span><span class="p">),</span><span class="kt">c</span><span class="o">=</span><span class="kt">c</span><span class="p">(</span><span class="m">3</span><span class="p">,</span><span class="m">4</span><span class="p">,</span><span class="m">5</span><span class="p">))</span>
@@ -145,6 +157,8 @@ nums <span class="o">%&gt;&gt;%</span> list.mapv<span class="p">(</span>x <span 
 nums <span class="o">%&gt;&gt;%</span> list.filter<span class="p">(</span>x <span class="o">-&gt;</span> <span class="kp">mean</span><span class="p">(</span>x<span class="p">)</span><span class="o">&gt;=</span><span class="m">3</span><span class="p">)</span>
 nums <span class="o">%&gt;&gt;%</span> list.mapv<span class="p">(</span>f<span class="p">(</span>x<span class="p">,</span>i<span class="p">)</span> <span class="o">-&gt;</span> <span class="kp">sum</span><span class="p">(</span>x<span class="p">,</span>i<span class="p">))</span>
 </pre></div>
+
+<p><em>Note that <code>list.select</code> and <code>list.update</code> both accept a group of expressions as input arguments, but they do not support explicit lambda expressions.</em></p>
 
 <h2>
 <a name="vignettes" class="anchor" href="#vignettes"><span class="octicon octicon-link"></span></a>Vignettes</h2>
