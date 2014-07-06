@@ -87,7 +87,7 @@ The table below lists the functions currently supported.
 
 ## Lambda expression
 
-In this package, almost all functions that work with a single expression support the following forms of lambda expressions:
+In this package, almost all functions that work with expressions accept the following forms of lambda expressions:
 
 - Implicit lambda expression: `g(x)`
 - Univariate lambda expressions: 
@@ -110,7 +110,7 @@ nums %>>% list.filter(x -> mean(x)>=3)
 nums %>>% list.mapv(f(x,i) -> sum(x,i))
 ```
 
-*Note that `list.select` and `list.update` both accept a group of expressions as input arguments, but they do not support explicit lambda expressions.*
+*Note that `list.select` only accepts a group of implicit lambda expressions.*
 
 ## Vignettes
 

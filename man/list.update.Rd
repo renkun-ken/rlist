@@ -8,7 +8,7 @@ list.update(.data, ..., keep.null = FALSE)
 \arguments{
 \item{.data}{\code{list}}
 
-\item{...}{A group of implicit labmda expressions}
+\item{...}{A group of labmda expressions}
 
 \item{keep.null}{Should \code{NULL} values be preserved
 for \code{modifyList}}

@@ -8,7 +8,7 @@ list.order(.data, ..., keep.names = FALSE)
 \arguments{
 \item{.data}{\code{list}}
 
-\item{...}{A group of implicit lambda expressions}
+\item{...}{A group of lambda expressions}
 
 \item{keep.names}{Whether to keep the names of \code{x} in the result}
 }
