@@ -87,13 +87,12 @@
 devs <span class="o">%&gt;&gt;%</span> 
   list.filter<span class="p">(</span><span class="s">"music"</span> <span class="o">%in%</span> interest <span class="o">&amp;</span> <span class="s">"r"</span> <span class="o">%in%</span> <span class="kp">names</span><span class="p">(</span>lang<span class="p">))</span> <span class="o">%&gt;&gt;%</span>
   list.select<span class="p">(</span>name<span class="p">,</span>age<span class="p">)</span> <span class="o">%&gt;&gt;%</span>
-  list.rbind <span class="o">%&gt;&gt;%</span>
-  <span class="kt">data.frame</span>
+  list.stack
 </pre></div>
 
-<pre><code>    name age
-p1   Ken  24
-p2 James  25
+<pre><code>   name age
+1   Ken  24
+2 James  25
 </code></pre>
 
 <p>The example above uses <a href="http://renkun.me/pipeR/"><code>pipeR</code> package</a> for pipeline operator <code>%&gt;&gt;%</code> that chains commands in a fluent style.</p>
