@@ -56,6 +56,12 @@ unname <- function(x) {
   setnames(x,NULL)
 }
 
+unit <- function(x) x
+
+getnames <- function(x,null=character(length(x))) {
+  if(is.null(names(x))) null else names(x)
+}
+
 set_argnames <- function(args) {
   argnames <- names(args)
   if(is.null(argnames))  argnames <- character(length(args))
@@ -63,3 +69,5 @@ set_argnames <- function(args) {
   argnames[indices] <- vapply(args[indices],as.character,character(1L))
   setnames(args,argnames)
 }
+
+setmembers <- `[<-`
