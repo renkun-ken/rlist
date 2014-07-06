@@ -5,7 +5,7 @@ Minor maintainence updates.
 `list.cases` supports list-like cases
 Fixed [#23](https://github.com/renkun-ken/rlist/issues/23)
 Fixed [#25](https://github.com/renkun-ken/rlist/issues/25)
-`list.select` and `list.update` no longer accepts explicit lambda expressions.
+`list.select` no longer accepts explicit lambda expressions.
 
 
 Version 0.2.1 (2014-07-04)
