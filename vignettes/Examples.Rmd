@@ -24,8 +24,7 @@ srcData <- rnorm(1000)
 1:5 %>>% 
   list.map(sample(srcData,10)) %>>% 
   list.select(mean=mean(.),median=median(.)) %>>% 
-  list.rbind %>>% 
-  data.frame
+  list.stack
 ```
 
 ## Ungrouping classes of members
@@ -51,7 +50,6 @@ students %>>%
   list.parse(type="yaml") %>>%
   list.map(f(members,,clsname) -> members %>>% list.update(class=clsname)) %>>%
   list.ungroup %>>%
-  list.rbind %>>%
-  data.frame
+  list.stack
 ```
 

@@ -64,8 +64,7 @@ library(pipeR)
 devs %>>% 
   list.filter("music" %in% interest & "r" %in% names(lang)) %>>%
   list.select(name,age) %>>%
-  list.rbind %>>%
-  data.frame
+  list.stack
 ```
 
 The example above uses [`pipeR` package](http://renkun.me/pipeR/) for pipeline operator `%>>%` that chains commands in a fluent style.
