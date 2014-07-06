@@ -15,7 +15,7 @@
 list.skipWhile <- function(.data,cond) {
   l <- lambda(substitute(cond))
   envir <- lambda.env(parent.frame())
-  xnames <- names(.data)
+  xnames <- getnames(.data)
   index <- 0L
   for(i in seq_along(.data)) {
     xi <- .data[[i]]
