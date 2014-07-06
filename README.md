@@ -83,7 +83,7 @@ The table below lists the functions currently supported.
 - `list.update`: Update a list with partial specification
 - `list.table`: Create a table for a list by expression
 - `list.parse`: Parse `yaml`, `json` format text, or `data.frame` and `matrix` to a list with identical structure.
-- `list.load`, `list.save`: Load or save a list stored in `yaml`, `json`, `xml` or `RData` file.
+- `list.load`, `list.save`: Load or save a list stored in `yaml`, `json`  or `RData` file.
 - ...
 
 ## Lambda expression
