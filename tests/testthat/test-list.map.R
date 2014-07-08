@@ -31,3 +31,9 @@ test_that("list.mapv", {
 
   lapply(1:3,function(i) list.mapv(x,sum(.)+i))
 })
+
+test_that("list.maps", {
+  l1 <- list(p1=list(x=1,y=2), p2=list(x=3,y=4), p3=list(x=1,y=3))
+  l2 <- list(2,3,5)
+  expect_equal(list.maps(a$x*b+a$y,a=l1,b=l2),list(p1=4,p2=13,p3=8))
+})

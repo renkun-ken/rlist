@@ -9,7 +9,7 @@ knitr::opts_chunk$set(comment="#",error=FALSE,tidy=FALSE)
 
 # List mapping
 
-List mapping is to evaluate an expression for each list member. It is the fundamental operation in rlist. Almost all functions in this pacakge that work with expressions are using mapping but in different ways. The following examples demonstrate several types of mapping.
+List mapping is to evaluate an expression for each list member. It is the fundamental operation in rlist. Almost all functions in this package that work with expressions are using mapping but in different ways. The following examples demonstrate several types of mapping.
 
 ```{r}
 library(rlist)
@@ -85,3 +85,16 @@ Sometimes we don't really need the result of a mapping but its side effects. For
 list.iter(devs, cat(name,":",age,"\n"))
 ```
 
+## list.maps
+
+All the previous functions work with a single list. There are scenarios where mapping multiple lists is needed. `list.maps` evaluates an expression with multiple lists each of which is represented by a user-defined symbol at the function call.
+
+```{r}
+l1 <- list(p1=list(x=1,y=2), p2=list(x=3,y=4), p3=list(x=1,y=3))
+l2 <- list(2,3,5)
+list.maps(a$x*b+a$y,a=l1,b=l2)
+```
+
+`list.maps` does not follow the conventions of many other functions like `list.map` and `list.iter` where the data comes first and expression comes the second. Since `list.maps` supports multi-mapping with a group of lists, lambda expression is not supported to avoid ambiguity. After that the function still allow users to define the symbol that represents each list being mapped in the `...`.
+
+In the example above, `...` means `a = l1, b = l2`, so that `a` and `b` are meaningful in the first expression `a$x*b+a$y` where `a` and `b` mean the current element of each list, respectively.
