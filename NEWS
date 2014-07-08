@@ -1,6 +1,7 @@
-Version 0.2.2 (2014-07-07)
+Version 0.2.2 (2014-07-08)
 ===
 Add `list.stack` that row-binds list members to a data.frame
+Add `list.zip` that combines multiple lists element-wisely.
 Performance improvements.
 Minor maintainence updates.
 `list.cases` supports list-like cases

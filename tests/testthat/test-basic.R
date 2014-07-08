@@ -194,3 +194,9 @@ test_that("list.table", {
   expect_identical(list.table(x,type),table(type=x.types))
   expect_identical(list.table(x,type,c1=score$c1),table(type=x.types,c1=x.c1))
 })
+
+test_that("list.zip", {
+  a <- list(1,2)
+  b <- list("a","b")
+  expect_identical(list.zip(a,b),list(list(a=1,b="a"),list(a=2,b="b")))
+})

@@ -62,12 +62,12 @@ getnames <- function(x,null=character(length(x))) {
   if(is.null(names(x))) null else names(x)
 }
 
-set_argnames <- function(args) {
+set_argnames <- function(args,data=args) {
   argnames <- names(args)
   if(is.null(argnames))  argnames <- character(length(args))
   indices <- argnames=="" & vapply(args,is.name,logical(1L))
   argnames[indices] <- vapply(args[indices],as.character,character(1L))
-  setnames(args,argnames)
+  setnames(data,argnames)
 }
 
 setmembers <- `[<-`
