@@ -6,7 +6,8 @@
 list.maps(expr, ...)
 }
 \arguments{
-\item{expr}{\code{expression}. Does not accept lambda expression.}
+\item{expr}{An implicit lambda expression where only \code{.i} and
+\code{.name} are defined.}
 
 \item{...}{Named arguments of lists with equal length. The names of the
 lists are available as symbols that represent the element for each list.}

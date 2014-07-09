@@ -95,6 +95,12 @@ l2 <- list(2,3,5)
 list.maps(a$x*b+a$y,a=l1,b=l2)
 ```
 
-`list.maps` does not follow the conventions of many other functions like `list.map` and `list.iter` where the data comes first and expression comes the second. Since `list.maps` supports multi-mapping with a group of lists, lambda expression is not supported to avoid ambiguity. After that the function still allow users to define the symbol that represents each list being mapped in the `...`.
+`list.maps` does not follow the conventions of many other functions like `list.map` and `list.iter` where the data comes first and expression comes the second. Since `list.maps` supports multi-mapping with a group of lists, only implicit lambda expression is supported to avoid ambiguity. After that the function still allows users to define the symbol that represents each list being mapped in the `...`.
 
 In the example above, `...` means `a = l1, b = l2`, so that `a` and `b` are meaningful in the first expression `a$x*b+a$y` where `a` and `b` mean the current element of each list, respectively.
+
+```{r}
+list.maps(.i + a$x*b+a$y,a=l1,b=l2)
+```
+
+The expression is evaluated in an environment where `.i` and `.name` are defined as the index and name of the element for the first list, respectively.
