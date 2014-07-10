@@ -1,6 +1,6 @@
-Version 0.2.2 (2014-07-09)
+Version 0.2.2 (2014-07-10)
 ===
-Add `list.stack` that row-binds list members to a data.frame
+Add `list.stack` that binds list members to a data.frame.
 Add `list.zip` that combines multiple lists element-wisely.
 Add `list.maps` that performs mapping over multiple lists.
 Performance improvements.
