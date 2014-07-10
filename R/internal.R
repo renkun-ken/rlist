@@ -54,7 +54,7 @@ list.order.internal <- function(.data,args,envir=parent.frame(2L)) {
   list2env(list.sort.functions,envir)
   cols <- lapply(args,function(arg) {
     if(is.null(arg)) stop("NULL condition")
-    unlist(list.map.internal(.data,arg,envir = envir))
+    unlist(list.map.internal(.data,arg,envir = envir),use.names = FALSE)
   })
   do.call(order,cols)
 }
