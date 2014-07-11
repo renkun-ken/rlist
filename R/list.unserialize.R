@@ -14,7 +14,7 @@
 list.unserialize <- function(file,type=tolower(tools::file_ext(file)),...) {
   fun <- paste("list.unserialize",type,sep = ".")
   if(existsFunction(fun)) {
-    fun <- match.fun(fun)
+    fun <- get(fun,mode = "function")
     fun(file,...)
   } else {
     conn <- file(file,open="r")

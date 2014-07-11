@@ -18,7 +18,7 @@
 list.save <- function(x,file,type=tolower(tools::file_ext(file)),...) {
   fun <- paste("list.save",type,sep = ".")
   if(existsFunction(fun)) {
-    fun <- match.fun(fun)
+    fun <- get(fun,mode = "function")
     fun(x,file,...)
   } else {
     list.save.rdata(x,file,...)
