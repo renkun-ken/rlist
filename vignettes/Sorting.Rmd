@@ -28,7 +28,7 @@ devs <-
 
 ## list.order
 
-`list.order` evaluates the given lambda expressions and find out the order by default ascendingly. If the values for some members tie, the next values of the next expression, if any, will count.
+`list.order` evaluates the given lambda expressions and find out the order by default ascending. If the values for some members tie, the next values of the next expression, if any, will count.
 
 To adjust the order, use `desc` function or simple write a minus operator (`-`) before the expression.
 

@@ -50,7 +50,7 @@ str(list.ungroup(ageGroups))
 
 In non-relational data structures, a field can be a vector of multiple values. `list.cases` is used to find out all possible cases by evaluating a vector-value expression for each list member.
 
-In data `devs`, field `interest` is usually a character vector of mutiple values. The following code will find out all possible interests for all list members.
+In data `devs`, field `interest` is usually a character vector of multiple values. The following code will find out all possible interests for all list members.
 
 ```{r}
 list.cases(devs, interest)
@@ -66,7 +66,7 @@ list.cases(devs, names(lang))
 
 To group by cases, use `list.class` function. This function basically classify all list members case by case. Therefore, a long and nested list will be produces, in which the first-level denotes all the cases, and the second-level includes the original list members.
 
-Note that each list member may belong to mulitple cases, therefore the classification of the cases for each member is not exclusive. You may find one list member belong to multiple cases in the resulted list.
+Note that each list member may belong to multiple cases, therefore the classification of the cases for each member is not exclusive. You may find one list member belong to multiple cases in the resulted list.
 
 Case classification by `interest`:
 

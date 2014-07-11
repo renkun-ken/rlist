@@ -77,3 +77,5 @@ list.map(x,x+.i)
 list.map(x,f(.,i) -> . + i)
 list.map(x,.name)
 ```
+
+*Note that `list.select` does not support explicit lambda expressions.*
