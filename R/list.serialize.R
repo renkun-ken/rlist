@@ -16,7 +16,7 @@
 list.serialize <- function(x,file,type=tolower(tools::file_ext(file)),...) {
   fun <- paste("list.serialize",type,sep = ".")
   if(existsFunction(fun)) {
-    fun <- get(fun)
+    fun <- match.fun(fun)
     fun(x,file,...)
   } else {
     conn <- file(file,open="w")
