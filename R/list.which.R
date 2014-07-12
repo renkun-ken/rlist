@@ -14,5 +14,5 @@
 #' list.which(x,min(score$c1,score$c2) >= 8)
 #' }
 list.which <- function(.data,cond) {
-  which(list.if.internal(.data,substitute(cond),FALSE))
+  which(list.if.internal(.data,substitute(cond)))
 }

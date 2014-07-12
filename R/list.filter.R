@@ -13,5 +13,5 @@
 #' list.filter(x,min(score$c1,score$c2) >= 8)
 #' }
 list.filter <- function(.data,cond) {
-  list.clean(.data[list.if.internal(.data,substitute(cond),FALSE)])
+  list.clean(.data[list.if.internal(.data,substitute(cond))])
 }

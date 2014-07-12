@@ -14,5 +14,5 @@
 #' list.any(x,mean(unlist(score))>=6)
 #' }
 list.any <- function(.data,cond,na.rm=FALSE) {
-  any(list.if.internal(.data,substitute(cond),FALSE),na.rm = na.rm)
+  any(list.if.internal(.data,substitute(cond)),na.rm = na.rm)
 }

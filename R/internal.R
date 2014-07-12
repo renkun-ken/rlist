@@ -8,7 +8,7 @@ list.if.function <- function(x) {
   }
 }
 
-list.if.internal <- function(.data,cond,use.names=TRUE,envir=parent.frame(2L)) {
+list.if.internal <- function(.data,cond,envir=parent.frame(2L)) {
   if(is.null(.data) || length(.data) == 0L) return(logical(0L))
   l <- lambda(cond)
   enclos <- lambda.env(envir)
@@ -18,7 +18,7 @@ list.if.internal <- function(.data,cond,use.names=TRUE,envir=parent.frame(2L)) {
     list.if.function(eval(l$expr,list.env(.data),enclos))
   },list(.data),list(.data),list(seq_along(.data)),list(xnames))
   names(args) <- c("f",".data",l$symbols)
-  unlist(do.call(Map, args),use.names = use.names)
+  as.logical(do.call(Map, args))
 }
 
 list.findi.internal <- function(.data,cond,n,envir=parent.frame(2L)) {
