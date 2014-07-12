@@ -200,3 +200,9 @@ test_that("list.zip", {
   b <- list("a","b")
   expect_identical(list.zip(a,b),list(list(a=1,b="a"),list(a=2,b="b")))
 })
+
+test_that("list.flatten", {
+  p <- list(a=1,b=list(b1=2,b2=3),c=list(c1=list(c11="a",c12="x"),c2=3))
+  expect_identical(list.flatten(p),list(a=1,b.b1=2,b.b2=3,c.c1.c11="a",
+    c.c1.c12="x",c.c2=3))
+})
