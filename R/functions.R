@@ -1,5 +1,6 @@
 .lambda <- list(symbols=c(".",".i",".name"))
 .nsymbol <- length(.lambda$symbols)
+.nfsymbol <- 2L + .nsymbol
 
 lambda <- function(expr) {
   .lambda$expr <- expr

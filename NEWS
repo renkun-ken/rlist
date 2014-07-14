@@ -1,7 +1,8 @@
-Version 0.2.3 (2014-07-11)
+Version 0.2.3 (2014-07-15)
 ===
-Improve performance
+Improve performance (#26)
 Add `list.flatten` that flattens a nested list to one-level.
+
 
 
 Version 0.2.2 (2014-07-11)

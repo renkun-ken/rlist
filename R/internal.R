@@ -1,24 +1,17 @@
-list.if.function <- function(x) {
-  if(is.logical(x)) {
+list.if.fun <- function(.data,.expr) {
+  x <- eval(.expr,
+    if(is.list(.data) || is.environment(.data)) .data
+    else if(is.atomic(.data) || !is.null(names(.data))) as.vector(.data,"list")
+    else NULL,
+    environment())
+  if(is.logical(x) && length(x) >= 1L) {
     if(length(x) == 1L) x
-    else if(length(x > 1L)) stop("Multiple values are encountered")
-    else NA
-  } else {
-    NA
-  }
+    else if(length(x) > 1L) stop("Multiple values are encountered")
+  } else NA
 }
 
 list.if.internal <- function(.data,cond,envir=parent.frame(2L)) {
-  if(is.null(.data) || length(.data) == 0L) return(logical(0L))
-  l <- lambda(cond)
-  enclos <- lambda.env(envir)
-  xnames <- list(names(.data))
-  args <- c(function(.data,...) {
-    list2env(list(...),enclos)
-    list.if.function(eval(l$expr,list.env(.data),enclos))
-  },list(.data),list(.data),list(seq_along(.data)),list(xnames))
-  names(args) <- c("f",".data",l$symbols)
-  as.logical(do.call(Map, args))
+  as.logical(list.map.internal(.data,cond,list.if.fun,envir))
 }
 
 list.findi.internal <- function(.data,cond,n,envir=parent.frame(2L)) {
@@ -43,16 +36,21 @@ list.findi.internal <- function(.data,cond,n,envir=parent.frame(2L)) {
   indices
 }
 
-list.map.internal <- function(.data,expr,envir=parent.frame(2L)) {
+list.map.fun <- function(.data,.expr) {
+  eval(.expr,
+    if(is.list(.data) || is.environment(.data)) .data
+    else if(is.atomic(.data) || !is.null(names(.data))) as.vector(.data,"list")
+    else NULL,
+    environment())
+}
+
+list.map.internal <- function(.data,expr,fun=list.map.fun,envir=parent.frame(2L)) {
   if(is.null(.data) || length(.data) == 0L) return(.data)
   l <- lambda(expr)
-  enclos <- lambda.env(envir)
-  xnames <- list(names(.data))
-  args <- c(function(.data,...) {
-    list2env(list(...),enclos)
-    eval(l$expr,list.env(.data),enclos)
-  },list(.data),list(.data),list(seq_along(.data)),list(xnames))
-  names(args) <- c("f",".data",l$symbols)
+  xnames <- getnames(.data,character(1L))
+  environment(fun) <- envir
+  formals(fun) <- setnames(vector("list",.nfsymbol),c(".data",".expr",l$symbols))
+  args <- list(fun,.data,list(l$expr),.data,seq_along(.data),xnames)
   do.call(Map, args)
 }
 
