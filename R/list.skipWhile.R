@@ -13,24 +13,8 @@
 #' list.skipWhile(x,min(score$c1,score$c2) >= 8)
 #' }
 list.skipWhile <- function(.data,cond) {
-  l <- lambda(substitute(cond))
-  envir <- lambda.env(parent.frame())
-  xnames <- getnames(.data,character(1L))
-  xnnames <- length(xnames)
-  index <- 0L
-  for(i in seq_along(.data)) {
-    xi <- .data[[i]]
-    args <- setnames(list(xi,i,xnames[(i-1L) %% xnnames + 1L]),l$symbols)
-    list2env(args,envir)
-    result <- eval(l$expr,list.env(xi),envir)
-    if(is.logical(result)) {
-      if(length(result) == 1L && result) index <- i
-      else if(length(result) > 1L) stop("Multiple values are encountered")
-      else if(length(result) == 0L) stop("Undetermined value")
-      else break
-    } else {
-      stop("Results must be logical")
-    }
-  }
-  .data[-(0L:index)]
+  .i <- 0L
+  try(list.map.internal(.data,substitute(cond),
+    list.while.fun,parent.frame()),silent = TRUE)
+  .data[-(0L:.i)]
 }
