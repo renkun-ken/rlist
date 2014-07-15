@@ -1,3 +1,17 @@
+list.map.fun <- function(.data,.expr) {
+  eval(.expr,.list.env(.data),environment())
+}
+
+list.map.internal <- function(.data,expr,fun=list.map.fun,envir=parent.frame(2L)) {
+  if(is.null(.data) || length(.data) == 0L) return(.data)
+  l <- lambda(expr)
+  xnames <- getnames(.data,character(1L))
+  environment(fun) <- envir
+  formals(fun) <- setnames(vector("list",.nfsymbol),c(".data",".expr",l$symbols))
+  args <- list(fun,.data,list(l$expr),.data,seq_along(.data),xnames)
+  do.call(Map, args)
+}
+
 list.if.fun <- function(.data,.expr) {
   x <- eval(.expr,.list.env(.data),environment())
   if(is.logical(x) && length(x) == 1L) x else NA
@@ -31,20 +45,6 @@ list.while.fun <- function(.data,.expr) {
   x <- eval(.expr,.list.env(.data),environment())
   if(is.logical(x) && length(x) == 1L && x) env$.i <- env$.i + 1L
   else stop()
-}
-
-list.map.fun <- function(.data,.expr) {
-  eval(.expr,.list.env(.data),environment())
-}
-
-list.map.internal <- function(.data,expr,fun=list.map.fun,envir=parent.frame(2L)) {
-  if(is.null(.data) || length(.data) == 0L) return(.data)
-  l <- lambda(expr)
-  xnames <- getnames(.data,character(1L))
-  environment(fun) <- envir
-  formals(fun) <- setnames(vector("list",.nfsymbol),c(".data",".expr",l$symbols))
-  args <- list(fun,.data,list(l$expr),.data,seq_along(.data),xnames)
-  do.call(Map, args)
 }
 
 list.order.internal <- function(.data,args,envir=parent.frame(2L)) {

@@ -24,8 +24,6 @@ lambda <- function(expr) {
   .lambda
 }
 
-lambda.env <- function(envir) new.env(FALSE,envir)
-
 #' @export
 .list.env <- function(x) {
   if(is.list(x) || is.environment(x)) x
@@ -40,8 +38,6 @@ dots <- function(...) {
 list.sort.functions <- list(desc=`-`)
 
 setnames <- `names<-`
-
-unname <- function(x) setnames(x,NULL)
 
 getnames <- function(x,null=NULL) if(is.null(names(x))) null else names(x)
 
