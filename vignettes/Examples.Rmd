@@ -53,3 +53,31 @@ students %>>%
   list.stack
 ```
 
+## Finding prime numbers
+
+The following can tell whether an integer is a prime number.
+
+```{r}
+is.prime <- function(num) {
+   if (num == 2L) {
+      TRUE
+   } else if (any(num %% 2L:(num-1L) == 0L)) {
+      FALSE
+   } else { 
+      TRUE
+   }
+}
+```
+
+To find 50 prime numbers no greater than 1000, we can use `list.find()`.
+
+```{r}
+list.find(1:1000,is.prime(.),50)
+```
+
+To find all prime numbers no greater than 500, we can use `list.filter()`.
+
+```{r}
+list.filter(1:500,is.prime(.))
+```
+
