@@ -34,7 +34,7 @@ list.parse.default <- function(x,...) {
 #' @export
 #' @rdname list.parse
 list.parse.matrix <- function(x,...) {
-  apply(x,1,as.vector,mode="list")
+  apply(x,1L,as.vector,mode="list")
 }
 
 #' @export
