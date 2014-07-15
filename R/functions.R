@@ -26,7 +26,8 @@ lambda <- function(expr) {
 
 lambda.env <- function(envir) new.env(FALSE,envir)
 
-list.env <- function(x) {
+#' @export
+.list.env <- function(x) {
   if(is.list(x) || is.environment(x)) x
   else if(is.vector(x) && !is.null(names(x))) as.vector(x,"list")
   else NULL
