@@ -1,9 +1,5 @@
 list.if.fun <- function(.data,.expr) {
-  x <- eval(.expr,
-    if(is.list(.data) || is.environment(.data)) .data
-    else if(is.atomic(.data) || !is.null(names(.data))) as.vector(.data,"list")
-    else NULL,
-    environment())
+  x <- eval(.expr,.list.env(.data),environment())
   if(is.logical(x) && length(x) == 1L) x else NA
 }
 
@@ -14,11 +10,7 @@ list.if.internal <- function(.data,cond,envir=parent.frame(2L)) {
 list.findi.fun <- function(.data,.expr) {
   env <- parent.frame(4L)
   env$.i <- env$.i + 1L
-  x <- eval(.expr,
-    if(is.list(.data) || is.environment(.data)) .data
-    else if(is.atomic(.data) || !is.null(names(.data))) as.vector(.data,"list")
-    else NULL,
-    environment())
+  x <- eval(.expr,.list.env(.data),environment())
   if(is.logical(x) && length(x) == 1L && x) {
     env$.n <- env$.n + 1L
     env$.indices <- c(env$.indices, env$.i)
@@ -36,21 +28,13 @@ list.findi.internal <- function(.data,cond,n,envir=parent.frame(2L)) {
 
 list.while.fun <- function(.data,.expr) {
   env <- parent.frame(4L)
-  x <- eval(.expr,
-    if(is.list(.data) || is.environment(.data)) .data
-    else if(is.atomic(.data) || !is.null(names(.data))) as.vector(.data,"list")
-    else NULL,
-    environment())
+  x <- eval(.expr,.list.env(.data),environment())
   if(is.logical(x) && length(x) == 1L && x) env$.i <- env$.i + 1L
   else stop()
 }
 
 list.map.fun <- function(.data,.expr) {
-  eval(.expr,
-    if(is.list(.data) || is.environment(.data)) .data
-    else if(is.atomic(.data) || !is.null(names(.data))) as.vector(.data,"list")
-    else NULL,
-    environment())
+  eval(.expr,.list.env(.data),environment())
 }
 
 list.map.internal <- function(.data,expr,fun=list.map.fun,envir=parent.frame(2L)) {
