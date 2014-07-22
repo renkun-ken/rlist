@@ -36,19 +36,18 @@
 
 <p><a href="https://travis-ci.org/renkun-ken/rlist"><img src="https://travis-ci.org/renkun-ken/rlist.png?branch=master" alt="Build Status"></a></p>
 
-<p>rlist is a toolset for working with list objects. It has two main goals:</p>
+<p>rlist is a set of tools for working with list objects. It has two main goals:</p>
 
 <ul>
-<li>Make it easier to work with list objects used to store data in more flexible structures than data frames.</li>
-<li>Perform a wide range of functions on non-relational data using list constructs.</li>
+<li>Make it easier to work with lists</li>
+<li>Capitalize the ability that lists store non-relational data</li>
+<li>Perform a wide range of functions on non-relational data stored in lists</li>
 </ul><p><a href="https://github.com/renkun-ken/rlist/releases">Release notes</a></p>
-
-<p><em>Notice: Currently, this package may not be stable enough for production purpose. Its functions and implmentations may change overtime and cannot guarantee the backward compatibility at the moment. Please be cautious when you use it in production.</em></p>
 
 <h2>
 <a name="installation" class="anchor" href="#installation"><span class="octicon octicon-link"></span></a>Installation</h2>
 
-<p>You can install the lastest released version from CRAN with</p>
+<p>You can install the lastest released version from <a href="http://cran.r-project.org/web/packages/rlist/">CRAN</a> with</p>
 
 <div class="highlight highlight-r"><pre>install.packages<span class="p">(</span><span class="s">"rlist"</span><span class="p">)</span>
 </pre></div>
@@ -65,7 +64,8 @@
 
 <p>Suppose we have a list of developers, each of whom has a name, age, a few interests, a list of programming languages they use and the number of years they have been using them.</p>
 
-<div class="highlight highlight-r"><pre>devs <span class="o">&lt;-</span> 
+<div class="highlight highlight-r"><pre><span class="kn">library</span><span class="p">(</span>rlist<span class="p">)</span>
+devs <span class="o">&lt;-</span> 
   <span class="kt">list</span><span class="p">(</span>
     p1<span class="o">=</span><span class="kt">list</span><span class="p">(</span>name<span class="o">=</span><span class="s">"Ken"</span><span class="p">,</span>age<span class="o">=</span><span class="m">24</span><span class="p">,</span>
       interest<span class="o">=</span><span class="kt">c</span><span class="p">(</span><span class="s">"reading"</span><span class="p">,</span><span class="s">"music"</span><span class="p">,</span><span class="s">"movies"</span><span class="p">),</span>
@@ -80,10 +80,62 @@
 
 <p>This type of data is non-relational since it does not well fit the shape of a data table yet it can be easily stored in JSON or YAML format. In R, list object is powerful enough to represent a wide range of non-relational datasets like this. This package provides a wide range of functions to query this type of data.</p>
 
-<p>In the following example, we query the name of each developer who likes music and uses R, and put the results in a data frame.</p>
+<h2>
+<a name="examples" class="anchor" href="#examples"><span class="octicon octicon-link"></span></a>Examples</h2>
 
-<div class="highlight highlight-r"><pre><span class="kn">library</span><span class="p">(</span>rlist<span class="p">)</span>
-<span class="kn">library</span><span class="p">(</span>pipeR<span class="p">)</span>
+<p>Filter those who like music and has been using R for more than 3 years.</p>
+
+<div class="highlight highlight-r"><pre>subset1 <span class="o">&lt;-</span> list.filter<span class="p">(</span>devs<span class="p">,</span> <span class="s">"music"</span> <span class="o">%in%</span> interest <span class="o">&amp;</span> lang<span class="o">$</span>r <span class="o">&gt;=</span> <span class="m">3</span><span class="p">)</span>
+str<span class="p">(</span>subset1<span class="p">)</span>
+</pre></div>
+
+<pre><code>List of 1
+ $ p2:List of 4
+  ..$ name    : chr "James"
+  ..$ age     : num 25
+  ..$ interest: chr [1:2] "sports" "music"
+  ..$ lang    :List of 3
+  .. ..$ r   : num 3
+  .. ..$ java: num 2
+  .. ..$ cpp : num 5
+</code></pre>
+
+<p>Select their names and ages.</p>
+
+<div class="highlight highlight-r"><pre>subset2 <span class="o">&lt;-</span> list.select<span class="p">(</span>devs<span class="p">,</span> name<span class="p">,</span> age<span class="p">)</span>
+str<span class="p">(</span>subset2<span class="p">)</span>
+</pre></div>
+
+<pre><code>List of 3
+ $ p1:List of 2
+  ..$ name: chr "Ken"
+  ..$ age : num 24
+ $ p2:List of 2
+  ..$ name: chr "James"
+  ..$ age : num 25
+ $ p3:List of 2
+  ..$ name: chr "Penny"
+  ..$ age : num 24
+</code></pre>
+
+<p>Map each of them to the number of interests.</p>
+
+<div class="highlight highlight-r"><pre>result <span class="o">&lt;-</span> list.map<span class="p">(</span>devs<span class="p">,</span> <span class="kp">length</span><span class="p">(</span>interest<span class="p">))</span>
+str<span class="p">(</span>result<span class="p">)</span>
+</pre></div>
+
+<pre><code>List of 3
+ $ p1: int 3
+ $ p2: int 2
+ $ p3: int 2
+</code></pre>
+
+<h2>
+<a name="using-pipeline" class="anchor" href="#using-pipeline"><span class="octicon octicon-link"></span></a>Using pipeline</h2>
+
+<p>Query the name of each developer who likes music and uses R, and put the results in a data frame.</p>
+
+<div class="highlight highlight-r"><pre><span class="kn">library</span><span class="p">(</span>pipeR<span class="p">)</span>
 devs <span class="o">%&gt;&gt;%</span> 
   list.filter<span class="p">(</span><span class="s">"music"</span> <span class="o">%in%</span> interest <span class="o">&amp;</span> <span class="s">"r"</span> <span class="o">%in%</span> <span class="kp">names</span><span class="p">(</span>lang<span class="p">))</span> <span class="o">%&gt;&gt;%</span>
   list.select<span class="p">(</span>name<span class="p">,</span>age<span class="p">)</span> <span class="o">%&gt;&gt;%</span>
@@ -95,35 +147,9 @@ devs <span class="o">%&gt;&gt;%</span>
 2 James  25
 </code></pre>
 
-<p>The example above uses <a href="http://renkun.me/pipeR/"><code>pipeR</code> package</a> for pipeline operator <code>%&gt;&gt;%</code> that chains commands in a fluent style.</p>
+<p>The example above uses <code>pipeR</code>(<a href="http://renkun.me/pipeR/">http://renkun.me/pipeR/</a>) package for pipeline operator <code>%&gt;&gt;%</code> that chains commands in a fluent style.</p>
 
-<p>The table below lists the functions currently supported.</p>
-
-<ul>
-<li>
-<code>list.map</code>: Map each list member by an expression</li>
-<li>
-<code>list.filter</code>: Filter the list by an logical expression</li>
-<li>
-<code>list.select</code>: Select by expressions for each list item</li>
-<li>
-<code>list.sort</code>: Sort the list by an expression</li>
-<li>
-<code>list.group</code>: Group the list members by an expression</li>
-<li>
-<code>list.class</code>: Classify the list members by a vector expression</li>
-<li>
-<code>list.join</code>: Join two lists by an expression</li>
-<li>
-<code>list.update</code>: Update a list with partial specification</li>
-<li>
-<code>list.table</code>: Create a table for a list by expression</li>
-<li>
-<code>list.parse</code>: Parse <code>yaml</code>, <code>json</code> format text, or <code>data.frame</code> and <code>matrix</code> to a list with identical structure.</li>
-<li>
-<code>list.load</code>, <code>list.save</code>: Load or save a list stored in <code>yaml</code>, <code>json</code>  or <code>RData</code> file.</li>
-<li>...</li>
-</ul><h2>
+<h2>
 <a name="lambda-expression" class="anchor" href="#lambda-expression"><span class="octicon octicon-link"></span></a>Lambda expression</h2>
 
 <p>In this package, almost all functions that work with expressions accept the following forms of lambda expressions:</p>
@@ -149,29 +175,35 @@ devs <span class="o">%&gt;&gt;%</span>
 </ul><p>where <code>x</code> refers to the list member itself, <code>i</code> denotes the index, <code>name</code> denotes the name. If the symbols are not explicitly declared, <code>.</code>, <code>.i</code> and <code>.name</code> will by default be used to represent them, respectively.</p>
 
 <div class="highlight highlight-r"><pre>nums <span class="o">&lt;-</span> <span class="kt">list</span><span class="p">(</span>a<span class="o">=</span><span class="kt">c</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="m">2</span><span class="p">,</span><span class="m">3</span><span class="p">),</span>b<span class="o">=</span><span class="kt">c</span><span class="p">(</span><span class="m">2</span><span class="p">,</span><span class="m">3</span><span class="p">,</span><span class="m">4</span><span class="p">),</span><span class="kt">c</span><span class="o">=</span><span class="kt">c</span><span class="p">(</span><span class="m">3</span><span class="p">,</span><span class="m">4</span><span class="p">,</span><span class="m">5</span><span class="p">))</span>
-nums <span class="o">%&gt;&gt;%</span>
-  list.map<span class="p">(</span><span class="kt">data.frame</span><span class="p">(</span>min<span class="o">=</span><span class="kp">min</span><span class="p">(</span><span class="m">.</span><span class="p">),</span>max<span class="o">=</span><span class="kp">max</span><span class="p">(</span><span class="m">.</span><span class="p">)))</span> <span class="o">%&gt;&gt;%</span>
-  list.rbind
-nums <span class="o">%&gt;&gt;%</span> list.mapv<span class="p">(</span>x <span class="o">~</span> <span class="kp">sum</span><span class="p">(</span>x<span class="p">))</span>
-nums <span class="o">%&gt;&gt;%</span> list.filter<span class="p">(</span>x <span class="o">-&gt;</span> <span class="kp">mean</span><span class="p">(</span>x<span class="p">)</span><span class="o">&gt;=</span><span class="m">3</span><span class="p">)</span>
-nums <span class="o">%&gt;&gt;%</span> list.mapv<span class="p">(</span>f<span class="p">(</span>x<span class="p">,</span>i<span class="p">)</span> <span class="o">-&gt;</span> <span class="kp">sum</span><span class="p">(</span>x<span class="p">,</span>i<span class="p">))</span>
+list.map<span class="p">(</span>nums<span class="p">,</span> <span class="kt">c</span><span class="p">(</span>min<span class="o">=</span><span class="kp">min</span><span class="p">(</span><span class="m">.</span><span class="p">),</span>max<span class="o">=</span><span class="kp">max</span><span class="p">(</span><span class="m">.</span><span class="p">)))</span>
+list.mapv<span class="p">(</span>nums<span class="p">,</span> x <span class="o">~</span> <span class="kp">sum</span><span class="p">(</span>x<span class="p">))</span>
+list.filter<span class="p">(</span>nums<span class="p">,</span> x <span class="o">-&gt;</span> <span class="kp">mean</span><span class="p">(</span>x<span class="p">)</span><span class="o">&gt;=</span><span class="m">3</span><span class="p">)</span>
+list.mapv<span class="p">(</span>nums<span class="p">,</span> f<span class="p">(</span>x<span class="p">,</span>i<span class="p">)</span> <span class="o">-&gt;</span> <span class="kp">sum</span><span class="p">(</span>x<span class="p">,</span>i<span class="p">))</span>
 </pre></div>
-
-<p><em>Note that <code>list.select</code> only accepts a group of implicit lambda expressions.</em></p>
 
 <h2>
 <a name="vignettes" class="anchor" href="#vignettes"><span class="octicon octicon-link"></span></a>Vignettes</h2>
 
-<p>The package also provides detailed vignettes for most functions. Read them in R with</p>
+<p>The package also provides detailed vignettes for most functions. </p>
 
-<div class="highlight highlight-r"><pre>vignette<span class="p">(</span><span class="s">"introduction"</span><span class="p">,</span> package <span class="o">=</span> <span class="s">"rlist"</span><span class="p">)</span>
-</pre></div>
-
-<h2>
+<ul>
+<li><a href="http://cran.r-project.org/web/packages/rlist/vignettes/Introduction.html">Introduction to rlist</a></li>
+<li><a href="http://cran.r-project.org/web/packages/rlist/vignettes/Mapping.html">List Mapping</a></li>
+<li><a href="http://cran.r-project.org/web/packages/rlist/vignettes/Filtering.html">List Filtering</a></li>
+<li><a href="http://cran.r-project.org/web/packages/rlist/vignettes/Sorting.html">List Sorting</a></li>
+<li><a href="http://cran.r-project.org/web/packages/rlist/vignettes/Grouping.html">List Grouping</a></li>
+<li><a href="http://cran.r-project.org/web/packages/rlist/vignettes/Joining.html">List Joining</a></li>
+<li><a href="http://cran.r-project.org/web/packages/rlist/vignettes/Updating.html">List Updating</a></li>
+<li><a href="http://cran.r-project.org/web/packages/rlist/vignettes/IO.html">List Input/Output</a></li>
+<li><a href="http://cran.r-project.org/web/packages/rlist/vignettes/Lambda.html">Lambda expressions</a></li>
+<li><a href="http://cran.r-project.org/web/packages/rlist/vignettes/Examples.html">Examples</a></li>
+</ul><h2>
 <a name="help-overview" class="anchor" href="#help-overview"><span class="octicon octicon-link"></span></a>Help overview</h2>
 
 <div class="highlight highlight-r"><pre>help<span class="p">(</span>package <span class="o">=</span> rlist<span class="p">)</span>
 </pre></div>
+
+<p>or view the documentation on <a href="http://cran.r-project.org/web/packages/rlist/rlist.pdf">CRAN</a></p>
 
 <h2>
 <a name="license" class="anchor" href="#license"><span class="octicon octicon-link"></span></a>License</h2>
