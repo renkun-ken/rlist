@@ -4,18 +4,17 @@
 
 [![Build Status](https://travis-ci.org/renkun-ken/rlist.png?branch=master)](https://travis-ci.org/renkun-ken/rlist)
 
-rlist is a toolset for working with list objects. It has two main goals:
+rlist is a set of tools for working with list objects. It has two main goals:
 
-- Make it easier to work with list objects used to store data in more flexible structures than data frames.
-- Perform a wide range of functions on non-relational data using list constructs.
+- Make it easier to work with lists
+- Capitalize the ability that lists store non-relational data
+- Perform a wide range of functions on non-relational data stored in lists
 
 [Release notes](https://github.com/renkun-ken/rlist/releases)
 
-*Notice: Currently, this package may not be stable enough for production purpose. Its functions and implmentations may change overtime and cannot guarantee the backward compatibility at the moment. Please be cautious when you use it in production.*
-
 ## Installation
 
-You can install the lastest released version from CRAN with
+You can install the lastest released version from [CRAN](http://cran.r-project.org/web/packages/rlist/) with
 
 ```r
 install.packages("rlist")
@@ -35,6 +34,7 @@ Suppose we have a list of developers, each of whom has a name, age, a few intere
 
 
 ```r
+library(rlist)
 devs <- 
   list(
     p1=list(name="Ken",age=24,
@@ -50,11 +50,70 @@ devs <-
 
 This type of data is non-relational since it does not well fit the shape of a data table yet it can be easily stored in JSON or YAML format. In R, list object is powerful enough to represent a wide range of non-relational datasets like this. This package provides a wide range of functions to query this type of data.
 
-In the following example, we query the name of each developer who likes music and uses R, and put the results in a data frame.
+## Examples
+
+Filter those who like music and has been using R for more than 3 years.
 
 
 ```r
-library(rlist)
+subset1 <- list.filter(devs, "music" %in% interest & lang$r >= 3)
+str(subset1)
+```
+
+```
+List of 1
+ $ p2:List of 4
+  ..$ name    : chr "James"
+  ..$ age     : num 25
+  ..$ interest: chr [1:2] "sports" "music"
+  ..$ lang    :List of 3
+  .. ..$ r   : num 3
+  .. ..$ java: num 2
+  .. ..$ cpp : num 5
+```
+
+Select their names and ages.
+
+
+```r
+subset2 <- list.select(devs, name, age)
+str(subset2)
+```
+
+```
+List of 3
+ $ p1:List of 2
+  ..$ name: chr "Ken"
+  ..$ age : num 24
+ $ p2:List of 2
+  ..$ name: chr "James"
+  ..$ age : num 25
+ $ p3:List of 2
+  ..$ name: chr "Penny"
+  ..$ age : num 24
+```
+
+Map each of them to the number of interests.
+
+
+```r
+result <- list.map(devs, length(interest))
+str(result)
+```
+
+```
+List of 3
+ $ p1: int 3
+ $ p2: int 2
+ $ p3: int 2
+```
+
+## Using pipeline
+
+Query the name of each developer who likes music and uses R, and put the results in a data frame.
+
+
+```r
 library(pipeR)
 devs %>>% 
   list.filter("music" %in% interest & "r" %in% names(lang)) %>>%
@@ -68,22 +127,7 @@ devs %>>%
 2 James  25
 ```
 
-The example above uses [`pipeR` package](http://renkun.me/pipeR/) for pipeline operator `%>>%` that chains commands in a fluent style.
-
-The table below lists the functions currently supported.
-
-- `list.map`: Map each list member by an expression
-- `list.filter`: Filter the list by an logical expression
-- `list.select`: Select by expressions for each list item
-- `list.sort`: Sort the list by an expression
-- `list.group`: Group the list members by an expression
-- `list.class`: Classify the list members by a vector expression
-- `list.join`: Join two lists by an expression
-- `list.update`: Update a list with partial specification
-- `list.table`: Create a table for a list by expression
-- `list.parse`: Parse `yaml`, `json` format text, or `data.frame` and `matrix` to a list with identical structure.
-- `list.load`, `list.save`: Load or save a list stored in `yaml`, `json`  or `RData` file.
-- ...
+The example above uses `pipeR`(http://renkun.me/pipeR/) package for pipeline operator `%>>%` that chains commands in a fluent style.
 
 ## Lambda expression
 
@@ -102,29 +146,34 @@ where `x` refers to the list member itself, `i` denotes the index, `name` denote
 
 ```r
 nums <- list(a=c(1,2,3),b=c(2,3,4),c=c(3,4,5))
-nums %>>%
-  list.map(data.frame(min=min(.),max=max(.))) %>>%
-  list.rbind
-nums %>>% list.mapv(x ~ sum(x))
-nums %>>% list.filter(x -> mean(x)>=3)
-nums %>>% list.mapv(f(x,i) -> sum(x,i))
+list.map(nums, c(min=min(.),max=max(.)))
+list.mapv(nums, x ~ sum(x))
+list.filter(nums, x -> mean(x)>=3)
+list.mapv(nums, f(x,i) -> sum(x,i))
 ```
-
-*Note that `list.select` only accepts a group of implicit lambda expressions.*
 
 ## Vignettes
 
-The package also provides detailed vignettes for most functions. Read them in R with
+The package also provides detailed vignettes for most functions. 
 
-```r
-vignette("introduction", package = "rlist")
-```
+- [Introduction to rlist](http://cran.r-project.org/web/packages/rlist/vignettes/Introduction.html)
+- [List Mapping](http://cran.r-project.org/web/packages/rlist/vignettes/Mapping.html)
+- [List Filtering](http://cran.r-project.org/web/packages/rlist/vignettes/Filtering.html)
+- [List Sorting](http://cran.r-project.org/web/packages/rlist/vignettes/Sorting.html)
+- [List Grouping](http://cran.r-project.org/web/packages/rlist/vignettes/Grouping.html)
+- [List Joining](http://cran.r-project.org/web/packages/rlist/vignettes/Joining.html)
+- [List Updating](http://cran.r-project.org/web/packages/rlist/vignettes/Updating.html)
+- [List Input/Output](http://cran.r-project.org/web/packages/rlist/vignettes/IO.html)
+- [Lambda expressions](http://cran.r-project.org/web/packages/rlist/vignettes/Lambda.html)
+- [Examples](http://cran.r-project.org/web/packages/rlist/vignettes/Examples.html)
 
 ## Help overview
 
 ```r
 help(package = rlist)
 ```
+
+or view the documentation on [CRAN](http://cran.r-project.org/web/packages/rlist/rlist.pdf)
 
 ## License
 
