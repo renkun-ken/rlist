@@ -10,7 +10,7 @@ list.cases(.data, expr, simplify = TRUE, ..., sort = TRUE)
 
 \item{expr}{A lambda expression}
 
-\item{simplify}{\code{logical}. Should the values be simplified
+\item{simplify}{\code{logical}. Should atomic vectors be simplified
 by \code{unlist}?}
 
 \item{...}{Additional parameters passed to \code{unique}}

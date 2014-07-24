@@ -2,7 +2,7 @@
 #'
 #' @param .data \code{list}
 #' @param expr A lambda expression
-#' @param simplify \code{logical}. Should the values be simplified
+#' @param simplify \code{logical}. Should atomic vectors be simplified
 #'    by \code{unlist}?
 #' @param ... Additional parameters passed to \code{unique}
 #' @param sort \code{logical}. Should the cases be sorted in ascending order?
