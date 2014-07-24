@@ -80,6 +80,24 @@ Case classification by `names(lang)`:
 str(list.class(devs, names(lang)))
 ```
 
+## list.common
+
+This function returns the common cases by evaluting a given expression for all list members.
+
+Get the common interests of all developers.
+
+```{r}
+list.common(devs, interest)
+```
+
+It concludes that no interest are common to every one.
+
+Or get the common programming languages they all use.
+
+```{r}
+list.common(devs, names(lang))
+```
+
 ## list.table
 
 `table` function is often used to create a table with multiple dimensions. `list.table` is its counterpart that creates a table in which each dimension results from an expression.
