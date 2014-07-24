@@ -167,6 +167,17 @@ test_that("list.cases", {
   lapply(c("A","B"),function(i) list.cases(x,type==i))
 })
 
+test_that("list.common", {
+  x <- list(c("a","b","c"),c("a","b"),c("b","c"))
+  expect_equal(list.common(x,.),c("b"))
+
+  x <- list(p1 = list(type="A",score=list(c1=10,c2=8)),
+    p2 = list(type="B",score=list(c1=9,c2=9)),
+    p3 = list(type="B",score=list(c1=9,c2=7)))
+  expect_equal(list.common(x,names(.)),c("type","score"))
+  expect_equal(list.common(x,names(score)),c("c1","c2"))
+})
+
 test_that("list.all", {
   x <- list(p1 = list(type="A",score=list(c1=10,c2=8)),
     p2 = list(type="B",score=list(c1=9,c2=9)),
