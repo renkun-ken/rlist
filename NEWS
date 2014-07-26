@@ -1,3 +1,7 @@
+Version 0.2.5 (2014-07-26)
+===
+Add `list.apply` which is a wrapper function of lapply.
+
 Version 0.2.4 (2014-07-26)
 ===
 Add `list.common` that returns the common cases of all list member by expression.
