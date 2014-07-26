@@ -9,11 +9,7 @@ knitr::opts_chunk$set(comment="#",error=FALSE,tidy=FALSE)
 
 # Introduction to rlist
 
-rlist is a set of tools for working with list objects. It has two main goals:
-
-- Make it easier to work with lists
-- Capitalize the ability that lists store non-relational data
-- Perform a wide range of functions on non-relational data stored in lists
+rlist is a set of tools for working with list objects. Its goal is to make it easier to work with lists by providing a wide range of functions on non-tabular data stored in them.
 
 ## Installation
 
