@@ -13,7 +13,8 @@ Depends:
 Date: 2014-07-24
 Suggests:
     testthat,
-    knitr
+    knitr,
+    pipeR
 Imports:
     data.table,
     yaml,
