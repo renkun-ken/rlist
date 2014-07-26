@@ -24,9 +24,8 @@ list.load <- function(file,type=tolower(tools::file_ext(file)),...) {
 
 list.load.json <- function(file,...) {
   jsonlite::fromJSON(file,
-    simplifyVector = FALSE,
     simplifyDataFrame = FALSE,
-    simplifyMatrix = FALSE,...)
+    ...)
 }
 
 list.load.yaml <- function(file,...) {
