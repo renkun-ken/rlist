@@ -10,7 +10,7 @@ rlist is a set of tools for working with list objects. Its goal is to make it ea
 
 ## Installation
 
-You can install the lastest released version from [CRAN](http://cran.r-project.org/web/packages/rlist/) with
+You can install the latest released version from [CRAN](http://cran.r-project.org/web/packages/rlist/) with
 
 ```r
 install.packages("rlist")
