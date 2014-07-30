@@ -1,0 +1,23 @@
+<!--
+%\VignetteEngine{knitr}
+%\VignetteIndexEntry{List searching}
+-->
+
+```{r, echo = FALSE, message = FALSE}
+knitr::opts_chunk$set(comment="#",error=FALSE,tidy=FALSE)
+```
+
+# List searching
+
+
+## Exact searching
+
+
+
+## Case searching
+
+
+
+## Fuzzy searching
+
+

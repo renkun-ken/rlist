@@ -1,6 +1,7 @@
 Version 0.2.5 (2014-07-30)
 ===
 Add `list.apply` which is a wrapper function of lapply.
+Add `list.search` that searches a list recursively.
 Enhance `list.clean` and it now supports recursively cleaning.
 
 Version 0.2.4 (2014-07-26)

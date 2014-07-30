@@ -123,6 +123,7 @@ The package also provides detailed vignettes for most functions.
 - [List Grouping](http://cran.r-project.org/web/packages/rlist/vignettes/Grouping.html)
 - [List Joining](http://cran.r-project.org/web/packages/rlist/vignettes/Joining.html)
 - [List Updating](http://cran.r-project.org/web/packages/rlist/vignettes/Updating.html)
+- [List Searching](http://cran.r-project.org/web/packages/rlist/vignettes/Searching.html)
 - [List Input/Output](http://cran.r-project.org/web/packages/rlist/vignettes/IO.html)
 - [Lambda expressions](http://cran.r-project.org/web/packages/rlist/vignettes/Lambda.html)
 - [Examples](http://cran.r-project.org/web/packages/rlist/vignettes/Examples.html)
