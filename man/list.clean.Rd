@@ -3,12 +3,15 @@
 \alias{list.clean}
 \title{Clean a list by a function}
 \usage{
-list.clean(.data, fun = function(x) is.null(x) || length(x) == 0L)
+list.clean(.data, fun = is.null, recursive = FALSE)
 }
 \arguments{
 \item{.data}{\code{list}}
 
 \item{fun}{A logical \code{function} for clean}
+
+\item{recursive}{\code{logical}. Should the list be
+cleaned recursively?}
 }
 \description{
 Clean a list by a function
