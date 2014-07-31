@@ -4,7 +4,8 @@
 #' @param value The value to search
 #' @param fun A logical \code{function} to compare value and list values
 #' @param ... Additional parameters passed to \code{fun}
-#' @param classes A character vector of class names that restrict the search
+#' @param classes A character vector of class names that restrict the search. By default, the search range is restrcited to the class of \code{value}, so that types are strictly distinguished, that is, searching numeric \code{1} does not include comparing integer \code{1L}. To broader the search range, add more values to \code{classes} such as \code{classes = c("numeric","integer")}.
+#' @param unlist \code{logical} Should the result be unlisted?
 #' @name list.search
 #' @export
 #' @examples
@@ -33,18 +34,54 @@
 #'   p5 = list(name="Kwen",age=31)
 #' )
 #'
-#' list.search(data,"Ken",stringdist::ain, maxDist=1)
-#' list.search(data,"Ken",function(x,y) stringdist::stringdist(x,y) < 1)
+#' list.search(data,"Ken",anyLike(1))
+#' list.search(data,"Ken",allLike(1))
 #' }
-list.search <- function(.data, value, fun = identical, ...,
+list.search <- function(.data, value, fun = equal, ...,
   classes = class(value), unlist = FALSE) {
   fun <- match.fun(fun)
   results <- rapply(.data,function(obj) {
     if(fun(value,obj,...)) obj
-  },classes=classes,how=if(unlist) "unlist" else "list")
+  },classes = classes,how = if(unlist) "unlist" else "list")
   if(!unlist) {
     results <- list.clean(results,
       fun = is.null.or.empty, recursive = TRUE)
   }
   results
+}
+
+#' Fuzzy searching functions
+#' @name fuzzy-searching
+#' @param dist string distance
+#' @param ... Additional parameter passed to \code{stringdist} functions
+#' @return a closure \code{function(x,y)}
+#' @export
+allLike <- function(dist,...) {
+  function(x,y) {
+    all(stringdist::stringdist(x,y,...) <= dist)
+  }
+}
+
+#' @export
+#' @rdname fuzzy-searching
+allUnlike <- function(dist,...) {
+  function(x,y) {
+    all(stringdist::stringdist(x,y,...) >= dist)
+  }
+}
+
+#' @export
+#' @rdname fuzzy-searching
+anyLike <- function(dist,...) {
+  function(x,y) {
+    stringdist::ain(x,y,maxDist=dist,...)
+  }
+}
+
+#' @export
+#' @rdname fuzzy-searching
+anyUnlike <- function(dist,...) {
+  function(x,y) {
+    any(stringdist::stringdist(x,y,...) >= dist)
+  }
 }

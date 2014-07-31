@@ -2,9 +2,29 @@ context("list.search")
 
 test_that("list.search", {
 
-  # simple list
+  # exact search
   x <- list(p1 = list(type="A",score=list(c1=10,c2=8)),
     p2 = list(type="B",score=list(c1=9,c2=9)),
     p3 = list(type="B",score=list(c1=9,c2=7)))
 
+  expect_identical(list.search(x,"A"),list(p1=list(type="A")))
+  expect_identical(list.search(x,"A",unlist = TRUE),c(p1.type="A"))
+  expect_identical(list.search(x,9),
+    list(p2=list(score=list(c1=9,c2=9)),p3=list(score=list(c1=9))))
+
+  # case search
+  x <- list(p1 = list(x=c("A","B","C"),y=list(y1="A",y2=c("B","C"))),
+    p2 = list(a=c("A","B"),b=list(b1=c("B","C"),b2=list("C","B"))))
+
+  expect_identical(list.search(x,"A","%in%"),list(p1=list(x=c("A","B","C"),y=list(y1="A")),p2=list(a=c("A","B"))))
+
+  # fuzzy search
+  x <- list(
+    p1 = list(name="Ken",age=24),
+    p2 = list(name="Kent",age=26),
+    p3 = list(name="Sam",age=24),
+    p4 = list(name="Keynes",age=30),
+    p5 = list(name="Kwen",age=31))
+  expect_equal(list.search(x,"Ken",anyLike(1),unlist = TRUE),c(p1.name="Ken",p2.name="Kent",p5.name="Kwen"))
+  expect_identical(list.search(x,"Ken",allLike(0L)),list(p1=list(name="Ken")))
 })

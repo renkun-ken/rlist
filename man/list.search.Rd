@@ -3,7 +3,7 @@
 \alias{list.search}
 \title{Search a list recusively by a value}
 \usage{
-list.search(.data, value, fun = identical, ..., classes = class(value),
+list.search(.data, value, fun = equal, ..., classes = class(value),
   unlist = FALSE)
 }
 \arguments{
@@ -15,7 +15,9 @@ list.search(.data, value, fun = identical, ..., classes = class(value),
 
 \item{...}{Additional parameters passed to \code{fun}}
 
-\item{classes}{A character vector of class names that restrict the search}
+\item{classes}{A character vector of class names that restrict the search. By default, the search range is restrcited to the class of \code{value}, so that types are strictly distinguished, that is, searching numeric \code{1} does not include comparing integer \code{1L}. To broader the search range, add more values to \code{classes} such as \code{classes = c("numeric","integer")}.}
+
+\item{unlist}{\code{logical} Should the result be unlisted?}
 }
 \description{
 Search a list recusively by a value
@@ -46,8 +48,8 @@ data <- list(
   p5 = list(name="Kwen",age=31)
 )
 
-list.search(data,"Ken",stringdist::ain, maxDist=1)
-list.search(data,"Ken",function(x,y) stringdist::stringdist(x,y) < 1)
+list.search(data,"Ken",anyLike(1))
+list.search(data,"Ken",allLike(1))
 }
 }
 
