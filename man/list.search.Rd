@@ -50,6 +50,15 @@ data <- list(
 
 list.search(data,"Ken",anyLike(1))
 list.search(data,"Ken",allLike(1))
+
+x <- list(
+  p1 = list(name=c("Ken", "Ren"),age=24),
+  p2 = list(name=c("Kent", "Potter"),age=26),
+  p3 = list(name=c("Sam", "Lee"),age=24),
+  p4 = list(name=c("Keynes", "Bond"),age=30),
+  p5 = list(name=c("Kwen", "Hu"),age=31))
+list.search(data,"Ken",allUnlike(1))
+list.search(data,"Ken",anyUnlike(2))
 }
 }
 
