@@ -1,9 +1,10 @@
-Version 0.2.5 (2014-07-31)
+Version 0.2.5 (2014-08-01)
 ===
 Add `list.apply` which is a wrapper function of lapply.
 Add `list.search` that searches a list recursively.
-Add fuzzy searching functions: `allLike`, `anyLike`, `allUnlike`, and `anyUnlike`, based on stringdist package.
-Enhance `list.clean` and it now supports recursively cleaning.
+Add exact search functions: `equal`, `unequal`, `unidentical`, `include`, and `exclude`.
+Add fuzzy search functions: `like` and `unlike` based on stringdist package.
+Enhance `list.clean` which now supports recursive cleaning.
 
 Version 0.2.4 (2014-07-26)
 ===

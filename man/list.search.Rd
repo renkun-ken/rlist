@@ -3,27 +3,32 @@
 \alias{list.search}
 \title{Search a list recusively by a value}
 \usage{
-list.search(.data, fun, value, ..., classes = class(value), unlist = FALSE)
+list.search(.data, when, how, what, ..., na.rm = FALSE,
+  classes = class(what), unlist = FALSE)
 }
 \arguments{
 \item{.data}{\code{list}}
 
-\item{fun}{A logical comparer \code{function}.
+\item{when}{\code{function}: \code{any} or \code{all}}
+
+\item{how}{A logical comparer \code{function}.
 
     Exact search comparers
 
-    \code{identical}, \code{allEqual}, \code{anyEqual},
-    \code{unidentical}, \code{allUnequal}, \code{anyUnequal}
+    \code{identical}, \code{unidentical},
+    \code{equal}, \code{unequal}
+    \code{include}, \code{exclude}
 
     Fuzzy search comparers
 
-    \code{anyLike(dist)}, \code{allLike(dist)},
-    \code{anyUnlike(dist)}, \code{allUnlike(dist)} where
+    \code{like(dist)}, \code{unlike(dist)} where
     \code{dist} is the maximum or minimum string distance.}
 
-\item{value}{The value to search}
+\item{what}{The value to search}
 
 \item{...}{Additional parameters passed to \code{fun}}
+
+\item{na.rm}{\code{logical} Should \code{NA} be ignored?}
 
 \item{classes}{A character vector of class names that restrict the search. By default, the search range is restrcited to the class of \code{value}, so that types are strictly distinguished, that is, searching numeric \code{1} does not include comparing integer \code{1L}. To broader the search range, add more values to \code{classes} such as \code{classes = c("numeric","integer")}.}
 
@@ -42,14 +47,25 @@ x <- list(p1 = list(type="A",score=c(c1=9)),
        p4 = list(type=c("B","C"),score=c(c1=8,c2=NA)))
 
 ## Search identical values
-list.search(x, identical, "A")
-list.search(x, identical, c("A","B"))
-list.search(x, identical, c(10,8))
-list.search(x, identical, c(c1=10,c2=8))
+list.search(x, any, identical, "A")
+list.search(x, any, identical, c("A","B"))
+list.search(x, any ,identical, c(10,8))
+list.search(x, any, identical, c(c1=9,c2=7))
 
 ## Search all equal values
-list.search(x, allEqual, 9)
-list.search(x, allEqual, c(10,8))
+list.search(x, all, equal, 9)
+list.search(x, all, equal, c(8,9))
+list.search(x, all, equal, c(8,9), na.rm = TRUE)
+
+## Search any equal values
+list.search(x, any, equal, 9)
+list.search(x, any, equal, c(8,9))
+
+## Search all/any included/excluded values
+list.search(x, all, include, 9)
+list.search(x, all, include, c(9,10))
+list.search(x, any, include, c(9,10))
+list.search(x, all, exclude, c(7,9,10))
 
 # Fuzzy search
 
@@ -61,8 +77,7 @@ data <- list(
   p5 = list(name="Kwen",age=31)
 )
 
-list.search(data,anyLike(1), "Ken")
-list.search(data,allLike(1), "Ken")
+list.search(data, any, like(1), "Ken")
 
 data <- list(
   p1 = list(name=c("Ken", "Ren"),age=24),
@@ -71,10 +86,10 @@ data <- list(
   p4 = list(name=c("Keynes", "Bond"),age=30),
   p5 = list(name=c("Kwen", "Hu"),age=31))
 
-list.search(data, allLike(1), "Ken")
-list.search(data, anyLike(1), "Ken")
-list.search(data, allUnlike(1), "Ken")
-list.search(data, anyUnlike(1), "Ken")
+list.search(data, all, like(1), "Ken")
+list.search(data, any, like(1), "Ken")
+list.search(data, all, unlike(1), "Ken")
+list.search(data, any, unlike(1), "Ken")
 }
 }
 
