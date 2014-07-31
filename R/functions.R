@@ -53,7 +53,3 @@ set_argnames <- function(args,data=args) {
 setmembers <- `[<-`
 
 is.null.or.empty <- function(x) is.null(x) || length(x) == 0L
-
-equal <- function(x,y) {
-  all(x == y)
-}

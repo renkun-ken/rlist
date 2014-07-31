@@ -3,15 +3,25 @@
 \alias{list.search}
 \title{Search a list recusively by a value}
 \usage{
-list.search(.data, value, fun = equal, ..., classes = class(value),
-  unlist = FALSE)
+list.search(.data, fun, value, ..., classes = class(value), unlist = FALSE)
 }
 \arguments{
 \item{.data}{\code{list}}
 
-\item{value}{The value to search}
+\item{fun}{A logical comparer \code{function}.
 
-\item{fun}{A logical \code{function} to compare value and list values}
+    Exact search comparers
+
+    \code{identical}, \code{allEqual}, \code{anyEqual},
+    \code{unidentical}, \code{allUnequal}, \code{anyUnequal}
+
+    Fuzzy search comparers
+
+    \code{anyLike(dist)}, \code{allLike(dist)},
+    \code{anyUnlike(dist)}, \code{allUnlike(dist)} where
+    \code{dist} is the maximum or minimum string distance.}
+
+\item{value}{The value to search}
 
 \item{...}{Additional parameters passed to \code{fun}}
 
@@ -25,21 +35,24 @@ Search a list recusively by a value
 \examples{
 \dontrun{
 # Exact search
-x <- list(p1 = list(type="A",score=list(c1=10,c2=8)),
-       p2 = list(type="B",score=list(c1=9,c2=9)),
-       p3 = list(type="B",score=list(c1=9,c2=7)))
-list.search(x, 9)
 
-# Case search
-data <- list(
-  p1 = list(x=c("A","B"),y=c("A","C")),
-  p2 = list(q=c("B","C"),p=c("A","C","B")),
-  p3 = list(m=list(c("A","B"),c("B","C")),n=c("A"))
-)
+x <- list(p1 = list(type="A",score=c(c1=9)),
+       p2 = list(type=c("A","B"),score=c(c1=8,c2=9)),
+       p3 = list(type=c("B","C"),score=c(c1=9,c2=7)),
+       p4 = list(type=c("B","C"),score=c(c1=8,c2=NA)))
 
-list.search(data,"A","\%in\%")
+## Search identical values
+list.search(x, identical, "A")
+list.search(x, identical, c("A","B"))
+list.search(x, identical, c(10,8))
+list.search(x, identical, c(c1=10,c2=8))
 
-# Fuzzy search with \\code{stringdist} package
+## Search all equal values
+list.search(x, allEqual, 9)
+list.search(x, allEqual, c(10,8))
+
+# Fuzzy search
+
 data <- list(
   p1 = list(name="Ken",age=24),
   p2 = list(name="Kent",age=26),
@@ -48,17 +61,20 @@ data <- list(
   p5 = list(name="Kwen",age=31)
 )
 
-list.search(data,"Ken",anyLike(1))
-list.search(data,"Ken",allLike(1))
+list.search(data,anyLike(1), "Ken")
+list.search(data,allLike(1), "Ken")
 
-x <- list(
+data <- list(
   p1 = list(name=c("Ken", "Ren"),age=24),
   p2 = list(name=c("Kent", "Potter"),age=26),
   p3 = list(name=c("Sam", "Lee"),age=24),
   p4 = list(name=c("Keynes", "Bond"),age=30),
   p5 = list(name=c("Kwen", "Hu"),age=31))
-list.search(data,"Ken",allUnlike(1))
-list.search(data,"Ken",anyUnlike(2))
+
+list.search(data, allLike(1), "Ken")
+list.search(data, anyLike(1), "Ken")
+list.search(data, allUnlike(1), "Ken")
+list.search(data, anyUnlike(1), "Ken")
 }
 }
 

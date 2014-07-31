@@ -7,16 +7,20 @@ test_that("list.search", {
     p2 = list(type="B",score=list(c1=9,c2=9)),
     p3 = list(type="B",score=list(c1=9,c2=7)))
 
-  expect_identical(list.search(x,"A"),list(p1=list(type="A")))
-  expect_identical(list.search(x,"A",unlist = TRUE),c(p1.type="A"))
-  expect_identical(list.search(x,9),
+  expect_identical(list.search(x,identical,"A"),
+    list(p1=list(type="A")))
+  expect_identical(list.search(x,identical,"A",unlist = TRUE),
+    c(p1.type="A"))
+  expect_identical(list.search(x,identical,9),
     list(p2=list(score=list(c1=9,c2=9)),p3=list(score=list(c1=9))))
 
   # case search
   x <- list(p1 = list(x=c("A","B","C"),y=list(y1="A",y2=c("B","C"))),
     p2 = list(a=c("A","B"),b=list(b1=c("B","C"),b2=list("C","B"))))
 
-  expect_identical(list.search(x,"A","%in%"),list(p1=list(x=c("A","B","C"),y=list(y1="A")),p2=list(a=c("A","B"))))
+  expect_identical(list.search(x,anyEqual,"A"),
+    list(p1=list(x=c("A","B","C"),y=list(y1="A")),
+      p2=list(a=c("A","B"))))
 
   # fuzzy search
   x <- list(
@@ -25,8 +29,10 @@ test_that("list.search", {
     p3 = list(name="Sam",age=24),
     p4 = list(name="Keynes",age=30),
     p5 = list(name="Kwen",age=31))
-  expect_equal(list.search(x,"Ken",anyLike(1),unlist = TRUE),c(p1.name="Ken",p2.name="Kent",p5.name="Kwen"))
-  expect_identical(list.search(x,"Ken",allLike(0L)),list(p1=list(name="Ken")))
+  expect_equal(list.search(x,anyLike(1),"Ken",unlist = TRUE),
+    c(p1.name="Ken",p2.name="Kent",p5.name="Kwen"))
+  expect_identical(list.search(x,allLike(0L),"Ken"),
+    list(p1=list(name="Ken")))
 
   x <- list(
     p1 = list(name=c("Ken", "Ren"),age=24),
@@ -34,6 +40,9 @@ test_that("list.search", {
     p3 = list(name=c("Sam", "Lee"),age=24),
     p4 = list(name=c("Keynes", "Bond"),age=30),
     p5 = list(name=c("Kwen", "Hu"),age=31))
-  expect_equal(list.search(x,"Ken",allLike(1)),list(p1=list(name=c("Ken","Ren"))))
-  expect_equal(list.search(x,"Ken",allUnlike(2)),list(p3=list(name=c("Sam","Lee")),p4=list(name=c("Keynes", "Bond"))))
+  expect_equal(list.search(x,allLike(1),"Ken"),
+    list(p1=list(name=c("Ken","Ren"))))
+  expect_equal(list.search(x,allUnlike(2),"Ken"),
+    list(p3=list(name=c("Sam","Lee")),
+      p4=list(name=c("Keynes", "Bond"))))
 })
