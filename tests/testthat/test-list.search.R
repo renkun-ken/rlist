@@ -27,4 +27,13 @@ test_that("list.search", {
     p5 = list(name="Kwen",age=31))
   expect_equal(list.search(x,"Ken",anyLike(1),unlist = TRUE),c(p1.name="Ken",p2.name="Kent",p5.name="Kwen"))
   expect_identical(list.search(x,"Ken",allLike(0L)),list(p1=list(name="Ken")))
+
+  x <- list(
+    p1 = list(name=c("Ken", "Ren"),age=24),
+    p2 = list(name=c("Kent", "Potter"),age=26),
+    p3 = list(name=c("Sam", "Lee"),age=24),
+    p4 = list(name=c("Keynes", "Bond"),age=30),
+    p5 = list(name=c("Kwen", "Hu"),age=31))
+  expect_equal(list.search(x,"Ken",allLike(1)),list(p1=list(name=c("Ken","Ren"))))
+  expect_equal(list.search(x,"Ken",allUnlike(2)),list(p3=list(name=c("Sam","Lee")),p4=list(name=c("Keynes", "Bond"))))
 })

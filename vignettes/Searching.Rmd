@@ -78,14 +78,14 @@ x <- list(
     p5 = list(name="Kwen",age=31))
 ```
 
-rlist's built-in functions `anyLike(dist,...)` and `allLike(dist,...)` that internally call `stringdist::ain` and `stringdist::stringdist` can handle fuzzy searching to meet a wide range of demands. 
+rlist's built-in functions `anyLike(dist,...)` and `allLike(dist,...)` that internally call `stringdist::ain` and `stringdist::stringdist` handle fuzzy searching to meet a wide range of demands. 
 
 For both functions, `dist` means the maximum string distance between the actual value in the list and the search term you specify, and `...` is the additional parameters passed to their internally called functions. More specifically,
 
 - `allLike(1)` means the string distances of **ALL** values in the character vector must be no greater than one to be qualified as a search result.
 - `anyLike(1)` means that **ANY** value in the character vector in the list whose string distance is no greater than one will make the vector qualified as a search result.
 
-Similar logic also applies to `allUnlike()` and `anyUnlike()`.
+Similar logic also applies to `allUnlike()` and `anyUnlike()` as their names suggests.
 
 For example, if we want to find out names similar with `"Ken"` with maximum distance 1, we only have to specify `fun = allLike(1)`.
 

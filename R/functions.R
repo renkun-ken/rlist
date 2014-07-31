@@ -39,7 +39,8 @@ list.sort.functions <- list(desc=`-`)
 
 setnames <- `names<-`
 
-getnames <- function(x,null=NULL) if(is.null(names(x))) null else names(x)
+getnames <- function(x, null = NULL)
+  if(is.null(names(x))) null else names(x)
 
 set_argnames <- function(args,data=args) {
   argnames <- names(args)
