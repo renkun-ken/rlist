@@ -69,7 +69,7 @@ list.search(x, all, identical, c(10,8))
 
 The result is none. If you are familiar with how function `identical` works, you should not feel surprises since this may be the strongest comparer to tell whether two objects are the same: Two objects are identical when and only when they have absolutely the same structure including values and names. That explains why there is no numeric vector like `c(10,8)` because all numeric vectors in `x` are named vectors like `c(c1=10,c2=8)`. 
 
-To compare values between atomic vectors just like using `==`, we can use `allEqual`, `anyEqual`, `allUnequal`, or `anyUnequal` as the comparer function.
+To compare values between atomic vectors just like using `==`, we can use `equal` or `unequal` as comparer function.
 
 ### Seach equal values
 
