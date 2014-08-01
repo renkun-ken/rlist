@@ -57,3 +57,9 @@ list.order.internal <- function(.data,args,envir=parent.frame(2L)) {
   })
   do.call(order,cols)
 }
+
+list.search.fun <- function(.data, .expr,
+  . = .data, .i = NA_integer_, .name = NA_character_) {
+  q <- eval(.expr, environment(), NULL)
+  if(is.logical(q) && length(q) == 1L && !is.na(q) && q) .data
+}

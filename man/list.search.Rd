@@ -3,34 +3,17 @@
 \alias{list.search}
 \title{Search a list recusively by a value}
 \usage{
-list.search(.data, when, how, what, ..., na.rm = FALSE,
-  classes = class(what), unlist = FALSE)
+list.search(.data, expr, classes = "ANY", unlist = FALSE)
 }
 \arguments{
 \item{.data}{\code{list}}
 
-\item{when}{\code{function}: \code{any} or \code{all}}
+\item{expr}{a lambda expression with respect to value that returns
+a single-valued logical vector. In the expression, exact and fuzzy search
+functions are recommended.}
 
-\item{how}{A logical comparer \code{function}.
-
-    Exact search comparers
-
-    \code{identical}, \code{unidentical},
-    \code{equal}, \code{unequal}
-    \code{include}, \code{exclude}
-
-    Fuzzy search comparers
-
-    \code{like(dist)}, \code{unlike(dist)} where
-    \code{dist} is the maximum or minimum string distance.}
-
-\item{what}{The value to search}
-
-\item{...}{Additional parameters passed to \code{fun}}
-
-\item{na.rm}{\code{logical} Should \code{NA} be ignored?}
-
-\item{classes}{A character vector of class names that restrict the search. By default, the search range is restrcited to the class of \code{value}, so that types are strictly distinguished, that is, searching numeric \code{1} does not include comparing integer \code{1L}. To broader the search range, add more values to \code{classes} such as \code{classes = c("numeric","integer")}.}
+\item{classes}{a character vector of class names that restrict the search.
+By default, the range is unrestricted (\code{ANY}).}
 
 \item{unlist}{\code{logical} Should the result be unlisted?}
 }
@@ -46,26 +29,26 @@ x <- list(p1 = list(type="A",score=c(c1=9)),
        p3 = list(type=c("B","C"),score=c(c1=9,c2=7)),
        p4 = list(type=c("B","C"),score=c(c1=8,c2=NA)))
 
-## Search identical values
-list.search(x, any, identical, "A")
-list.search(x, any, identical, c("A","B"))
-list.search(x, any ,identical, c(10,8))
-list.search(x, any, identical, c(c1=9,c2=7))
+## Search exact values
+list.search(x, exact("A"))
+list.search(x, exact(c("A","B")))
+list.search(x, exact(c(9,7)))
+list.search(x, exact(c(c1=9,c2=7)))
 
 ## Search all equal values
-list.search(x, all, equal, 9)
-list.search(x, all, equal, c(8,9))
-list.search(x, all, equal, c(8,9), na.rm = TRUE)
+list.search(x, all(equal(9)), "numeric")
+list.search(x, all(equal(c(8,9))), "numeric")
+list.search(x, all(equal(c(8,9)),na.rm = TRUE), "numeric")
 
 ## Search any equal values
-list.search(x, any, equal, 9)
-list.search(x, any, equal, c(8,9))
+list.search(x, any(equal(9)), "numeric",)
+list.search(x, any(equal(c(8,9))), "numeric")
 
 ## Search all/any included/excluded values
-list.search(x, all, include, 9)
-list.search(x, all, include, c(9,10))
-list.search(x, any, include, c(9,10))
-list.search(x, all, exclude, c(7,9,10))
+list.search(x, include(9), "numeric")
+list.search(x, all(include(c(9,10))), "numeric")
+list.search(x, any(include(c(9,10))), "numeric")
+list.search(x, all(!include(c(7,9,10))), "numeric")
 
 # Fuzzy search
 
@@ -77,7 +60,9 @@ data <- list(
   p5 = list(name="Kwen",age=31)
 )
 
-list.search(data, any, like(1), "Ken")
+list.search(data, like(1)("Ken"), "character")
+list.search(data, like(2)("Man"), "character")
+list.search(data, !like(2)("Man"), "character")
 
 data <- list(
   p1 = list(name=c("Ken", "Ren"),age=24),
@@ -86,10 +71,10 @@ data <- list(
   p4 = list(name=c("Keynes", "Bond"),age=30),
   p5 = list(name=c("Kwen", "Hu"),age=31))
 
-list.search(data, all, like(1), "Ken")
-list.search(data, any, like(1), "Ken")
-list.search(data, all, unlike(1), "Ken")
-list.search(data, any, unlike(1), "Ken")
+list.search(data, all(like(1)("Ken")), "character")
+list.search(data, any(like(1)("Ken")), "character")
+list.search(data, all(!like(1)("Ken")), "character")
+list.search(data, any(!like(1)("Ken")), "character")
 }
 }
 
