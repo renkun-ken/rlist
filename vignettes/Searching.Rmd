@@ -189,7 +189,7 @@ Search all character vectors in which all elements are unlike "Ken" due to strin
 list.search(x, all(!like("Ken",2)), "character")
 ```
 
-Search all character vectors `c(x,y)` like `c("Ken","Hu")` together with both string distance no greater than 2, that ,is, the distances between `x` and "Ken" as well as that between `y` and "Hu"` should be no greater than 2.
+Search all character vectors `c(x,y)` like `c("Ken","Hu")` with both string distances no greater than 2, that ,is, the distances between `x` and "Ken" as well as that between `y` and "Hu"` should be no greater than 2.
 
 ```{r}
 list.search(x, all(like(c("Ken","Hu"),2)), "character")
