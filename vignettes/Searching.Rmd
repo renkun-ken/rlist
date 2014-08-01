@@ -12,22 +12,17 @@ funcall <- function(fun) {
 
 # List searching
 
-rlist provides searching capabilities, that is, find values within a list without specifying the key or searching path. `list.search` handles a variety of search demands. The following is the definition of this function.
+rlist provides searching capabilities, that is, find values within a list recursively. `list.search` handles a variety of search demands. The following is the definition of this function.
 
 ```r
-list.search(.data, when, how, what, ...,
-  na.rm = FALSE, classes = class(what), unlist = FALSE)
+list.search(.data, expr, classes = "ANY", unlist = FALSE)
 ```
 
 Definition of arguments:
 
 - `.data`: the list to be searched
-- `when`: the function to aggregate returned logical vector: `all` or `any`
-- `how`: `identical`, `unidentical`, `equal`, `unequal`, `include`,  `exclude`, `like(dist)`, or `unlike(dist)`?
-- `what`: the value to search
-- `...`: additional parameters passed to `how` function
-- `na.rm`: should `when` function ignore `NA` values?
-- `classes`: a character vector of the classes to be examined
+- `expr`: a lambda expression with respect to value that returns a single-valued logical vector. In the expression, exact and fuzzy search functions are recommended.
+- `classes`: a character vector of class names that restrict the search. By default, the range is unrestricted by taking value `"ANY"`.
 - `unlist`: should the final result be unlisted?
 
 ## Exact search
@@ -41,85 +36,84 @@ x <- list(p1 = list(type="A",score=c(c1=9)),
   p4 = list(type=c("B","C"),score=c(c1=8,c2=NA)))
 ```
 
-### Search identical values
+### Search exact values
 
-First, we search all values in the list that is identical to "A".
+First, we search all values in the list that is exactly identical to "A".
 
 ```{r}
-list.search(x, all, identical, "A")
+list.search(x, exact("A"))
 ```
 
 Only values that are identical to character vector `"A"` will be put in the resulting list. We can also unlist the result.
 
 ```{r}
-list.search(x, all, identical, "A", unlist = TRUE)
+list.search(x, exact("A"), unlist = TRUE)
 ```
 
 Then, we search all values identical to `c("A","B")`.
 
 ```{r}
-list.search(x, all, identical, c("A","B"))
+list.search(x, exact(c("A","B")))
 ```
 
-Next, we search if there is a numeric vector `c(10,8)`.
+Next, we search values exactly identical to numeric vector `c(9,7)`.
 
 ```{r}
-list.search(x, all, identical, c(10,8))
+list.search(x, exact(c(9,7)))
 ```
 
-The result is none. If you are familiar with how function `identical` works, you should not feel surprises since this may be the strongest comparer to tell whether two objects are the same: Two objects are identical when and only when they have absolutely the same structure including values and names. That explains why there is no numeric vector like `c(10,8)` because all numeric vectors in `x` are named vectors like `c(c1=10,c2=8)`. 
+The result is none. If you are familiar with how function `identical` works, you should not feel surprised since this may be the strongest comparer to tell whether two objects are the same: Two objects are identical when and only when they have absolutely the same structure including values and names. And `exact()` is a wrapper function of `identical()`. That explains why there is no numeric vector exactly identical to `c(9,7)` because all numeric vectors in `x` also have names `c1` and `c2`.
 
-To compare values between atomic vectors just like using `==`, we can use `equal` or `unequal` as comparer function.
+To compare values between atomic vectors just like using `==`, we can use `equal` as comparer function, which only compare vectors with the same mode and equal length.
 
 ### Seach equal values
 
-Search length-1 numeric vectors all equal to 9.
+Search length-1 numeric vectors equal to 9.
 
 ```{r}
-list.search(x, all, equal, 9)
+list.search(x, equal(9))
 ```
 
-Search length-2 numeric vectors all equal to `c(8,9)`.
+Search length-2 numeric vectors all values equal to `c(8,9)` respectively.
 
 ```{r}
-list.search(x, all, equal, c(8,9))
+list.search(x, all(equal(c(8,9))))
 ```
 
 Search length-2 numeric vectors all equal to `c(8,9)` ignoring `NA`.
 
 ```{r}
-list.search(x, all, equal, c(8,9), na.rm = TRUE)
+list.search(x, all(equal(c(8,9)), na.rm = TRUE))
 ```
 
-Search length-1 character vectors in which any value equals "A".
+Search length-1 character vectors equal to "A".
 
 ```{r}
-list.search(x, any, equal, "A")
+list.search(x, equal("A"))
 ```
 
-Search length-1 numeric vectors in which any value equals 8.
+Search length-1 numeric vectors equal to 8.
 
 ```{r}
-list.search(x, any, equal, 8)
+list.search(x, equal(8))
 ```
 
 Search length-2 numeric vectors `c(x,y)` for which any correspondent values are equal, that is, `any(c(x,y)==c(8,9))` is `TRUE`.
 
 ```{r}
-list.search(x, any, equal, c(8,9))
+list.search(x, any(equal(c(8,9))))
 ```
-
 
 Search all numeric vectors in which both 8 and 9 are included.
 
 ```{r}
-list.search(x, all, include, c(8,9))
+list.search(x, all(include(c(8,9))))
 ```
 
 Search all numeric vectors in which any of 7, 8, or 10 is included.
 
 ```{r}
-list.search(x, any, include, c(7,8,10))
+list.search(x, any(include(c(7,8,10))))
 ```
 
 ## Fuzzy search
@@ -135,23 +129,41 @@ x <- list(
     p5 = list(name="Kwen",age=31))
 ```
 
-rlist's built-in functions `like(dist,...)` and `unlike(dist,...)` that internally call `stringdist::stringdist` handle fuzzy search to meet a wide range of demands. 
-
-For both functions, `dist` means the maximum string distance between the actual value in the list and the search term you specify, and `...` is the additional parameters passed to their internally called functions. More specifically,
-
-- `like(1)` means the string distances of the values in the character vector must be no greater than one.
-- `unlike(1)` means the string distances of the values in the character vector must be no less than one.
-
-For example, if we want to find out names similar with `"Ken"` with maximum distance 1, we have to specify `fun = like(1)`. Since the names are single-valued, it does not matter whether to choose `all` or `any`.
+rlist's built-in function `like` calls `stringdist::stringdist` internally to handle fuzzy search demands. It tells whether the difference between two strings is no greater than a given value. Here are some examples for the function.
 
 ```{r}
-list.search(x, any, like(1), "ken", unlist = TRUE)
+like("a",1,"b")
+```
+
+This is true because, basically speaking, "a" can be transformed to "b" in no more than 1 elementary steps in terms of [restricted Damerau-Levenshtein distance](http://en.wikipedia.org/wiki/Damerau%E2%80%93Levenshtein_distance).
+
+```{r}
+like("a",3,"hello")
+```
+
+If you prefer other distance measure, you can specify `method=` argument. All possible values are listed in the documentation of `stringdist` package.
+
+```{r}
+like("a",4,"hello",method="dl")
+```
+
+For example, if we want to find out names similar with `"ken"` with maximum distance 1, we can write like
+
+```{r}
+list.search(x, like("ken", 1), "character", unlist = TRUE)
+```
+
+The third parameter of `like` is missing but it can automatically take the current value in examination. Note that we specify `classes = "character"` because `like` will coarse all values to character values, which can be verified
+by
+
+```{r}
+like(12345,1,"1234")
 ```
 
 If the distance constraint is too tight, set a greater value.
 
 ```{r}
-list.search(x, any, like(2), "ken", unlist = TRUE)
+list.search(x, like("ken",2), "character", unlist = TRUE)
 ```
 
 Suppose we are working with the following data in which names becomes length-2 character vectors.
@@ -168,19 +180,19 @@ x <- list(
 Search all character vectors in which any element is like "Ken" within string distance 1.
 
 ```{r}
-list.search(x, any, like(1), "Ken")
+list.search(x, any(like("Ken",1)), "character")
 ```
 
 Search all character vectors in which all elements are unlike "Ken" due to string distance no less than 2.
 
 ```{r}
-list.search(x, all, unlike(2), "Ken")
+list.search(x, all(!like("Ken",2)), "character")
 ```
 
 Search all character vectors `c(x,y)` like `c("Ken","Hu")` together with both string distance no greater than 2, that ,is, the distances between `x` and "Ken" as well as that between `y` and "Hu"` should be no greater than 2.
 
 ```{r}
-list.search(x, all, like(2), c("Ken","Hu"))
+list.search(x, all(like(c("Ken","Hu"),2)), "character")
 ```
 
 ## Fuzzy filtering
@@ -203,6 +215,6 @@ We can also use fuzzy search compares with `list.filter`. For example, filter al
 ```{r}
 library(pipeR)
 x %>>%
-  list.filter(any(like(1)(name,"Ken"))) %>>%
+  list.filter(any(like("Ken",1,name))) %>>%
   list.mapv(paste(name,collapse = " "))
 ```

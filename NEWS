@@ -1,3 +1,9 @@
+Version 0.3 (2014-08-02)
+===
+Break API with `list.search` in v0.2.5, the function now supports expression-based
+search mechanism just like `list.map` and `list.filter`. It also supports lambda expression but index and name are undefined. (See issue #30)
+
+
 Version 0.2.5 (2014-08-01)
 ===
 Add `list.apply` which is a wrapper function of lapply.
