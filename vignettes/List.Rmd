@@ -1,6 +1,6 @@
 <!--
 %\VignetteEngine{knitr}
-%\VignetteIndexEntry{List}
+%\VignetteIndexEntry{List environment}
 -->
 
 ```{r, echo = FALSE, message = FALSE}
