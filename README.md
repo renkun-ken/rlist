@@ -106,7 +106,31 @@ List of 3
  $ p3: int 2
 ```
 
+## Lambda expression
+
+In this package, almost all functions that work with expressions accept the following forms of lambda expressions:
+
+- Implicit lambda expression: `g(x)`
+- Univariate lambda expressions: 
+    * `x ~ g(x)`
+    * `x -> g(x)`
+    * `f(x) -> g(x)`
+- Multivariate lambda expressions:
+    * `f(x,i) -> g(x,i)`
+    * `f(x,i,name) -> g(x,i,name)`
+
+where `x` refers to the list member itself, `i` denotes the index, `name` denotes the name. If the symbols are not explicitly declared, `.`, `.i` and `.name` will by default be used to represent them, respectively.
+
+```r
+nums <- list(a=c(1,2,3),b=c(2,3,4),c=c(3,4,5))
+list.map(nums, c(min=min(.),max=max(.)))
+list.filter(nums, x -> mean(x)>=3)
+list.map(nums, f(x,i) -> sum(x,i))
+```
+
 ## Using pipeline
+
+### Working with pipeR
 
 Query the name of each developer who likes music and uses R, and put the results in a data frame.
 
@@ -127,28 +151,25 @@ devs %>>%
 
 The example above uses `pipeR`(http://renkun.me/pipeR/) package for pipeline operator `%>>%` that chains commands in a fluent style.
 
-## Lambda expression
+### List environment
 
-In this package, almost all functions that work with expressions accept the following forms of lambda expressions:
+`List()` function wraps a list within an environment where almost all list functions are defined. Here is the List-environment version of the previous example.
 
-- Implicit lambda expression: `g(x)`
-- Univariate lambda expressions: 
-    * `x ~ g(x)`
-    * `x -> g(x)`
-    * `f(x) -> g(x)`
-- Multivariate lambda expressions:
-    * `f(x,i) -> g(x,i)`
-    * `f(x,i,name) -> g(x,i,name)`
-
-where `x` refers to the list member itself, `i` denotes the index, `name` denotes the name. If the symbols are not explicitly declared, `.`, `.i` and `.name` will by default be used to represent them, respectively.
 
 ```r
-nums <- list(a=c(1,2,3),b=c(2,3,4),c=c(3,4,5))
-list.map(nums, c(min=min(.),max=max(.)))
-list.mapv(nums, x ~ sum(x))
-list.filter(nums, x -> mean(x)>=3)
-list.mapv(nums, f(x,i) -> sum(x,i))
+m <- List(devs)
+m$filter("music" %in% interest & "r" %in% names(lang))$
+  select(name,age)$
+  stack()$
+  data
 ```
+
+```
+   name age
+1   Ken  24
+2 James  25
+```
+
 
 ## Vignettes
 
@@ -164,6 +185,7 @@ The package also provides detailed vignettes for most functions.
 - [List Searching](http://cran.r-project.org/web/packages/rlist/vignettes/Searching.html)
 - [List Input/Output](http://cran.r-project.org/web/packages/rlist/vignettes/IO.html)
 - [Lambda expressions](http://cran.r-project.org/web/packages/rlist/vignettes/Lambda.html)
+- [List environment](http://cran.r-project.org/web/packages/rlist/vignettes/List.html)
 - [Examples](http://cran.r-project.org/web/packages/rlist/vignettes/Examples.html)
 
 ## Help overview

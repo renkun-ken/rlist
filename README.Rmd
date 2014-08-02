@@ -77,20 +77,6 @@ result <- list.map(devs, length(interest))
 str(result)
 ```
 
-## Using pipeline
-
-Query the name of each developer who likes music and uses R, and put the results in a data frame.
-
-```{r}
-library(pipeR)
-devs %>>% 
-  list.filter("music" %in% interest & "r" %in% names(lang)) %>>%
-  list.select(name,age) %>>%
-  list.stack
-```
-
-The example above uses `pipeR`(http://renkun.me/pipeR/) package for pipeline operator `%>>%` that chains commands in a fluent style.
-
 ## Lambda expression
 
 In this package, almost all functions that work with expressions accept the following forms of lambda expressions:
@@ -109,10 +95,38 @@ where `x` refers to the list member itself, `i` denotes the index, `name` denote
 ```r
 nums <- list(a=c(1,2,3),b=c(2,3,4),c=c(3,4,5))
 list.map(nums, c(min=min(.),max=max(.)))
-list.mapv(nums, x ~ sum(x))
 list.filter(nums, x -> mean(x)>=3)
-list.mapv(nums, f(x,i) -> sum(x,i))
+list.map(nums, f(x,i) -> sum(x,i))
 ```
+
+## Using pipeline
+
+### Working with pipeR
+
+Query the name of each developer who likes music and uses R, and put the results in a data frame.
+
+```{r}
+library(pipeR)
+devs %>>% 
+  list.filter("music" %in% interest & "r" %in% names(lang)) %>>%
+  list.select(name,age) %>>%
+  list.stack
+```
+
+The example above uses `pipeR`(http://renkun.me/pipeR/) package for pipeline operator `%>>%` that chains commands in a fluent style.
+
+### List environment
+
+`List()` function wraps a list within an environment where almost all list functions are defined. Here is the List-environment version of the previous example.
+
+```{r}
+m <- List(devs)
+m$filter("music" %in% interest & "r" %in% names(lang))$
+  select(name,age)$
+  stack()$
+  data
+```
+
 
 ## Vignettes
 
@@ -128,6 +142,7 @@ The package also provides detailed vignettes for most functions.
 - [List Searching](http://cran.r-project.org/web/packages/rlist/vignettes/Searching.html)
 - [List Input/Output](http://cran.r-project.org/web/packages/rlist/vignettes/IO.html)
 - [Lambda expressions](http://cran.r-project.org/web/packages/rlist/vignettes/Lambda.html)
+- [List environment](http://cran.r-project.org/web/packages/rlist/vignettes/List.html)
 - [Examples](http://cran.r-project.org/web/packages/rlist/vignettes/Examples.html)
 
 ## Help overview
