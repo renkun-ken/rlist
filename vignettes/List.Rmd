@@ -1,0 +1,62 @@
+<!--
+%\VignetteEngine{knitr}
+%\VignetteIndexEntry{List}
+-->
+
+```{r, echo = FALSE, message = FALSE}
+knitr::opts_chunk$set(comment="#",error=FALSE,tidy=FALSE)
+```
+
+# List environment
+
+List environment is an alternative construct designed for easier command chaining. `List()` function wraps a list within an environment where almost all functions in this package are defined but result in the next List environment for further operations.
+
+Suppose we work with the following list.
+
+```{r}
+devs <- 
+  list(
+    p1=list(name="Ken",age=24,
+      interest=c("reading","music","movies"),
+      lang=list(r=2,csharp=4,python=3)),
+    p2=list(name="James",age=25,
+      interest=c("sports","music"),
+      lang=list(r=3,java=2,cpp=5)),
+    p3=list(name="Penny",age=24,
+      interest=c("movies","reading"),
+      lang=list(r=1,cpp=4,python=2)))
+```
+
+To create a `List environment`, run
+
+```{r}
+m <- List(devs)
+```
+
+then we can operate the environment-based object `m` with `map()`, `filter()` and other functions, or extract the inner data with `m$data`. All inner functions return `List environment`, which facilities command chaining.
+
+For example, map each member to their name.
+
+```{r}
+m$map(name)
+```
+
+Note that the resulted object is also a `List environment` although its printed results include the inner data. To use the result with external functions, we need to extract the inner data by calling `m$data`.
+
+Get all the possible cases of interests for those whose R experience is longer than 1 year.
+
+```{r}
+m$filter(lang$r > 1)$
+  cases(interest)$
+  data
+```
+
+Calculate an integer vector of the average number of years using R for each interest class.
+
+```{r}
+m$class(interest)$
+  map(case -> length(case))$
+  call(unlist)$
+  data
+```
+
