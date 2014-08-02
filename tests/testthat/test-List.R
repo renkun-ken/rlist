@@ -8,8 +8,8 @@ test_that("List", {
     List(x)$group(type)$
       map(g -> List(g)$
           map(score)$
-          .(unlist)$
-          .(mean)$
+          call(unlist)$
+          call(mean)$
           data)$
       data
   },list(A=9,B=8.5))

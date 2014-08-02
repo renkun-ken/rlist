@@ -6,7 +6,7 @@
 #' @export
 #' @details
 #' Most list functions are defined in the wrapper environment.
-#' In addition to these functions, \code{.(fun,...)} calls
+#' In addition to these functions, \code{call(fun,...)} calls
 #' external function \code{fun} with additional parameters specifies in
 #' \code{...}.
 #'
@@ -24,15 +24,15 @@
 #' m$group(type)$
 #'   map(g -> List(g)$
 #'       map(score)$
-#'       .(unlist)$
-#'       .(mean)$
+#'       call(unlist)$
+#'       call(mean)$
 #'       data)$
 #'   data
 #' }
-List <- function(data) {
+List <- function(data = list()) {
   envir = environment()
   class(envir) <- c("List","environment")
-  . <- function(fun,...) {
+  call <- function(fun,...) {
     List(fun(data,...))
   }
 
@@ -97,8 +97,7 @@ List <- function(data) {
     List(list.insert(data,...))
   }
   iter <- function(...) {
-    list.iter(data,...)
-    invisible(envir)
+    List(list.iter(data,...))
   }
   join <- function(...) {
     List(list.join(data,...))
@@ -202,4 +201,18 @@ print.List <- function(x,...) {
   cat("Data:\n")
   print(x$data,...)
   invisible(x)
+}
+
+#' @export
+str.List <- function(object,...) {
+  cat("List environment\n")
+  cat("Data:\n")
+  str(object$data,...)
+}
+
+#' @export
+summary.List <- function(object,...) {
+  cat("List environment\n")
+  cat("Data:\n")
+  summary(object$data,...)
 }

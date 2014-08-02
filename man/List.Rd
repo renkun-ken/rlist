@@ -4,7 +4,7 @@
 \title{List wrapper environment in which \code{data} is the \code{list} and
 most list functions are defined for chainable operations.}
 \usage{
-List(data)
+List(data = list())
 }
 \arguments{
 \item{data}{\code{list}}
@@ -15,7 +15,7 @@ most list functions are defined for chainable operations.
 }
 \details{
 Most list functions are defined in the wrapper environment.
-In addition to these functions, \code{.(fun,...)} calls
+In addition to these functions, \code{call(fun,...)} calls
 external function \code{fun} with additional parameters specifies in
 \code{...}.
 
@@ -34,8 +34,8 @@ m$filter(type=="B")$
 m$group(type)$
   map(g -> List(g)$
       map(score)$
-      .(unlist)$
-      .(mean)$
+      call(unlist)$
+      call(mean)$
       data)$
   data
 }
