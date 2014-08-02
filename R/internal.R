@@ -12,13 +12,13 @@ list.map.internal <- function(.data,expr,fun=list.map.fun,envir=parent.frame(2L)
   do.call(Map, args)
 }
 
-list.if.fun <- function(.data,.expr) {
+list.is.fun <- function(.data,.expr) {
   x <- eval(.expr,.list.env(.data),environment())
   if(is.logical(x) && length(x) == 1L) x else NA
 }
 
-list.if.internal <- function(.data,cond,envir=parent.frame(2L)) {
-  as.logical(list.map.internal(.data,cond,list.if.fun,envir))
+list.is.internal <- function(.data,cond,envir=parent.frame(2L)) {
+  as.logical(list.map.internal(.data,cond,list.is.fun,envir))
 }
 
 list.findi.fun <- function(.data,.expr) {

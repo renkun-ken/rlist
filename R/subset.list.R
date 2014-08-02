@@ -22,7 +22,7 @@
 subset.list <- function(x,subset=TRUE,select=.,...) {
   subset <- substitute(subset)
   select <- substitute(select)
-  subset.items <- x[list.if.internal(x,subset)]
+  subset.items <- x[list.is.internal(x,subset)]
   select.items <- list.map.internal(subset.items,select)
   list.clean(select.items)
 }

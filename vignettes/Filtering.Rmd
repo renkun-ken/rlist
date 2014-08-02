@@ -74,18 +74,18 @@ list.takeWhile(devs, lang$r >= 2)
 list.skipWhile(devs, lang$r <= 2)
 ```
 
-## list.if
+## list.is
 
-`list.if` returns a logical vector that indicates whether a condition holds for each member of a list.
+`list.is` returns a logical vector that indicates whether a condition holds for each member of a list.
 
 ```{r}
-list.if(devs, "music" %in% interest)
-list.if(devs, "java" %in% names(lang))
+list.is(devs, "music" %in% interest)
+list.is(devs, "java" %in% names(lang))
 ```
 
 ## list.which
 
-`list.if` returns a integer vector of the indices of the members of a list that meet a given condition.
+`list.is` returns a integer vector of the indices of the members of a list that meet a given condition.
 
 ```{r}
 list.which(devs, "music" %in% interest)

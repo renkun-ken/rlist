@@ -11,6 +11,9 @@ list.iter(.data, expr)
 
 \item{expr}{A lambda expression}
 }
+\value{
+\code{invisible(.data)}
+}
 \description{
 Iterate a list by evaluating an expression on
 each list member.
