@@ -129,25 +129,6 @@ str<span class="p">(</span>result<span class="p">)</span>
 </code></pre>
 
 <h2>
-<a name="using-pipeline" class="anchor" href="#using-pipeline"><span class="octicon octicon-link"></span></a>Using pipeline</h2>
-
-<p>Query the name of each developer who likes music and uses R, and put the results in a data frame.</p>
-
-<div class="highlight highlight-r"><pre><span class="kn">library</span><span class="p">(</span>pipeR<span class="p">)</span>
-devs <span class="o">%&gt;&gt;%</span> 
-  list.filter<span class="p">(</span><span class="s">"music"</span> <span class="o">%in%</span> interest <span class="o">&amp;</span> <span class="s">"r"</span> <span class="o">%in%</span> <span class="kp">names</span><span class="p">(</span>lang<span class="p">))</span> <span class="o">%&gt;&gt;%</span>
-  list.select<span class="p">(</span>name<span class="p">,</span>age<span class="p">)</span> <span class="o">%&gt;&gt;%</span>
-  list.stack
-</pre></div>
-
-<pre><code>   name age
-1   Ken  24
-2 James  25
-</code></pre>
-
-<p>The example above uses <code>pipeR</code>(<a href="http://renkun.me/pipeR/">http://renkun.me/pipeR/</a>) package for pipeline operator <code>%&gt;&gt;%</code> that chains commands in a fluent style.</p>
-
-<h2>
 <a name="lambda-expression" class="anchor" href="#lambda-expression"><span class="octicon octicon-link"></span></a>Lambda expression</h2>
 
 <p>In this package, almost all functions that work with expressions accept the following forms of lambda expressions:</p>
@@ -174,10 +155,48 @@ devs <span class="o">%&gt;&gt;%</span>
 
 <div class="highlight highlight-r"><pre>nums <span class="o">&lt;-</span> <span class="kt">list</span><span class="p">(</span>a<span class="o">=</span><span class="kt">c</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="m">2</span><span class="p">,</span><span class="m">3</span><span class="p">),</span>b<span class="o">=</span><span class="kt">c</span><span class="p">(</span><span class="m">2</span><span class="p">,</span><span class="m">3</span><span class="p">,</span><span class="m">4</span><span class="p">),</span><span class="kt">c</span><span class="o">=</span><span class="kt">c</span><span class="p">(</span><span class="m">3</span><span class="p">,</span><span class="m">4</span><span class="p">,</span><span class="m">5</span><span class="p">))</span>
 list.map<span class="p">(</span>nums<span class="p">,</span> <span class="kt">c</span><span class="p">(</span>min<span class="o">=</span><span class="kp">min</span><span class="p">(</span><span class="m">.</span><span class="p">),</span>max<span class="o">=</span><span class="kp">max</span><span class="p">(</span><span class="m">.</span><span class="p">)))</span>
-list.mapv<span class="p">(</span>nums<span class="p">,</span> x <span class="o">~</span> <span class="kp">sum</span><span class="p">(</span>x<span class="p">))</span>
 list.filter<span class="p">(</span>nums<span class="p">,</span> x <span class="o">-&gt;</span> <span class="kp">mean</span><span class="p">(</span>x<span class="p">)</span><span class="o">&gt;=</span><span class="m">3</span><span class="p">)</span>
-list.mapv<span class="p">(</span>nums<span class="p">,</span> f<span class="p">(</span>x<span class="p">,</span>i<span class="p">)</span> <span class="o">-&gt;</span> <span class="kp">sum</span><span class="p">(</span>x<span class="p">,</span>i<span class="p">))</span>
+list.map<span class="p">(</span>nums<span class="p">,</span> f<span class="p">(</span>x<span class="p">,</span>i<span class="p">)</span> <span class="o">-&gt;</span> <span class="kp">sum</span><span class="p">(</span>x<span class="p">,</span>i<span class="p">))</span>
 </pre></div>
+
+<h2>
+<a name="using-pipeline" class="anchor" href="#using-pipeline"><span class="octicon octicon-link"></span></a>Using pipeline</h2>
+
+<h3>
+<a name="working-with-piper" class="anchor" href="#working-with-piper"><span class="octicon octicon-link"></span></a>Working with pipeR</h3>
+
+<p>Query the name of each developer who likes music and uses R, and put the results in a data frame.</p>
+
+<div class="highlight highlight-r"><pre><span class="kn">library</span><span class="p">(</span>pipeR<span class="p">)</span>
+devs <span class="o">%&gt;&gt;%</span> 
+  list.filter<span class="p">(</span><span class="s">"music"</span> <span class="o">%in%</span> interest <span class="o">&amp;</span> <span class="s">"r"</span> <span class="o">%in%</span> <span class="kp">names</span><span class="p">(</span>lang<span class="p">))</span> <span class="o">%&gt;&gt;%</span>
+  list.select<span class="p">(</span>name<span class="p">,</span>age<span class="p">)</span> <span class="o">%&gt;&gt;%</span>
+  list.stack
+</pre></div>
+
+<pre><code>   name age
+1   Ken  24
+2 James  25
+</code></pre>
+
+<p>The example above uses <code>pipeR</code>(<a href="http://renkun.me/pipeR/">http://renkun.me/pipeR/</a>) package for pipeline operator <code>%&gt;&gt;%</code> that chains commands in a fluent style.</p>
+
+<h3>
+<a name="list-environment" class="anchor" href="#list-environment"><span class="octicon octicon-link"></span></a>List environment</h3>
+
+<p><code>List()</code> function wraps a list within an environment where almost all list functions are defined. Here is the List-environment version of the previous example.</p>
+
+<div class="highlight highlight-r"><pre>m <span class="o">&lt;-</span> List<span class="p">(</span>devs<span class="p">)</span>
+m<span class="o">$</span>filter<span class="p">(</span><span class="s">"music"</span> <span class="o">%in%</span> interest <span class="o">&amp;</span> <span class="s">"r"</span> <span class="o">%in%</span> <span class="kp">names</span><span class="p">(</span>lang<span class="p">))</span><span class="o">$</span>
+  select<span class="p">(</span>name<span class="p">,</span>age<span class="p">)</span><span class="o">$</span>
+  stack<span class="p">()</span><span class="o">$</span>
+  data
+</pre></div>
+
+<pre><code>   name age
+1   Ken  24
+2 James  25
+</code></pre>
 
 <h2>
 <a name="vignettes" class="anchor" href="#vignettes"><span class="octicon octicon-link"></span></a>Vignettes</h2>
@@ -195,6 +214,7 @@ list.mapv<span class="p">(</span>nums<span class="p">,</span> f<span class="p">(
 <li><a href="http://cran.r-project.org/web/packages/rlist/vignettes/Searching.html">List Searching</a></li>
 <li><a href="http://cran.r-project.org/web/packages/rlist/vignettes/IO.html">List Input/Output</a></li>
 <li><a href="http://cran.r-project.org/web/packages/rlist/vignettes/Lambda.html">Lambda expressions</a></li>
+<li><a href="http://cran.r-project.org/web/packages/rlist/vignettes/List.html">List environment</a></li>
 <li><a href="http://cran.r-project.org/web/packages/rlist/vignettes/Examples.html">Examples</a></li>
 </ul><h2>
 <a name="help-overview" class="anchor" href="#help-overview"><span class="octicon octicon-link"></span></a>Help overview</h2>
