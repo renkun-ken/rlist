@@ -161,10 +161,10 @@ List <- function(data) {
     List(list.sort(data,...))
   }
   stack <- function() {
-    list.stack(data)
+    List(list.stack(data))
   }
   table <- function(...) {
-    list.table(data,...)
+    List(list.table(data,...))
   }
   take <- function(...) {
     List(list.take(data,...))
@@ -191,7 +191,7 @@ List <- function(data) {
     List(subset(data,...))
   }
   summary <- function(...) {
-    summary(data,...)
+    List(summary(data,...))
   }
   envir
 }
