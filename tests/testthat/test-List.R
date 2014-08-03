@@ -13,4 +13,10 @@ test_that("List", {
           data)$
       data
   },list(A=9,B=8.5))
+  expect_identical({
+    local({
+      i <- 3
+      List(1:3)$map(x -> x+i)$data
+    })
+  },list(4,5,6))
 })

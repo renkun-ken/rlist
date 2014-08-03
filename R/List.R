@@ -30,8 +30,9 @@
 #'   data
 #' }
 List <- function(data = list()) {
-  envir = environment()
+  envir <- environment()
   class(envir) <- c("List","environment")
+
   call <- function(fun,...) {
     List(fun(data,...))
   }
