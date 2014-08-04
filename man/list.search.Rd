@@ -63,6 +63,8 @@ data <- list(
   p5 = list(name="Kwen",age=31)
 )
 
+list.search(data, pattern("^K\\\\w+n$"), "character")
+
 list.search(data, like("Ken",1), "character")
 list.search(data, like("Man",2), "character")
 list.search(data, !like("Man",2), "character")

@@ -5,6 +5,7 @@
 \alias{exact}
 \alias{include}
 \alias{like}
+\alias{pattern}
 \title{Comparer functions}
 \usage{
 exact(x, y = get(".data", envir = parent.frame()), ...)
@@ -12,6 +13,8 @@ exact(x, y = get(".data", envir = parent.frame()), ...)
 equal(x, y = get(".data", envir = parent.frame()))
 
 include(x, y = get(".data", envir = parent.frame()))
+
+pattern(x, y = get(".data", envir = parent.frame()), ...)
 
 like(x, dist = 1L, y = get(".data", envir = parent.frame()), ...)
 }
@@ -22,9 +25,10 @@ like(x, dist = 1L, y = get(".data", envir = parent.frame()), ...)
 
 \item{dist}{maximum distance}
 
-\item{...}{additional parameters: for \code{exact},
-passed to \code{identical}; for \code{like},
-passed to \code{stringdist::stringdist}.}
+\item{...}{additional parameters:
+for \code{exact}, passed to \code{identical};
+for \code{pattern}, passed to \code{grepl};
+for \code{like}, passed to \code{stringdist::stringdist}.}
 }
 \value{
 \code{logical}
@@ -40,6 +44,9 @@ Comparer functions
 
 \code{include}: test if the values of an atomic vector are included
    by the other with the same mode, respectively.
+
+\code{pattern}: test if the values match a particular pattern of
+   regular expression.
 
 \code{like}: test if the distance between two atomic character vectors
    is no greater than a given value.
