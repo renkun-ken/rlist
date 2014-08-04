@@ -271,3 +271,13 @@ summary.List <- function(object,...) {
   cat("Data:\n")
   summary(object$data,...)
 }
+
+#' @export
+`==.List` <- function(e1,e2) {
+  e1$data == e2
+}
+
+#' @export
+subset.List <- function(x,...) {
+  subset(x$data,...)
+}
