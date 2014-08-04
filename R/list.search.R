@@ -26,19 +26,19 @@
 #' list.search(x, exact(c(c1=9,c2=7)))
 #'
 #' ## Search all equal values
-#' list.search(x, all(equal(9)), "numeric")
-#' list.search(x, all(equal(c(8,9))), "numeric")
-#' list.search(x, all(equal(c(8,9)),na.rm = TRUE), "numeric")
+#' list.search(x, all(equal(9)))
+#' list.search(x, all(equal(c(8,9))))
+#' list.search(x, all(equal(c(8,9)),na.rm = TRUE))
 #'
 #' ## Search any equal values
-#' list.search(x, any(equal(9)), "numeric",)
-#' list.search(x, any(equal(c(8,9))), "numeric")
+#' list.search(x, any(equal(9)))
+#' list.search(x, any(equal(c(8,9))))
 #'
 #' ## Search all/any included/excluded values
-#' list.search(x, include(9), "numeric")
-#' list.search(x, all(include(c(9,10))), "numeric")
-#' list.search(x, any(include(c(9,10))), "numeric")
-#' list.search(x, all(!include(c(7,9,10))), "numeric")
+#' list.search(x, include(9))
+#' list.search(x, all(include(c(9,10))))
+#' list.search(x, any(include(c(9,10))))
+#' list.search(x, all(!include(c(7,9,10))))
 #'
 #' # Fuzzy search
 #'
@@ -50,9 +50,9 @@
 #'   p5 = list(name="Kwen",age=31)
 #' )
 #'
-#' list.search(data, like(1)("Ken"), "character")
-#' list.search(data, like(2)("Man"), "character")
-#' list.search(data, !like(2)("Man"), "character")
+#' list.search(data, like("Ken",1), "character")
+#' list.search(data, like("Man",2), "character")
+#' list.search(data, !like("Man",2), "character")
 #'
 #' data <- list(
 #'   p1 = list(name=c("Ken", "Ren"),age=24),
@@ -61,10 +61,10 @@
 #'   p4 = list(name=c("Keynes", "Bond"),age=30),
 #'   p5 = list(name=c("Kwen", "Hu"),age=31))
 #'
-#' list.search(data, all(like(1)("Ken")), "character")
-#' list.search(data, any(like(1)("Ken")), "character")
-#' list.search(data, all(!like(1)("Ken")), "character")
-#' list.search(data, any(!like(1)("Ken")), "character")
+#' list.search(data, all(like("Ken",1)), "character")
+#' list.search(data, any(like("Ken",1)), "character")
+#' list.search(data, all(!like("Ken",1)), "character")
+#' list.search(data, any(!like("Ken",1)), "character")
 #' }
 list.search <- function(.data, expr, classes = "ANY", unlist = FALSE,
   envir = parent.frame()) {
