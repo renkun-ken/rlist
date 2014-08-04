@@ -18,183 +18,237 @@
 #'        p3 = list(type="B",score=list(c1=9,c2=7)))
 #' m <- List(x)
 #' m$filter(type=="B")$
-#'   map(score$c1)$
-#'   data
+#'   map(score$c1) []
 #'
 #' m$group(type)$
 #'   map(g -> List(g)$
 #'       map(score)$
 #'       call(unlist)$
-#'       call(mean)$
-#'       data)$
-#'   data
+#'       call(mean) []) []
 #' }
 List <- function(data = list()) {
   envir <- environment()
   class(envir) <- c("List","environment")
 
   call <- function(fun,...) {
-    List(fun(data,...))
+    data <- fun(data,...)
+    List(data)
   }
 
   all <- function(...) {
-    List(list.all(data,...))
+    data <- list.all(data,...,envir = parent.frame())
+    List(data)
   }
   any <- function(...) {
-    List(list.any(data,...))
+    data <- list.any(data,...,envir = parent.frame())
+    List(data)
   }
   append <- function(...) {
-    List(list.append(data,...))
+    data <- list.append(data,...)
+    List(data)
   }
   apply <- function(...) {
-    List(list.apply(data,...))
+    data <- list.apply(data,...)
+    List(data)
   }
   cases <- function(...) {
-    List(list.cases(data,...))
+    data <- list.cases(data,...,envir = parent.frame())
+    List(data)
   }
   cbind <- function() {
-    List(list.cbind(data))
+    data <- list.cbind(data)
+    List(data)
   }
   class <- function(...) {
-    List(list.class(data,...))
+    data <- list.class(data,...,envir = parent.frame())
+    List(data)
   }
   clean <- function(...) {
-    List(list.clean(data,...))
+    data <- list.clean(data,...)
+    List(data)
   }
   common <- function(...) {
-    List(list.common(data,...))
+    data <- list.common(data,...,envir = parent.frame())
+    List(data)
   }
   count <- function(...) {
-    List(list.count(data,...))
+    data <- list.count(data,...,envir = parent.frame())
+    List(data)
   }
   do <- function(...) {
-    List(list.do(data,...))
+    data <- list.do(data,...)
+    List(data)
   }
   exclude <- function(...) {
-    List(list.exclude(data,...))
+    data <- list.exclude(data,...,envir = parent.frame())
+    List(data)
   }
   extract <- function(...) {
-    List(list.extract(data,...))
+    data <- list.extract(data,...)
+    List(data)
   }
   filter <- function(...) {
-    List(list.filter(data,...))
+    data <- list.filter(data,...,envir = parent.frame())
+    List(data)
   }
   find <- function(...) {
-    List(list.find(data,...))
+    data <- list.find(data,...,envir = parent.frame())
+    List(data)
   }
   findi <- function(...) {
-    List(list.findi(data,...))
+    data <- list.findi(data,...,envir = parent.frame())
+    List(data)
   }
   flatten <- function(...) {
-    List(list.flatten(data,...))
+    data <- list.flatten(data,...)
+    List(data)
   }
   group <- function(...) {
-    List(list.group(data,...))
+    data <- list.group(data,...,envir = parent.frame())
+    List(data)
   }
   is <- function(...) {
-    List(list.is(data,...))
+    data <- list.is(data,...,envir = parent.frame())
+    List(data)
   }
   insert <- function(...) {
-    List(list.insert(data,...))
+    data <- list.insert(data,...)
+    List(data)
   }
   iter <- function(...) {
-    List(list.iter(data,...))
+    data <- list.iter(data,...,envir = parent.frame())
+    List(data)
   }
   join <- function(...) {
-    List(list.join(data,...))
+    data <- list.join(data,...,envir = parent.frame())
+    List(data)
   }
   load <- function(...) {
-    List(list.load(...))
+    data <- list.load(...)
+    List(data)
   }
   map <- function(...) {
-    List(list.map(data,...))
+    data <- list.map(data,...,envir = parent.frame())
+    List(data)
   }
   mapv <- function(...) {
-    List(list.mapv(data,...))
+    data <- list.mapv(data,...,envir = parent.frame())
+    List(data)
   }
   match <- function(...) {
-    List(list.match(data,...))
+    data <- list.match(data,...)
+    List(data)
   }
   merge <- function(...) {
-    List(list.merge(data,...))
+    data <- list.merge(data,...)
+    List(data)
   }
   order <- function(...) {
-    List(list.order(data,...))
+    data <- list.order(data,...,.envir = parent.frame())
+    List(data)
   }
   parse <- function(...) {
-    List(list.parse(...))
+    data <- list.parse(...)
+    List(data)
   }
   prepend <- function(...) {
-    List(list.prepend(data,...))
+    data <- list.prepend(data,...)
+    List(data)
   }
   rbind <- function() {
-    List(list.rbind(data))
+    data <- list.rbind(data)
+    List(data)
   }
   remove <- function(...) {
-    List(list.remove(data,...))
+    data <- list.remove(data,...)
+    List(data)
   }
   reverse <- function() {
-    List(list.reverse(data))
+    data <- list.reverse(data)
+    List(data)
   }
   sample <- function(...) {
-    List(list.sample(data,...))
+    data <- list.sample(data,...,envir = parent.frame())
+    List(data)
   }
   save <- function(...) {
-    List(list.save(data,...))
+    data <- list.save(data,...)
+    List(data)
   }
   search <- function(...) {
-    List(list.search(data,...))
+    data <- list.search(data,...,envir = parent.frame())
+    List(data)
   }
   select <- function(...) {
-    List(list.select(data,...))
+    data <- list.select(data,...,.envir = parent.frame())
+    List(data)
   }
   serialize <- function(...) {
-    List(list.serialize(data,...))
+    data <- list.serialize(data,...)
+    List(data)
   }
   skip <- function(...) {
-    List(list.skip(data,...))
+    data <- list.skip(data,...)
+    List(data)
   }
   skipWhile <- function(...) {
-    List(list.skipWhile(data,...))
+    data <- list.skipWhile(data,...,envir = parent.frame())
+    List(data)
   }
   sort <- function(...) {
-    List(list.sort(data,...))
+    data <- list.sort(data,...,.envir = parent.frame())
+    List(data)
   }
   stack <- function() {
-    List(list.stack(data))
+    data <- list.stack(data)
+    List(data)
   }
   table <- function(...) {
-    List(list.table(data,...))
+    data <- list.table(data,...,.envir = parent.frame())
+    List(data)
   }
   take <- function(...) {
-    List(list.take(data,...))
+    data <- list.take(data,...)
+    List(data)
   }
   takeWhile <- function(...) {
-    List(list.takeWhile(data,...))
+    data <- list.takeWhile(data,...,envir = parent.frame())
+    List(data)
   }
   ungroup <- function(...) {
-    List(list.ungroup(data,...))
+    data <- list.ungroup(data,...)
+    List(data)
   }
   unserialize <- function(...) {
-    List(list.unserialize(...))
+    data <- list.unserialize(...)
+    List(data)
   }
   update <- function(...) {
-    List(list.update(data,...))
+    data <- list.update(data,...,.envir = parent.frame())
+    List(data)
   }
   which <- function(...) {
-    List(list.which(data,...))
+    data <- list.which(data,...,envir = parent.frame())
+    List(data)
   }
   zip <- function(...) {
-    List(list.zip(data,...))
+    data <- list.zip(data,...)
+    List(data)
   }
   subset <- function(...) {
-    List(subset(data,...))
+    data <- subset(data,...,envir = parent.frame())
+    List(data)
   }
   summary <- function(...) {
-    List(summary(data,...))
+    data <- summary(data,...)
+    List(data)
   }
   envir
 }
+
+#' @export
+`[.List` <- function(x,...)
+  get("data",envir = x,inherits = FALSE)
 
 #' @export
 print.List <- function(x,...) {
