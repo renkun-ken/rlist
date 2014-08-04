@@ -16,7 +16,20 @@ test_that("List", {
   expect_identical({
     local({
       i <- 3
-      List(1:3)$map(x -> x+i)$data
+      List(1:3)$map(x -> x+i) []
     })
   },list(4,5,6))
+  expect_identical({
+    local({
+      i <- 1
+      List(1:3)$map(x -> x + i)$filter(x -> x <= 1 + i)[]
+    })
+  }, list(2))
+  expect_identical(List(1:3)$all(. >= 0)[], TRUE)
+  expect_identical(List(1:3)$any(. <= 5)[], TRUE)
+  expect_identical(List(x)$cases(type)[], c("A","B"))
+  expect_identical(List(x)$class(type)[], list.class(x,type))
+  expect_identical(List(x)$common(names(score))[], c("c1","c2"))
+  expect_identical(List(x)$count(type == "B")[], 2L)
+  expect_identical(List(x)$filter(type == "B")[], list.filter(x,type=="B"))
 })
