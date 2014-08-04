@@ -60,3 +60,10 @@ m$class(interest)$
   data
 ```
 
+A more handy way to extract `data` from the List environment is to use `[]`.
+
+```{r}
+m$class(interest)$
+  map(case -> length(case))$
+  call(unlist) []
+```
