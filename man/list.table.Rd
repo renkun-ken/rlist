@@ -3,7 +3,7 @@
 \alias{list.table}
 \title{Generate a table for a list by expression}
 \usage{
-list.table(.data, ..., table.args = NULL)
+list.table(.data, ..., table.args = NULL, .envir = parent.frame())
 }
 \arguments{
 \item{.data}{\code{list}}
@@ -12,6 +12,8 @@ list.table(.data, ..., table.args = NULL)
 
 \item{table.args}{\code{list}. The additional parameters
 passed to \code{table}}
+
+\item{.envir}{The environment to evaluate mapping function}
 }
 \description{
 Generate a table for a list by expression

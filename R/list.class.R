@@ -4,6 +4,7 @@
 #' @param expr A lambda expression
 #' @param ... Additional parameters passed to \code{unique}
 #' @param sort.cases \code{logical}. if \code{TRUE} the cases will be sorted in ascending order.
+#' @param envir The environment to evaluate mapping function
 #' @name list.class
 #' @export
 #' @examples
@@ -22,8 +23,8 @@
 #' list.class(x,interest)
 #' list.class(x,names(lang))
 #' }
-list.class <- function(.data,expr,...,sort.cases=TRUE) {
-  values <- list.map.internal(.data,substitute(expr))
+list.class <- function(.data,expr,...,sort.cases=TRUE,envir=parent.frame()) {
+  values <- list.map.internal(.data,substitute(expr),envir = envir)
   cases <- unique(unlist(values,use.names = FALSE),...)
   names(cases) <- cases
   if(sort.cases)  cases <- sort(cases)

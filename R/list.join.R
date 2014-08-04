@@ -6,6 +6,7 @@
 #'    same to \code{xkey} if \code{NULL} is taken
 #' @param ... The additional parameters passed to \code{merge.data.frame}
 #' @param keep.order Should the order of \code{x} be kept?
+#' @param envir The environment to evaluate mapping function
 #' @name list.join
 #' @export
 #' @examples
@@ -19,7 +20,8 @@
 #' list.join(l1,l2,name)
 #' list.join(l1,l2,.["name","age"])
 #' }
-list.join <- function(x,y,xkey,ykey=NULL,...,keep.order=TRUE) {
+list.join <- function(x,y,xkey,ykey=NULL,...,keep.order=TRUE,
+  envir=parent.frame()) {
   sxkey <- substitute(xkey)
   sykey <- substitute(ykey)
 
@@ -34,8 +36,8 @@ list.join <- function(x,y,xkey,ykey=NULL,...,keep.order=TRUE) {
     dfsykey <- substitute(data.frame(ykey))
   }
 
-  xkeys.list <- list.map.internal(x,dfsxkey)
-  ykeys.list <- list.map.internal(y,dfsykey)
+  xkeys.list <- list.map.internal(x,dfsxkey,envir = envir)
+  ykeys.list <- list.map.internal(y,dfsykey,envir = envir)
   xkeys.df <- list.rbind(xkeys.list)
   ykeys.df <- list.rbind(ykeys.list)
   if(is.name(sxkey)) colnames(xkeys.df) <- as.character(sxkey)

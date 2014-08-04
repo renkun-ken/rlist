@@ -4,12 +4,14 @@
 \title{Return a integer vector of the indices of list members that satisfy
 given condition}
 \usage{
-list.which(.data, cond)
+list.which(.data, cond, envir = parent.frame())
 }
 \arguments{
 \item{.data}{\code{list}}
 
 \item{cond}{A logical lambda expression}
+
+\item{envir}{The environment to evaluate mapping function}
 }
 \description{
 Return a integer vector of the indices of list members that satisfy

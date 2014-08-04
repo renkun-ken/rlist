@@ -3,7 +3,7 @@
 \alias{list.group}
 \title{Group a list by the value of an expression evaluated for each member.}
 \usage{
-list.group(.data, key, ...)
+list.group(.data, key, ..., envir = parent.frame())
 }
 \arguments{
 \item{.data}{\code{list}}
@@ -11,6 +11,8 @@ list.group(.data, key, ...)
 \item{key}{A lambda expression for the group key}
 
 \item{...}{Additional parameters passed to \code{unique}}
+
+\item{envir}{The environment to evaluate mapping function}
 }
 \description{
 Group a list by the value of an expression evaluated for each member.

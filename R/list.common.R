@@ -2,6 +2,7 @@
 #'
 #' @param .data \code{list}
 #' @param expr A lambda expression
+#' @param envir The environment to evaluate mapping function
 #' @name list.common
 #' @export
 #' @examples
@@ -14,8 +15,8 @@
 #' list.common(x,type)
 #' list.common(x,names(score))
 #' }
-list.common <- function(.data,expr) {
+list.common <- function(.data,expr,envir = parent.frame()) {
   if(length(.data) == 0L) return(NULL)
-  values <- list.map.internal(.data,substitute(expr))
+  values <- list.map.internal(.data,substitute(expr),envir = envir)
   Reduce(intersect,values,values[[1L]])
 }

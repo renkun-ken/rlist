@@ -3,12 +3,14 @@
 \alias{list.count}
 \title{Count the number of members that meet given condition}
 \usage{
-list.count(.data, cond)
+list.count(.data, cond, envir = parent.frame())
 }
 \arguments{
 \item{.data}{\code{list}}
 
 \item{cond}{A logical lambda expression}
+
+\item{envir}{The environment to evaluate mapping function}
 }
 \description{
 Count the number of members that meet given condition

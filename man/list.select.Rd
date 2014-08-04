@@ -3,12 +3,14 @@
 \alias{list.select}
 \title{Select by name or expression for each member of a list}
 \usage{
-list.select(.data, ...)
+list.select(.data, ..., .envir = parent.frame())
 }
 \arguments{
 \item{.data}{\code{list}}
 
 \item{...}{A group of implicit labmda expressions}
+
+\item{.envir}{The environment to evaluate mapping function}
 }
 \description{
 Select by name or expression for each member of a list

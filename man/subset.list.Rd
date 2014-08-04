@@ -3,7 +3,8 @@
 \alias{subset.list}
 \title{Return subsets of a list which meet conditions.}
 \usage{
-\method{subset}{list}(x, subset = TRUE, select = ., ...)
+\method{subset}{list}(x, subset = TRUE, select = ., ...,
+  envir = parent.frame())
 }
 \arguments{
 \item{x}{The list to be subsetted}
@@ -13,6 +14,8 @@
 \item{select}{A lambda expression to evaluate for each selected item}
 
 \item{...}{Additional parameters}
+
+\item{envir}{The environment to evaluate mapping function}
 }
 \description{
 Return subsets of a list which meet conditions.

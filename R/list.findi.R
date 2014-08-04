@@ -4,6 +4,7 @@
 #' @param .data \code{list}
 #' @param cond A logical lambda expression
 #' @param n The maximal number of members to find out
+#' @param envir The environment to evaluate mapping function
 #' @name list.findi
 #' @export
 #' @examples
@@ -15,6 +16,6 @@
 #' list.findi(x,min(score$c1,score$c2) >= 8)
 #' list.findi(x,min(score$c1,score$c2) <= 8,2)
 #' }
-list.findi <- function(.data,cond,n=1L) {
-  list.findi.internal(.data,substitute(cond),n)
+list.findi <- function(.data,cond,n=1L,envir = parent.frame()) {
+  list.findi.internal(.data,substitute(cond),n,envir)
 }

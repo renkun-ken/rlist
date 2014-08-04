@@ -3,6 +3,7 @@
 #'
 #' @param .data \code{list}
 #' @param cond A logical lambda expression
+#' @param envir The environment to evaluate mapping function
 #' @name list.which
 #' @export
 #' @examples
@@ -13,6 +14,6 @@
 #' list.which(x,type=="B")
 #' list.which(x,min(score$c1,score$c2) >= 8)
 #' }
-list.which <- function(.data,cond) {
-  which(list.is.internal(.data,substitute(cond)))
+list.which <- function(.data,cond,envir = parent.frame()) {
+  which(list.is.internal(.data,substitute(cond),envir = envir))
 }

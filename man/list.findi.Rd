@@ -4,7 +4,7 @@
 \title{Find the indices of a number of members in a list that
 meet given condition}
 \usage{
-list.findi(.data, cond, n = 1L)
+list.findi(.data, cond, n = 1L, envir = parent.frame())
 }
 \arguments{
 \item{.data}{\code{list}}
@@ -12,6 +12,8 @@ list.findi(.data, cond, n = 1L)
 \item{cond}{A logical lambda expression}
 
 \item{n}{The maximal number of members to find out}
+
+\item{envir}{The environment to evaluate mapping function}
 }
 \description{
 Find the indices of a number of members in a list that

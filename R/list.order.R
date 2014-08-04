@@ -3,6 +3,7 @@
 #' @param .data \code{list}
 #' @param ... A group of lambda expressions
 #' @param keep.names Whether to keep the names of \code{x} in the result
+#' @param .envir The environment to evaluate mapping function
 #' @name list.order
 #' @export
 #' @examples
@@ -14,7 +15,7 @@
 #' list.order(x,min(score$c1,score$c2))
 #' list.order(x,min(score$c1,score$c2),keep.names=TRUE)
 #' }
-list.order <- function(.data,...,keep.names=FALSE) {
-  result <- list.order.internal(.data,dots(...))
+list.order <- function(.data,...,keep.names=FALSE,.envir = parent.frame()) {
+  result <- list.order.internal(.data,dots(...),envir = .envir)
   if(keep.names) setnames(result,names(.data)) else result
 }

@@ -3,7 +3,7 @@
 \alias{list.order}
 \title{Return the order of each member in a list by expression}
 \usage{
-list.order(.data, ..., keep.names = FALSE)
+list.order(.data, ..., keep.names = FALSE, .envir = parent.frame())
 }
 \arguments{
 \item{.data}{\code{list}}
@@ -11,6 +11,8 @@ list.order(.data, ..., keep.names = FALSE)
 \item{...}{A group of lambda expressions}
 
 \item{keep.names}{Whether to keep the names of \code{x} in the result}
+
+\item{.envir}{The environment to evaluate mapping function}
 }
 \description{
 Return the order of each member in a list by expression

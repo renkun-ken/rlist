@@ -7,6 +7,7 @@
 #' @param classes a character vector of class names that restrict the search.
 #'    By default, the range is unrestricted (\code{ANY}).
 #' @param unlist \code{logical} Should the result be unlisted?
+#' @param envir The environment to evaluate mapping function
 #' @name list.search
 #' @export
 #' @examples
@@ -65,10 +66,11 @@
 #' list.search(data, all(!like(1)("Ken")), "character")
 #' list.search(data, any(!like(1)("Ken")), "character")
 #' }
-list.search <- function(.data, expr, classes = "ANY", unlist = FALSE) {
+list.search <- function(.data, expr, classes = "ANY", unlist = FALSE,
+  envir = parent.frame()) {
   l <- lambda(substitute(expr))
   fun <- list.search.fun
-  environment(fun) <- parent.frame()
+  environment(fun) <- envir
   formals(fun) <- setnames(formals(fun),c(".data",".expr",l$symbols))
   results <- rapply(.data, fun, classes = classes,
     how = if(unlist) "unlist" else "list", .expr = l$expr)

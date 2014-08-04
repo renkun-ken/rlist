@@ -3,7 +3,8 @@
 \alias{list.search}
 \title{Search a list recusively by a value}
 \usage{
-list.search(.data, expr, classes = "ANY", unlist = FALSE)
+list.search(.data, expr, classes = "ANY", unlist = FALSE,
+  envir = parent.frame())
 }
 \arguments{
 \item{.data}{\code{list}}
@@ -16,6 +17,8 @@ functions are recommended.}
 By default, the range is unrestricted (\code{ANY}).}
 
 \item{unlist}{\code{logical} Should the result be unlisted?}
+
+\item{envir}{The environment to evaluate mapping function}
 }
 \description{
 Search a list recusively by a value

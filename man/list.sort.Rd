@@ -3,12 +3,14 @@
 \alias{list.sort}
 \title{Sort a list by given expressions in order}
 \usage{
-list.sort(.data, ...)
+list.sort(.data, ..., .envir = parent.frame())
 }
 \arguments{
 \item{.data}{\code{list}}
 
 \item{...}{A group of lambda expressions}
+
+\item{.envir}{The environment to evaluate mapping function}
 }
 \description{
 Sort a list by given expressions in order

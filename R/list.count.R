@@ -2,6 +2,7 @@
 #'
 #' @param .data \code{list}
 #' @param cond A logical lambda expression
+#' @param envir The environment to evaluate mapping function
 #' @name list.count
 #' @export
 #' @examples
@@ -12,6 +13,6 @@
 #' list.count(x,type=="B")
 #' list.count(x,min(unlist(score)) >= 9)
 #' }
-list.count <- function(.data,cond) {
-  length(which(list.is.internal(.data,substitute(cond))))
+list.count <- function(.data,cond,envir = parent.frame()) {
+  length(which(list.is.internal(.data,substitute(cond),envir = envir)))
 }

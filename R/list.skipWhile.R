@@ -2,6 +2,7 @@
 #'
 #' @param .data \code{list}
 #' @param cond A logical lambda expression
+#' @param envir The environment to evaluate mapping function
 #' @name list.skipWhile
 #' @export
 #' @examples
@@ -12,9 +13,9 @@
 #' list.skipWhile(x,type=="A")
 #' list.skipWhile(x,min(score$c1,score$c2) >= 8)
 #' }
-list.skipWhile <- function(.data,cond) {
+list.skipWhile <- function(.data,cond,envir = parent.frame()) {
   .i <- 0L
   try(list.map.internal(.data,substitute(cond),
-    list.while.fun,parent.frame()),silent = TRUE)
+    list.while.fun,envir),silent = TRUE)
   .data[-(0L:.i)]
 }

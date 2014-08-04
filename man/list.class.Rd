@@ -3,7 +3,7 @@
 \alias{list.class}
 \title{Classify list members into unique cases evaluated by given expression.}
 \usage{
-list.class(.data, expr, ..., sort.cases = TRUE)
+list.class(.data, expr, ..., sort.cases = TRUE, envir = parent.frame())
 }
 \arguments{
 \item{.data}{\code{list}}
@@ -13,6 +13,8 @@ list.class(.data, expr, ..., sort.cases = TRUE)
 \item{...}{Additional parameters passed to \code{unique}}
 
 \item{sort.cases}{\code{logical}. if \code{TRUE} the cases will be sorted in ascending order.}
+
+\item{envir}{The environment to evaluate mapping function}
 }
 \description{
 Classify list members into unique cases evaluated by given expression.

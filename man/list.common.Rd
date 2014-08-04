@@ -3,12 +3,14 @@
 \alias{list.common}
 \title{Get all common cases by expression for a list}
 \usage{
-list.common(.data, expr)
+list.common(.data, expr, envir = parent.frame())
 }
 \arguments{
 \item{.data}{\code{list}}
 
 \item{expr}{A lambda expression}
+
+\item{envir}{The environment to evaluate mapping function}
 }
 \description{
 Get all common cases by expression for a list
