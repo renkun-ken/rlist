@@ -16,9 +16,9 @@
 #'        p3=list(name="Jenny",age=20))
 #' l2 <- list(p1=list(name="Jenny",age=20,type="A"),
 #'        p2=list(name="Ken",age=20,type="B"),
-#'        p3=list(name="James",age=21,type="A"))
+#'        p3=list(name="James",age=22,type="A"))
 #' list.join(l1,l2,name)
-#' list.join(l1,l2,.["name","age"])
+#' list.join(l1,l2,.[c("name","age")])
 #' }
 list.join <- function(x,y,xkey,ykey=NULL,...,keep.order=TRUE,
   envir=parent.frame()) {
