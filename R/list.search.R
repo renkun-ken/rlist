@@ -1,11 +1,10 @@
-#' Search a list recusively by a value
+#' Search a list recusively by an expression
 #'
 #' @param .data \code{list}
 #' @param expr a lambda expression with respect to value that returns
-#'    a single-valued logical vector. In the expression, exact and fuzzy search
-#'    functions are recommended.
-#' @param classes a character vector of class names that restrict the search.
-#'    By default, the range is unrestricted (\code{ANY}).
+#' a single-valued logical vector. In the expression, exact and fuzzy search functions are recommended.
+#' @param classes a character vector of class names that restrict the search. By default, the range is unrestricted (\code{ANY}).
+#' @param n the maximum number of result results
 #' @param unlist \code{logical} Should the result be unlisted?
 #' @param envir The environment to evaluate mapping function
 #' @name list.search
@@ -68,14 +67,17 @@
 #' list.search(data, all(!like("Ken",1)), "character")
 #' list.search(data, any(!like("Ken",1)), "character")
 #' }
-list.search <- function(.data, expr, classes = "ANY", unlist = FALSE,
-  envir = parent.frame()) {
+list.search <- function(.data, expr, classes = "ANY",
+  n = Inf, unlist = FALSE, envir = parent.frame()) {
   l <- lambda(substitute(expr))
+  counter <- as.environment(list(i = 0L))
   fun <- list.search.fun
   environment(fun) <- envir
-  formals(fun) <- setnames(formals(fun),c(".data",".expr",l$symbols))
+  formals(fun) <- setnames(formals(fun),
+    c(".data",".expr",".counter",".n",l$symbols))
   results <- rapply(.data, fun, classes = classes,
-    how = if(unlist) "unlist" else "list", .expr = l$expr)
+    how = if(unlist) "unlist" else "list",
+    .expr = l$expr, .counter = counter, .n = n)
   if(!unlist) {
     results <- list.clean(results,
       fun = is.null.or.empty, recursive = TRUE)

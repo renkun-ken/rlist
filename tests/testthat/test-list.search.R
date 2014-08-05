@@ -53,3 +53,14 @@ test_that("list.search", {
     list(p3=list(name=c("Sam","Lee")),
       p4=list(name=c("Keynes", "Bond"))))
 })
+
+test_that("counting", {
+  x <- list(
+    p1 = list(name="Ken",age=24),
+    p2 = list(name="Kent",age=26),
+    p3 = list(name="Sam",age=24),
+    p4 = list(name="Keynes",age=30),
+    p5 = list(name="Kwen",age=31))
+  expect_equal(list.search(x, n -> n>=25, "numeric", n=2, unlist=TRUE),
+    c(p2.age=26,p4.age=30))
+})

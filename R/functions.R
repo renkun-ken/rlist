@@ -13,10 +13,10 @@ lambda <- function(expr) {
       symbols <- expr[[2L]]
       .lambda$expr <- expr[[3L]]
     } else return(.lambda)
-
-    if(is.name(symbols)) .lambda$symbols[1L] <- as.character(symbols)
+    if(is.name(symbols))
+      .lambda$symbols[1L] <- as.character(symbols)
     else if(is.call(symbols)) {
-      symbols <- as.character(as.list(symbols)[-1L])
+      symbols <- as.character(symbols)[-1L]
       indices <- which(symbols != "")
       .lambda$symbols[indices] <- symbols[indices]
     } else stop("Invalid lambda expression")
@@ -27,7 +27,7 @@ lambda <- function(expr) {
 #' @export
 .list.env <- function(x) {
   if(is.list(x) || is.environment(x)) x
-  else if(is.vector(x) && !is.null(names(x))) as.vector(x,"list")
+  else if(is.vector(x) && !is.null(names(x))) setclass(x,"list")
   else NULL
 }
 
@@ -38,6 +38,7 @@ dots <- function(...) {
 list.sort.functions <- list(desc=`-`)
 
 setnames <- `names<-`
+setclass <- `class<-`
 
 getnames <- function(x, null = NULL)
   if(is.null(names(x))) null else names(x)
