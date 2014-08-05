@@ -6,7 +6,13 @@
 
 rlist is a set of tools for working with list objects. Its goal is to make it easier to work with lists by providing a wide range of functions on non-tabular data stored in them.
 
-Currently, this package supports list filtering, mapping, grouping, sorting, updating, searching, file input/output, and many other functions. It implements collection pipeline and strongly recommends functional programming style in list operations.
+This package supports list filtering, mapping, grouping, sorting, updating, searching, file input/output, and many other functions. It implements collection pipeline and strongly recommends functional programming style in list operations.
+
+## What's new in 0.3?
+
+- **API Break**: `list.search` now evaluates expression recursively in a list and supports limited lambda expression (only value is defined).
+- Add `exact()`, `equal()`, `include()`, `pattern()`, and `like()` comparer functions for logical and fuzzy filtering and searching.
+- Add `List()` to provide an environment in which most list functions are defined for light-weight chaining that does not reply on external operators.
 
 [Release notes](https://github.com/renkun-ken/rlist/releases)
 
