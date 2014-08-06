@@ -33,10 +33,10 @@ x <- list(p1 = list(type="A",score=c(c1=9)),
        p4 = list(type=c("B","C"),score=c(c1=8,c2=NA)))
 
 ## Search exact values
-list.search(x, exact("A"))
-list.search(x, exact(c("A","B")))
-list.search(x, exact(c(9,7)))
-list.search(x, exact(c(c1=9,c2=7)))
+list.search(x, equal("A", exactly = TRUE))
+list.search(x, equal(c("A","B"), exactly = TRUE))
+list.search(x, equal(c(9,7), exactly = TRUE))
+list.search(x, equal(c(c1=9,c2=7), exactly = TRUE))
 
 ## Search all equal values
 list.search(x, all(equal(9)))
@@ -48,10 +48,10 @@ list.search(x, any(equal(9)))
 list.search(x, any(equal(c(8,9))))
 
 ## Search all/any included/excluded values
-list.search(x, include(9))
-list.search(x, all(include(c(9,10))))
-list.search(x, any(include(c(9,10))))
-list.search(x, all(!include(c(7,9,10))))
+list.search(x, equal(9, include = TRUE))
+list.search(x, all(equal(c(9,10), include = TRUE)))
+list.search(x, any(equal(c(9,10), include = TRUE)))
+list.search(x, all(!equal(c(7,9,10), include = TRUE)))
 
 # Fuzzy search
 
@@ -63,11 +63,11 @@ data <- list(
   p5 = list(name="Kwen",age=31)
 )
 
-list.search(data, pattern("^K\\\\w+n$"), "character")
+list.search(data, equal("^K\\\\w+n$", pattern = TRUE), "character")
 
-list.search(data, like("Ken",1), "character")
-list.search(data, like("Man",2), "character")
-list.search(data, !like("Man",2), "character")
+list.search(data, equal("Ken", dist = 1), "character")
+list.search(data, equal("Man", dist = 2), "character")
+list.search(data, !equal("Man", dist = 2), "character")
 
 data <- list(
   p1 = list(name=c("Ken", "Ren"),age=24),
@@ -76,10 +76,10 @@ data <- list(
   p4 = list(name=c("Keynes", "Bond"),age=30),
   p5 = list(name=c("Kwen", "Hu"),age=31))
 
-list.search(data, all(like("Ken",1)), "character")
-list.search(data, any(like("Ken",1)), "character")
-list.search(data, all(!like("Ken",1)), "character")
-list.search(data, any(!like("Ken",1)), "character")
+list.search(data, all(equal("Ken", dist = 1)), "character")
+list.search(data, any(equal("Ken", dist = 1)), "character")
+list.search(data, all(!equal("Ken", dist = 1)), "character")
+list.search(data, any(!equal("Ken", dist = 1)), "character")
 }
 }
 

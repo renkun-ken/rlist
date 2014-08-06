@@ -1,8 +1,8 @@
-Version 0.3 (2014-08-05)
+Version 0.3 (2014-08-06)
 ===
 API Break: `list.search` now evaluates expression recursively in a list and supports limited lambda expression (only value is defined).
 
-Add `exact()`, `equal()`, `include()`, `pattern()`, and `like()` comparer functions for logical and fuzzy filtering and searching.
+Add `equal()` function for logical and fuzzy filtering and searching which supports exact equality, atomic equality, inclusion, pattern matching, string-distance tolerance.
 
 Add `List()` to provide an environment in which most list functions are defined for light-weight chaining that does not reply on external operators.
 
