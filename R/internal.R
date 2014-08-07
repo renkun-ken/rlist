@@ -61,11 +61,21 @@ list.order.internal <- function(.data,args,envir=parent.frame(2L)) {
 }
 
 list.search.fun <- function(.data, .expr, .counter, .n,
-  . = .data, .i = NA_integer_, .name = NA_character_) {
+  . = .data, .i = .counter$i, .name = NA_character_) {
   q <- eval(.expr, environment(), NULL)
-  if(.counter$i < .n && is.logical(q) &&
-      length(q) == 1L && !is.na(q) && q) {
-    .counter$i <- .counter$i + 1L
-    .data
+  vq <- !is.na(q)
+  if(.counter$i < .n){
+    if(is.logical(q) && length(q) == 1L && !is.na(q)) {
+      if(q) {
+        .counter$i <- .counter$i + length(.data)
+        return(.data)
+      } else {
+        return(NULL)
+      }
+    }
+    if(length(q) >= 1L && any(vq)) {
+      .counter$i <- .counter$i + length(which(vq))
+      return(q[vq])
+    }
   }
 }
