@@ -71,14 +71,18 @@ test_that("list.search", {
     )
     , list( "aa", "bb" )
   )
-  expect_equal(
-    list.search(y, .[equal("a", pattern=T)], "character")[[1]]
-    ,list(list(df=list(letter="a")),list("aa"))[[1]]
+  #list.search returns blank names
+  #don't know how to specify inline without pipeR
+  #so do in two steps here
+  res_emptyname <- structure(list(list(df=list(letter="a")),list("aa")))
+  names(res_emptyname) <- c("","")
+  
+
+  expect_identical(
+    list.search(y, .[equal("a", pattern=T)], "character")
+    ,res_emptyname
   )
-  expect_equal(
-    list.search(y, .[equal("a", pattern=T)], "character")[[2]]
-    ,list(list(df=list(letter="a")),list("aa"))[[2]]
-  )
+
 })
 
 test_that("counting", {
