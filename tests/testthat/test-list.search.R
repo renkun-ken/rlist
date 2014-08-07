@@ -59,6 +59,26 @@ test_that("list.search", {
   expect_equal(list.search(x,!any(equal("Ken", dist = 1)), "character"),
     list(p3=list(name=c("Sam","Lee")),
       p4=list(name=c("Keynes", "Bond"))))
+  
+  y <- list(
+    n = 1:10
+    , list(
+      df = data.frame(
+        id = 1:10
+        , letter = letters[1:10]
+        , stringsAsFactors = F
+      )
+    )
+    , list( "aa", "bb" )
+  )
+  expect_equal(
+    list.search(y, .[equal("a", pattern=T)], "character")[[1]]
+    ,list(list(df=list(letter="a")),list("aa"))[[1]]
+  )
+  expect_equal(
+    list.search(y, .[equal("a", pattern=T)], "character")[[2]]
+    ,list(list(df=list(letter="a")),list("aa"))[[2]]
+  )
 })
 
 test_that("counting", {
