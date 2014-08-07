@@ -117,7 +117,7 @@ List <- function(data = list()) {
   }
   iter <- function(...) {
     data <- list.iter(data,...,envir = parent.frame())
-    List(data)
+    invisible(List(data))
   }
   join <- function(...) {
     data <- list.join(data,...,envir = parent.frame())
