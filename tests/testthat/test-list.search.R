@@ -71,16 +71,12 @@ test_that("list.search", {
     )
     , list( "aa", "bb" )
   )
-  #list.search returns blank names
-  #don't know how to specify inline without pipeR
-  #so do in two steps here
-  res_emptyname <- structure(list(list(df=list(letter="a")),list("aa")))
-  names(res_emptyname) <- c("","")
   
-
+  #list.search returns blank names
+  #might want to revisit
   expect_identical(
     list.search(y, .[equal("a", pattern=T)], "character")
-    ,res_emptyname
+    ,structure(list(list(df=list(letter="a")),list("aa")),names=c("",""))
   )
 
 })
