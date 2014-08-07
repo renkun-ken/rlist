@@ -18,10 +18,18 @@ list.search(.data, expr, classes = "ANY", n = Inf, unlist = FALSE)
 Definition of arguments:
 
 - `.data`: the list to be searched
-- `expr`: a lambda expression with respect to value that returns a single-valued logical vector. In the expression, `equal()` is designed for robust logical and fuzzy comparison between two objects.
+- `expr`: a lambda expression. In the expression, `equal()` is designed for robust logical and fuzzy comparison between two objects.
 - `classes`: a character vector of class names that restrict the search. By default, the range is unrestricted by taking value `"ANY"`.
 - `n`: an integer indicating the maximum number of results to return.
 - `unlist`: should the final result be unlisted?
+
+`list.search()` evaluates an expression (`expr`) recursively along a list (`.data`). 
+
+If the expression results in a single-valued logical vector and its value is `TRUE`, the whole vector will be collected If it results in multi-valued or non-logical vector, the non-`NA` values resulted from the expression will be collected. 
+
+To search whole vectors that meet certain condition, specify the expression that returns a single logical value. 
+
+To search the specific values within the vectors, use subsetting in the expression, that is, `.[cond]` or lambda expression like `x -> x[cond]` where `cond` is a logical vector used to select the elements in the vector.
 
 ## Exact search
 
@@ -191,6 +199,15 @@ Search all character vectors `c(x,y)` like `c("Ken","Hu")` with both string dist
 ```{r}
 list.search(x, all(equal(c("Ken","Hu"), dist = 2)), "character")
 ```
+
+Search the terms in the character vectors like `Ken` with distance 1 and single out the values alike.
+
+```{r}
+list.search(x, .[equal("Ken", dist = 1)], "character")
+```
+
+Only values like "Ken" are returned.
+
 
 ## Fuzzy filtering
 

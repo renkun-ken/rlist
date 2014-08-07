@@ -1,6 +1,6 @@
-Version 0.3 (2014-08-06)
+Version 0.3 (2014-08-08)
 ===
-API Break: `list.search` now evaluates expression recursively in a list and supports limited lambda expression (only value is defined).
+API Break: `list.search` now evaluates expression recursively in a list and supports lambda expression.
 
 Add `equal()` function for logical and fuzzy filtering and searching which supports exact equality, atomic equality, inclusion, pattern matching, string-distance tolerance.
 

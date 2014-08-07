@@ -9,12 +9,11 @@ list.search(.data, expr, classes = "ANY", n = Inf, unlist = FALSE,
 \arguments{
 \item{.data}{\code{list}}
 
-\item{expr}{a lambda expression with respect to value that returns
-a single-valued logical vector. In the expression, exact and fuzzy search functions are recommended.}
+\item{expr}{a lambda expression}
 
 \item{classes}{a character vector of class names that restrict the search. By default, the range is unrestricted (\code{ANY}).}
 
-\item{n}{the maximum number of result results}
+\item{n}{the number of results to get}
 
 \item{unlist}{\code{logical} Should the result be unlisted?}
 
@@ -22,6 +21,23 @@ a single-valued logical vector. In the expression, exact and fuzzy search functi
 }
 \description{
 Search a list recusively by an expression
+}
+\details{
+\code{list.search} evaluates an expression (\code{expr}) recursively
+along a list (\code{.data}).
+
+If the expression results in a single-valued logical vector and its
+value is \code{TRUE}, the whole vector will be collected If it results
+in multi-valued or non-logical vector, the non-\code{NA} values
+resulted from the expression will be collected.
+
+To search whole vectors that meet certain condition, specify the
+expression that returns a single logical value.
+
+To search the specific values within the vectors, use subsetting in the
+expression, that is, \code{.[cond]} or lambda expression like
+\code{x -> x[cond]} where \code{cond} is a logical vector used to
+select the elements in the vector.
 }
 \examples{
 \dontrun{
@@ -80,6 +96,8 @@ list.search(data, all(equal("Ken", dist = 1)), "character")
 list.search(data, any(equal("Ken", dist = 1)), "character")
 list.search(data, all(!equal("Ken", dist = 1)), "character")
 list.search(data, any(!equal("Ken", dist = 1)), "character")
+
+list.search(data, .[equal("e",pattern = TRUE)], "character")
 }
 }
 
