@@ -71,14 +71,14 @@ test_that("list.search", {
     )
     , list( "aa", "bb" )
   )
-  expect_equal(
-    list.search(y, .[equal("a", pattern=T)], "character")[[1]]
-    ,list(list(df=list(letter="a")),list("aa"))[[1]]
+  
+  #list.search returns blank names
+  #might want to revisit
+  expect_identical(
+    list.search(y, .[equal("a", pattern=T)], "character")
+    ,structure(list(list(df=list(letter="a")),list("aa")),names=c("",""))
   )
-  expect_equal(
-    list.search(y, .[equal("a", pattern=T)], "character")[[2]]
-    ,list(list(df=list(letter="a")),list("aa"))[[2]]
-  )
+
 })
 
 test_that("counting", {
