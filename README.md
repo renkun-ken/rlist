@@ -12,7 +12,7 @@ This package supports list filtering, mapping, grouping, sorting, updating, sear
 
 - **API Break**: `list.search` now evaluates expression recursively in a list and supports lambda expression.
 - Add `equal()` function for logical and fuzzy filtering and searching which supports exact equality, atomic equality, inclusion, pattern matching, string-distance tolerance.
-- Add `List()` to provide an environment in which most list functions are defined for light-weight chaining that does not reply on external operators.
+- Add `List()` to provide an environment in which most list functions are defined for light-weight chaining that does not rely on external operators.
 
 [Release notes](https://github.com/renkun-ken/rlist/releases)
 
