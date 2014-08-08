@@ -252,23 +252,20 @@ List <- function(data = list()) {
 
 #' @export
 print.List <- function(x,...) {
-  cat("List environment\n")
-  cat("Data:\n")
-  print(x$data,...)
+  cat("<List environment>\n$data :",class(x$data),"\n")
+  print(x$data,...,indent = 2)
   invisible(x)
 }
 
 #' @export
 str.List <- function(object,...) {
-  cat("List environment\n")
-  cat("Data:\n")
+  cat("<List environment>\n$data\n")
   str(object$data,...)
 }
 
 #' @export
 summary.List <- function(object,...) {
-  cat("List environment\n")
-  cat("Data:\n")
+  cat("<List environment>\n$data :",class(object$data),"\n")
   summary(object$data,...)
 }
 
