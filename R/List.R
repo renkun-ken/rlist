@@ -238,7 +238,7 @@ List <- function(data = list()) {
     List(data)
   }
   subset <- function(...) {
-    data <- subset(data,...,envir = parent.frame())
+    data <- list.subset(data,...)
     List(data)
   }
   summary <- function(...) {
