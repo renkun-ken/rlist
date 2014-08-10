@@ -47,6 +47,15 @@ test_that("list.extract", {
     lapply(1:2,function(i) x[[i]]))
 })
 
+test_that("list.subset", {
+  x <- list(p1 = list(type="A",score=list(c1=10,c2=8)),
+    p2 = list(type="B",score=list(c1=9,c2=9)),
+    p3 = list(type="B",score=list(c1=9,c2=7)))
+  expect_identical(list.subset(x, c("p1","p2")),x[c("p1","p2")])
+  expect_identical(list.subset(x, "^p", pattern = TRUE),x[])
+  expect_identical(list.subset(x, "x1", dist = 1),x["p1"])
+})
+
 test_that("list.count", {
 
   # simple list
