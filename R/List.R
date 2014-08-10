@@ -1,16 +1,18 @@
-#' List wrapper environment in which \code{data} is the \code{list} and
+#' Create a \code{List environment} that wraps given \code{data} and
 #' most list functions are defined for chainable operations.
 #'
 #' @param data \code{list}
 #' @name List
 #' @export
 #' @details
-#' Most list functions are defined in the wrapper environment.
+#' Most list functions are defined in \code{List environment}.
 #' In addition to these functions, \code{call(fun,...)} calls
 #' external function \code{fun} with additional parameters specifies in
 #' \code{...}.
 #'
-#' To extract the data from List \code{x}, call \code{x$data}.
+#' To extract the data from List \code{x}, call \code{x$data} or simply
+#' \code{x[]}.
+#'
 #' @examples
 #' \dontrun{
 #' x <- list(p1 = list(type="A",score=list(c1=10,c2=8)),
