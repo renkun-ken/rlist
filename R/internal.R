@@ -65,15 +65,17 @@ list.search.fun <- function(.data, .expr, .counter, .n,
   q <- eval(.expr, environment(), NULL)
   vq <- !is.na(q)
   if(.counter$i < .n){
-    if(is.logical(q) && length(q) == 1L && !is.na(q)) {
-      if(q) {
+    # for logical vector, only single-valued TRUE will return value;
+    # for other vectors, if it contains any non-NA values,
+    # the vector will be returned
+    if(is.logical(q)) {
+      if(length(q) == 1L && !is.na(q) && q) {
         .counter$i <- .counter$i + length(.data)
         return(.data)
       } else {
         return(NULL)
       }
-    }
-    if(length(q) >= 1L && any(vq)) {
+    } else if(length(q) >= 1L && any(vq)) {
       .counter$i <- .counter$i + length(which(vq))
       return(q[vq])
     }
