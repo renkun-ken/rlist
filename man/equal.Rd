@@ -3,9 +3,8 @@
 \alias{equal}
 \title{Compare two values and test whether they are equal at certain degree}
 \usage{
-equal(x, y = get(".data", envir = parent.frame(), inherits = FALSE),
-  exactly = FALSE, include = FALSE, pattern = FALSE, dist = NA_integer_,
-  ...)
+equal(x, y, exactly = FALSE, include = FALSE, pattern = FALSE,
+  dist = NA_integer_, ...)
 }
 \arguments{
 \item{x}{target value}

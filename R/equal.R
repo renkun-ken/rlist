@@ -23,8 +23,14 @@
 #' @param ... additional parameters
 #' @return \code{logical}
 #' @export
-equal <- function(x, y = get(".data", envir = parent.frame(), inherits = FALSE),
+equal <- function(x, y,
   exactly = FALSE, include = FALSE, pattern = FALSE, dist = NA_integer_, ...) {
+  if(missing(y)) {
+    if(exists(".data",envir = parent.frame(),inherits = FALSE))
+      y <- get(".data", envir = parent.frame(), inherits = FALSE)
+    else
+      stop("y is missing")
+  }
   if(exactly) identical(x,y,...)
   else if(include) {
     if(mode(x) == mode(y)) x %in% y
