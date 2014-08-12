@@ -15,5 +15,5 @@
 #' list.any(x,mean(unlist(score))>=6)
 #' }
 list.any <- function(.data,cond,na.rm=FALSE,envir=parent.frame()) {
-  any(list.is.internal(.data,substitute(cond),envir),na.rm = na.rm)
+  length(list.findi.internal(.data,substitute(cond),n = 1,envir = envir)) > 0L
 }
