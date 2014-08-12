@@ -29,9 +29,6 @@
 #'       call(mean) []) []
 #' }
 List <- function(data = list()) {
-  envir <- environment()
-  class(envir) <- c("List","environment")
-
   call <- function(fun,...) {
     data <- fun(data,...)
     List(data)
@@ -245,7 +242,8 @@ List <- function(data = list()) {
     data <- summary(data,...)
     List(data)
   }
-  envir
+  envir <- environment()
+  setclass(envir, c("List","environment"))
 }
 
 #' @export
