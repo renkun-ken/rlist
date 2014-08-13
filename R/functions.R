@@ -24,11 +24,8 @@ lambda <- function(expr) {
   .lambda
 }
 
-#' @export
-.list.env <- function(x) {
-  if(is.list(x) || is.environment(x)) x
-  else if(is.vector(x) && !is.null(names(x))) setclass(x,"list")
-  else NULL
+list.env <- function(x) {
+  if(is.list(x)) x else NULL
 }
 
 dots <- function(...) {

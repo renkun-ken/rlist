@@ -18,7 +18,7 @@ test_that("subset.list", {
 
   # list of vectors
   x <- list(a=c(x=1,y=2),b=c(x=3,y=4))
-  expect_identical(subset(x,x>=2,y),list(b=4))
+  expect_identical(subset(x,.["x"]>=2,.["y"]),list(b=c(y=4)))
   expect_identical(subset(x,sum(.)<=4,max(.)),list(a=2))
 
   # list of lists
