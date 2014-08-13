@@ -24,10 +24,6 @@ lambda <- function(expr) {
   .lambda
 }
 
-list.env <- function(x) {
-  if(is.list(x)) x else NULL
-}
-
 dots <- function(...) {
   eval(substitute(alist(...)))
 }
@@ -46,6 +42,13 @@ set_argnames <- function(args,data=args) {
   indices <- argnames=="" & vapply(args,is.name,logical(1L))
   argnames[indices] <- vapply(args[indices],as.character,character(1L))
   setnames(data,argnames)
+}
+
+#' @export
+.list.env <- function(x) {
+  if(is.list(x)) x
+  else if(is.vector(x) && !is.null(names(x))) setclass(x,"list")
+  else NULL
 }
 
 setmembers <- `[<-`

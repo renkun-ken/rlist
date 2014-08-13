@@ -1,5 +1,5 @@
 list.map.fun <- function(.data,.expr) {
-  eval(.expr,list.env(.data),environment())
+  eval(.expr,.list.env(.data),environment())
 }
 
 list.map.internal <- function(.data,expr,fun = list.map.fun,
@@ -15,7 +15,7 @@ list.map.internal <- function(.data,expr,fun = list.map.fun,
 }
 
 list.is.fun <- function(.data,.expr) {
-  x <- eval(.expr,list.env(.data),environment())
+  x <- eval(.expr,.list.env(.data),environment())
   if(is.logical(x) && length(x) == 1L) x else NA
 }
 
@@ -26,7 +26,7 @@ list.is.internal <- function(.data,cond,envir=parent.frame(2L)) {
 list.findi.fun <- function(.data,.expr) {
   env <- parent.frame(4L)
   env$.i <- env$.i + 1L
-  x <- eval(.expr,list.env(.data),environment())
+  x <- eval(.expr,.list.env(.data),environment())
   if(is.logical(x) && length(x) == 1L && x) {
     env$.n <- env$.n + 1L
     env$.indices <- c(env$.indices, env$.i)
@@ -44,7 +44,7 @@ list.findi.internal <- function(.data,cond,n,envir=parent.frame(2L)) {
 
 list.while.fun <- function(.data,.expr) {
   env <- parent.frame(4L)
-  x <- eval(.expr,list.env(.data),environment())
+  x <- eval(.expr,.list.env(.data),environment())
   if(is.logical(x) && length(x) == 1L && x) env$.i <- env$.i + 1L
   else stop()
 }
