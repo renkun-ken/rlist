@@ -2,8 +2,7 @@ list.map.fun <- function(.data,.expr) {
   eval(.expr,.list.env(.data),environment())
 }
 
-list.map.internal <- function(.data,expr,fun = list.map.fun,
-  envir=parent.frame(2L)) {
+list.map.internal <- function(.data,expr,fun = list.map.fun, envir) {
   if(is.null(.data) || length(.data) == 0L) return(list())
   l <- lambda(expr)
   xnames <- getnames(.data,character(1L))
@@ -19,7 +18,7 @@ list.is.fun <- function(.data,.expr) {
   if(is.logical(x) && length(x) == 1L) x else NA
 }
 
-list.is.internal <- function(.data,cond,envir=parent.frame(2L)) {
+list.is.internal <- function(.data,cond,envir) {
   as.logical(list.map.internal(.data,cond,list.is.fun,envir))
 }
 
@@ -30,11 +29,11 @@ list.findi.fun <- function(.data,.expr) {
   if(is.logical(x) && length(x) == 1L && x) {
     env$.n <- env$.n + 1L
     env$.indices <- c(env$.indices, env$.i)
-    if(env$.n == env$n) stop()
+    if(env$.n == env$n) stop(call. = FALSE)
   }
 }
 
-list.findi.internal <- function(.data,cond,n,envir=parent.frame(2L)) {
+list.findi.internal <- function(.data,cond,n,envir) {
   .i <- 0L
   .n <- 0L
   .indices <- integer()
@@ -46,10 +45,10 @@ list.while.fun <- function(.data,.expr) {
   env <- parent.frame(4L)
   x <- eval(.expr,.list.env(.data),environment())
   if(is.logical(x) && length(x) == 1L && x) env$.i <- env$.i + 1L
-  else stop()
+  else stop(call. = FALSE)
 }
 
-list.order.internal <- function(.data,args,envir=parent.frame(2L)) {
+list.order.internal <- function(.data,args,envir) {
   if(is.null(.data) || length(.data) == 0L) return(integer())
   envir <- new.env(parent = envir)
   list2env(list.sort.functions,envir)
