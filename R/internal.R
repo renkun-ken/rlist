@@ -7,7 +7,7 @@ list.map.internal <- function(.data,expr,fun = list.map.fun, envir) {
   l <- lambda(expr)
   xnames <- getnames(.data,character(1L))
   environment(fun) <- envir
-  formals(fun) <- setnames(vector("list",.nfsymbol),
+  formals(fun) <- setnames(vector("pairlist",.nfsymbol),
     c(".data",".expr",l$symbols))
   args <- list(fun,.data,list(l$expr),.data,seq_along(.data),xnames)
   do.call(Map, args)
