@@ -97,7 +97,7 @@ list.search <- function(.data, expr, classes = "ANY",
     .expr = l$expr, .counter = counter, .n = n)
   if(!unlist) {
     results <- list.clean(results,
-      fun = is.null.or.empty, recursive = TRUE)
+      fun = is.empty, recursive = TRUE)
   }
   results
 }

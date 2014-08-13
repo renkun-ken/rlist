@@ -53,4 +53,4 @@ set_argnames <- function(args,data=args) {
 
 setmembers <- `[<-`
 
-is.null.or.empty <- function(x) is.null(x) || length(x) == 0L
+is.empty <- function(x) length(x) == 0L
