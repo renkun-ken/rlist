@@ -252,19 +252,20 @@ List <- function(data = list()) {
 
 #' @export
 print.List <- function(x,...,header = getOption("List.header", TRUE)) {
-  if(header) cat("$data :",class(x$data),"\n")
-  print(x$data,...)
+  if(!is.null(x$data)) {
+    if(header) cat("$data :",class(x$data),"\n------\n")
+    print(x$data,...)
+  }
 }
 
 #' @export
 str.List <- function(object,...,header = getOption("List.header", TRUE)) {
-  if(header) cat("$data\n")
+  if(header) cat("$data : ")
   str(object$data,...)
 }
 
 #' @export
-summary.List <- function(object,...,header = getOption("List.header", TRUE)) {
-  if(header) cat("$data :",class(object$data),"\n")
+summary.List <- function(object,...) {
   summary(object$data,...)
 }
 
