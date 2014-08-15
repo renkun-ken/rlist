@@ -251,21 +251,20 @@ List <- function(data = list()) {
   get("data",envir = x,inherits = FALSE)
 
 #' @export
-print.List <- function(x,...) {
-  cat("<List environment>\n$data :",class(x$data),"\n")
-  print(x$data,...,indent = 2)
-  invisible(x)
+print.List <- function(x,...,header = getOption("List.header", TRUE)) {
+  if(header) cat("$data :",class(x$data),"\n")
+  print(x$data,...)
 }
 
 #' @export
-str.List <- function(object,...) {
-  cat("<List environment>\n$data\n")
+str.List <- function(object,...,header = getOption("List.header", TRUE)) {
+  if(header) cat("$data\n")
   str(object$data,...)
 }
 
 #' @export
-summary.List <- function(object,...) {
-  cat("<List environment>\n$data :",class(object$data),"\n")
+summary.List <- function(object,...,header = getOption("List.header", TRUE)) {
+  if(header) cat("$data :",class(object$data),"\n")
   summary(object$data,...)
 }
 
