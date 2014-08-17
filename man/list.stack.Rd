@@ -3,11 +3,14 @@
 \alias{list.stack}
 \title{Stack all list members to construct a \code{data.frame}}
 \usage{
-list.stack(.data)
+list.stack(.data, ...)
 }
 \arguments{
 \item{.data}{\code{list} of \code{vector}s, \code{list}s,
 or \code{data.frame}s.}
+
+\item{...}{additional parameters passed to
+\code{data.table::rbindlist}.}
 }
 \description{
 Stack all list members to construct a \code{data.frame}
