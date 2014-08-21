@@ -164,12 +164,9 @@ devs %>>%
 ```
 
 ```
-Warning: restarting interrupted promise evaluation
-Warning: internal error -3 in R_decompress1
-```
-
-```
-Error: lazy-load database 'P' is corrupt
+   name age
+1   Ken  24
+2 James  25
 ```
 
 The example above uses `pipeR`(http://renkun.me/pipeR/) package for pipeline operator `%>>%` that chains commands in a fluent style.
