@@ -1,6 +1,24 @@
 # compatibility for data.table functions
 .datatable.aware <- TRUE
 
+createListClosure <- function(f, data) {
+  function(...) {
+    dots <- match.call(expand.dots = FALSE)$`...`
+    rcall <- as.call(c(f,quote(data),dots))
+    data <- eval(rcall,list(data = data),parent.frame())
+    List(data)
+  }
+}
+
+createCallClosure <- function(data) {
+  function(f, ...) {
+    dots <- match.call(expand.dots = FALSE)$`...`
+    rcall <- as.call(c(f,quote(data),dots))
+    data <- eval(rcall,list(data = data),parent.frame())
+    List(data)
+  }
+}
+
 #' Create a \code{List environment} that wraps given \code{data} and
 #' most list functions are defined for chainable operations.
 #'
@@ -32,273 +50,61 @@
 #'       call(mean) []) []
 #' }
 List <- function(data = list()) {
-  call <- function(f,...) {
-    dots <- match.call(expand.dots = FALSE)$`...`
-    rcall <- as.call(c(f,quote(data),dots))
-    data <- eval(rcall,list(data = data),parent.frame())
-    List(data)
-  }
+  call <- createCallClosure(data)
 
-  all <- function(...) {
-    dots <- match.call(expand.dots = FALSE)$`...`
-    rcall <- as.call(c(list.all,quote(data),dots))
-    data <- eval(rcall,list(data = data),parent.frame())
-    List(data)
-  }
-  any <- function(...) {
-    dots <- match.call(expand.dots = FALSE)$`...`
-    rcall <- as.call(c(list.any,quote(data),dots))
-    data <- eval(rcall,list(data = data),parent.frame())
-    List(data)
-  }
-  append <- function(...) {
-    data <- list.append(data,...)
-    List(data)
-  }
-  apply <- function(...) {
-    data <- list.apply(data,...)
-    List(data)
-  }
-  cases <- function(...) {
-    dots <- match.call(expand.dots = FALSE)$`...`
-    rcall <- as.call(c(list.cases,quote(data),dots))
-    data <- eval(rcall,list(data = data),parent.frame())
-    List(data)
-  }
-  cbind <- function() {
-    data <- list.cbind(data)
-    List(data)
-  }
-  class <- function(...) {
-    dots <- match.call(expand.dots = FALSE)$`...`
-    rcall <- as.call(c(list.class,quote(data),dots))
-    data <- eval(rcall,list(data = data),parent.frame())
-    List(data)
-  }
-  clean <- function(...) {
-    data <- list.clean(data,...)
-    List(data)
-  }
-  common <- function(...) {
-    dots <- match.call(expand.dots = FALSE)$`...`
-    rcall <- as.call(c(list.common,quote(data),dots))
-    data <- eval(rcall,list(data = data),parent.frame())
-    List(data)
-  }
-  count <- function(...) {
-    dots <- match.call(expand.dots = FALSE)$`...`
-    rcall <- as.call(c(list.count,quote(data),dots))
-    data <- eval(rcall,list(data = data),parent.frame())
-    List(data)
-  }
-  do <- function(...) {
-    data <- list.do(data,...)
-    List(data)
-  }
-  exclude <- function(...) {
-    dots <- match.call(expand.dots = FALSE)$`...`
-    rcall <- as.call(c(list.exclude,quote(data),dots))
-    data <- eval(rcall,list(data = data),parent.frame())
-    List(data)
-  }
-  extract <- function(...) {
-    data <- list.extract(data,...)
-    List(data)
-  }
-  filter <- function(...) {
-    dots <- match.call(expand.dots = FALSE)$`...`
-    rcall <- as.call(c(list.filter,quote(data),dots))
-    data <- eval(rcall,list(data = data),parent.frame())
-    List(data)
-  }
-  find <- function(...) {
-    dots <- match.call(expand.dots = FALSE)$`...`
-    rcall <- as.call(c(list.find,quote(data),dots))
-    data <- eval(rcall,list(data = data),parent.frame())
-    List(data)
-  }
-  findi <- function(...) {
-    dots <- match.call(expand.dots = FALSE)$`...`
-    rcall <- as.call(c(list.findi,quote(data),dots))
-    data <- eval(rcall,list(data = data),parent.frame())
-    List(data)
-  }
-  flatten <- function(...) {
-    data <- list.flatten(data,...)
-    List(data)
-  }
-  group <- function(...) {
-    dots <- match.call(expand.dots = FALSE)$`...`
-    rcall <- as.call(c(list.group,quote(data),dots))
-    data <- eval(rcall,list(data = data),parent.frame())
-    List(data)
-  }
-  is <- function(...) {
-    dots <- match.call(expand.dots = FALSE)$`...`
-    rcall <- as.call(c(list.is,quote(data),dots))
-    data <- eval(rcall,list(data = data),parent.frame())
-    List(data)
-  }
-  insert <- function(...) {
-    data <- list.insert(data,...)
-    List(data)
-  }
-  iter <- function(...) {
-    dots <- match.call(expand.dots = FALSE)$`...`
-    rcall <- as.call(c(list.iter,quote(data),dots))
-    data <- eval(rcall,list(data = data),parent.frame())
-    List(data)
-  }
-  join <- function(...) {
-    dots <- match.call(expand.dots = FALSE)$`...`
-    rcall <- as.call(c(list.join,quote(data),dots))
-    data <- eval(rcall,list(data = data),parent.frame())
-    List(data)
-  }
-  load <- function(...) {
-    data <- list.load(...)
-    List(data)
-  }
-  map <- function(...) {
-    dots <- match.call(expand.dots = FALSE)$`...`
-    rcall <- as.call(c(list.map,quote(data),dots))
-    data <- eval(rcall,list(data = data),parent.frame())
-    List(data)
-  }
-  mapv <- function(...) {
-    dots <- match.call(expand.dots = FALSE)$`...`
-    rcall <- as.call(c(list.mapv,quote(data),dots))
-    data <- eval(rcall,list(data = data),parent.frame())
-    List(data)
-  }
-  match <- function(...) {
-    data <- list.match(data,...)
-    List(data)
-  }
-  merge <- function(...) {
-    data <- list.merge(data,...)
-    List(data)
-  }
-  order <- function(...) {
-    dots <- match.call(expand.dots = FALSE)$`...`
-    rcall <- as.call(c(list.order,quote(data),dots))
-    data <- eval(rcall,list(data = data),parent.frame())
-    List(data)
-  }
-  parse <- function(...) {
-    data <- list.parse(...)
-    List(data)
-  }
-  prepend <- function(...) {
-    data <- list.prepend(data,...)
-    List(data)
-  }
-  rbind <- function() {
-    data <- list.rbind(data)
-    List(data)
-  }
-  remove <- function(...) {
-    data <- list.remove(data,...)
-    List(data)
-  }
-  reverse <- function() {
-    data <- list.reverse(data)
-    List(data)
-  }
-  sample <- function(...) {
-    dots <- match.call(expand.dots = FALSE)$`...`
-    rcall <- as.call(c(list.sample,quote(data),dots))
-    data <- eval(rcall,list(data = data),parent.frame())
-    List(data)
-  }
-  save <- function(...) {
-    data <- list.save(data,...)
-    List(data)
-  }
-  search <- function(...) {
-    dots <- match.call(expand.dots = FALSE)$`...`
-    rcall <- as.call(c(list.search,quote(data),dots))
-    data <- eval(rcall,list(data = data),parent.frame())
-    List(data)
-  }
-  select <- function(...) {
-    dots <- match.call(expand.dots = FALSE)$`...`
-    rcall <- as.call(c(list.select,quote(data),dots))
-    data <- eval(rcall,list(data = data),parent.frame())
-    List(data)
-  }
-  serialize <- function(...) {
-    data <- list.serialize(data,...)
-    List(data)
-  }
-  skip <- function(...) {
-    data <- list.skip(data,...)
-    List(data)
-  }
-  skipWhile <- function(...) {
-    dots <- match.call(expand.dots = FALSE)$`...`
-    rcall <- as.call(c(list.skipWhile,quote(data),dots))
-    data <- eval(rcall,list(data = data),parent.frame())
-    List(data)
-  }
-  sort <- function(...) {
-    dots <- match.call(expand.dots = FALSE)$`...`
-    rcall <- as.call(c(list.sort,quote(data),dots))
-    data <- eval(rcall,list(data = data),parent.frame())
-    List(data)
-  }
-  stack <- function() {
-    data <- list.stack(data)
-    List(data)
-  }
-  table <- function(...) {
-    dots <- match.call(expand.dots = FALSE)$`...`
-    rcall <- as.call(c(list.table,quote(data),dots))
-    data <- eval(rcall,list(data = data),parent.frame())
-    List(data)
-  }
-  take <- function(...) {
-    data <- list.take(data,...)
-    List(data)
-  }
-  takeWhile <- function(...) {
-    dots <- match.call(expand.dots = FALSE)$`...`
-    rcall <- as.call(c(list.takeWhile,quote(data),dots))
-    data <- eval(rcall,list(data = data),parent.frame())
-    List(data)
-  }
-  ungroup <- function(...) {
-    data <- list.ungroup(data,...)
-    List(data)
-  }
-  unserialize <- function(...) {
-    data <- list.unserialize(...)
-    List(data)
-  }
-  update <- function(...) {
-    dots <- match.call(expand.dots = FALSE)$`...`
-    rcall <- as.call(c(list.update,quote(data),dots))
-    data <- eval(rcall,list(data = data),parent.frame())
-    List(data)
-  }
-  which <- function(...) {
-    dots <- match.call(expand.dots = FALSE)$`...`
-    rcall <- as.call(c(list.which,quote(data),dots))
-    data <- eval(rcall,list(data = data),parent.frame())
-    List(data)
-  }
-  zip <- function(...) {
-    data <- list.zip(data,...)
-    List(data)
-  }
-  subset <- function(...) {
-    data <- list.subset(data,...)
-    List(data)
-  }
-  summary <- function(...) {
-    data <- summary(data,...)
-    List(data)
-  }
+  all <- createListClosure(list.all, data)
+  any <- createListClosure(list.any, data)
+  append <- createListClosure(list.append, data)
+  apply <- createListClosure(list.apply, data)
+  cases <- createListClosure(list.cases, data)
+  cbind <- createListClosure(list.cbind, data)
+  class <- createListClosure(list.class, data)
+  clean <- createListClosure(list.clean, data)
+  common <- createListClosure(list.common, data)
+  count <- createListClosure(list.count, data)
+  do <- createListClosure(list.do, data)
+  exclude <- createListClosure(list.exclude, data)
+  extract <- createListClosure(list.extract, data)
+  filter <- createListClosure(list.filter, data)
+  find <- createListClosure(list.find, data)
+  findi <- createListClosure(list.findi, data)
+  flatten <- createListClosure(list.flatten, data)
+  group <- createListClosure(list.group, data)
+  is <- createListClosure(list.is, data)
+  insert <- createListClosure(list.insert, data)
+  iter <- createListClosure(list.iter, data)
+  join <- createListClosure(list.join, data)
+  load <- createListClosure(list.load, data)
+  map <- createListClosure(list.map, data)
+  mapv <- createListClosure(list.mapv, data)
+  match <- createListClosure(list.match, data)
+  merge <- createListClosure(list.merge, data)
+  order <- createListClosure(list.order, data)
+  parse <- createListClosure(list.parse, data)
+  prepend <- createListClosure(list.prepend, data)
+  rbind <- createListClosure(list.rbind, data)
+  remove <- createListClosure(list.remove, data)
+  reverse <- createListClosure(list.reverse, data)
+  sample <- createListClosure(list.sample, data)
+  save <- createListClosure(list.save, data)
+  search <- createListClosure(list.search, data)
+  select <- createListClosure(list.select, data)
+  serialize <- createListClosure(list.serialize, data)
+  skip <- createListClosure(list.skip, data)
+  skipWhile <- createListClosure(list.skipWhile, data)
+  sort <- createListClosure(list.sort, data)
+  stack <- createListClosure(list.stack, data)
+  table <- createListClosure(list.table, data)
+  take <- createListClosure(list.take, data)
+  takeWhile <- createListClosure(list.takeWhile, data)
+  ungroup <- createListClosure(list.ungroup, data)
+  unserialize <- createListClosure(list.unserialize, data)
+  update <- createListClosure(list.update, data)
+  which <- createListClosure(list.which, data)
+  zip <- createListClosure(list.zip, data)
+  subset <- createListClosure(list.subset, data)
+  summary <- createListClosure(summary, data)
+
   envir <- environment()
   setclass(envir, c("List","environment"))
 }
