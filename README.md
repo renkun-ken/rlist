@@ -119,19 +119,18 @@ In this package, almost all functions that work with expressions accept the foll
 - Implicit lambda expression: `g(x)`
 - Univariate lambda expressions: 
     * `x ~ g(x)`
-    * `x -> g(x)`
-    * `f(x) -> g(x)`
+    * `f(x) ~ g(x)`
 - Multivariate lambda expressions:
-    * `f(x,i) -> g(x,i)`
-    * `f(x,i,name) -> g(x,i,name)`
+    * `f(x,i) ~ g(x,i)`
+    * `f(x,i,name) ~ g(x,i,name)`
 
 where `x` refers to the list member itself, `i` denotes the index, `name` denotes the name. If the symbols are not explicitly declared, `.`, `.i` and `.name` will by default be used to represent them, respectively.
 
 ```r
 nums <- list(a=c(1,2,3),b=c(2,3,4),c=c(3,4,5))
 list.map(nums, c(min=min(.),max=max(.)))
-list.filter(nums, x -> mean(x)>=3)
-list.map(nums, f(x,i) -> sum(x,i))
+list.filter(nums, x ~ mean(x)>=3)
+list.map(nums, f(x,i) ~ sum(x,i))
 ```
 
 ## Using pipeline
