@@ -7,9 +7,12 @@ lambda <- function(expr) {
   if(is.call(expr) && length(expr[[1L]])==1L) {
     symbol <- as.character(expr[[1L]])
     if(symbol == "<-") {
+      warning("lambda expression of the form \"x -> expr\" has been deprecated, please use \"x ~ expr\" instead.", call. = FALSE)
       symbols <- expr[[3L]]
       .lambda$expr <- expr[[2L]]
     } else if(symbol == "~") {
+      if(length(expr) != 3L)
+        stop("Invalid lambda expression", call. = FALSE)
       symbols <- expr[[2L]]
       .lambda$expr <- expr[[3L]]
     } else return(.lambda)
@@ -19,7 +22,7 @@ lambda <- function(expr) {
       symbols <- as.character(symbols)[-1L]
       indices <- which(symbols != "")
       .lambda$symbols[indices] <- symbols[indices]
-    } else stop("Invalid lambda expression")
+    } else stop("Invalid lambda expression", call. = FALSE)
   }
   .lambda
 }
