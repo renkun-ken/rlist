@@ -110,10 +110,6 @@ List <- function(data = list()) {
 }
 
 #' @export
-`[.List` <- function(x,...)
-  get("data",envir = x,inherits = FALSE)
-
-#' @export
 print.List <- function(x,...,header = getOption("List.header", TRUE)) {
   if(!is.null(x$data)) {
     if(header) cat("$data :",class(x$data),"\n------\n")
@@ -140,4 +136,63 @@ summary.List <- function(object,...) {
 #' @export
 subset.List <- function(x,...) {
   subset(x$data,...)
+}
+
+ndots <- function(dots) {
+  length(dots) >= 1L && any(nzchar(dots))
+}
+
+List.get <- function(f, data, dots, envir) {
+  rcall <- as.call(c(f,quote(data),dots))
+  eval(rcall,list(data = data),envir)
+}
+
+#' @export
+`[.List` <- function(x, ...) {
+  dots <- match.call(expand.dots = FALSE)$`...`
+  if(ndots(dots)) {
+    data <- List.get(`[`,x$data,dots,parent.frame())
+    List(data)
+  }
+  else x$data
+}
+
+#' @export
+`[[.List` <- function(x, ...) {
+  dots <- match.call(expand.dots = FALSE)$`...`
+  if(ndots(dots)) {
+    data <- List.get(`[[`,x$data,dots,parent.frame())
+    List(data)
+  }
+  else x$data
+}
+
+
+List.set <- function(f, x, dots, value, envir) {
+  rcall <- as.call(c(f,quote(x),dots,quote(value)))
+  eval(rcall,list(x = x, value = value),envir)
+}
+
+#' @export
+`$<-.List` <- function(x,...,value) {
+  dots <- match.call(expand.dots = FALSE)$`...`
+  if(ndots(dots))
+    value <- List.set(`$<-`, x$data, dots, value, parent.frame())
+  List(value)
+}
+
+#' @export
+`[<-.List` <- function(x,...,value) {
+  dots <- match.call(expand.dots = FALSE)$`...`
+  if(ndots(dots))
+    value <- List.set(`[<-`, x$data, dots, value, parent.frame())
+  List(value)
+}
+
+#' @export
+`[[<-.List` <- function(x,...,value) {
+  dots <- match.call(expand.dots = FALSE)$`...`
+  if(ndots(dots))
+    value <- List.set(`[[<-`, x$data, dots, value, parent.frame())
+  List(value)
 }

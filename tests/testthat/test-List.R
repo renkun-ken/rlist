@@ -47,3 +47,38 @@ test_that("List", {
     list.update(x,mean=mean(unlist(score))))
 
 })
+
+test_that("subsetting", {
+  expect_identical(List(list(a=1,b=2))["a"]$data,list(a=1))
+  expect_equal(List(c(a=1,b=2))["a"]$data,c(a=1))
+})
+
+test_that("extracting", {
+  expect_equal(List(list(a=1,b=2))[["a"]]$data,1)
+  expect_equal(List(list2env(list(a=1,b=2)))[["a"]]$data,1)
+})
+
+test_that("assignment", {
+  expect_identical({
+    z <- List(list(a=1,b=2))
+    z$a <- 2
+    z$b <- NULL
+    z$data
+  },list(a=2))
+  expect_equal({
+    z <- new.env()
+    env <- List(z)
+    env$a <- 1
+    env$data$a
+  },1)
+  expect_identical({
+    z <- List(c(a=1,b=2))
+    z["a"] <- 2
+    z$data
+  },c(a=2,b=2))
+  expect_identical({
+    z <- List(c(a=1,b=2))
+    z[["a"]] <- 2
+    z$data
+  },c(a=2,b=2))
+})
