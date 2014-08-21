@@ -10,11 +10,24 @@ This package supports list filtering, mapping, grouping, sorting, updating, sear
 
 ## What's new in 0.3?
 
+[Release notes]((https://github.com/renkun-ken/rlist/releases))
+
+### 0.3-2
+
+- Fix environemnt issues (#50).
+- Deprecate lambda expression of the form `x -> expr`. Use `x ~ expr` instead.
+- Add subsetting, extracing, and assigning functionality to List environment.
+
+### 0.3-1
+
+- Add `list.subset` that supports list subsetting by name, index, pattern matching, string distance to names.
+- `List$subset` switched from generic function `subset()` to `list.subset()`.
+
+### 0.3
+
 - **API Break**: `list.search` now evaluates expression recursively in a list and supports lambda expression.
 - Add `equal()` function for logical and fuzzy filtering and searching which supports exact equality, atomic equality, inclusion, pattern matching, string-distance tolerance.
 - Add `List()` to provide an environment in which most list functions are defined for light-weight chaining that does not rely on external operators.
-
-[Release notes](https://github.com/renkun-ken/rlist/releases)
 
 ## Installation
 
@@ -149,9 +162,11 @@ devs %>>%
 ```
 
 ```
-   name age
-1   Ken  24
-2 James  25
+Warning: internal error -3 in R_decompress1
+```
+
+```
+Error: lazy-load database 'P' is corrupt
 ```
 
 The example above uses `pipeR`(http://renkun.me/pipeR/) package for pipeline operator `%>>%` that chains commands in a fluent style.
