@@ -36,6 +36,15 @@ m$group(type)$
       map(score)$
       call(unlist)$
       call(mean) []) []
+
+# Subsetting, extracting, and assigning
+
+p <- List(list(a=1,b=2))
+p["a"]
+p[["a"]]
+p$a <- 2
+p["b"] <- NULL
+p[["a"]] <- 3
 }
 }
 
