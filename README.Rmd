@@ -17,20 +17,22 @@ This package supports list filtering, mapping, grouping, sorting, updating, sear
 
 ## What's new in 0.3?
 
-[Release notes]((https://github.com/renkun-ken/rlist/releases))
+[Release notes](https://github.com/renkun-ken/rlist/releases)
 
-### 0.3-2
+#### 0.3-2
 
-- Fix environemnt issues (#50).
-- Deprecate lambda expression of the form `x -> expr`. Use `x ~ expr` instead.
+- **API change**
+    * Deprecate lambda expression of the form `x -> expr`. Use `x ~ expr` instead.
+    * All `envir` arguments of list functions are removed.
+- Fix environemnt issues.
 - Add subsetting, extracing, and assigning functionality to List environment.
 
-### 0.3-1
+#### 0.3-1
 
 - Add `list.subset` that supports list subsetting by name, index, pattern matching, string distance to names.
 - `List$subset` switched from generic function `subset()` to `list.subset()`.
 
-### 0.3
+#### 0.3
 
 - **API Break**: `list.search` now evaluates expression recursively in a list and supports lambda expression.
 - Add `equal()` function for logical and fuzzy filtering and searching which supports exact equality, atomic equality, inclusion, pattern matching, string-distance tolerance.
