@@ -29,7 +29,7 @@ If the expression results in a single-valued logical vector and its value is `TR
 
 To search whole vectors that meet certain condition, specify the expression that returns a single logical value. 
 
-To search the specific values within the vectors, use subsetting in the expression, that is, `.[cond]` or lambda expression like `x -> x[cond]` where `cond` is a logical vector used to select the elements in the vector.
+To search the specific values within the vectors, use subsetting in the expression, that is, `.[cond]` or lambda expression like `x ~ x[cond]` where `cond` is a logical vector used to select the elements in the vector.
 
 ## Exact search
 

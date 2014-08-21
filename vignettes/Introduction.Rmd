@@ -129,7 +129,7 @@ devs %>>%
 
 ### Lambda expression
 
-Most functions in this package supports lambda expressions like `x ~ f(x)` or `x -> f(x)` where `x` refers to the list member itself. Otherwise, `.` will by default be used to represent it.
+Most functions in this package supports lambda expressions like `x ~ f(x)` where `x` refers to the list member itself. Otherwise, `.` will by default be used to represent it.
 
 ```{r}
 nums <- list(a=c(1,2,3),b=c(2,3,4),c=c(3,4,5))
@@ -139,7 +139,7 @@ nums %>>%
 nums %>>%
   list.map(x ~ sum(x))
 nums %>>%
-  list.filter(x -> mean(x)>=3)
+  list.filter(x ~ mean(x)>=3)
 ```
 
 ## Help overview

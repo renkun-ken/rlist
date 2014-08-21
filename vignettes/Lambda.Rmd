@@ -16,11 +16,11 @@ In rlist package, all functions that work with expressions support the following
 - Implicit lambda expression: An ordinary expression with no special syntax yet the fields of list members are directly accessible. 
 - Explicit lambda expression:
     - Univariate lambda expression: In contrast to implicit lambda expression, the symbol that refers to the list member is customized in the following formats:
-        * `x -> expression`
-        * `f(x) -> expression`
+        * `x ~ expression`
+        * `f(x) ~ expression`
     - Multivariate lambda expression: In contrast to univariate lambda expression, the symbols of list member, index, and member name are customized in the following formats:
-        * `f(x,i) -> expression`
-        * `f(x,i,name) -> expression`
+        * `f(x,i) ~ expression`
+        * `f(x,i,name) ~ expression`
 
 ```{r}
 library(rlist)
@@ -53,8 +53,8 @@ To use other symbols to represent the metadata of a list member, we can use expl
 
 ```{r}
 x <- list(a=list(x=1,y=2),b=list(x=2,y=3))
-list.map(x, f(item,index) -> unlist(item) * index)
-list.map(x, f(item,index,name) -> list(name=name,sum=sum(unlist(item))))
+list.map(x, f(item,index) ~ unlist(item) * index)
+list.map(x, f(item,index,name) ~ list(name=name,sum=sum(unlist(item))))
 ```
 
 For unnamed vector members, it is almost necessary to use lambda expressions.
@@ -62,8 +62,8 @@ For unnamed vector members, it is almost necessary to use lambda expressions.
 ```{r}
 x <- list(a=c(1,2),b=c(3,4))
 list.map(x,sum(.))
-list.map(x,item -> sum(item))
-list.map(x,f(m,i) -> m+i)
+list.map(x,item ~ sum(item))
+list.map(x,f(m,i) ~ m+i)
 ```
 
 For named vector members, their name can also be directly used in the expression.
@@ -74,7 +74,7 @@ list.map(x,sum(y))
 list.map(x,x*y)
 list.map(x,.i)
 list.map(x,x+.i)
-list.map(x,f(.,i) -> . + i)
+list.map(x,f(.,i) ~ . + i)
 list.map(x,.name)
 ```
 
