@@ -4,7 +4,6 @@
 #' @param .data \code{list}
 #' @param cond A logical lambda expression
 #' @param use.names \code{logical} Should the names of \code{.data} be kept?
-#' @param envir The environment to evaluate mapping function
 #' @name list.is
 #' @export
 #' @examples
@@ -15,8 +14,8 @@
 #' list.is(x,type=="B")
 #' list.is(x,min(score$c1,score$c2) >= 8)
 #' }
-list.is <- function(.data,cond,use.names=TRUE,envir = parent.frame()) {
-  items <- list.is.internal(.data,substitute(cond),envir)
+list.is <- function(.data,cond,use.names=TRUE) {
+  items <- list.is.internal(.data,substitute(cond),parent.frame())
   if(use.names) setnames(items,names(.data)) else items
 }
 

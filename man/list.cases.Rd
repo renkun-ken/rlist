@@ -3,8 +3,7 @@
 \alias{list.cases}
 \title{Get all unique cases by expression for a list}
 \usage{
-list.cases(.data, expr, simplify = TRUE, ..., sort = TRUE,
-  envir = parent.frame())
+list.cases(.data, expr, simplify = TRUE, ..., sort = TRUE)
 }
 \arguments{
 \item{.data}{\code{list}}
@@ -17,8 +16,6 @@ by \code{unlist}?}
 \item{...}{Additional parameters passed to \code{unique}}
 
 \item{sort}{\code{logical}. Should the cases be sorted in ascending order?}
-
-\item{envir}{The environment to evaluate mapping function}
 }
 \description{
 Get all unique cases by expression for a list

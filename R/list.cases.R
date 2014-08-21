@@ -6,7 +6,6 @@
 #'    by \code{unlist}?
 #' @param ... Additional parameters passed to \code{unique}
 #' @param sort \code{logical}. Should the cases be sorted in ascending order?
-#' @param envir The environment to evaluate mapping function
 #' @name list.cases
 #' @export
 #' @examples
@@ -17,9 +16,8 @@
 #' list.cases(x,type)
 #' list.cases(x,mean(unlist(score)))
 #' }
-list.cases <- function(.data,expr,simplify=TRUE,...,sort=TRUE,
-  envir=parent.frame()) {
-  values <- list.map.internal(.data,substitute(expr),envir = envir)
+list.cases <- function(.data,expr,simplify=TRUE,...,sort=TRUE) {
+  values <- list.map.internal(.data,substitute(expr),envir = parent.frame())
   if(simplify) {
     atomic <- vapply(values,is.atomic,logical(1L))
     if(all(atomic)) values <- unlist(values,use.names = FALSE)

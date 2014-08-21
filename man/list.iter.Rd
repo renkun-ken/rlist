@@ -4,14 +4,12 @@
 \title{Iterate a list by evaluating an expression on
 each list member.}
 \usage{
-list.iter(.data, expr, envir = parent.frame())
+list.iter(.data, expr)
 }
 \arguments{
 \item{.data}{\code{list}}
 
 \item{expr}{A lambda expression}
-
-\item{envir}{The environment to evaluate mapping function}
 }
 \value{
 \code{invisible(.data)}

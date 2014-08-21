@@ -5,7 +5,6 @@
 #' @param classes a character vector of class names that restrict the search. By default, the range is unrestricted (\code{ANY}).
 #' @param n the number of results to get
 #' @param unlist \code{logical} Should the result be unlisted?
-#' @param envir The environment to evaluate mapping function
 #' @details
 #' \code{list.search} evaluates an expression (\code{expr}) recursively
 #' along a list (\code{.data}).
@@ -85,11 +84,11 @@
 #' list.search(data, .[equal("e",pattern = TRUE)], "character")
 #' }
 list.search <- function(.data, expr, classes = "ANY",
-  n = Inf, unlist = FALSE, envir = parent.frame()) {
+  n = Inf, unlist = FALSE) {
   l <- lambda(substitute(expr))
   counter <- as.environment(list(i = 0L))
   fun <- list.search.fun
-  environment(fun) <- envir
+  environment(fun) <- parent.frame()
   formals(fun) <- setnames(formals(fun),
     c(".data",".expr",".counter",".n",l$symbols))
   results <- rapply(.data, fun, classes = classes,

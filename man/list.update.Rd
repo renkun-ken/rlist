@@ -3,7 +3,7 @@
 \alias{list.update}
 \title{Update a list by modifying its elements.}
 \usage{
-list.update(.data, ..., keep.null = FALSE, .envir = parent.frame())
+list.update(.data, ..., keep.null = FALSE)
 }
 \arguments{
 \item{.data}{\code{list}}
@@ -12,8 +12,6 @@ list.update(.data, ..., keep.null = FALSE, .envir = parent.frame())
 
 \item{keep.null}{Should \code{NULL} values be preserved
 for \code{modifyList}}
-
-\item{.envir}{The environment to evaluate mapping function}
 }
 \description{
 Update a list by modifying its elements.

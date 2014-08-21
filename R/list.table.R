@@ -3,7 +3,6 @@
 #' @param ... A group of lambda expressions
 #' @param table.args \code{list}. The additional parameters
 #'    passed to \code{table}
-#' @param .envir The environment to evaluate mapping function
 #' @name list.table
 #' @export
 #' @examples
@@ -15,10 +14,10 @@
 #' list.table(x,type,c1=score$c1)
 #' list.table(x,type,score$c1,table.args=list(dnn=c("type","c1")))
 #' }
-list.table <- function(.data,...,table.args=NULL,.envir = parent.frame()) {
+list.table <- function(.data,...,table.args=NULL) {
   args <- set_argnames(dots(...))
   items <- lapply(args,function(arg) {
-    unlist(list.map.internal(.data,arg,envir = .envir),use.names = FALSE)
+    unlist(list.map.internal(.data,arg,envir = parent.frame()),use.names = FALSE)
   })
   do.call(table,c(items,table.args))
 }

@@ -3,7 +3,7 @@
 \alias{list.any}
 \title{Get whether any list member satisfies the given condition}
 \usage{
-list.any(.data, cond, na.rm = FALSE, envir = parent.frame())
+list.any(.data, cond, na.rm = FALSE)
 }
 \arguments{
 \item{.data}{\code{list}}
@@ -11,8 +11,6 @@ list.any(.data, cond, na.rm = FALSE, envir = parent.frame())
 \item{cond}{A logical lambda expression}
 
 \item{na.rm}{logical. If true all \code{NA} values are removed}
-
-\item{envir}{The environment to evaluate mapping function}
 }
 \description{
 Get whether any list member satisfies the given condition

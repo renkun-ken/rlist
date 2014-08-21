@@ -2,7 +2,6 @@
 #'
 #' @param .data \code{list}
 #' @param ... A group of lambda expressions
-#' @param .envir The environment to evaluate mapping function
 #' @name list.sort
 #' @export
 #' @examples
@@ -13,6 +12,6 @@
 #' list.sort(x,type,desc(score$c2))
 #' list.sort(x,min(score$c1,score$c2))
 #' }
-list.sort <- function(.data,...,.envir = parent.frame()) {
-  .data[list.order.internal(.data,dots(...),envir = .envir)]
+list.sort <- function(.data,...) {
+  .data[list.order.internal(.data,dots(...),envir = parent.frame())]
 }

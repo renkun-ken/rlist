@@ -4,7 +4,6 @@
 #' @param ... A group of labmda expressions
 #' @param keep.null Should \code{NULL} values be preserved
 #'    for \code{modifyList}
-#' @param .envir The environment to evaluate mapping function
 #' @name list.update
 #' @export
 #' @examples
@@ -17,9 +16,9 @@
 #' list.update(x,grade=ifelse(type=="A",score$c1,score$c2))
 #' list.update(x,score=list(min=0,max=10))
 #' }
-list.update <- function(.data,...,keep.null=FALSE,.envir = parent.frame()) {
+list.update <- function(.data,...,keep.null=FALSE) {
   items <- lapply(dots(...),list.map.internal,
-    .data=.data,envir=.envir)
+    .data=.data,envir = parent.frame())
   do.call(Map,c(function(.data,...)
     modifyList(.data,list(...),keep.null = keep.null),list(.data),items))
 }

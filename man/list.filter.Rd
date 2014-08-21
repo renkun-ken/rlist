@@ -3,14 +3,12 @@
 \alias{list.filter}
 \title{Filter a list by a condition.}
 \usage{
-list.filter(.data, cond, envir = parent.frame())
+list.filter(.data, cond)
 }
 \arguments{
 \item{.data}{\code{list}}
 
 \item{cond}{A logical lambda expression}
-
-\item{envir}{The environment to evaluate mapping function}
 }
 \description{
 Filter a list by a condition.

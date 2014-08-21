@@ -2,7 +2,6 @@
 #'
 #' @param .data \code{list}
 #' @param cond A logical lambda expression to exclude items
-#' @param envir The environment to evaluate mapping function
 #' @name list.exclude
 #' @export
 #' @examples
@@ -13,6 +12,6 @@
 #' list.exclude(x,type=="B")
 #' list.exclude(x,min(score$c1,score$c2) >= 8)
 #' }
-list.exclude <- function(.data,cond,envir = parent.frame()) {
-  .data[!list.is.internal(.data,substitute(cond),envir = envir)]
+list.exclude <- function(.data,cond) {
+  .data[!list.is.internal(.data,substitute(cond),envir = parent.frame())]
 }

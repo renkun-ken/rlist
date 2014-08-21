@@ -8,7 +8,6 @@
 #' is \code{NULL}.
 #' @param prob A \code{vector} of probability weights for
 #' obtaining the elements of the list being sampled.
-#' @param envir The environment to evaluate mapping function
 #' @name list.sample
 #' @export
 #' @examples
@@ -18,10 +17,9 @@
 #' list.rbind(x)
 #' list.rbind(df)
 #' }
-list.sample <- function(.data,size,replace=FALSE,weight=1,prob=NULL,
-  envir = parent.frame()) {
+list.sample <- function(.data,size,replace=FALSE,weight=1,prob=NULL) {
   if(is.null(prob)) {
-    ws <- unlist(list.map.internal(.data,substitute(weight),envir = envir),
+    ws <- unlist(list.map.internal(.data,substitute(weight),envir = parent.frame()),
       use.names = FALSE)
     if(any(ws<0)) stop("Negative weight is not allowed")
     prob <- ws / sum(ws)

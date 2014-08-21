@@ -3,7 +3,7 @@
 \alias{list.all}
 \title{Get whether all list members satisfy the given condition}
 \usage{
-list.all(.data, cond, na.rm = FALSE, envir = parent.frame())
+list.all(.data, cond, na.rm = FALSE)
 }
 \arguments{
 \item{.data}{\code{list}}
@@ -11,8 +11,6 @@ list.all(.data, cond, na.rm = FALSE, envir = parent.frame())
 \item{cond}{A logical lambda expression}
 
 \item{na.rm}{logical. If true all \code{NA} values are removed}
-
-\item{envir}{The environment to evaluate mapping function}
 }
 \description{
 Get whether all list members satisfy the given condition

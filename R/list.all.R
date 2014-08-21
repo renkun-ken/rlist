@@ -3,7 +3,6 @@
 #' @param .data \code{list}
 #' @param cond A logical lambda expression
 #' @param na.rm logical. If true all \code{NA} values are removed
-#' @param envir The environment to evaluate mapping function
 #' @name list.all
 #' @export
 #' @examples
@@ -14,6 +13,6 @@
 #' list.all(x,type=="B")
 #' list.all(x,mean(unlist(score))>=6)
 #' }
-list.all <- function(.data,cond,na.rm=FALSE,envir=parent.frame()) {
-  all(list.is.internal(.data,substitute(cond),envir),na.rm = na.rm)
+list.all <- function(.data,cond,na.rm=FALSE) {
+  all(list.is.internal(.data,substitute(cond),parent.frame()),na.rm=na.rm)
 }

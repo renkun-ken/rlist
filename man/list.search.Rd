@@ -3,8 +3,7 @@
 \alias{list.search}
 \title{Search a list recusively by an expression}
 \usage{
-list.search(.data, expr, classes = "ANY", n = Inf, unlist = FALSE,
-  envir = parent.frame())
+list.search(.data, expr, classes = "ANY", n = Inf, unlist = FALSE)
 }
 \arguments{
 \item{.data}{\code{list}}
@@ -16,8 +15,6 @@ list.search(.data, expr, classes = "ANY", n = Inf, unlist = FALSE,
 \item{n}{the number of results to get}
 
 \item{unlist}{\code{logical} Should the result be unlisted?}
-
-\item{envir}{The environment to evaluate mapping function}
 }
 \description{
 Search a list recusively by an expression

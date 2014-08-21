@@ -3,14 +3,12 @@
 \alias{list.map}
 \title{Map each member of a list by an expression.}
 \usage{
-list.map(.data, expr, envir = parent.frame())
+list.map(.data, expr)
 }
 \arguments{
 \item{.data}{\code{list}}
 
 \item{expr}{A lambda expression}
-
-\item{envir}{The environment to evaluate mapping function}
 }
 \description{
 Map each member of a list by an expression.

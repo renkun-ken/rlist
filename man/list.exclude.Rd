@@ -3,14 +3,12 @@
 \alias{list.exclude}
 \title{Exclude members of a list that meet given condition.}
 \usage{
-list.exclude(.data, cond, envir = parent.frame())
+list.exclude(.data, cond)
 }
 \arguments{
 \item{.data}{\code{list}}
 
 \item{cond}{A logical lambda expression to exclude items}
-
-\item{envir}{The environment to evaluate mapping function}
 }
 \description{
 Exclude members of a list that meet given condition.

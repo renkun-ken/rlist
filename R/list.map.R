@@ -2,7 +2,6 @@
 #'
 #' @param .data \code{list}
 #' @param expr A lambda expression
-#' @param envir The environment to evaluate mapping function
 #' @name list.map
 #' @export
 #' @examples
@@ -13,8 +12,8 @@
 #' list.map(x,type)
 #' list.map(x,min(score$c1,score$c2))
 #' }
-list.map <- function(.data,expr,envir=parent.frame()) {
-  list.map.internal(.data,substitute(expr),envir = envir)
+list.map <- function(.data,expr) {
+  list.map.internal(.data,substitute(expr),envir = parent.frame())
 }
 
 #' Map each member of a list by an expression to a vector.
@@ -22,7 +21,6 @@ list.map <- function(.data,expr,envir=parent.frame()) {
 #' @param .data \code{list}
 #' @param expr The expression
 #' @param use.names Should the names of the results be preserved?
-#' @param envir The environment to evaluate mapping function
 #' @name list.mapv
 #' @export
 #' @examples
@@ -33,7 +31,7 @@ list.map <- function(.data,expr,envir=parent.frame()) {
 #' list.mapv(x,type)
 #' list.mapv(x,min(score$c1,score$c2))
 #' }
-list.mapv <- function(.data,expr,use.names=TRUE,envir=parent.frame()) {
-  unlist(list.map.internal(.data,substitute(expr),envir = envir),
+list.mapv <- function(.data,expr,use.names=TRUE) {
+  unlist(list.map.internal(.data,substitute(expr),envir = parent.frame()),
     use.names=use.names)
 }

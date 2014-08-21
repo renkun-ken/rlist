@@ -3,14 +3,12 @@
 \alias{list.skipWhile}
 \title{Skip members until the given condition is broken}
 \usage{
-list.skipWhile(.data, cond, envir = parent.frame())
+list.skipWhile(.data, cond)
 }
 \arguments{
 \item{.data}{\code{list}}
 
 \item{cond}{A logical lambda expression}
-
-\item{envir}{The environment to evaluate mapping function}
 }
 \description{
 Skip members until the given condition is broken

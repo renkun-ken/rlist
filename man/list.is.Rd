@@ -5,9 +5,9 @@
 \title{Return a logical vector that indicates if each member of a list
 satisfies a given condition}
 \usage{
-list.is(.data, cond, use.names = TRUE, envir = parent.frame())
+list.is(.data, cond, use.names = TRUE)
 
-list.if(.data, cond, use.names = TRUE, envir = parent.frame())
+list.if(.data, cond, use.names = TRUE)
 }
 \arguments{
 \item{.data}{\code{list}}
@@ -15,8 +15,6 @@ list.if(.data, cond, use.names = TRUE, envir = parent.frame())
 \item{cond}{A logical lambda expression}
 
 \item{use.names}{\code{logical} Should the names of \code{.data} be kept?}
-
-\item{envir}{The environment to evaluate mapping function}
 }
 \description{
 Return a logical vector that indicates if each member of a list

@@ -3,7 +3,7 @@
 \alias{list.find}
 \title{Find a specific number of members in a list that meeting given condition}
 \usage{
-list.find(.data, cond, n = 1L, envir = parent.frame())
+list.find(.data, cond, n = 1L)
 }
 \arguments{
 \item{.data}{\code{list}}
@@ -11,8 +11,6 @@ list.find(.data, cond, n = 1L, envir = parent.frame())
 \item{cond}{A logical lambda expression}
 
 \item{n}{The number of items to find}
-
-\item{envir}{The environment to evaluate mapping function}
 }
 \description{
 Find a specific number of members in a list that meeting given condition

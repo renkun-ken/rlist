@@ -3,8 +3,7 @@
 \alias{list.sample}
 \title{Sample a list}
 \usage{
-list.sample(.data, size, replace = FALSE, weight = 1, prob = NULL,
-  envir = parent.frame())
+list.sample(.data, size, replace = FALSE, weight = 1, prob = NULL)
 }
 \arguments{
 \item{.data}{\code{list}}
@@ -19,8 +18,6 @@ is \code{NULL}.}
 
 \item{prob}{A \code{vector} of probability weights for
 obtaining the elements of the list being sampled.}
-
-\item{envir}{The environment to evaluate mapping function}
 }
 \description{
 Sample a list

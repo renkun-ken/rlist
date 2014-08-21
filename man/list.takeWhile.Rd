@@ -3,14 +3,12 @@
 \alias{list.takeWhile}
 \title{Take out members until the given condition is broken}
 \usage{
-list.takeWhile(.data, cond, envir = parent.frame())
+list.takeWhile(.data, cond)
 }
 \arguments{
 \item{.data}{\code{list}}
 
 \item{cond}{A logical lambda expression}
-
-\item{envir}{The environment to evaluate mapping function}
 }
 \description{
 Take out members until the given condition is broken
