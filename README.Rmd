@@ -21,7 +21,7 @@ This package supports list filtering, mapping, grouping, sorting, updating, sear
 
 #### 0.3-2
 
-- **API change**
+- **API change**:
     * Deprecate lambda expression of the form `x -> expr`. Use `x ~ expr` instead.
     * All `envir` arguments of list functions are removed.
 - Fix environemnt issues.
