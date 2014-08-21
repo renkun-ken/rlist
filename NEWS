@@ -1,3 +1,9 @@
+Version 0.3-2 (2014-08-21)
+===
+Fix environemnt issues (#50).
+Deprecate lambda expression of the form "x -> expr", use "x ~ expr" instead.
+Add subsetting, extracing, and assigning functionality to List environment.
+
 Version 0.3-1 (2014-08-10)
 ===
 Add `list.subset` that supports list subsetting by name, index, pattern matching, string distance to names.
