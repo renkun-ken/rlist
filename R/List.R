@@ -1,3 +1,6 @@
+# compatibility for data.table functions
+.datatable.aware <- TRUE
+
 #' Create a \code{List environment} that wraps given \code{data} and
 #' most list functions are defined for chainable operations.
 #'
@@ -29,17 +32,23 @@
 #'       call(mean) []) []
 #' }
 List <- function(data = list()) {
-  call <- function(fun,...) {
-    data <- fun(data,...)
+  call <- function(f,...) {
+    dots <- match.call(expand.dots = FALSE)$`...`
+    rcall <- as.call(c(list(f,data),dots))
+    data <- eval(rcall, envir = parent.frame())
     List(data)
   }
 
   all <- function(...) {
-    data <- list.all(data,...,envir = parent.frame())
+    dots <- match.call(expand.dots = FALSE)$`...`
+    rcall <- as.call(c(list(list.all,data),dots))
+    data <- eval(rcall,parent.frame())
     List(data)
   }
   any <- function(...) {
-    data <- list.any(data,...,envir = parent.frame())
+    dots <- match.call(expand.dots = FALSE)$`...`
+    rcall <- as.call(c(list(list.any,data),dots))
+    data <- eval(rcall,parent.frame())
     List(data)
   }
   append <- function(...) {
@@ -51,7 +60,9 @@ List <- function(data = list()) {
     List(data)
   }
   cases <- function(...) {
-    data <- list.cases(data,...,envir = parent.frame())
+    dots <- match.call(expand.dots = FALSE)$`...`
+    rcall <- as.call(c(list(list.cases,data),dots))
+    data <- eval(rcall,parent.frame())
     List(data)
   }
   cbind <- function() {
@@ -59,7 +70,9 @@ List <- function(data = list()) {
     List(data)
   }
   class <- function(...) {
-    data <- list.class(data,...,envir = parent.frame())
+    dots <- match.call(expand.dots = FALSE)$`...`
+    rcall <- as.call(c(list(list.class,data),dots))
+    data <- eval(rcall,parent.frame())
     List(data)
   }
   clean <- function(...) {
@@ -67,11 +80,15 @@ List <- function(data = list()) {
     List(data)
   }
   common <- function(...) {
-    data <- list.common(data,...,envir = parent.frame())
+    dots <- match.call(expand.dots = FALSE)$`...`
+    rcall <- as.call(c(list(list.common,data),dots))
+    data <- eval(rcall,parent.frame())
     List(data)
   }
   count <- function(...) {
-    data <- list.count(data,...,envir = parent.frame())
+    dots <- match.call(expand.dots = FALSE)$`...`
+    rcall <- as.call(c(list(list.count,data),dots))
+    data <- eval(rcall,parent.frame())
     List(data)
   }
   do <- function(...) {
@@ -79,7 +96,9 @@ List <- function(data = list()) {
     List(data)
   }
   exclude <- function(...) {
-    data <- list.exclude(data,...,envir = parent.frame())
+    dots <- match.call(expand.dots = FALSE)$`...`
+    rcall <- as.call(c(list(list.exclude,data),dots))
+    data <- eval(rcall,parent.frame())
     List(data)
   }
   extract <- function(...) {
@@ -87,15 +106,21 @@ List <- function(data = list()) {
     List(data)
   }
   filter <- function(...) {
-    data <- list.filter(data,...,envir = parent.frame())
+    dots <- match.call(expand.dots = FALSE)$`...`
+    rcall <- as.call(c(list(list.filter,data),dots))
+    data <- eval(rcall,parent.frame())
     List(data)
   }
   find <- function(...) {
-    data <- list.find(data,...,envir = parent.frame())
+    dots <- match.call(expand.dots = FALSE)$`...`
+    rcall <- as.call(c(list(list.find,data),dots))
+    data <- eval(rcall,parent.frame())
     List(data)
   }
   findi <- function(...) {
-    data <- list.findi(data,...,envir = parent.frame())
+    dots <- match.call(expand.dots = FALSE)$`...`
+    rcall <- as.call(c(list(list.findi,data),dots))
+    data <- eval(rcall,parent.frame())
     List(data)
   }
   flatten <- function(...) {
@@ -103,11 +128,15 @@ List <- function(data = list()) {
     List(data)
   }
   group <- function(...) {
-    data <- list.group(data,...,envir = parent.frame())
+    dots <- match.call(expand.dots = FALSE)$`...`
+    rcall <- as.call(c(list(list.group,data),dots))
+    data <- eval(rcall,parent.frame())
     List(data)
   }
   is <- function(...) {
-    data <- list.is(data,...,envir = parent.frame())
+    dots <- match.call(expand.dots = FALSE)$`...`
+    rcall <- as.call(c(list(list.is,data),dots))
+    data <- eval(rcall,parent.frame())
     List(data)
   }
   insert <- function(...) {
@@ -115,11 +144,15 @@ List <- function(data = list()) {
     List(data)
   }
   iter <- function(...) {
-    data <- list.iter(data,...,envir = parent.frame())
-    invisible(List(data))
+    dots <- match.call(expand.dots = FALSE)$`...`
+    rcall <- as.call(c(list(list.iter,data),dots))
+    data <- eval(rcall,parent.frame())
+    List(data)
   }
   join <- function(...) {
-    data <- list.join(data,...,envir = parent.frame())
+    dots <- match.call(expand.dots = FALSE)$`...`
+    rcall <- as.call(c(list(list.join,data),dots))
+    data <- eval(rcall,parent.frame())
     List(data)
   }
   load <- function(...) {
@@ -127,11 +160,15 @@ List <- function(data = list()) {
     List(data)
   }
   map <- function(...) {
-    data <- list.map(data,...,envir = parent.frame())
+    dots <- match.call(expand.dots = FALSE)$`...`
+    rcall <- as.call(c(list(list.map,data),dots))
+    data <- eval(rcall,parent.frame())
     List(data)
   }
   mapv <- function(...) {
-    data <- list.mapv(data,...,envir = parent.frame())
+    dots <- match.call(expand.dots = FALSE)$`...`
+    rcall <- as.call(c(list(list.mapv,data),dots))
+    data <- eval(rcall,parent.frame())
     List(data)
   }
   match <- function(...) {
@@ -143,7 +180,9 @@ List <- function(data = list()) {
     List(data)
   }
   order <- function(...) {
-    data <- list.order(data,...,.envir = parent.frame())
+    dots <- match.call(expand.dots = FALSE)$`...`
+    rcall <- as.call(c(list(list.order,data),dots))
+    data <- eval(rcall,parent.frame())
     List(data)
   }
   parse <- function(...) {
@@ -167,7 +206,9 @@ List <- function(data = list()) {
     List(data)
   }
   sample <- function(...) {
-    data <- list.sample(data,...,envir = parent.frame())
+    dots <- match.call(expand.dots = FALSE)$`...`
+    rcall <- as.call(c(list(list.sample,data),dots))
+    data <- eval(rcall,parent.frame())
     List(data)
   }
   save <- function(...) {
@@ -175,11 +216,15 @@ List <- function(data = list()) {
     List(data)
   }
   search <- function(...) {
-    data <- list.search(data,...,envir = parent.frame())
+    dots <- match.call(expand.dots = FALSE)$`...`
+    rcall <- as.call(c(list(list.search,data),dots))
+    data <- eval(rcall,parent.frame())
     List(data)
   }
   select <- function(...) {
-    data <- list.select(data,...,.envir = parent.frame())
+    dots <- match.call(expand.dots = FALSE)$`...`
+    rcall <- as.call(c(list(list.select,data),dots))
+    data <- eval(rcall,parent.frame())
     List(data)
   }
   serialize <- function(...) {
@@ -191,11 +236,15 @@ List <- function(data = list()) {
     List(data)
   }
   skipWhile <- function(...) {
-    data <- list.skipWhile(data,...,envir = parent.frame())
+    dots <- match.call(expand.dots = FALSE)$`...`
+    rcall <- as.call(c(list(list.skipWhile,data),dots))
+    data <- eval(rcall,parent.frame())
     List(data)
   }
   sort <- function(...) {
-    data <- list.sort(data,...,.envir = parent.frame())
+    dots <- match.call(expand.dots = FALSE)$`...`
+    rcall <- as.call(c(list(list.sort,data),dots))
+    data <- eval(rcall,parent.frame())
     List(data)
   }
   stack <- function() {
@@ -203,7 +252,9 @@ List <- function(data = list()) {
     List(data)
   }
   table <- function(...) {
-    data <- list.table(data,...,.envir = parent.frame())
+    dots <- match.call(expand.dots = FALSE)$`...`
+    rcall <- as.call(c(list(list.table,data),dots))
+    data <- eval(rcall,parent.frame())
     List(data)
   }
   take <- function(...) {
@@ -211,7 +262,9 @@ List <- function(data = list()) {
     List(data)
   }
   takeWhile <- function(...) {
-    data <- list.takeWhile(data,...,envir = parent.frame())
+    dots <- match.call(expand.dots = FALSE)$`...`
+    rcall <- as.call(c(list(list.takeWhile,data),dots))
+    data <- eval(rcall,parent.frame())
     List(data)
   }
   ungroup <- function(...) {
@@ -223,11 +276,15 @@ List <- function(data = list()) {
     List(data)
   }
   update <- function(...) {
-    data <- list.update(data,...,.envir = parent.frame())
+    dots <- match.call(expand.dots = FALSE)$`...`
+    rcall <- as.call(c(list(list.update,data),dots))
+    data <- eval(rcall,parent.frame())
     List(data)
   }
   which <- function(...) {
-    data <- list.which(data,...,envir = parent.frame())
+    dots <- match.call(expand.dots = FALSE)$`...`
+    rcall <- as.call(c(list(list.which,data),dots))
+    data <- eval(rcall,parent.frame())
     List(data)
   }
   zip <- function(...) {
