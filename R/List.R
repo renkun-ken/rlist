@@ -34,21 +34,21 @@
 List <- function(data = list()) {
   call <- function(f,...) {
     dots <- match.call(expand.dots = FALSE)$`...`
-    rcall <- as.call(c(list(f,data),dots))
-    data <- eval(rcall, envir = parent.frame())
+    rcall <- as.call(c(f,quote(data),dots))
+    data <- eval(rcall,list(data = data),parent.frame())
     List(data)
   }
 
   all <- function(...) {
     dots <- match.call(expand.dots = FALSE)$`...`
-    rcall <- as.call(c(list(list.all,data),dots))
-    data <- eval(rcall,parent.frame())
+    rcall <- as.call(c(list.all,quote(data),dots))
+    data <- eval(rcall,list(data = data),parent.frame())
     List(data)
   }
   any <- function(...) {
     dots <- match.call(expand.dots = FALSE)$`...`
-    rcall <- as.call(c(list(list.any,data),dots))
-    data <- eval(rcall,parent.frame())
+    rcall <- as.call(c(list.any,quote(data),dots))
+    data <- eval(rcall,list(data = data),parent.frame())
     List(data)
   }
   append <- function(...) {
@@ -61,8 +61,8 @@ List <- function(data = list()) {
   }
   cases <- function(...) {
     dots <- match.call(expand.dots = FALSE)$`...`
-    rcall <- as.call(c(list(list.cases,data),dots))
-    data <- eval(rcall,parent.frame())
+    rcall <- as.call(c(list.cases,quote(data),dots))
+    data <- eval(rcall,list(data = data),parent.frame())
     List(data)
   }
   cbind <- function() {
@@ -71,8 +71,8 @@ List <- function(data = list()) {
   }
   class <- function(...) {
     dots <- match.call(expand.dots = FALSE)$`...`
-    rcall <- as.call(c(list(list.class,data),dots))
-    data <- eval(rcall,parent.frame())
+    rcall <- as.call(c(list.class,quote(data),dots))
+    data <- eval(rcall,list(data = data),parent.frame())
     List(data)
   }
   clean <- function(...) {
@@ -81,14 +81,14 @@ List <- function(data = list()) {
   }
   common <- function(...) {
     dots <- match.call(expand.dots = FALSE)$`...`
-    rcall <- as.call(c(list(list.common,data),dots))
-    data <- eval(rcall,parent.frame())
+    rcall <- as.call(c(list.common,quote(data),dots))
+    data <- eval(rcall,list(data = data),parent.frame())
     List(data)
   }
   count <- function(...) {
     dots <- match.call(expand.dots = FALSE)$`...`
-    rcall <- as.call(c(list(list.count,data),dots))
-    data <- eval(rcall,parent.frame())
+    rcall <- as.call(c(list.count,quote(data),dots))
+    data <- eval(rcall,list(data = data),parent.frame())
     List(data)
   }
   do <- function(...) {
@@ -97,8 +97,8 @@ List <- function(data = list()) {
   }
   exclude <- function(...) {
     dots <- match.call(expand.dots = FALSE)$`...`
-    rcall <- as.call(c(list(list.exclude,data),dots))
-    data <- eval(rcall,parent.frame())
+    rcall <- as.call(c(list.exclude,quote(data),dots))
+    data <- eval(rcall,list(data = data),parent.frame())
     List(data)
   }
   extract <- function(...) {
@@ -107,20 +107,20 @@ List <- function(data = list()) {
   }
   filter <- function(...) {
     dots <- match.call(expand.dots = FALSE)$`...`
-    rcall <- as.call(c(list(list.filter,data),dots))
-    data <- eval(rcall,parent.frame())
+    rcall <- as.call(c(list.filter,quote(data),dots))
+    data <- eval(rcall,list(data = data),parent.frame())
     List(data)
   }
   find <- function(...) {
     dots <- match.call(expand.dots = FALSE)$`...`
-    rcall <- as.call(c(list(list.find,data),dots))
-    data <- eval(rcall,parent.frame())
+    rcall <- as.call(c(list.find,quote(data),dots))
+    data <- eval(rcall,list(data = data),parent.frame())
     List(data)
   }
   findi <- function(...) {
     dots <- match.call(expand.dots = FALSE)$`...`
-    rcall <- as.call(c(list(list.findi,data),dots))
-    data <- eval(rcall,parent.frame())
+    rcall <- as.call(c(list.findi,quote(data),dots))
+    data <- eval(rcall,list(data = data),parent.frame())
     List(data)
   }
   flatten <- function(...) {
@@ -129,14 +129,14 @@ List <- function(data = list()) {
   }
   group <- function(...) {
     dots <- match.call(expand.dots = FALSE)$`...`
-    rcall <- as.call(c(list(list.group,data),dots))
-    data <- eval(rcall,parent.frame())
+    rcall <- as.call(c(list.group,quote(data),dots))
+    data <- eval(rcall,list(data = data),parent.frame())
     List(data)
   }
   is <- function(...) {
     dots <- match.call(expand.dots = FALSE)$`...`
-    rcall <- as.call(c(list(list.is,data),dots))
-    data <- eval(rcall,parent.frame())
+    rcall <- as.call(c(list.is,quote(data),dots))
+    data <- eval(rcall,list(data = data),parent.frame())
     List(data)
   }
   insert <- function(...) {
@@ -145,14 +145,14 @@ List <- function(data = list()) {
   }
   iter <- function(...) {
     dots <- match.call(expand.dots = FALSE)$`...`
-    rcall <- as.call(c(list(list.iter,data),dots))
-    data <- eval(rcall,parent.frame())
+    rcall <- as.call(c(list.iter,quote(data),dots))
+    data <- eval(rcall,list(data = data),parent.frame())
     List(data)
   }
   join <- function(...) {
     dots <- match.call(expand.dots = FALSE)$`...`
-    rcall <- as.call(c(list(list.join,data),dots))
-    data <- eval(rcall,parent.frame())
+    rcall <- as.call(c(list.join,quote(data),dots))
+    data <- eval(rcall,list(data = data),parent.frame())
     List(data)
   }
   load <- function(...) {
@@ -161,14 +161,14 @@ List <- function(data = list()) {
   }
   map <- function(...) {
     dots <- match.call(expand.dots = FALSE)$`...`
-    rcall <- as.call(c(list(list.map,data),dots))
-    data <- eval(rcall,parent.frame())
+    rcall <- as.call(c(list.map,quote(data),dots))
+    data <- eval(rcall,list(data = data),parent.frame())
     List(data)
   }
   mapv <- function(...) {
     dots <- match.call(expand.dots = FALSE)$`...`
-    rcall <- as.call(c(list(list.mapv,data),dots))
-    data <- eval(rcall,parent.frame())
+    rcall <- as.call(c(list.mapv,quote(data),dots))
+    data <- eval(rcall,list(data = data),parent.frame())
     List(data)
   }
   match <- function(...) {
@@ -181,8 +181,8 @@ List <- function(data = list()) {
   }
   order <- function(...) {
     dots <- match.call(expand.dots = FALSE)$`...`
-    rcall <- as.call(c(list(list.order,data),dots))
-    data <- eval(rcall,parent.frame())
+    rcall <- as.call(c(list.order,quote(data),dots))
+    data <- eval(rcall,list(data = data),parent.frame())
     List(data)
   }
   parse <- function(...) {
@@ -207,8 +207,8 @@ List <- function(data = list()) {
   }
   sample <- function(...) {
     dots <- match.call(expand.dots = FALSE)$`...`
-    rcall <- as.call(c(list(list.sample,data),dots))
-    data <- eval(rcall,parent.frame())
+    rcall <- as.call(c(list.sample,quote(data),dots))
+    data <- eval(rcall,list(data = data),parent.frame())
     List(data)
   }
   save <- function(...) {
@@ -217,14 +217,14 @@ List <- function(data = list()) {
   }
   search <- function(...) {
     dots <- match.call(expand.dots = FALSE)$`...`
-    rcall <- as.call(c(list(list.search,data),dots))
-    data <- eval(rcall,parent.frame())
+    rcall <- as.call(c(list.search,quote(data),dots))
+    data <- eval(rcall,list(data = data),parent.frame())
     List(data)
   }
   select <- function(...) {
     dots <- match.call(expand.dots = FALSE)$`...`
-    rcall <- as.call(c(list(list.select,data),dots))
-    data <- eval(rcall,parent.frame())
+    rcall <- as.call(c(list.select,quote(data),dots))
+    data <- eval(rcall,list(data = data),parent.frame())
     List(data)
   }
   serialize <- function(...) {
@@ -237,14 +237,14 @@ List <- function(data = list()) {
   }
   skipWhile <- function(...) {
     dots <- match.call(expand.dots = FALSE)$`...`
-    rcall <- as.call(c(list(list.skipWhile,data),dots))
-    data <- eval(rcall,parent.frame())
+    rcall <- as.call(c(list.skipWhile,quote(data),dots))
+    data <- eval(rcall,list(data = data),parent.frame())
     List(data)
   }
   sort <- function(...) {
     dots <- match.call(expand.dots = FALSE)$`...`
-    rcall <- as.call(c(list(list.sort,data),dots))
-    data <- eval(rcall,parent.frame())
+    rcall <- as.call(c(list.sort,quote(data),dots))
+    data <- eval(rcall,list(data = data),parent.frame())
     List(data)
   }
   stack <- function() {
@@ -253,8 +253,8 @@ List <- function(data = list()) {
   }
   table <- function(...) {
     dots <- match.call(expand.dots = FALSE)$`...`
-    rcall <- as.call(c(list(list.table,data),dots))
-    data <- eval(rcall,parent.frame())
+    rcall <- as.call(c(list.table,quote(data),dots))
+    data <- eval(rcall,list(data = data),parent.frame())
     List(data)
   }
   take <- function(...) {
@@ -263,8 +263,8 @@ List <- function(data = list()) {
   }
   takeWhile <- function(...) {
     dots <- match.call(expand.dots = FALSE)$`...`
-    rcall <- as.call(c(list(list.takeWhile,data),dots))
-    data <- eval(rcall,parent.frame())
+    rcall <- as.call(c(list.takeWhile,quote(data),dots))
+    data <- eval(rcall,list(data = data),parent.frame())
     List(data)
   }
   ungroup <- function(...) {
@@ -277,14 +277,14 @@ List <- function(data = list()) {
   }
   update <- function(...) {
     dots <- match.call(expand.dots = FALSE)$`...`
-    rcall <- as.call(c(list(list.update,data),dots))
-    data <- eval(rcall,parent.frame())
+    rcall <- as.call(c(list.update,quote(data),dots))
+    data <- eval(rcall,list(data = data),parent.frame())
     List(data)
   }
   which <- function(...) {
     dots <- match.call(expand.dots = FALSE)$`...`
-    rcall <- as.call(c(list(list.which,data),dots))
-    data <- eval(rcall,parent.frame())
+    rcall <- as.call(c(list.which,quote(data),dots))
+    data <- eval(rcall,list(data = data),parent.frame())
     List(data)
   }
   zip <- function(...) {
