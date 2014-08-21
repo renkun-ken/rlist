@@ -23,7 +23,7 @@ test_that("list.mapv", {
     p3 = list(type="B",score=list(c1=9,c2=7)))
 
   expect_equal(list.mapv(x,score$c1),c(p1=10,p2=9,p3=9))
-  expect_equal(list.mapv(x,x -> sum(unlist(x$score))),c(p1=18,p2=18,p3=16))
+  expect_equal(list.mapv(x,x ~ sum(unlist(x$score))),c(p1=18,p2=18,p3=16))
 
   # list of vectors
   x <- list(a=c(x=1,y=2),b=c(x=3,y=4))

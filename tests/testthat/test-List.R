@@ -6,7 +6,7 @@ test_that("List", {
     p3 = list(type="B",score=list(c1=9,c2=7)))
   expect_identical({
     List(x)$group(type)$
-      map(g -> List(g)$
+      map(g ~ List(g)$
           map(score)$
           call(unlist)$
           call(mean)$
@@ -16,13 +16,13 @@ test_that("List", {
   expect_identical({
     local({
       i <- 3
-      List(1:3)$map(x -> x+i) []
+      List(1:3)$map(x ~ x+i) []
     })
   },list(4,5,6))
   expect_identical({
     local({
       i <- 1
-      List(1:3)$map(x -> x + i)$filter(x -> x <= 1 + i)[]
+      List(1:3)$map(x ~ x + i)$filter(x ~ x <= 1 + i)[]
     })
   }, list(2))
   expect_identical(List(1:3)$all(. >= 0)[], TRUE)

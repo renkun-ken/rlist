@@ -59,7 +59,7 @@ test_that("list.search", {
   expect_equal(list.search(x,!any(equal("Ken", dist = 1)), "character"),
     list(p3=list(name=c("Sam","Lee")),
       p4=list(name=c("Keynes", "Bond"))))
-  
+
   y <- list(
     n = 1:10
     , list(
@@ -71,7 +71,7 @@ test_that("list.search", {
     )
     , list( "aa", "bb" )
   )
-  
+
   #list.search returns blank names
   #might want to revisit
   expect_identical(
@@ -88,6 +88,6 @@ test_that("counting", {
     p3 = list(name="Sam",age=24),
     p4 = list(name="Keynes",age=30),
     p5 = list(name="Kwen",age=31))
-  expect_equal(list.search(x, n -> n>=25, "numeric", n=2, unlist=TRUE),
+  expect_equal(list.search(x, n ~ n >= 25, "numeric", n=2, unlist=TRUE),
     c(p2.age=26,p4.age=30))
 })
