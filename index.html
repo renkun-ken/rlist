@@ -43,14 +43,38 @@
 <h2>
 <a name="whats-new-in-03" class="anchor" href="#whats-new-in-03"><span class="octicon octicon-link"></span></a>What's new in 0.3?</h2>
 
+<p><a href="https://github.com/renkun-ken/rlist/releases">Release notes</a></p>
+
+<h4>
+<a name="03-2" class="anchor" href="#03-2"><span class="octicon octicon-link"></span></a>0.3-2</h4>
+
 <ul>
 <li>
-<strong>API Break</strong>: <code>list.search</code> now evaluates expression recursively in a list and supports limited lambda expression (only value is defined).</li>
-<li>Add <code>equal()</code> function for logical and fuzzy filtering and searching which supports exact equality, atomic equality, inclusion, pattern matching, string-distance tolerance.</li>
-<li>Add <code>List()</code> to provide an environment in which most list functions are defined for light-weight chaining that does not reply on external operators.</li>
-</ul><p><a href="https://github.com/renkun-ken/rlist/releases">Release notes</a></p>
+<strong>API change</strong>:
 
-<h2>
+<ul>
+<li>Deprecate lambda expression of the form <code>x -&gt; expr</code>. Use <code>x ~ expr</code> instead.</li>
+<li>All <code>envir</code> arguments of list functions are removed.</li>
+</ul>
+</li>
+<li>Fix environemnt issues.</li>
+<li>Add subsetting, extracing, and assigning functionality to List environment.</li>
+</ul><h4>
+<a name="03-1" class="anchor" href="#03-1"><span class="octicon octicon-link"></span></a>0.3-1</h4>
+
+<ul>
+<li>Add <code>list.subset</code> that supports list subsetting by name, index, pattern matching, string distance to names.</li>
+<li>
+<code>List$subset</code> switched from generic function <code>subset()</code> to <code>list.subset()</code>.</li>
+</ul><h4>
+<a name="03" class="anchor" href="#03"><span class="octicon octicon-link"></span></a>0.3</h4>
+
+<ul>
+<li>
+<strong>API Break</strong>: <code>list.search</code> now evaluates expression recursively in a list and supports lambda expression.</li>
+<li>Add <code>equal()</code> function for logical and fuzzy filtering and searching which supports exact equality, atomic equality, inclusion, pattern matching, string-distance tolerance.</li>
+<li>Add <code>List()</code> to provide an environment in which most list functions are defined for light-weight chaining that does not rely on external operators.</li>
+</ul><h2>
 <a name="installation" class="anchor" href="#installation"><span class="octicon octicon-link"></span></a>Installation</h2>
 
 <p>You can install the latest released version from <a href="http://cran.r-project.org/web/packages/rlist/">CRAN</a> with</p>
@@ -148,23 +172,22 @@ str<span class="p">(</span>result<span class="p">)</span>
 
 <ul>
 <li><code>x ~ g(x)</code></li>
-<li><code>x -&gt; g(x)</code></li>
-<li><code>f(x) -&gt; g(x)</code></li>
+<li><code>f(x) ~ g(x)</code></li>
 </ul>
 </li>
 <li>Multivariate lambda expressions:
 
 <ul>
-<li><code>f(x,i) -&gt; g(x,i)</code></li>
-<li><code>f(x,i,name) -&gt; g(x,i,name)</code></li>
+<li><code>f(x,i) ~ g(x,i)</code></li>
+<li><code>f(x,i,name) ~ g(x,i,name)</code></li>
 </ul>
 </li>
 </ul><p>where <code>x</code> refers to the list member itself, <code>i</code> denotes the index, <code>name</code> denotes the name. If the symbols are not explicitly declared, <code>.</code>, <code>.i</code> and <code>.name</code> will by default be used to represent them, respectively.</p>
 
 <div class="highlight highlight-r"><pre>nums <span class="o">&lt;-</span> <span class="kt">list</span><span class="p">(</span>a<span class="o">=</span><span class="kt">c</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="m">2</span><span class="p">,</span><span class="m">3</span><span class="p">),</span>b<span class="o">=</span><span class="kt">c</span><span class="p">(</span><span class="m">2</span><span class="p">,</span><span class="m">3</span><span class="p">,</span><span class="m">4</span><span class="p">),</span><span class="kt">c</span><span class="o">=</span><span class="kt">c</span><span class="p">(</span><span class="m">3</span><span class="p">,</span><span class="m">4</span><span class="p">,</span><span class="m">5</span><span class="p">))</span>
 list.map<span class="p">(</span>nums<span class="p">,</span> <span class="kt">c</span><span class="p">(</span>min<span class="o">=</span><span class="kp">min</span><span class="p">(</span><span class="m">.</span><span class="p">),</span>max<span class="o">=</span><span class="kp">max</span><span class="p">(</span><span class="m">.</span><span class="p">)))</span>
-list.filter<span class="p">(</span>nums<span class="p">,</span> x <span class="o">-&gt;</span> <span class="kp">mean</span><span class="p">(</span>x<span class="p">)</span><span class="o">&gt;=</span><span class="m">3</span><span class="p">)</span>
-list.map<span class="p">(</span>nums<span class="p">,</span> f<span class="p">(</span>x<span class="p">,</span>i<span class="p">)</span> <span class="o">-&gt;</span> <span class="kp">sum</span><span class="p">(</span>x<span class="p">,</span>i<span class="p">))</span>
+list.filter<span class="p">(</span>nums<span class="p">,</span> x <span class="o">~</span> <span class="kp">mean</span><span class="p">(</span>x<span class="p">)</span><span class="o">&gt;=</span><span class="m">3</span><span class="p">)</span>
+list.map<span class="p">(</span>nums<span class="p">,</span> f<span class="p">(</span>x<span class="p">,</span>i<span class="p">)</span> <span class="o">~</span> <span class="kp">sum</span><span class="p">(</span>x<span class="p">,</span>i<span class="p">))</span>
 </pre></div>
 
 <h2>
