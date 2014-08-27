@@ -1,3 +1,7 @@
+Version 0.3-3 (2014-08-27)
+===
+Update documentation
+
 Version 0.3-2 (2014-08-21)
 ===
 Fix environemnt issues (#50).
@@ -16,6 +20,8 @@ API Break: `list.search` now evaluates expression recursively in a list and supp
 Add `equal()` function for logical and fuzzy filtering and searching which supports exact equality, atomic equality, inclusion, pattern matching, string-distance tolerance.
 
 Add `List()` to provide an environment in which most list functions are defined for light-weight chaining that does not rely on external operators.
+
+
 
 Version 0.2.5 (2014-08-01)
 ===
