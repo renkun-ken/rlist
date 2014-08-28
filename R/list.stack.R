@@ -2,8 +2,6 @@
 #'
 #' @param .data \code{list} of \code{vector}s, \code{list}s,
 #'    or \code{data.frame}s.
-#' @param ... additional parameters passed to
-#'  \code{data.table::rbindlist}.
 #' @name list.stack
 #' @export
 #' @examples
@@ -17,8 +15,8 @@
 #' x <- lapply(1:3, function(i) { data.frame(a=i,b=i^2,c=letters[i]) })
 #' list.stack(x)
 #' }
-list.stack <- function(.data,...) {
-  dt <- data.table::rbindlist(.data,...)
+list.stack <- function(.data) {
+  dt <- data.table::rbindlist(.data)
   class(dt) <- "data.frame"
   rownames(dt) <- names(.data)
   dt
