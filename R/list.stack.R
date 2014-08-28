@@ -20,5 +20,6 @@
 list.stack <- function(.data,...) {
   dt <- data.table::rbindlist(.data,...)
   class(dt) <- "data.frame"
+  rownames(dt) <- names(.data)
   dt
 }
