@@ -17,5 +17,5 @@
 list.common <- function(.data,expr) {
   if(length(.data) == 0L) return(NULL)
   values <- list.map.internal(.data,substitute(expr),envir = parent.frame())
-  Reduce(intersect,values,values[[1L]])
+  reduce(intersect,values,values[[1L]])
 }

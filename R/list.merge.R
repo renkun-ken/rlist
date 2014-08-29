@@ -10,5 +10,5 @@
 #' list.merge(l1,l2,l3)
 #' }
 list.merge <- function(...) {
-  Reduce(modifyList,list(...),list())
+  reduce(modifyList,list(...),list())
 }

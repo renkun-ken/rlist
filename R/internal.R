@@ -2,6 +2,14 @@ map <- function(f, ...) {
   mapply(FUN = f, ..., SIMPLIFY = FALSE)
 }
 
+reduce <- function(f, x, init, ...) {
+  y <- init
+  for(xi in x) {
+    y <- f(y,xi,...)
+  }
+  y
+}
+
 list.map.fun <- function(.data,.expr) {
   eval(.expr,.list.env(.data),environment())
 }
