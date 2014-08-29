@@ -1,3 +1,7 @@
+map <- function(f, ...) {
+  mapply(FUN = f, ..., SIMPLIFY = FALSE)
+}
+
 list.map.fun <- function(.data,.expr) {
   eval(.expr,.list.env(.data),environment())
 }
@@ -10,7 +14,7 @@ list.map.internal <- function(.data,expr,fun = list.map.fun, envir) {
   formals(fun) <- setnames(vector("pairlist",.nfsymbol),
     c(".data",".expr",l$symbols))
   args <- list(fun,.data,list(l$expr),.data,seq_along(.data),xnames)
-  do.call(Map, args)
+  do.call(map, args)
 }
 
 list.is.fun <- function(.data,.expr) {

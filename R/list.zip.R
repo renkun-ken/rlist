@@ -16,7 +16,7 @@
 list.zip <- function(...,use.argnames=TRUE,use.names=TRUE) {
   args <- list(...)
   if(use.argnames) args <- set_argnames(dots(...),args)
-  results <- do.call(Map,c(function(...) {
+  results <- do.call(map,c(function(...) {
     list(...)
   },args))
   if(!use.names) names(results) <- NULL

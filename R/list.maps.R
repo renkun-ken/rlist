@@ -21,7 +21,7 @@ list.maps <- function(expr,...,envir = parent.frame()) {
   if(length(unique(lens)) > 1L) stop("Lists must have equal length")
   list1 <- lists[[1L]]
   xnames <- getnames(list1)
-  do.call(Map, c(function(...) {
+  do.call(map, c(function(...) {
     eval(expr,list(...),envir)
   },list(...),.i=list(seq_along(list1)),.name=list(xnames)))
 }
