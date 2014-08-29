@@ -19,6 +19,6 @@
 list.update <- function(.data,...,keep.null=FALSE) {
   items <- lapply(dots(...),list.map.internal,
     .data=.data,envir = parent.frame())
-  do.call(Map,c(function(.data,...)
+  do.call(map,c(function(.data,...)
     modifyList(.data,list(...),keep.null = keep.null),list(.data),items))
 }
