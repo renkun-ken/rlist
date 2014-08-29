@@ -6,7 +6,6 @@
 #' @param subset A logical lambda expression of subsetting condition
 #' @param select A lambda expression to evaluate for each selected item
 #' @param ... Additional parameters
-#' @param envir The environment to evaluate mapping function
 #' @name subset.list
 #' @export
 #' @examples
@@ -20,10 +19,10 @@
 #' do.call(rbind,
 #'    subset(x,min(score$c1,score$c2) >= 8,data.frame(score)))
 #' }
-subset.list <- function(x,subset=TRUE,select=.,...,envir = parent.frame()) {
+subset.list <- function(x,subset=TRUE,select=.,...) {
   subset <- substitute(subset)
   select <- substitute(select)
-  subset.items <- x[list.is.internal(x,subset,envir = envir)]
-  select.items <- list.map.internal(subset.items,select,envir = envir)
+  subset.items <- x[list.is.internal(x,subset,envir = parent.frame())]
+  select.items <- list.map.internal(subset.items,select,envir = parent.frame())
   list.clean(select.items)
 }
