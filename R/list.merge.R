@@ -10,11 +10,5 @@
 #' list.merge(l1,l2,l3)
 #' }
 list.merge <- function(...) {
-  updates <- list(...)
-  result <- list()
-  for (update in updates) {
-    result <- modifyList(result, update)
-  }
-  result
+  Reduce(modifyList,list(...),list())
 }
-
