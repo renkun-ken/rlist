@@ -3,7 +3,7 @@
 \alias{list.join}
 \title{Join two lists by single or multiple keys}
 \usage{
-list.join(x, y, xkey, ykey = NULL, ..., keep.order = TRUE)
+list.join(x, y, xkey, ykey, ..., keep.order = TRUE)
 }
 \arguments{
 \item{x}{The first list}
@@ -13,7 +13,7 @@ list.join(x, y, xkey, ykey = NULL, ..., keep.order = TRUE)
 \item{xkey}{A lambda expression that determines the key for list \code{x}}
 
 \item{ykey}{A lambda expression that determines the key for list \code{y},
-same to \code{xkey} if \code{NULL} is taken}
+same to \code{xkey} if missing}
 
 \item{...}{The additional parameters passed to \code{merge.data.frame}}
 

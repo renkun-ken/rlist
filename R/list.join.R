@@ -3,7 +3,7 @@
 #' @param y The second list
 #' @param xkey A lambda expression that determines the key for list \code{x}
 #' @param ykey A lambda expression that determines the key for list \code{y},
-#'    same to \code{xkey} if \code{NULL} is taken
+#'    same to \code{xkey} if missing
 #' @param ... The additional parameters passed to \code{merge.data.frame}
 #' @param keep.order Should the order of \code{x} be kept?
 #' @name list.join
@@ -19,15 +19,15 @@
 #' list.join(l1,l2,name)
 #' list.join(l1,l2,.[c("name","age")])
 #' }
-list.join <- function(x,y,xkey,ykey=NULL,...,keep.order=TRUE) {
+list.join <- function(x,y,xkey,ykey,...,keep.order=TRUE) {
+  if(missing(xkey) && missing(ykey))
+    stop("At least one key should be specified")
+
   sxkey <- substitute(xkey)
   sykey <- substitute(ykey)
 
-  if(is.null(sxkey) && is.null(sykey))
-    stop("At least one key should be specified")
-
   dfsxkey <- substitute(data.frame(xkey))
-  if(is.null(sykey)) {
+  if(missing(sykey)) {
     sykey <- sxkey
     dfsykey <- substitute(data.frame(xkey))
   } else {
@@ -48,5 +48,5 @@ list.join <- function(x,y,xkey,ykey=NULL,...,keep.order=TRUE) {
   ykeys <- cbind(.yi=seq_along(ykeys.list),ykeys.df)
   df <- merge.data.frame(xkeys,ykeys,by=colnames(xkeys)[-1L],...)
   if(keep.order) df <- df[order(df$.xi),]
-  Map(modifyList,x[df$.xi],y[df$.yi])
+  map(modifyList,x[df$.xi],y[df$.yi])
 }
