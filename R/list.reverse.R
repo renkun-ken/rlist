@@ -9,5 +9,5 @@
 #' list.reverse(x)
 #' }
 list.reverse <- function(.data) {
-  .data[rev(seq_along(.data))]
+  .data[rev.default(seq_along(.data))]
 }
