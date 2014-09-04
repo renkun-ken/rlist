@@ -41,56 +41,27 @@
 <p>This package supports list filtering, mapping, grouping, sorting, updating, searching, file input/output, and many other functions. It implements collection pipeline and strongly recommends functional programming style in list operations.</p>
 
 <h2>
-<a name="whats-new-in-03" class="anchor" href="#whats-new-in-03"><span class="octicon octicon-link"></span></a>What's new in 0.3?</h2>
-
-<p><a href="https://github.com/renkun-ken/rlist/releases">Release notes</a></p>
-
-<h4>
-<a name="03-2" class="anchor" href="#03-2"><span class="octicon octicon-link"></span></a>0.3-2</h4>
-
-<ul>
-<li>
-<strong>API change</strong>:
-
-<ul>
-<li>Deprecate lambda expression of the form <code>x -&gt; expr</code>. Use <code>x ~ expr</code> instead.</li>
-<li>All <code>envir</code> arguments of list functions are removed.</li>
-</ul>
-</li>
-<li>Fix environemnt issues.</li>
-<li>Add subsetting, extracing, and assigning functionality to List environment.</li>
-</ul><h4>
-<a name="03-1" class="anchor" href="#03-1"><span class="octicon octicon-link"></span></a>0.3-1</h4>
-
-<ul>
-<li>Add <code>list.subset</code> that supports list subsetting by name, index, pattern matching, string distance to names.</li>
-<li>
-<code>List$subset</code> switched from generic function <code>subset()</code> to <code>list.subset()</code>.</li>
-</ul><h4>
-<a name="03" class="anchor" href="#03"><span class="octicon octicon-link"></span></a>0.3</h4>
-
-<ul>
-<li>
-<strong>API Break</strong>: <code>list.search</code> now evaluates expression recursively in a list and supports lambda expression.</li>
-<li>Add <code>equal()</code> function for logical and fuzzy filtering and searching which supports exact equality, atomic equality, inclusion, pattern matching, string-distance tolerance.</li>
-<li>Add <code>List()</code> to provide an environment in which most list functions are defined for light-weight chaining that does not rely on external operators.</li>
-</ul><h2>
 <a name="installation" class="anchor" href="#installation"><span class="octicon octicon-link"></span></a>Installation</h2>
 
-<p>You can install the latest released version from <a href="http://cran.r-project.org/web/packages/rlist/">CRAN</a> with</p>
+<p>Install from <a href="http://cran.r-project.org/web/packages/rlist/">CRAN</a> (v0.3-2)</p>
 
 <div class="highlight highlight-r"><pre>install.packages<span class="p">(</span><span class="s">"rlist"</span><span class="p">)</span>
 </pre></div>
 
-<p>or the latest development version from GitHub with</p>
+<p>Install the development version (v0.3-3) from GitHub:</p>
 
 <div class="highlight highlight-r"><pre>devtools<span class="o">::</span>install_github<span class="p">(</span><span class="s">"rlist"</span><span class="p">,</span><span class="s">"renkun-ken"</span><span class="p">)</span>
 </pre></div>
 
 <h2>
-<a name="getting-started" class="anchor" href="#getting-started"><span class="octicon octicon-link"></span></a>Getting started</h2>
+<a name="motivation" class="anchor" href="#motivation"><span class="octicon octicon-link"></span></a>Motivation</h2>
 
-<p>The package provides a wide range of high-level functions to work with list objects.</p>
+<p>In R, there are numerous powerful tools to deal with structured data stored in tabular form such as data frame. However, a variety of data is non-tabular: different records may have different fields; for each field they may have different number of values. </p>
+
+<p>It is hard or no longer straightforward to store such data in data frame, but the <code>list</code> object in R is flexible enough to represent such records of diversity. rlist is a toolbox to deal with non-structured data stored in <code>list</code> objects, providing a collection of high-level functions which are pipeline friendly.</p>
+
+<h2>
+<a name="getting-started" class="anchor" href="#getting-started"><span class="octicon octicon-link"></span></a>Getting started</h2>
 
 <p>Suppose we have a list of developers, each of whom has a name, age, a few interests, a list of programming languages they use and the number of years they have been using them.</p>
 
@@ -99,7 +70,7 @@ devs <span class="o">&lt;-</span>
   <span class="kt">list</span><span class="p">(</span>
     p1<span class="o">=</span><span class="kt">list</span><span class="p">(</span>name<span class="o">=</span><span class="s">"Ken"</span><span class="p">,</span>age<span class="o">=</span><span class="m">24</span><span class="p">,</span>
       interest<span class="o">=</span><span class="kt">c</span><span class="p">(</span><span class="s">"reading"</span><span class="p">,</span><span class="s">"music"</span><span class="p">,</span><span class="s">"movies"</span><span class="p">),</span>
-      lang<span class="o">=</span><span class="kt">list</span><span class="p">(</span>r<span class="o">=</span><span class="m">2</span><span class="p">,</span>csharp<span class="o">=</span><span class="m">4</span><span class="p">,</span>python<span class="o">=</span><span class="m">3</span><span class="p">)),</span>
+      lang<span class="o">=</span><span class="kt">list</span><span class="p">(</span>r<span class="o">=</span><span class="m">2</span><span class="p">,</span>csharp<span class="o">=</span><span class="m">4</span><span class="p">)),</span>
     p2<span class="o">=</span><span class="kt">list</span><span class="p">(</span>name<span class="o">=</span><span class="s">"James"</span><span class="p">,</span>age<span class="o">=</span><span class="m">25</span><span class="p">,</span>
       interest<span class="o">=</span><span class="kt">c</span><span class="p">(</span><span class="s">"sports"</span><span class="p">,</span><span class="s">"music"</span><span class="p">),</span>
       lang<span class="o">=</span><span class="kt">list</span><span class="p">(</span>r<span class="o">=</span><span class="m">3</span><span class="p">,</span>java<span class="o">=</span><span class="m">2</span><span class="p">,</span>cpp<span class="o">=</span><span class="m">5</span><span class="p">)),</span>
@@ -108,15 +79,16 @@ devs <span class="o">&lt;-</span>
       lang<span class="o">=</span><span class="kt">list</span><span class="p">(</span>r<span class="o">=</span><span class="m">1</span><span class="p">,</span>cpp<span class="o">=</span><span class="m">4</span><span class="p">,</span>python<span class="o">=</span><span class="m">2</span><span class="p">)))</span>
 </pre></div>
 
-<p>This type of data is non-relational since it does not well fit the shape of a data table yet it can be easily stored in JSON or YAML format. In R, list object is powerful enough to represent a wide range of non-relational datasets like this. This package provides a wide range of functions to query this type of data.</p>
+<p>This type of data is non-relational since it does not well fit the shape of a data frame yet it can be easily stored in JSON or YAML format. In R, list object is flexible enough to represent a wide range of non-relational datasets like this. This package provides a wide range of functions to query and manipulate this type of data.</p>
 
-<h2>
-<a name="examples" class="anchor" href="#examples"><span class="octicon octicon-link"></span></a>Examples</h2>
+<p>The following examples use <code>str()</code> to show the structure of the output.</p>
+
+<h3>
+<a name="filtering" class="anchor" href="#filtering"><span class="octicon octicon-link"></span></a>Filtering</h3>
 
 <p>Filter those who like music and has been using R for more than 3 years.</p>
 
-<div class="highlight highlight-r"><pre>subset1 <span class="o">&lt;-</span> list.filter<span class="p">(</span>devs<span class="p">,</span> <span class="s">"music"</span> <span class="o">%in%</span> interest <span class="o">&amp;</span> lang<span class="o">$</span>r <span class="o">&gt;=</span> <span class="m">3</span><span class="p">)</span>
-str<span class="p">(</span>subset1<span class="p">)</span>
+<div class="highlight highlight-r"><pre>str<span class="p">(</span> list.filter<span class="p">(</span>devs<span class="p">,</span> <span class="s">"music"</span> <span class="o">%in%</span> interest <span class="o">&amp;</span> lang<span class="o">$</span>r <span class="o">&gt;=</span> <span class="m">3</span><span class="p">)</span> <span class="p">)</span>
 </pre></div>
 
 <pre><code>List of 1
@@ -130,10 +102,12 @@ str<span class="p">(</span>subset1<span class="p">)</span>
   .. ..$ cpp : num 5
 </code></pre>
 
+<h3>
+<a name="selecting" class="anchor" href="#selecting"><span class="octicon octicon-link"></span></a>Selecting</h3>
+
 <p>Select their names and ages.</p>
 
-<div class="highlight highlight-r"><pre>subset2 <span class="o">&lt;-</span> list.select<span class="p">(</span>devs<span class="p">,</span> name<span class="p">,</span> age<span class="p">)</span>
-str<span class="p">(</span>subset2<span class="p">)</span>
+<div class="highlight highlight-r"><pre>str<span class="p">(</span> list.select<span class="p">(</span>devs<span class="p">,</span> name<span class="p">,</span> age<span class="p">)</span> <span class="p">)</span>
 </pre></div>
 
 <pre><code>List of 3
@@ -148,10 +122,12 @@ str<span class="p">(</span>subset2<span class="p">)</span>
   ..$ age : num 24
 </code></pre>
 
+<h3>
+<a name="mapping" class="anchor" href="#mapping"><span class="octicon octicon-link"></span></a>Mapping</h3>
+
 <p>Map each of them to the number of interests.</p>
 
-<div class="highlight highlight-r"><pre>result <span class="o">&lt;-</span> list.map<span class="p">(</span>devs<span class="p">,</span> <span class="kp">length</span><span class="p">(</span>interest<span class="p">))</span>
-str<span class="p">(</span>result<span class="p">)</span>
+<div class="highlight highlight-r"><pre>str<span class="p">(</span> list.map<span class="p">(</span>devs<span class="p">,</span> <span class="kp">length</span><span class="p">(</span>interest<span class="p">))</span> <span class="p">)</span>
 </pre></div>
 
 <pre><code>List of 3
@@ -160,26 +136,33 @@ str<span class="p">(</span>result<span class="p">)</span>
  $ p3: int 2
 </code></pre>
 
+<h3>
+<a name="more-functions" class="anchor" href="#more-functions"><span class="octicon octicon-link"></span></a>More functions</h3>
+
+<p>In addition to these basic functions, rlist also supports various types of grouping, joining, searching, sorting, updating. Moreover, a unified <code>equal()</code> function is provided to support exact matching, value comparing, pattern matching, and fuzzy matching. </p>
+
+<p>For more details, view the vignettes and documentation.</p>
+
 <h2>
 <a name="lambda-expression" class="anchor" href="#lambda-expression"><span class="octicon octicon-link"></span></a>Lambda expression</h2>
 
 <p>In this package, almost all functions that work with expressions accept the following forms of lambda expressions:</p>
 
 <ul>
-<li>Implicit lambda expression: <code>g(x)</code>
+<li>Implicit lambda expression: <code>expression</code>
 </li>
 <li>Univariate lambda expressions: 
 
 <ul>
-<li><code>x ~ g(x)</code></li>
-<li><code>f(x) ~ g(x)</code></li>
+<li><code>x ~ expression</code></li>
+<li><code>f(x) ~ expression</code></li>
 </ul>
 </li>
 <li>Multivariate lambda expressions:
 
 <ul>
-<li><code>f(x,i) ~ g(x,i)</code></li>
-<li><code>f(x,i,name) ~ g(x,i,name)</code></li>
+<li><code>f(x,i) ~ expression</code></li>
+<li><code>f(x,i,name) ~ expression</code></li>
 </ul>
 </li>
 </ul><p>where <code>x</code> refers to the list member itself, <code>i</code> denotes the index, <code>name</code> denotes the name. If the symbols are not explicitly declared, <code>.</code>, <code>.i</code> and <code>.name</code> will by default be used to represent them, respectively.</p>
@@ -205,9 +188,9 @@ devs <span class="o">%&gt;&gt;%</span>
   list.stack
 </pre></div>
 
-<pre><code>   name age
-1   Ken  24
-2 James  25
+<pre><code>    name age
+p1   Ken  24
+p2 James  25
 </code></pre>
 
 <p>The example above uses <code>pipeR</code>(<a href="http://renkun.me/pipeR/">http://renkun.me/pipeR/</a>) package for pipeline operator <code>%&gt;&gt;%</code> that chains commands in a fluent style.</p>
@@ -217,16 +200,16 @@ devs <span class="o">%&gt;&gt;%</span>
 
 <p><code>List()</code> function wraps a list within an environment where almost all list functions are defined. Here is the List-environment version of the previous example.</p>
 
-<div class="highlight highlight-r"><pre>m <span class="o">&lt;-</span> List<span class="p">(</span>devs<span class="p">)</span>
-m<span class="o">$</span>filter<span class="p">(</span><span class="s">"music"</span> <span class="o">%in%</span> interest <span class="o">&amp;</span> <span class="s">"r"</span> <span class="o">%in%</span> <span class="kp">names</span><span class="p">(</span>lang<span class="p">))</span><span class="o">$</span>
+<div class="highlight highlight-r"><pre>ldevs <span class="o">&lt;-</span> List<span class="p">(</span>devs<span class="p">)</span>
+ldevs<span class="o">$</span>filter<span class="p">(</span><span class="s">"music"</span> <span class="o">%in%</span> interest <span class="o">&amp;</span> <span class="s">"r"</span> <span class="o">%in%</span> <span class="kp">names</span><span class="p">(</span>lang<span class="p">))</span><span class="o">$</span>
   select<span class="p">(</span>name<span class="p">,</span>age<span class="p">)</span><span class="o">$</span>
   stack<span class="p">()</span><span class="o">$</span>
   data
 </pre></div>
 
-<pre><code>   name age
-1   Ken  24
-2 James  25
+<pre><code>    name age
+p1   Ken  24
+p2 James  25
 </code></pre>
 
 <h2>
