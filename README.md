@@ -52,7 +52,7 @@ This type of data is non-relational since it does not well fit the shape of a da
 
 The following examples use `str()` to show the structure of the output.
 
-* Filtering
+### Filtering
 
 Filter those who like music and has been using R for more than 3 years.
 
@@ -73,7 +73,7 @@ List of 1
   .. ..$ cpp : num 5
 ```
 
-* Selecting
+### Selecting
 
 Select their names and ages.
 
@@ -95,7 +95,7 @@ List of 3
   ..$ age : num 24
 ```
 
-* Mapping
+### Mapping
 
 Map each of them to the number of interests.
 
@@ -111,7 +111,11 @@ List of 3
  $ p3: int 2
 ```
 
-In addition to these basic functions, rlist also supports various types of grouping, joining, searching, sorting, updating. Moreover, a unified `equal()` function is provided to support exact matching, value comparing, pattern matching, and fuzzy matching. For more details, view the vignettes and documentation.
+### More functions
+
+In addition to these basic functions, rlist also supports various types of grouping, joining, searching, sorting, updating. Moreover, a unified `equal()` function is provided to support exact matching, value comparing, pattern matching, and fuzzy matching. 
+
+For more details, view the vignettes and documentation.
 
 ## Lambda expression
 
