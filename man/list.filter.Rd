@@ -3,12 +3,12 @@
 \alias{list.filter}
 \title{Filter a list by a condition.}
 \usage{
-list.filter(.data, cond)
+list.filter(.data, ...)
 }
 \arguments{
 \item{.data}{\code{list}}
 
-\item{cond}{A logical lambda expression}
+\item{...}{logical conditions}
 }
 \description{
 Filter a list by a condition.
@@ -20,6 +20,7 @@ x <- list(p1 = list(type="A",score=list(c1=10,c2=8)),
        p3 = list(type="B",score=list(c1=9,c2=7)))
 list.filter(x,type=="B")
 list.filter(x,min(score$c1,score$c2) >= 8)
+list.filter(x, type=="B", score$c2 >= 8)
 }
 }
 
