@@ -120,6 +120,8 @@ test_that("list.cbind", {
 test_that("list.stack", {
   x <- lapply(1:10,function(i) list(a=i,b=i^2))
   expect_false(is.null(list.stack(x)))
+  x <- lapply(1:10,function(i) list(a=c(i,i+1),b=c(i^2,i^2+1)))
+  expect_false(is.null(list.stack(x)))
 })
 
 test_that("list.match", {
