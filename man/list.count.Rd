@@ -8,7 +8,7 @@ list.count(.data, cond)
 \arguments{
 \item{.data}{\code{list}}
 
-\item{cond}{A logical lambda expression}
+\item{cond}{A logical lambda expression.}
 }
 \description{
 Count the number of members that meet given condition
