@@ -2,7 +2,7 @@ dots <- function(...) {
   eval(substitute(alist(...)))
 }
 
-list.sort.functions <- list(desc=`-`)
+list.sort.functions <- list(desc=function(x) -xtfrm(x))
 
 setnames <- `names<-`
 setclass <- `class<-`
