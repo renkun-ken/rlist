@@ -62,7 +62,7 @@ list.while.fun <- function(.data,.expr) {
 
 list.order.internal <- function(.data,args,envir) {
   if(is.empty(.data)) return(integer())
-  if(is.empty(args) && is.atomic(.data)) return(order(.data))
+  if(is.empty(args)) return(order(.data))
   envir <- new.env(parent = envir)
   list2env(list.sort.functions,envir)
   cols <- lapply(args,function(arg) {
