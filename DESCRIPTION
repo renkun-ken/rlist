@@ -10,7 +10,7 @@ Description: A set of tools for working with lists as dataset,
     programming and collection pipeline in list operations.
 Depends:
     R (>= 2.15)
-Date: 2014-09-04
+Date: 2014-09-22
 Suggests:
     testthat,
     knitr,
@@ -22,7 +22,8 @@ Imports:
     jsonlite
 License: MIT + file LICENSE
 URL: http://renkun.me/rlist,
-    https://github.com/renkun-ken/rlist
+    https://github.com/renkun-ken/rlist,
+    http://renkun.me/rlist-tutorial
 BugReports: https://github.com/renkun-ken/rlist/issues
 Roxygen: list(wrap = FALSE)
 ByteCompile: TRUE
