@@ -13,6 +13,12 @@ test_that("list.sort", {
   # list of vectors
   x <- list(a=c(x=1,y=2),b=c(x=3,y=4))
   expect_identical(list.sort(x,sum(.)),x[c(1,2)])
+  expect_identical(list.sort(x,desc(sum(.))),x[c(2,1)])
+
+  expect_identical(list.sort(c("a","b","c")),c("a","b","c"))
+  expect_identical(list.sort(c("a","b","c"),desc(.)),c("c","b","a"))
+  expect_identical(list.sort(list("a","b","c"),.),list("a","b","c"))
+  expect_identical(list.sort(list("a","b","c"),desc(.)),list("c","b","a"))
 
   lapply(1:3,function(i) list.sort(x,sum(.)+i))
 })
