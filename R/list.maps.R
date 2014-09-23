@@ -4,7 +4,6 @@
 #'    \code{.name} are defined.
 #' @param ... Named arguments of lists with equal length. The names of the
 #'    lists are available as symbols that represent the element for each list.
-#' @param envir The environment to evaluate mapping function
 #' @name list.maps
 #' @export
 #' @examples
@@ -13,15 +12,16 @@
 #' l2 <- list(2,3,5)
 #' list.maps(a$x*b+a$y,a=l1,b=l2)
 #' }
-list.maps <- function(expr,...,envir = parent.frame()) {
+list.maps <- function(expr,...) {
   expr <- substitute(expr)
+  envir <- parent.frame()
   lists <- list(...)
   if(length(lists) == 0L) return(list())
   lens <- vapply(lists,length,integer(1L))
   if(length(unique(lens)) > 1L) stop("Lists must have equal length")
   list1 <- lists[[1L]]
-  xnames <- getnames(list1)
+  xnames <- getnames(list1,character(1L))
   do.call(map, c(function(...) {
     eval(expr,list(...),envir)
-  },list(...),.i=list(seq_along(list1)),.name=list(xnames)))
+  },lists,.i=list(seq_along(list1)),.name=list(xnames)))
 }

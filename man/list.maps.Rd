@@ -3,7 +3,7 @@
 \alias{list.maps}
 \title{Map multiple lists with an expression}
 \usage{
-list.maps(expr, ..., envir = parent.frame())
+list.maps(expr, ...)
 }
 \arguments{
 \item{expr}{An implicit lambda expression where only \code{.i} and
@@ -11,8 +11,6 @@ list.maps(expr, ..., envir = parent.frame())
 
 \item{...}{Named arguments of lists with equal length. The names of the
 lists are available as symbols that represent the element for each list.}
-
-\item{envir}{The environment to evaluate mapping function}
 }
 \description{
 Map multiple lists with an expression
