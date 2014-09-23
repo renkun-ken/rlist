@@ -5,7 +5,7 @@
 lambda <- function(expr) {
   .lambda$expr <- expr
   if(is.call(expr) && length(expr[[1L]])==1L) {
-    symbol <- as.character(expr[[1L]])
+    symbol <- expr[[1L]]
     if(symbol == "<-") {
       warning("lambda expression of the form \"x -> expr\" has been deprecated, please use \"x ~ expr\" instead.", call. = FALSE)
       symbols <- expr[[3L]]
