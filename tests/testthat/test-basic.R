@@ -228,3 +228,9 @@ test_that("list.flatten", {
   expect_identical(list.flatten(p),list(a=1,b.b1=2,b.b2=3,c.c1.c11="a",
     c.c1.c12="x",c.c2=3))
 })
+
+test_that("list.names", {
+  expect_identical(list.names(list(a=1,b=2)),c("a","b"))
+  expect_identical(list.names(list(1,2)),NULL)
+  expect_identical(list.names(list(1,2),letters[.]),list(a=1,b=2))
+})
