@@ -8,8 +8,6 @@ rlist is a set of tools for working with list objects. Its goal is to make it ea
 
 This package supports list filtering, mapping, grouping, sorting, updating, searching, file input/output, and many other functions. It implements collection pipeline and strongly recommends functional programming style in list operations.
 
-[rlist Tutorial](http://renkun.me/rlist-tutorial) is a highly recommended tutorial that covers most features of rlist.
-
 ## Installation
 
 Install from [CRAN](http://cran.r-project.org/web/packages/rlist/) (v0.3-2)
