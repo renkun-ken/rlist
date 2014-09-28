@@ -13,7 +13,6 @@ Depends:
 Date: 2014-09-22
 Suggests:
     testthat,
-    knitr,
     pipeR
 Imports:
     stringdist,
@@ -27,4 +26,3 @@ URL: http://renkun.me/rlist,
 BugReports: https://github.com/renkun-ken/rlist/issues
 Roxygen: list(wrap = FALSE)
 ByteCompile: TRUE
-VignetteBuilder: knitr

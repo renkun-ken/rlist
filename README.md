@@ -8,6 +8,8 @@ rlist is a set of tools for working with list objects. Its goal is to make it ea
 
 This package supports list filtering, mapping, grouping, sorting, updating, searching, file input/output, and many other functions. It implements collection pipeline and strongly recommends functional programming style in list operations.
 
+[rlist Tutorial](http://renkun.me/rlist-tutorial) is a highly recommended tutorial that covers most features of rlist.
+
 ## Installation
 
 Install from [CRAN](http://cran.r-project.org/web/packages/rlist/) (v0.3-2)
@@ -154,9 +156,9 @@ devs %>>%
 ```
 
 ```
-    name age
-p1   Ken  24
-p2 James  25
+   name age
+1   Ken  24
+2 James  25
 ```
 
 The example above uses `pipeR`(http://renkun.me/pipeR/) package for pipeline operator `%>>%` that chains commands in a fluent style.
@@ -175,28 +177,10 @@ ldevs$filter("music" %in% interest & "r" %in% names(lang))$
 ```
 
 ```
-    name age
-p1   Ken  24
-p2 James  25
+   name age
+1   Ken  24
+2 James  25
 ```
-
-
-## Vignettes
-
-The package also provides detailed vignettes for most functions. 
-
-- [Introduction to rlist](http://cran.r-project.org/web/packages/rlist/vignettes/Introduction.html)
-- [List Mapping](http://cran.r-project.org/web/packages/rlist/vignettes/Mapping.html)
-- [List Filtering](http://cran.r-project.org/web/packages/rlist/vignettes/Filtering.html)
-- [List Sorting](http://cran.r-project.org/web/packages/rlist/vignettes/Sorting.html)
-- [List Grouping](http://cran.r-project.org/web/packages/rlist/vignettes/Grouping.html)
-- [List Joining](http://cran.r-project.org/web/packages/rlist/vignettes/Joining.html)
-- [List Updating](http://cran.r-project.org/web/packages/rlist/vignettes/Updating.html)
-- [List Searching](http://cran.r-project.org/web/packages/rlist/vignettes/Searching.html)
-- [List Input/Output](http://cran.r-project.org/web/packages/rlist/vignettes/IO.html)
-- [Lambda expressions](http://cran.r-project.org/web/packages/rlist/vignettes/Lambda.html)
-- [List environment](http://cran.r-project.org/web/packages/rlist/vignettes/List.html)
-- [Examples](http://cran.r-project.org/web/packages/rlist/vignettes/Examples.html)
 
 ## Help overview
 
