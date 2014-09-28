@@ -8,7 +8,8 @@ list.sort(.data, ...)
 \arguments{
 \item{.data}{\code{list}}
 
-\item{...}{A group of lambda expressions}
+\item{...}{A group of lambda expressions. For each expression, the data
+is sorted ascending by default unless the expression is enclosed by ().}
 }
 \description{
 Sort a list by given expressions in order
@@ -18,7 +19,7 @@ Sort a list by given expressions in order
 x <- list(p1 = list(type="A",score=list(c1=10,c2=8)),
        p2 = list(type="B",score=list(c1=9,c2=9)),
        p3 = list(type="B",score=list(c1=9,c2=7)))
-list.sort(x,type,desc(score$c2))
+list.sort(x,type,(score$c2))
 list.sort(x,min(score$c1,score$c2))
 }
 }

@@ -63,11 +63,16 @@ list.while.fun <- function(.data,.expr) {
 list.order.internal <- function(.data,args,envir) {
   if(is.empty(.data)) return(integer())
   if(is.empty(args)) return(order(.data))
-  cols <- lapply(args,function(arg) {
-    if(is.null(arg)) stop("NULL condition")
-    desc <- as.character(arg)[[1L]] %in% c("desc","(")
+  cols <- lapply(args, function(arg) {
+    if(is.null(arg)) stop("NULL condition", call. = FALSE)
+    desc <- class(arg) == "("
+    if(is.call(arg) && arg[[1L]] == "desc") {
+      warning("desc() in list.sort() has been deprecated. Please use () to indicate descending order. Example: list.sort(data, (count))", call. = FALSE)
+      desc <- TRUE
+    }
     if(desc) arg <- arg[[2L]]
-    col <- unlist(list.map.internal(.data,arg,envir = envir),use.names = FALSE)
+    col <- unlist(list.map.internal(.data, arg, envir = envir),
+      recursive = FALSE, use.names = FALSE)
     if(desc) col <- -xtfrm(col)
     col
   })
