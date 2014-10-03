@@ -50,7 +50,7 @@
 
 <p>Install the development version (v0.3-3) from GitHub:</p>
 
-<div class="highlight highlight-r"><pre>devtools<span class="o">::</span>install_github<span class="p">(</span><span class="s">"rlist"</span><span class="p">,</span><span class="s">"renkun-ken"</span><span class="p">)</span>
+<div class="highlight highlight-r"><pre>devtools<span class="o">::</span>install_github<span class="p">(</span><span class="s">"renkun-ken/rlist"</span><span class="p">)</span>
 </pre></div>
 
 <h2>
@@ -188,9 +188,9 @@ devs <span class="o">%&gt;&gt;%</span>
   list.stack
 </pre></div>
 
-<pre><code>    name age
-p1   Ken  24
-p2 James  25
+<pre><code>   name age
+1   Ken  24
+2 James  25
 </code></pre>
 
 <p>The example above uses <code>pipeR</code>(<a href="http://renkun.me/pipeR/">http://renkun.me/pipeR/</a>) package for pipeline operator <code>%&gt;&gt;%</code> that chains commands in a fluent style.</p>
@@ -207,30 +207,12 @@ ldevs<span class="o">$</span>filter<span class="p">(</span><span class="s">"musi
   data
 </pre></div>
 
-<pre><code>    name age
-p1   Ken  24
-p2 James  25
+<pre><code>   name age
+1   Ken  24
+2 James  25
 </code></pre>
 
 <h2>
-<a name="vignettes" class="anchor" href="#vignettes"><span class="octicon octicon-link"></span></a>Vignettes</h2>
-
-<p>The package also provides detailed vignettes for most functions. </p>
-
-<ul>
-<li><a href="http://cran.r-project.org/web/packages/rlist/vignettes/Introduction.html">Introduction to rlist</a></li>
-<li><a href="http://cran.r-project.org/web/packages/rlist/vignettes/Mapping.html">List Mapping</a></li>
-<li><a href="http://cran.r-project.org/web/packages/rlist/vignettes/Filtering.html">List Filtering</a></li>
-<li><a href="http://cran.r-project.org/web/packages/rlist/vignettes/Sorting.html">List Sorting</a></li>
-<li><a href="http://cran.r-project.org/web/packages/rlist/vignettes/Grouping.html">List Grouping</a></li>
-<li><a href="http://cran.r-project.org/web/packages/rlist/vignettes/Joining.html">List Joining</a></li>
-<li><a href="http://cran.r-project.org/web/packages/rlist/vignettes/Updating.html">List Updating</a></li>
-<li><a href="http://cran.r-project.org/web/packages/rlist/vignettes/Searching.html">List Searching</a></li>
-<li><a href="http://cran.r-project.org/web/packages/rlist/vignettes/IO.html">List Input/Output</a></li>
-<li><a href="http://cran.r-project.org/web/packages/rlist/vignettes/Lambda.html">Lambda expressions</a></li>
-<li><a href="http://cran.r-project.org/web/packages/rlist/vignettes/List.html">List environment</a></li>
-<li><a href="http://cran.r-project.org/web/packages/rlist/vignettes/Examples.html">Examples</a></li>
-</ul><h2>
 <a name="help-overview" class="anchor" href="#help-overview"><span class="octicon octicon-link"></span></a>Help overview</h2>
 
 <div class="highlight highlight-r"><pre>help<span class="p">(</span>package <span class="o">=</span> rlist<span class="p">)</span>
