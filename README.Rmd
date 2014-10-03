@@ -23,7 +23,7 @@ install.packages("rlist")
 Install the development version (v0.3-3) from GitHub:
 
 ```r
-devtools::install_github("rlist","renkun-ken")
+devtools::install_github("renkun-ken/rlist")
 ```
 
 ## Motivation
