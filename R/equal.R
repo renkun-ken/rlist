@@ -1,4 +1,4 @@
-#' Compare two values and test whether they are equal at certain degree
+#' [Deprecated] Compare two values and test whether they are equal at certain degree
 #' @details
 #' \code{equal()} tests if two values are equal in certain sense. By default it
 #' performs atomic equality test (\code{==}) between two atomic vectors with
@@ -25,6 +25,7 @@
 #' @export
 equal <- function(x, y,
   exactly = FALSE, include = FALSE, pattern = FALSE, dist = NA_integer_, ...) {
+  warning("equal() is deprecated. Please use identical(), `==`, grepl() and other comparer functions instead.",call. = FALSE)
   if(missing(y)) {
     if(exists(".data",envir = parent.frame(),inherits = FALSE))
       y <- get(".data", envir = parent.frame(), inherits = FALSE)

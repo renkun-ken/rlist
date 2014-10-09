@@ -33,25 +33,19 @@
 #'        p4 = list(type=c("B","C"),score=c(c1=8,c2=NA)))
 #'
 #' ## Search exact values
-#' list.search(x, equal("A", exactly = TRUE))
-#' list.search(x, equal(c("A","B"), exactly = TRUE))
-#' list.search(x, equal(c(9,7), exactly = TRUE))
-#' list.search(x, equal(c(c1=9,c2=7), exactly = TRUE))
+#' list.search(x, identical(., "A"))
+#' list.search(x, identical(., c("A","B"))
+#' list.search(x, identical(., c(9,7)))
+#' list.search(x, identical(., c(c1=9,c2=7)))
 #'
 #' ## Search all equal values
-#' list.search(x, all(equal(9)))
-#' list.search(x, all(equal(c(8,9))))
-#' list.search(x, all(equal(c(8,9)),na.rm = TRUE))
+#' list.search(x, all(. == 9))
+#' list.search(x, all(. == c(8,9)))
+#' list.search(x, all(. == c(8,9), na.rm = TRUE))
 #'
 #' ## Search any equal values
-#' list.search(x, any(equal(9)))
-#' list.search(x, any(equal(c(8,9))))
-#'
-#' ## Search all/any included/excluded values
-#' list.search(x, equal(9, include = TRUE))
-#' list.search(x, all(equal(c(9,10), include = TRUE)))
-#' list.search(x, any(equal(c(9,10), include = TRUE)))
-#' list.search(x, all(!equal(c(7,9,10), include = TRUE)))
+#' list.search(x, any(. == 9))
+#' list.search(x, any(. == c(8,9)))
 #'
 #' # Fuzzy search
 #'
@@ -63,11 +57,12 @@
 #'   p5 = list(name="Kwen",age=31)
 #' )
 #'
-#' list.search(data, equal("^K\\w+n$", pattern = TRUE), "character")
+#' list.search(data, grepl("^K\\w+n$", .), "character")
 #'
-#' list.search(data, equal("Ken", dist = 1), "character")
-#' list.search(data, equal("Man", dist = 2), "character")
-#' list.search(data, !equal("Man", dist = 2), "character")
+#' library(stringdist)
+#' list.search(data, stringdist(., "Ken") <= 1, "character")
+#' list.search(data, stringdist(., "Man") <= 2, "character")
+#' list.search(data, stringdist(., "Man") > 2, "character")
 #'
 #' data <- list(
 #'   p1 = list(name=c("Ken", "Ren"),age=24),
@@ -76,12 +71,10 @@
 #'   p4 = list(name=c("Keynes", "Bond"),age=30),
 #'   p5 = list(name=c("Kwen", "Hu"),age=31))
 #'
-#' list.search(data, all(equal("Ken", dist = 1)), "character")
-#' list.search(data, any(equal("Ken", dist = 1)), "character")
-#' list.search(data, all(!equal("Ken", dist = 1)), "character")
-#' list.search(data, any(!equal("Ken", dist = 1)), "character")
+#' list.search(data, all(stringdist(., "Ken") <= 1), "character")
+#' list.search(data, any(stringdist(., "Ken") > 1), "character")
 #'
-#' list.search(data, .[equal("e",pattern = TRUE)], "character")
+#' list.search(data, .[grepl("e", .)], "character")
 #' }
 list.search <- function(.data, expr, classes = "ANY",
   n = Inf, unlist = FALSE) {
