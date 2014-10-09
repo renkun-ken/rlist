@@ -1,10 +1,9 @@
 #' Get all unique cases by expression for a list
 #'
 #' @param .data \code{list}
-#' @param expr A lambda expression
+#' @param ... keys
 #' @param simplify \code{logical}. Should atomic vectors be simplified
 #'    by \code{unlist}?
-#' @param ... Additional parameters passed to \code{unique}
 #' @param sort \code{logical}. Should the cases be sorted in ascending order?
 #' @name list.cases
 #' @export
@@ -16,12 +15,14 @@
 #' list.cases(x,type)
 #' list.cases(x,mean(unlist(score)))
 #' }
-list.cases <- function(.data,expr,simplify=TRUE,...,sort=TRUE) {
-  values <- list.map.internal(.data,substitute(expr),envir = parent.frame())
+list.cases <- function(.data, ..., simplify=TRUE, sort=TRUE) {
+  args <- dots(...)
+  envir <- parent.frame()
+  values <- list.map.internal(.data,args[[1L]],envir = envir)
   if(simplify) {
     atomic <- vapply(values,is.atomic,logical(1L))
     if(all(atomic)) values <- unlist(values,use.names = FALSE)
   }
-  cases <- unique(values,...)
+  cases <- unique(values)
   if(sort && is.atomic(cases)) sort(cases) else cases
 }

@@ -1,8 +1,7 @@
 #' Classify list members into unique cases evaluated by given expression.
 #'
 #' @param .data \code{list}
-#' @param expr A lambda expression
-#' @param ... Additional parameters passed to \code{unique}
+#' @param ... keys
 #' @param sort.cases \code{logical}. if \code{TRUE} the cases will be sorted in ascending order.
 #' @name list.class
 #' @export
@@ -22,9 +21,11 @@
 #' list.class(x,interest)
 #' list.class(x,names(lang))
 #' }
-list.class <- function(.data,expr,...,sort.cases=TRUE) {
-  values <- list.map.internal(.data,substitute(expr),envir = parent.frame())
-  cases <- unique(unlist(values,use.names = FALSE),...)
+list.class <- function(.data, ..., sort.cases=TRUE) {
+  args <- dots(...)
+  envir <- parent.frame()
+  values <- list.map.internal(.data,args[[1L]],envir = envir)
+  cases <- unique(unlist(values,use.names = FALSE))
   names(cases) <- cases
   if(sort.cases)  cases <- sort(cases)
   lapply(cases,function(case) {

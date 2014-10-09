@@ -1,8 +1,7 @@
 #' Group a list by the value of an expression evaluated for each member.
 #'
 #' @param .data \code{list}
-#' @param key A lambda expression for the group key
-#' @param ... Additional parameters passed to \code{unique}
+#' @param ... keys
 #' @name list.group
 #' @export
 #' @examples
@@ -13,11 +12,12 @@
 #' list.group(x,type)
 #' list.group(x,mean(unlist(score)))
 #' }
-list.group <- function(.data,key,...) {
-  keys <- list.map.internal(.data,substitute(key),envir = parent.frame())
-  unikeys <- unique(keys,...)
+list.group <- function(.data, ...) {
+  args <- dots(...)
+  keys <- list.map.internal(.data,args[[1L]],envir = parent.frame())
+  unikeys <- unique(keys)
   names(unikeys) <- as.character(unikeys)
   lapply(unikeys,function(k) {
-    .data[vapply(keys,identical,logical(1L),y=k)]
+    .data[vapply(keys, identical, logical(1L), y=k)]
   })
 }

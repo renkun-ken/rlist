@@ -3,14 +3,12 @@
 \alias{list.class}
 \title{Classify list members into unique cases evaluated by given expression.}
 \usage{
-list.class(.data, expr, ..., sort.cases = TRUE)
+list.class(.data, ..., sort.cases = TRUE)
 }
 \arguments{
 \item{.data}{\code{list}}
 
-\item{expr}{A lambda expression}
-
-\item{...}{Additional parameters passed to \code{unique}}
+\item{...}{keys}
 
 \item{sort.cases}{\code{logical}. if \code{TRUE} the cases will be sorted in ascending order.}
 }

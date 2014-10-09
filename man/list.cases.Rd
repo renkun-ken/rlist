@@ -3,17 +3,15 @@
 \alias{list.cases}
 \title{Get all unique cases by expression for a list}
 \usage{
-list.cases(.data, expr, simplify = TRUE, ..., sort = TRUE)
+list.cases(.data, ..., simplify = TRUE, sort = TRUE)
 }
 \arguments{
 \item{.data}{\code{list}}
 
-\item{expr}{A lambda expression}
+\item{...}{keys}
 
 \item{simplify}{\code{logical}. Should atomic vectors be simplified
 by \code{unlist}?}
-
-\item{...}{Additional parameters passed to \code{unique}}
 
 \item{sort}{\code{logical}. Should the cases be sorted in ascending order?}
 }

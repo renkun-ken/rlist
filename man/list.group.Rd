@@ -3,14 +3,12 @@
 \alias{list.group}
 \title{Group a list by the value of an expression evaluated for each member.}
 \usage{
-list.group(.data, key, ...)
+list.group(.data, ...)
 }
 \arguments{
 \item{.data}{\code{list}}
 
-\item{key}{A lambda expression for the group key}
-
-\item{...}{Additional parameters passed to \code{unique}}
+\item{...}{keys}
 }
 \description{
 Group a list by the value of an expression evaluated for each member.
