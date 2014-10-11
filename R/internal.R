@@ -101,3 +101,14 @@ list.search.fun <- function(.data, .expr, .counter, .n,
     }
   }
 }
+
+list.group.internal <- function(.data, keys, envir) {
+  if(length(keys) == 0L) return(.data)
+  values <- list.map.internal(.data, keys[[1L]], envir = envir)
+  uniques <- unique(values)
+  names(uniques) <- as.character(uniques)
+  lapply(uniques, function(key) {
+    data <- .data[vapply(values, identical, logical(1L), y = key)]
+    list.group.internal(data, keys[-1L], envir)
+  })
+}
