@@ -6,6 +6,10 @@ setnames <- `names<-`
 setclass <- `class<-`
 setmembers <- `[<-`
 
+contains <- function(table, x, ...) {
+  match(x, table, nomatch = 0L, ...) > 0L
+}
+
 getnames <- function(x, def = NULL)
   if(is.null(names(x))) def else names(x)
 

@@ -22,13 +22,6 @@
 #' list.class(x,names(lang))
 #' }
 list.class <- function(.data, ..., sort.cases=TRUE) {
-  args <- dots(...)
-  envir <- parent.frame()
-  values <- list.map.internal(.data,args[[1L]],envir = envir)
-  cases <- unique(unlist(values,use.names = FALSE))
-  names(cases) <- cases
-  if(sort.cases)  cases <- sort(cases)
-  lapply(cases,function(case) {
-    .data[vapply(values,function(vi) case %in% vi,logical(1L))]
-  })
+  list.group.internal(.data, dots(...),
+    proc = "unlist", compare = "contains", envir = parent.frame())
 }
