@@ -2,7 +2,8 @@
 #'
 #' @param .data \code{list}
 #' @param ... keys
-#' @param sorted \code{TRUE} to sort the group keys
+#' @param sorted \code{TRUE} to sort the group keys. Ignored when the key has
+#' multiple entries.
 #' @name list.group
 #' @export
 #' @examples

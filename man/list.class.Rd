@@ -10,7 +10,8 @@ list.class(.data, ..., sorted = TRUE)
 
 \item{...}{keys}
 
-\item{sorted}{\code{TRUE} to sort the group keys}
+\item{sorted}{\code{TRUE} to sort the group keys. Ignored when the key has
+multiple entries.}
 }
 \description{
 Classify list members into unique cases evaluated by given expression.

@@ -10,7 +10,8 @@ list.group(.data, ..., sorted = TRUE)
 
 \item{...}{keys}
 
-\item{sorted}{\code{TRUE} to sort the group keys}
+\item{sorted}{\code{TRUE} to sort the group keys. Ignored when the key has
+multiple entries.}
 }
 \description{
 Group a list by the value of an expression evaluated for each member.
