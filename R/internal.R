@@ -102,13 +102,17 @@ list.search.fun <- function(.data, .expr, .counter, .n,
   }
 }
 
-list.group.internal <- function(.data, keys, envir) {
+list.group.internal <- function(.data, keys, proc = NULL,
+  compare, envir) {
   if(length(keys) == 0L) return(.data)
   values <- list.map.internal(.data, keys[[1L]], envir = envir)
-  uniques <- unique(values)
-  names(uniques) <- as.character(uniques)
+  uvalues <- if(!missing(proc) && !is.null(proc))
+    match.fun(proc)(values) else values
+  uniques <- unique(uvalues)
+  names(uniques) <- uniques
   lapply(uniques, function(key) {
-    data <- .data[vapply(values, identical, logical(1L), y = key)]
-    list.group.internal(data, keys[-1L], envir)
+    selector <- vapply(values, compare, logical(1L), key, USE.NAMES = FALSE)
+    data <- .data[selector]
+    list.group.internal(data, keys[-1L], proc, compare, envir)
   })
 }

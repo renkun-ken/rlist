@@ -13,6 +13,7 @@
 #' list.group(x,mean(unlist(score)))
 #' }
 list.group <- function(.data, ...) {
-  list.group.internal(.data, dots(...), parent.frame())
+  list.group.internal(.data, dots(...),
+    compare = "identical", envir = parent.frame())
 }
 
