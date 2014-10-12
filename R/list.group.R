@@ -2,6 +2,7 @@
 #'
 #' @param .data \code{list}
 #' @param ... keys
+#' @param sorted \code{TRUE} to sort the group keys
 #' @name list.group
 #' @export
 #' @examples
@@ -12,8 +13,8 @@
 #' list.group(x,type)
 #' list.group(x,mean(unlist(score)))
 #' }
-list.group <- function(.data, ...) {
+list.group <- function(.data, ..., sorted = TRUE) {
   list.group.internal(.data, dots(...),
-    compare = "identical", envir = parent.frame())
+    compare = "identical", sorted = sorted, envir = parent.frame())
 }
 

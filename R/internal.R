@@ -103,16 +103,18 @@ list.search.fun <- function(.data, .expr, .counter, .n,
 }
 
 list.group.internal <- function(.data, keys, proc = NULL,
-  compare, envir) {
+  compare = "identical", sorted = TRUE, envir) {
   if(length(keys) == 0L) return(.data)
   values <- list.map.internal(.data, keys[[1L]], envir = envir)
   uvalues <- if(!missing(proc) && !is.null(proc))
     match.fun(proc)(values) else values
   uniques <- unique(uvalues)
   names(uniques) <- uniques
-  lapply(uniques, function(key) {
+  if(sorted && all(vapply(uniques,length,integer(1L)) == 1L))
+    uniques <- sort(unlist(uniques))
+  lapply(uniques, function(key, ...) {
     selector <- vapply(values, compare, logical(1L), key, USE.NAMES = FALSE)
     data <- .data[selector]
-    list.group.internal(data, keys[-1L], proc, compare, envir)
-  })
+    list.group.internal(data, keys[-1L], ...)
+  }, proc, compare, sorted, envir)
 }

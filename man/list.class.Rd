@@ -3,14 +3,14 @@
 \alias{list.class}
 \title{Classify list members into unique cases evaluated by given expression.}
 \usage{
-list.class(.data, ..., sort.cases = TRUE)
+list.class(.data, ..., sorted = TRUE)
 }
 \arguments{
 \item{.data}{\code{list}}
 
 \item{...}{keys}
 
-\item{sort.cases}{\code{logical}. if \code{TRUE} the cases will be sorted in ascending order.}
+\item{sorted}{\code{TRUE} to sort the group keys}
 }
 \description{
 Classify list members into unique cases evaluated by given expression.

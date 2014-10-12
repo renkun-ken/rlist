@@ -2,7 +2,7 @@
 #'
 #' @param .data \code{list}
 #' @param ... keys
-#' @param sort.cases \code{logical}. if \code{TRUE} the cases will be sorted in ascending order.
+#' @param sorted \code{TRUE} to sort the group keys
 #' @name list.class
 #' @export
 #' @examples
@@ -21,7 +21,7 @@
 #' list.class(x,interest)
 #' list.class(x,names(lang))
 #' }
-list.class <- function(.data, ..., sort.cases=TRUE) {
+list.class <- function(.data, ..., sorted = TRUE) {
   list.group.internal(.data, dots(...),
-    proc = "unlist", compare = "contains", envir = parent.frame())
+    proc = "unlist", compare = "contains", sorted = sorted, envir = parent.frame())
 }

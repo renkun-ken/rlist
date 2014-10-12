@@ -3,12 +3,14 @@
 \alias{list.group}
 \title{Group a list by the value of an expression evaluated for each member.}
 \usage{
-list.group(.data, ...)
+list.group(.data, ..., sorted = TRUE)
 }
 \arguments{
 \item{.data}{\code{list}}
 
 \item{...}{keys}
+
+\item{sorted}{\code{TRUE} to sort the group keys}
 }
 \description{
 Group a list by the value of an expression evaluated for each member.
