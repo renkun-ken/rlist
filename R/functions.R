@@ -15,7 +15,7 @@ getnames <- function(x, def = NULL)
 
 is.empty <- function(x) length(x) == 0L
 
-set_argnames <- function(args,data = args) {
+set_argnames <- function(args, data = args) {
   argnames <- getnames(args, character(length(args)))
   indices <- !nzchar(argnames) & vapply(args,is.name,logical(1L))
   argnames[indices] <- as.character(args[indices])

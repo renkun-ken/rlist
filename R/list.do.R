@@ -13,7 +13,6 @@
 #' list.do(x,rbind)
 #' as.list(1:10) %>>% list.map(x -> list.do(x,rnorm))
 #' }
-list.do <- function(.data,fun,...) {
-  fun <- match.fun(fun)
+list.do <- function(.data, fun, ...) {
   do.call(fun,as.list(.data),...)
 }

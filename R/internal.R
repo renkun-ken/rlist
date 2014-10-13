@@ -22,7 +22,7 @@ list.map.internal <- function(.data,expr,fun = list.map.fun, envir) {
   formals(fun) <- setnames(vector("pairlist",.nfsymbol),
     c(".data",".expr",l$symbols))
   args <- list(fun,.data,list(l$expr),.data,seq_along(.data),xnames)
-  do.call(map, args)
+  do.call("map", args)
 }
 
 list.is.fun <- function(.data,.expr) {
@@ -77,7 +77,7 @@ list.order.internal <- function(.data,args,envir) {
     col
   })
   names(cols) <- NULL
-  do.call(order,cols)
+  do.call("order",cols)
 }
 
 list.search.fun <- function(.data, .expr, .counter, .n,
