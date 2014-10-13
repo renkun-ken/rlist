@@ -3,17 +3,17 @@
 \alias{list.cases}
 \title{Get all unique cases by expression for a list}
 \usage{
-list.cases(.data, ..., simplify = TRUE, sort = TRUE)
+list.cases(.data, expr, simplify = TRUE, sorted = TRUE)
 }
 \arguments{
 \item{.data}{\code{list}}
 
-\item{...}{keys}
+\item{expr}{expression}
 
 \item{simplify}{\code{logical}. Should atomic vectors be simplified
 by \code{unlist}?}
 
-\item{sort}{\code{logical}. Should the cases be sorted in ascending order?}
+\item{sorted}{\code{logical}. Should the cases be sorted in ascending order?}
 }
 \description{
 Get all unique cases by expression for a list
