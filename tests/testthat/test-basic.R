@@ -52,8 +52,7 @@ test_that("list.subset", {
     p2 = list(type="B",score=list(c1=9,c2=9)),
     p3 = list(type="B",score=list(c1=9,c2=7)))
   expect_identical(list.subset(x, c("p1","p2")),x[c("p1","p2")])
-  expect_identical(list.subset(x, "^p", pattern = TRUE),x[])
-  expect_identical(list.subset(x, "x1", dist = 1),x["p1"])
+  expect_identical(list.subset(x, grepl("^p", names(x))),x[])
 })
 
 test_that("list.count", {
