@@ -10,5 +10,5 @@
 #' list.cbind(x)
 #' }
 list.cbind <- function(.data) {
-  list.do(.data,cbind)
+  list.do(.data,"cbind")
 }
