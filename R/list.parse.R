@@ -41,7 +41,7 @@ list.parse.matrix <- function(x,...) {
 #' @rdname list.parse
 list.parse.data.frame <- function(x,...) {
   cols <- colnames(x)
-  items <- do.call(Map,c(function(...) {
+  items <- do.call(map,c(function(...) {
    setnames(list(...),cols)
   },x))
   setnames(items,rownames(x))
@@ -54,8 +54,8 @@ list.parse.data.frame <- function(x,...) {
 #'    In default, \code{NULL} value will parse the character with
 #'    \code{list.parse.default}. Ignored when the length of \code{x}
 #'    is greater than 1.
-list.parse.character <- function(x,...,type=NULL) {
-  if(length(x) > 1L) return(list.parse.default(x,...))
+list.parse.character <- function(x, ..., type = NULL) {
+  if(length(x) > 1L) return(list.parse.default(x, ...))
   if(is.null(type)) {
     list.parse.default(x,...)
   } else if(tolower(type)=="yaml") {
