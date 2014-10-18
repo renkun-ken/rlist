@@ -12,8 +12,9 @@
 #' list.load("list.yaml")
 #' list.load("list.json")
 #' }
-list.load <- function(file, type = tolower(tools::file_ext(file)), ...) {
+list.load <- function(file, type = tools::file_ext(file), ...) {
   if(length(file) == 0L) return(list())
+  type <- tolower(type)
   nztype <- nzchar(type)
   nzfile <- file[!nztype]
   if(any(!nztype))
@@ -30,7 +31,7 @@ list.loadfile <- function(file, fun, ...) {
     fun <- get(fun, mode = "function")
     fun(file, ...)
   } else {
-    list.load.rdata(file, ...)
+    stop("Unrecognized file type", call. = FALSE)
   }
 }
 
@@ -40,14 +41,14 @@ list.load.json <- function(file, ...) {
     ...)
 }
 
-list.load.yaml <- function(file,...) {
-  yaml::yaml.load_file(file,...)
-}
+list.load.yaml <- yaml::yaml.load_file
 
 list.load.yml <- list.load.yaml
 
-list.load.rdata <- function(file,name="x") {
-  env <- new.env(parent = parent.frame())
-  load(file,env)
-  get(name,envir = env)
+list.load.rdata <- function(file, name = "x") {
+  env <- new.env()
+  load(file, env)
+  env[[name]]
 }
+
+list.load.rds <- readRDS

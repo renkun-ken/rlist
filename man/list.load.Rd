@@ -3,7 +3,7 @@
 \alias{list.load}
 \title{Load a list from file}
 \usage{
-list.load(file, type = tolower(tools::file_ext(file)), ...)
+list.load(file, type = tools::file_ext(file), ...)
 }
 \arguments{
 \item{file}{The file as input}

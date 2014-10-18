@@ -3,7 +3,7 @@
 \alias{list.save}
 \title{Save a list to a file}
 \usage{
-list.save(x, file, type = tolower(tools::file_ext(file)), ...)
+list.save(x, file, type = tools::file_ext(file), ...)
 }
 \arguments{
 \item{x}{The list to save}
