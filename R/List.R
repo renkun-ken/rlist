@@ -88,6 +88,7 @@ List <- function(data = list()) {
   mapv <- createListClosure(list.mapv, data)
   match <- createListClosure(list.match, data)
   merge <- createListClosure(list.merge, data)
+  names <- createListClosure(list.names, data)
   order <- createListClosure(list.order, data)
   parse <- createListClosure(list.parse, data)
   prepend <- createListClosure(list.prepend, data)
@@ -112,7 +113,6 @@ List <- function(data = list()) {
   which <- createListClosure(list.which, data)
   zip <- createListClosure(list.zip, data)
   subset <- createListClosure(list.subset, data)
-  summary <- createListClosure(summary, data)
 
   envir <- environment()
   setclass(envir, c("List","environment"))
