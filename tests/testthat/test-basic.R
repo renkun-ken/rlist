@@ -214,6 +214,9 @@ test_that("list.table", {
   x.c1 <- c(10,9,9)
   expect_identical(list.table(x,type),table(type=x.types))
   expect_identical(list.table(x,type,c1=score$c1),table(type=x.types,c1=x.c1))
+
+  x <- list(list(a=1,b=NULL), list(a=2,b=1), list(a=3,b=1))
+  expect_identical(as.integer(list.table(x, a, b)), c(0L,1L,1L,1L,0L,0L))
 })
 
 test_that("list.zip", {

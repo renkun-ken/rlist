@@ -3,7 +3,7 @@
 \alias{list.table}
 \title{Generate a table for a list by expression}
 \usage{
-list.table(.data, ..., table.args = NULL)
+list.table(.data, ..., table.args = list(useNA = "ifany"))
 }
 \arguments{
 \item{.data}{\code{list}}
