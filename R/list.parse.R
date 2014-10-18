@@ -42,31 +42,31 @@ list.parse.matrix <- function(x,...) {
 list.parse.data.frame <- function(x,...) {
   cols <- colnames(x)
   items <- do.call(map,c(function(...) {
-   setnames(list(...),cols)
+    setnames(list(...),cols)
   },x))
   setnames(items,rownames(x))
 }
 
 #' @export
 #' @rdname list.parse
-#' @param type The type of data to parse.
-#'    Currently json and yaml are supported.
-#'    In default, \code{NULL} value will parse the character with
-#'    \code{list.parse.default}. Ignored when the length of \code{x}
-#'    is greater than 1.
-list.parse.character <- function(x, ..., type = NULL) {
-  if(length(x) > 1L) return(list.parse.default(x, ...))
-  if(is.null(type)) {
-    list.parse.default(x,...)
-  } else if(tolower(type)=="yaml") {
-    yaml::yaml.load(x,...)
-  } else if(tolower(type)=="json") {
-    jsonlite::fromJSON(x,
-      simplifyVector = FALSE,
-      simplifyDataFrame = FALSE,
-      simplifyMatrix = FALSE,...)
-  } else {
-    stop("Invalid type of data")
+#' @param type The type of data to parse. Currently json and yaml are supported.
+list.parse.character <- function(x, type = NA, ...) {
+  if(length(x) == 0L) return(list())
+  else if(length(x) == 1L) {
+    if(missing(type) || length(type) == 0L || is.na(type)) {
+      list.parse.default(x, ...)
+    } else if(tolower(type)=="yaml") {
+      yaml::yaml.load(x,...)
+    } else if(tolower(type)=="json") {
+      callwith(jsonlite::fromJSON,
+        list(x, simplifyVector = FALSE,
+          simplifyDataFrame = FALSE,
+          simplifyMatrix = FALSE), list(...))
+    } else {
+      stop("Invalid type of data")
+    }
+  } else if(length(x) > 1L) {
+    map(list.parse.character, x, type = type, MoreArgs = list(...),
+      USE.NAMES = !is.null(names(x)))
   }
 }
-

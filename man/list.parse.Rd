@@ -15,18 +15,14 @@ list.parse(x, ...)
 
 \method{list.parse}{data.frame}(x, ...)
 
-\method{list.parse}{character}(x, ..., type = NULL)
+\method{list.parse}{character}(x, type = NA, ...)
 }
 \arguments{
 \item{x}{\code{The object}}
 
 \item{...}{Additional parameters}
 
-\item{type}{The type of data to parse.
-Currently json and yaml are supported.
-In default, \code{NULL} value will parse the character with
-\code{list.parse.default}. Ignored when the length of \code{x}
-is greater than 1.}
+\item{type}{The type of data to parse. Currently json and yaml are supported.}
 }
 \description{
 Parse an object to be a list with identical structure
