@@ -2,6 +2,13 @@ dots <- function(...) {
   eval(substitute(alist(...)))
 }
 
+callwith <- function(fun, args, dots = list(),
+  keep.null = FALSE, envir = parent.frame()) {
+  do.call(fun,
+    modifyList(args, dots, keep.null = keep.null),
+    envir = envir)
+}
+
 setnames <- `names<-`
 setclass <- `class<-`
 setmembers <- `[<-`

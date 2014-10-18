@@ -40,7 +40,7 @@ list.save.yml <- list.save.yaml
 
 list.save.rdata <- function(x, file, name = "x",...) {
   if(!is.list(x)) stop("x is not a list")
-  env <- new.env(size = 1L)
+  env <- new.env(parent = parent.frame(), size = 1L)
   assign(name, x, envir = env)
   save(list = name, file = file, envir = env, ...)
 }

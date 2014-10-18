@@ -36,9 +36,8 @@ list.loadfile <- function(file, fun, ...) {
 }
 
 list.load.json <- function(file, ...) {
-  jsonlite::fromJSON(file,
-    simplifyDataFrame = FALSE,
-    ...)
+  callwith(jsonlite::fromJSON,
+    list(file, simplifyDataFrame = FALSE), list(...))
 }
 
 list.load.yaml <- yaml::yaml.load_file
@@ -46,7 +45,7 @@ list.load.yaml <- yaml::yaml.load_file
 list.load.yml <- list.load.yaml
 
 list.load.rdata <- function(file, name = "x") {
-  env <- new.env()
+  env <- new.env(parent = parent.frame(), size = 1L)
   load(file, env)
   env[[name]]
 }
