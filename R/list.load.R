@@ -13,15 +13,25 @@
 #' list.load("list.json")
 #' }
 list.load <- function(file, type = tolower(tools::file_ext(file)), ...) {
+  if(length(file) == 0L) return(list())
+  nztype <- nzchar(type)
+  nzfile <- file[!nztype]
+  if(any(!nztype))
+    stop("Uncertain type of sources:\n",
+      paste("[", seq_along(nzfile), "] ", nzfile, sep = "", collapse = "\n"),
+      "\nPlease specify the types of the sources", call. = FALSE)
   fun <- paste("list.load", type, sep = ".")
-  map(function(file, fun, ...) {
-    x <- if(existsFunction(fun)) {
-      fun <- get(fun, mode = "function")
-      fun(file, ...)
-    } else {
-      list.load.rdata(file, ...)
-    }
-  }, file, fun, MoreArgs = list(...))
+  if(length(file) == 1L) list.loadfile(file, fun, ...)
+  else map(list.loadfile, file, fun, MoreArgs = list(...))
+}
+
+list.loadfile <- function(file, fun, ...) {
+  if(existsFunction(fun)) {
+    fun <- get(fun, mode = "function")
+    fun(file, ...)
+  } else {
+    list.load.rdata(file, ...)
+  }
 }
 
 list.load.json <- function(file, ...) {
