@@ -48,7 +48,7 @@ devs <-
       lang=list(r=1,cpp=4,python=2)))
 ```
 
-This type of data is non-relational since it does not well fit the shape of a data frame,  yet it can be easily stored in JSON or YAML format. In R, list objects are flexible enough to represent a wide range of non-relational datasets like this. This package provides a wide range of functions to query and manipulate this type of data.
+This type of data is non-relational since it does not well fit the shape of a data frame, yet it can be easily stored in JSON or YAML format. In R, list objects are flexible enough to represent a wide range of non-relational datasets like this. This package provides a wide range of functions to query and manipulate this type of data.
 
 The following examples use `str()` to show the structure of the output.
 
