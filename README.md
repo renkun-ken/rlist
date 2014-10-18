@@ -4,7 +4,7 @@
 
 [![Build Status](https://travis-ci.org/renkun-ken/rlist.png?branch=master)](https://travis-ci.org/renkun-ken/rlist)
 
-rlist is a set of tools for working with list objects. Its goal is to make it easier to work with lists by providing a wide range of functions on non-tabular data stored in them.
+rlist is a set of tools for working with list objects. Its goal is to make it easier to work with lists by providing a wide range of functions that operate on non-tabular data stored in them.
 
 This package supports list filtering, mapping, grouping, sorting, updating, searching, file input/output, and many other functions. It implements collection pipeline and strongly recommends functional programming style in list operations.
 
@@ -48,7 +48,7 @@ devs <-
       lang=list(r=1,cpp=4,python=2)))
 ```
 
-This type of data is non-relational since it does not well fit the shape of a data frame yet it can be easily stored in JSON or YAML format. In R, list object is flexible enough to represent a wide range of non-relational datasets like this. This package provides a wide range of functions to query and manipulate this type of data.
+This type of data is non-relational since it does not well fit the shape of a data frame,  yet it can be easily stored in JSON or YAML format. In R, list objects are flexible enough to represent a wide range of non-relational datasets like this. This package provides a wide range of functions to query and manipulate this type of data.
 
 The following examples use `str()` to show the structure of the output.
 
