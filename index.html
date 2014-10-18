@@ -36,7 +36,7 @@
 
 <p><a href="https://travis-ci.org/renkun-ken/rlist"><img src="https://travis-ci.org/renkun-ken/rlist.png?branch=master" alt="Build Status"></a></p>
 
-<p>rlist is a set of tools for working with list objects. Its goal is to make it easier to work with lists by providing a wide range of functions on non-tabular data stored in them.</p>
+<p>rlist is a set of tools for working with list objects. Its goal is to make it easier to work with lists by providing a wide range of functions that operate on non-tabular data stored in them.</p>
 
 <p>This package supports list filtering, mapping, grouping, sorting, updating, searching, file input/output, and many other functions. It implements collection pipeline and strongly recommends functional programming style in list operations.</p>
 
@@ -79,7 +79,7 @@ devs <span class="o">&lt;-</span>
       lang<span class="o">=</span><span class="kt">list</span><span class="p">(</span>r<span class="o">=</span><span class="m">1</span><span class="p">,</span>cpp<span class="o">=</span><span class="m">4</span><span class="p">,</span>python<span class="o">=</span><span class="m">2</span><span class="p">)))</span>
 </pre></div>
 
-<p>This type of data is non-relational since it does not well fit the shape of a data frame yet it can be easily stored in JSON or YAML format. In R, list object is flexible enough to represent a wide range of non-relational datasets like this. This package provides a wide range of functions to query and manipulate this type of data.</p>
+<p>This type of data is non-relational since it does not well fit the shape of a data frame, yet it can be easily stored in JSON or YAML format. In R, list objects are flexible enough to represent a wide range of non-relational datasets like this. This package provides a wide range of functions to query and manipulate this type of data.</p>
 
 <p>The following examples use <code>str()</code> to show the structure of the output.</p>
 
@@ -165,7 +165,9 @@ devs <span class="o">&lt;-</span>
 <li><code>f(x,i,name) ~ expression</code></li>
 </ul>
 </li>
-</ul><p>where <code>x</code> refers to the list member itself, <code>i</code> denotes the index, <code>name</code> denotes the name. If the symbols are not explicitly declared, <code>.</code>, <code>.i</code> and <code>.name</code> will by default be used to represent them, respectively.</p>
+</ul>
+
+<p>where <code>x</code> refers to the list member itself, <code>i</code> denotes the index, <code>name</code> denotes the name. If the symbols are not explicitly declared, <code>.</code>, <code>.i</code> and <code>.name</code> will by default be used to represent them, respectively.</p>
 
 <div class="highlight highlight-r"><pre>nums <span class="o">&lt;-</span> <span class="kt">list</span><span class="p">(</span>a<span class="o">=</span><span class="kt">c</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="m">2</span><span class="p">,</span><span class="m">3</span><span class="p">),</span>b<span class="o">=</span><span class="kt">c</span><span class="p">(</span><span class="m">2</span><span class="p">,</span><span class="m">3</span><span class="p">,</span><span class="m">4</span><span class="p">),</span><span class="kt">c</span><span class="o">=</span><span class="kt">c</span><span class="p">(</span><span class="m">3</span><span class="p">,</span><span class="m">4</span><span class="p">,</span><span class="m">5</span><span class="p">))</span>
 list.map<span class="p">(</span>nums<span class="p">,</span> <span class="kt">c</span><span class="p">(</span>min<span class="o">=</span><span class="kp">min</span><span class="p">(</span><span class="m">.</span><span class="p">),</span>max<span class="o">=</span><span class="kp">max</span><span class="p">(</span><span class="m">.</span><span class="p">)))</span>
