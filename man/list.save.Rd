@@ -10,8 +10,8 @@ list.save(x, file, type = tools::file_ext(file), ...)
 
 \item{file}{The file for output}
 
-\item{type}{The type of output which is by default determined
-by file extension}
+\item{type}{The type of output which, by default, is determined
+by file extension. Currently supports RData, RDS, JSON, YAML.}
 
 \item{...}{Additional parameters passed to the output function}
 }
@@ -24,9 +24,10 @@ Save a list to a file
 \examples{
 \dontrun{
 x <- lapply(1:5,function(i) data.frame(a=i,b=i^2))
-list.save(x,"list.rdata")
-list.save(x,"list.yaml")
-list.save(x,"list.json")
+list.save(x, "list.rds")
+list.save(x, "list.rdata")
+list.save(x, "list.yaml")
+list.save(x, "list.json")
 }
 }
 

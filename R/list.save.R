@@ -2,8 +2,8 @@
 #'
 #' @param x The list to save
 #' @param file The file for output
-#' @param type The type of output which is by default determined
-#'    by file extension
+#' @param type The type of output which, by default, is determined
+#'    by file extension. Currently supports RData, RDS, JSON, YAML.
 #' @param ... Additional parameters passed to the output function
 #' @name list.save
 #' @export
@@ -11,9 +11,10 @@
 #' @examples
 #' \dontrun{
 #' x <- lapply(1:5,function(i) data.frame(a=i,b=i^2))
-#' list.save(x,"list.rdata")
-#' list.save(x,"list.yaml")
-#' list.save(x,"list.json")
+#' list.save(x, "list.rds")
+#' list.save(x, "list.rdata")
+#' list.save(x, "list.yaml")
+#' list.save(x, "list.json")
 #' }
 list.save <- function(x, file, type = tools::file_ext(file), ...) {
   fun <- paste("list.save", tolower(type), sep = ".")

@@ -1,13 +1,14 @@
 #' Load a list from file
 #'
 #' @param file The file as input
-#' @param type The type of input which is by default determined
-#'    by file extension
+#' @param type The type of input which, by default, is determined
+#'    by file extension. Currently supports RData, RDS, JSON, YAML.
 #' @param ... Additional parameters passed to the loader function
 #' @name list.load
 #' @export
 #' @examples
 #' \dontrun{
+#' list.load("list.rds")
 #' list.load("list.rdata")
 #' list.load("list.yaml")
 #' list.load("list.json")

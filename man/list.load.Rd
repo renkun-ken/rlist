@@ -8,8 +8,8 @@ list.load(file, type = tools::file_ext(file), ...)
 \arguments{
 \item{file}{The file as input}
 
-\item{type}{The type of input which is by default determined
-by file extension}
+\item{type}{The type of input which, by default, is determined
+by file extension. Currently supports RData, RDS, JSON, YAML.}
 
 \item{...}{Additional parameters passed to the loader function}
 }
@@ -18,6 +18,7 @@ Load a list from file
 }
 \examples{
 \dontrun{
+list.load("list.rds")
 list.load("list.rdata")
 list.load("list.yaml")
 list.load("list.json")
