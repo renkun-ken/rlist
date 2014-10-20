@@ -108,9 +108,9 @@ list.group.internal <- function(.data, keys, proc = NULL,
   values <- list.map.internal(.data, keys[[1L]], envir = envir)
   uvalues <- if(!missing(proc) && !is.null(proc))
     match.fun(proc)(values) else values
-  uniques <- unique(uvalues)
+  uniques <- unique.default(uvalues)
   names(uniques) <- uniques
-  if(sorted && all(vapply(uniques,length,integer(1L)) == 1L))
+  if(sorted && all(vapply(uniques, length, integer(1L)) == 1L))
     uniques <- sort(unlist(uniques))
   lapply(uniques, function(key, ...) {
     selector <- vapply(values, compare, logical(1L), key, USE.NAMES = FALSE)
