@@ -104,7 +104,7 @@ list.search.fun <- function(.data, .expr, .counter, .n,
 
 list.group.internal <- function(.data, keys, proc = NULL,
   compare = "identical", sorted = TRUE, envir) {
-  if(length(keys) == 0L) return(.data)
+  if(is.empty(keys)) return(.data)
   values <- list.map.internal(.data, keys[[1L]], envir = envir)
   uvalues <- if(!missing(proc) && !is.null(proc))
     match.fun(proc)(values) else values

@@ -13,8 +13,8 @@ setnames <- `names<-`
 setclass <- `class<-`
 setmembers <- `[<-`
 
-contains <- function(table, x, ...) {
-  match(x, table, nomatch = 0L, ...) > 0L
+contains <- function(table, x) {
+  match(x, table, nomatch = 0L) > 0L
 }
 
 getnames <- function(x, def = NULL)
