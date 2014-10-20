@@ -31,9 +31,8 @@ set_argnames <- function(args, data = args) {
 
 #' @export
 .list.env <- function(x) {
-  if(is.null(names(x))) return(NULL)
-
-  if(is.list(x)) x
+  if(is.null(names(x))) NULL
+  else if(is.list(x)) x
   else if(is.vector(x)) setclass(x,"list")
   else NULL
 }
