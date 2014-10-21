@@ -36,5 +36,7 @@ test_that("list.maps", {
   l1 <- list(p1=list(x=1,y=2), p2=list(x=3,y=4), p3=list(x=1,y=3))
   l2 <- list(2,3,5)
   expect_equal(list.maps(a$x*b+a$y,a=l1,b=l2),list(p1=4,p2=13,p3=8))
+  expect_equal(list.maps(..1$x*..2+..1$y,l1,l2),list(p1=4,p2=13,p3=8))
   expect_equal(list.maps(a*b, a=list(1,2,3),b=list(2,3,4)),list(2,6,12))
+  expect_equal(list.maps(..1*..2, list(1,2,3),list(2,3,4)),list(2,6,12))
 })
