@@ -2,4 +2,4 @@
 ^\.Rproj\.user$
 ^\.travis\.yml$
 ^.*\.Rmd$
-^local$
+^_.*$
