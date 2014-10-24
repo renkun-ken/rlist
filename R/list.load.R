@@ -54,14 +54,14 @@ list.loadfile <- function(file, fun, guess, ...) {
     if(!missing(guess) && length(guess) > 0L) {
       exprs <- lapply(paste("list.loadfile", guess, sep = "."),
         function(f) call(f, file))
-      try_list(exprs, stop("Unrecognized file type", call. = FALSE))
+      try_list(exprs, stop("Unrecognized type of file: ", file, call. = FALSE))
     } else
-      stop("Unrecognized file type", call. = FALSE)
+      stop("Unrecognized type of file: ", file, call. = FALSE)
   } else if(exists(fun, mode = "function")) {
     fun <- get(fun, mode = "function")
     fun(file, ...)
   } else {
-    stop("Unrecognized file type", call. = FALSE)
+    stop("Unrecognized type of file: ", file, call. = FALSE)
   }
 }
 

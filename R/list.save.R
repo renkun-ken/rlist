@@ -22,7 +22,7 @@ list.save <- function(x, file, type = tools::file_ext(file), ...) {
     fun <- get(fun, mode = "function")
     fun(x, file, ...)
   } else {
-    stop("Unrecognized file type", call. = FALSE)
+    stop("Unrecognized type of file: ", file, call. = FALSE)
   }
   invisible(x)
 }
