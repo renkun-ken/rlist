@@ -3,7 +3,8 @@
 \alias{list.load}
 \title{Load a list from file}
 \usage{
-list.load(file, type = tools::file_ext(file), ...)
+list.load(file, type = tools::file_ext(file), ..., action = c("none",
+  "merge", "ungroup"))
 }
 \arguments{
 \item{file}{The file as input}
@@ -12,6 +13,21 @@ list.load(file, type = tools::file_ext(file), ...)
 by file extension. Currently supports RData, RDS, JSON, YAML.}
 
 \item{...}{Additional parameters passed to the loader function}
+
+\item{action}{The post-processing action if multiple files are
+supplied. This parameter will be ignored if only a single file
+is supplied.
+
+\code{"none"} (default) to leave the resulted list as
+a list of elements corresponding to elements in \code{file}
+vector.
+
+\code{"merge"} to merge the list elements iteratively,
+the later lists always modify the former ones through
+\code{modifyList}.
+
+\code{"ungroup"} to ungroup the list elements, especially when
+each file is a page of elements with identical structure.}
 }
 \description{
 Load a list from file

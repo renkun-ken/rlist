@@ -4,6 +4,20 @@
 #' @param type The type of input which, by default, is determined
 #'    by file extension. Currently supports RData, RDS, JSON, YAML.
 #' @param ... Additional parameters passed to the loader function
+#' @param action The post-processing action if multiple files are
+#' supplied. This parameter will be ignored if only a single file
+#' is supplied.
+#'
+#' \code{"none"} (default) to leave the resulted list as
+#' a list of elements corresponding to elements in \code{file}
+#' vector.
+#'
+#' \code{"merge"} to merge the list elements iteratively,
+#' the later lists always modify the former ones through
+#' \code{modifyList}.
+#'
+#' \code{"ungroup"} to ungroup the list elements, especially when
+#' each file is a page of elements with identical structure.
 #' @name list.load
 #' @export
 #' @examples
@@ -13,7 +27,8 @@
 #' list.load("list.yaml")
 #' list.load("list.json")
 #' }
-list.load <- function(file, type = tools::file_ext(file), ...) {
+list.load <- function(file, type = tools::file_ext(file), ...,
+  action = c("none", "merge", "ungroup")) {
   if(length(file) == 0L) return(list())
   type <- tolower(type)
   nztype <- nzchar(type)
@@ -24,7 +39,13 @@ list.load <- function(file, type = tools::file_ext(file), ...) {
       "\nPlease specify the types of the sources", call. = FALSE)
   fun <- paste("list.load", type, sep = ".")
   if(length(file) == 1L) list.loadfile(file, fun, ...)
-  else map(list.loadfile, file, fun, MoreArgs = list(...))
+  else {
+    items <- map(list.loadfile, file, fun, MoreArgs = list(...))
+    switch(match.arg(action),
+      merge = do.call(list.merge, items),
+      ungroup = list.ungroup(items),
+      items)
+  }
 }
 
 list.loadfile <- function(file, fun, ...) {
