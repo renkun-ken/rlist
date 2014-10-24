@@ -28,8 +28,9 @@ list.load <- function(file, type = tools::file_ext(file), ...) {
 }
 
 list.loadfile <- function(file, fun, ...) {
-  if(existsFunction(fun)) {
-    fun <- get(fun, mode = "function")
+  envir <- parent.frame()
+  if(exists(fun, envir = envir, mode = "function")) {
+    fun <- get(fun, envir = envir, mode = "function")
     fun(file, ...)
   } else {
     stop("Unrecognized file type", call. = FALSE)
