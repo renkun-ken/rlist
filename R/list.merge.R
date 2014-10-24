@@ -1,5 +1,5 @@
-#' Merge a series of lists
-#' @param ... A group of lists
+#' Merge a series of named lists
+#' @param ... named lists
 #' @name list.merge
 #' @export
 #' @examples
@@ -10,5 +10,8 @@
 #' list.merge(l1,l2,l3)
 #' }
 list.merge <- function(...) {
-  reduce(modifyList,list(...),list())
+  lists <- list(...)
+  if(any(vapply(lists, function(x) is.null(names(x)), logical(1L))))
+    stop("All arguments must be named list", call. = FALSE)
+  reduce(modifyList, lists, list())
 }
