@@ -14,14 +14,12 @@
 #' list.serialize(x,"test.json")
 #' }
 list.serialize <- function(x, file, type = tools::file_ext(file), ...) {
-  envir <- parent.frame()
   fun <- paste("list.serialize", tolower(type), sep = ".")
-
-  if(exists(fun, envir = envir, mode = "function")) {
-    fun <- get(fun, envir = envir, mode = "function")
+  if(exists(fun, mode = "function")) {
+    fun <- get(fun, mode = "function")
     fun(x, file, ...)
   } else {
-    conn <- file(file,open="w")
+    conn <- file(file, open="w")
     serialize(x,conn)
     close(conn)
   }

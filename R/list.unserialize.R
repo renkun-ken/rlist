@@ -13,11 +13,11 @@
 #' }
 list.unserialize <- function(file,type=tolower(tools::file_ext(file)),...) {
   fun <- paste("list.unserialize",type,sep = ".")
-  if(existsFunction(fun)) {
-    fun <- get(fun,mode = "function")
+  if(exists(fun, mode = "function")) {
+    fun <- get(fun, mode = "function")
     fun(file,...)
   } else {
-    conn <- file(file,open="r")
+    conn <- file(file, open="r")
     unserialize(conn)
     close(conn)
   }
