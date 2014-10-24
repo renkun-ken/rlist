@@ -4,6 +4,9 @@
 #' @param type The type of input which, by default, is determined
 #'    by file extension. Currently supports RData, RDS, JSON, YAML.
 #' @param ... Additional parameters passed to the loader function
+#' @param guess a \code{character} vector to guess iteratively if
+#' \code{type} of \code{file} is unrecognized, \code{NA} or empty
+#' string.
 #' @param action The post-processing action if multiple files are
 #' supplied. This parameter will be ignored if only a single file
 #' is supplied.
@@ -28,49 +31,54 @@
 #' list.load("list.json")
 #' }
 list.load <- function(file, type = tools::file_ext(file), ...,
+  guess = c("json", "yaml", "rds", "rdata"),
   action = c("none", "merge", "ungroup")) {
   if(length(file) == 0L) return(list())
-  nztype <- nzchar(type)
-  nzfile <- file[!nztype]
-  if(any(!nztype))
-    stop("Uncertain type of sources:\n",
-      paste("[", seq_along(nzfile), "] ", nzfile, sep = "", collapse = "\n"),
-      "\nPlease specify the types of the sources", call. = FALSE)
-  fun <- paste("list.load", tolower(type), sep = ".")
-  if(length(file) == 1L) list.loadfile(file, fun, ...)
+  nztype <- !is.na(type) & nzchar(type)
+  fun <- paste("list.loadfile", tolower(type), sep = ".")
+  fun[!nztype] <- NA_character_
+  guess <- tolower(guess)
+  if(length(file) == 1L) list.loadfile(file, fun, guess, ...)
   else {
-    items <- map(list.loadfile, file, fun, MoreArgs = list(...))
+    items <- map("list.loadfile", file, fun,
+      MoreArgs = list(guess = guess, ...))
     switch(match.arg(action),
-      merge = do.call(list.merge, items),
+      merge = do.call("list.merge", items),
       ungroup = list.ungroup(items),
       items)
   }
 }
 
-list.loadfile <- function(file, fun, ...) {
-  envir <- parent.frame()
-  if(exists(fun, envir = envir, mode = "function")) {
-    fun <- get(fun, envir = envir, mode = "function")
+list.loadfile <- function(file, fun, guess, ...) {
+  if(is.na(fun)) {
+    if(!missing(guess) && length(guess) > 0L) {
+      exprs <- lapply(paste("list.loadfile", guess, sep = "."),
+        function(f) call(f, file))
+      try_list(exprs, stop("Unrecognized file type", call. = FALSE))
+    } else
+      stop("Unrecognized file type", call. = FALSE)
+  } else if(exists(fun, mode = "function")) {
+    fun <- get(fun, mode = "function")
     fun(file, ...)
   } else {
     stop("Unrecognized file type", call. = FALSE)
   }
 }
 
-list.load.json <- function(file, ...) {
+list.loadfile.json <- function(file, ...) {
   callwith(jsonlite::fromJSON,
     list(file, simplifyDataFrame = FALSE), list(...))
 }
 
-list.load.yaml <- yaml::yaml.load_file
+list.loadfile.yaml <- yaml::yaml.load_file
 
-list.load.yml <- list.load.yaml
+list.loadfile.yml <- list.loadfile.yaml
 
-list.load.rdata <- function(file, name = "x") {
+list.loadfile.rdata <- function(file, name = "x") {
   env <- new.env(parent = parent.frame(), size = 1L)
   load(file, env)
   env[[name]]
 }
 
-list.load.rds <- function(file, ...)
+list.loadfile.rds <- function(file, ...)
   readRDS(file, ...)

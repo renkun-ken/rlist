@@ -3,8 +3,8 @@
 \alias{list.load}
 \title{Load a list from file}
 \usage{
-list.load(file, type = tools::file_ext(file), ..., action = c("none",
-  "merge", "ungroup"))
+list.load(file, type = tools::file_ext(file), ..., guess = c("json", "yaml",
+  "rds", "rdata"), action = c("none", "merge", "ungroup"))
 }
 \arguments{
 \item{file}{The file as input}
@@ -13,6 +13,10 @@ list.load(file, type = tools::file_ext(file), ..., action = c("none",
 by file extension. Currently supports RData, RDS, JSON, YAML.}
 
 \item{...}{Additional parameters passed to the loader function}
+
+\item{guess}{a \code{character} vector to guess iteratively if
+\code{type} of \code{file} is unrecognized, \code{NA} or empty
+string.}
 
 \item{action}{The post-processing action if multiple files are
 supplied. This parameter will be ignored if only a single file

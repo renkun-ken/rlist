@@ -66,6 +66,18 @@ set_argnames <- function(args, data = args) {
   setnames(data,argnames)
 }
 
+try_list <- function(exprs, finally, envir = NULL, enclos = parent.frame()) {
+  for(expr in exprs) {
+    result <- try(eval(expr, envir, enclos), silent = TRUE)
+    if(!inherits(result, "try-error"))
+      return(result)
+  }
+
+  if(missing(finally))
+    stop("No valid results produced", call. = FALSE)
+  eval(substitute(finally), envir, enclos)
+}
+
 #' Convert an object to evaluating environment for list elements
 #' Users should not directly use this function
 #' @param x the object
