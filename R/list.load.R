@@ -30,14 +30,13 @@
 list.load <- function(file, type = tools::file_ext(file), ...,
   action = c("none", "merge", "ungroup")) {
   if(length(file) == 0L) return(list())
-  type <- tolower(type)
   nztype <- nzchar(type)
   nzfile <- file[!nztype]
   if(any(!nztype))
     stop("Uncertain type of sources:\n",
       paste("[", seq_along(nzfile), "] ", nzfile, sep = "", collapse = "\n"),
       "\nPlease specify the types of the sources", call. = FALSE)
-  fun <- paste("list.load", type, sep = ".")
+  fun <- paste("list.load", tolower(type), sep = ".")
   if(length(file) == 1L) list.loadfile(file, fun, ...)
   else {
     items <- map(list.loadfile, file, fun, MoreArgs = list(...))
@@ -73,4 +72,5 @@ list.load.rdata <- function(file, name = "x") {
   env[[name]]
 }
 
-list.load.rds <- readRDS
+list.load.rds <- function(file, ...)
+  readRDS(file, ...)

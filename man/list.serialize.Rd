@@ -3,7 +3,7 @@
 \alias{list.serialize}
 \title{Serialize a list}
 \usage{
-list.serialize(x, file, type = tolower(tools::file_ext(file)), ...)
+list.serialize(x, file, type = tools::file_ext(file), ...)
 }
 \arguments{
 \item{x}{\code{list}}

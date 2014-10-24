@@ -17,9 +17,10 @@
 #' list.save(x, "list.json")
 #' }
 list.save <- function(x, file, type = tools::file_ext(file), ...) {
+  envir <- parent.frame()
   fun <- paste("list.save", tolower(type), sep = ".")
-  if(existsFunction(fun)) {
-    fun <- get(fun, mode = "function")
+  if(exists(fun, envir = envir, mode = "function")) {
+    fun <- get(fun, envir = envir, mode = "function")
     fun(x, file, ...)
   } else {
     stop("Unrecognized file type", call. = FALSE)
@@ -46,4 +47,5 @@ list.save.rdata <- function(x, file, name = "x",...) {
   save(list = name, file = file, envir = env, ...)
 }
 
-list.save.rds <- saveRDS
+list.save.rds <- function(x, file, ...)
+  saveRDS(x, file, ...)
