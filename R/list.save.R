@@ -17,10 +17,9 @@
 #' list.save(x, "list.json")
 #' }
 list.save <- function(x, file, type = tools::file_ext(file), ...) {
-  envir <- parent.frame()
-  fun <- paste("list.save", tolower(type), sep = ".")
-  if(exists(fun, envir = envir, mode = "function")) {
-    fun <- get(fun, envir = envir, mode = "function")
+  fun <- paste("list.savefile", tolower(type), sep = ".")
+  if(exists(fun, mode = "function")) {
+    fun <- get(fun, mode = "function")
     fun(x, file, ...)
   } else {
     stop("Unrecognized file type", call. = FALSE)
@@ -28,24 +27,24 @@ list.save <- function(x, file, type = tools::file_ext(file), ...) {
   invisible(x)
 }
 
-list.save.json <- function(x,file,...) {
+list.savefile.json <- function(x,file,...) {
   json <- jsonlite::toJSON(x,...)
   writeLines(json,file)
 }
 
-list.save.yaml <- function(x,file,...) {
+list.savefile.yaml <- function(x,file,...) {
   yaml <- yaml::as.yaml(x,...)
   writeLines(yaml,file)
 }
 
-list.save.yml <- list.save.yaml
+list.savefile.yml <- list.savefile.yaml
 
-list.save.rdata <- function(x, file, name = "x",...) {
+list.savefile.rdata <- function(x, file, name = "x",...) {
   if(!is.list(x)) stop("x is not a list")
   env <- new.env(parent = parent.frame(), size = 1L)
   assign(name, x, envir = env)
   save(list = name, file = file, envir = env, ...)
 }
 
-list.save.rds <- function(x, file, ...)
+list.savefile.rds <- function(x, file, ...)
   saveRDS(x, file, ...)
