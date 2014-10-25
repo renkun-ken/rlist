@@ -81,15 +81,15 @@ list.order.internal <- function(.data,args,envir) {
 }
 
 list.search.fun <- function(.data, .expr, .counter, .n,
-  . = .data, .i = .counter$i, .name = NA_character_) {
-  q <- eval(.expr, environment(), NULL)
+  . = .data, .i = .counter$i, .name = NULL) {
+  q <- eval(.expr, NULL, environment())
   vq <- !is.na(q)
   if(.counter$i < .n){
     # for logical vector, only single-valued TRUE will return value;
     # for other vectors, if it contains any non-NA values,
     # the vector will be returned
     if(is.logical(q)) {
-      if(length(q) == 1L && !is.na(q) && q) {
+      if(identical(q, TRUE)) {
         .counter$i <- .counter$i + length(.data)
         return(.data)
       } else {
