@@ -13,6 +13,8 @@
 #' list.all(x,type=="B")
 #' list.all(x,mean(unlist(score))>=6)
 #' }
-list.all <- function(.data,cond,na.rm=FALSE) {
-  all(list.is.internal(.data,substitute(cond),parent.frame()),na.rm=na.rm)
+list.all <- function(.data, cond, na.rm = FALSE) {
+  result <- list.findi.internal(.data, substitute(!cond), 1L,
+    parent.frame(), na.stop = !na.rm)
+  if(is.null(result)) NA else length(result) == 0L
 }

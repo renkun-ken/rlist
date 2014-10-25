@@ -38,25 +38,34 @@ list.findi.fun <- function(.data,.expr) {
   env <- parent.frame(4L)
   env$.i <- env$.i + 1L
   x <- eval(.expr,.list.env(.data),environment())
-  if(is.logical(x) && length(x) == 1L && x) {
+  if(identical(x, TRUE)) {
     env$.n <- env$.n + 1L
     env$.indices <- c(env$.indices, env$.i)
-    if(env$.n == env$n) stop(call. = FALSE)
+    if(env$.n == env$n) stop("TRUE", call. = FALSE)
+  } else if(identical(x, FALSE)) {
+    # do nothing
+  } else if(env$na.stop) {
+    stop("NA", call. = FALSE)
   }
 }
 
-list.findi.internal <- function(.data,cond,n,envir) {
+list.findi.internal <- function(.data, cond, n, envir, na.stop = FALSE) {
   .i <- 0L
   .n <- 0L
   .indices <- integer()
-  try(list.map.internal(.data,cond,list.findi.fun,envir),silent = TRUE)
-  .indices
+  result <- try(list.map.internal(.data, cond, list.findi.fun, envir), silent = TRUE)
+  if(inherits(result, "try-error")) {
+    switch(attr(result, "condition")$message, "TRUE" = .indices, "NA" = NULL,
+      integer())
+  } else {
+    return(integer())
+  }
 }
 
 list.while.fun <- function(.data,.expr) {
   env <- parent.frame(4L)
   x <- eval(.expr,.list.env(.data),environment())
-  if(is.logical(x) && length(x) == 1L && x) env$.i <- env$.i + 1L
+  if(identical(x, TRUE)) env$.i <- env$.i + 1L
   else stop(call. = FALSE)
 }
 
