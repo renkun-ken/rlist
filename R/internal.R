@@ -55,11 +55,33 @@ list.findi.internal <- function(.data, cond, n, envir, na.stop = FALSE) {
   .indices <- integer()
   result <- try(list.map.internal(.data, cond, list.findi.fun, envir), silent = TRUE)
   if(inherits(result, "try-error")) {
-    switch(attr(result, "condition")$message, "TRUE" = .indices, "NA" = NULL,
+    switch(attr(result, "condition")$message,
+      "TRUE" = .indices,
+      "NA" = NULL,
       integer())
   } else {
     return(integer())
   }
+}
+
+list.first.fun <- function(.data, .expr) {
+  env <- parent.frame(4L)
+  x <- eval(.expr, .list.env(.data), environment())
+  if(identical(x, TRUE)) {
+    env$res <- list(state = TRUE, value = .data)
+    stop(call. = FALSE)
+  } else if(identical(x, FALSE)) {
+    # do nothing
+  } else if(env$na.stop) {
+    env$res <- list(state = NA, value = .data)
+    stop(call. = FALSE)
+  }
+}
+
+list.first.internal <- function(.data, cond, envir, na.stop = FALSE) {
+  res <- list(state = FALSE)
+  try(list.map.internal(.data, cond, list.first.fun, envir), silent = TRUE)
+  res
 }
 
 list.while.fun <- function(.data,.expr) {

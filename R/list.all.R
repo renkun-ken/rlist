@@ -1,9 +1,9 @@
-#' Get whether all list members satisfy the given condition
+#' Examine if a condition is true for all list elements
 #'
 #' @param .data \code{list}
 #' @param cond A logical lambda expression
-#' @param na.rm logical. If true all \code{NA} values are removed
-#' @name list.all
+#' @param na.rm logical. If true the function returns \code{NA} when \code{NA}
+#' is encountered as \code{cond} is evaluated.
 #' @export
 #' @examples
 #' \dontrun{
@@ -14,7 +14,8 @@
 #' list.all(x,mean(unlist(score))>=6)
 #' }
 list.all <- function(.data, cond, na.rm = FALSE) {
-  result <- list.findi.internal(.data, substitute(!cond), 1L,
+  if(is.empty(.data)) return(all(logical(0L)))
+  res <- list.first.internal(.data, substitute(!cond),
     parent.frame(), na.stop = !na.rm)
-  if(is.null(result)) NA else length(result) == 0L
+  !res$state
 }
