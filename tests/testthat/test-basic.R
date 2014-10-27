@@ -235,4 +235,5 @@ test_that("list.names", {
   expect_identical(list.names(list(a=1,b=2)),c("a","b"))
   expect_identical(list.names(list(1,2)),NULL)
   expect_identical(list.names(list(1,2),letters[.]),list(a=1,b=2))
+  expect_identical(list.names(list(a=1,b=2),NULL),list(1,2))
 })

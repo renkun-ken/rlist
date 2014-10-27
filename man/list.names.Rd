@@ -10,7 +10,7 @@ list.names(.data, expr)
 
 \item{expr}{the expression whose value will be set as the name
 for each list element. If missing then the names of the list will be
-returned}
+returned. If \code{NULL} then the names of the list will be removed.}
 }
 \description{
 Get or set the names of a list by expression
