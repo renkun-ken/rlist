@@ -206,6 +206,22 @@ test_that("list.any", {
   expect_equal(sapply(8:10,function(i) list.any(x,score$c1>=i)),c(T,T,T))
 })
 
+test_that("list.first", {
+  x <- list(p1 = list(type="A",score=list(c1=10,c2=8)),
+    p2 = list(type="B",score=list(c1=9,c2=9)),
+    p3 = list(type="B",score=list(c1=9,c2=7)))
+  expect_equal(list.first(x,type=="B"),x[[2L]])
+  expect_equal(list.first(x,unlist(score$c1 <= 9)),x[[2L]])
+})
+
+test_that("list.last", {
+  x <- list(p1 = list(type="A",score=list(c1=10,c2=8)),
+    p2 = list(type="B",score=list(c1=9,c2=9)),
+    p3 = list(type="B",score=list(c1=9,c2=7)))
+  expect_equal(list.last(x,type=="B"),x[[3L]])
+  expect_equal(list.last(x,unlist(score$c1 <= 9)),x[[3L]])
+})
+
 test_that("list.table", {
   x <- list(p1 = list(type="A",score=list(c1=10,c2=8)),
     p2 = list(type="B",score=list(c1=9,c2=9)),
