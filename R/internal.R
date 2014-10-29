@@ -4,9 +4,7 @@ map <- function(f, ...) {
 
 reduce <- function(f, x, init, ...) {
   y <- init
-  for(xi in x) {
-    y <- f(y,xi,...)
-  }
+  for(xi in x) y <- f(y, xi, ...)
   y
 }
 
