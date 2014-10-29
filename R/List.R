@@ -1,6 +1,3 @@
-# compatibility for data.table functions
-.datatable.aware <- TRUE
-
 createListClosure <- function(f, data) {
   function(...) {
     dots <- match.call(expand.dots = FALSE)$`...`

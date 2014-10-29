@@ -1,3 +1,6 @@
+# compatibility for data.table functions
+.datatable.aware <- TRUE
+
 # Substitute ...
 # @param ... parameters to substitute
 dots <- function(...) {
