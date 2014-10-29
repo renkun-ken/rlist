@@ -13,6 +13,6 @@
 #' list.match(x,"p[12]")
 #' list.match(x,"3")
 #' }
-list.match <- function(.data,pattern,...) {
-  .data[grep(pattern,names(.data),...)]
+list.match <- function(.data, pattern, ...) {
+  .data[grep(pattern, names(.data),...)]
 }

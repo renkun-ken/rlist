@@ -17,6 +17,6 @@ list.filter <- function(.data,...) {
   conds <- dots(...)
   envir <- parent.frame()
   reduce(function(data, cond) {
-    data[which(list.is.internal(data,cond,envir))]
-  },conds,.data)
+    data[which(list.is.internal(data, cond, envir))]
+  }, conds, .data)
 }

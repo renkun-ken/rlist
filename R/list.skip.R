@@ -10,6 +10,6 @@
 #' list.skip(x,1)
 #' list.skip(x,2)
 #' }
-list.skip <- function(.data,n) {
+list.skip <- function(.data, n) {
   .data[-(1L:n)]
 }

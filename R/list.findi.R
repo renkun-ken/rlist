@@ -15,6 +15,6 @@
 #' list.findi(x,min(score$c1,score$c2) >= 8)
 #' list.findi(x,min(score$c1,score$c2) <= 8,2)
 #' }
-list.findi <- function(.data,cond,n=1L) {
-  list.findi.internal(.data,substitute(cond),n,parent.frame())
+list.findi <- function(.data, cond, n = 1L) {
+  list.findi.internal(.data, substitute(cond), parent.frame(), n)
 }

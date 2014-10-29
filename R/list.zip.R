@@ -13,12 +13,10 @@
 #' y <- list("x","y","z")
 #' list.zip(num=x,sym=y)
 #' }
-list.zip <- function(...,use.argnames=TRUE,use.names=TRUE) {
+list.zip <- function(..., use.argnames = TRUE, use.names = TRUE) {
   args <- list(...)
-  if(use.argnames) args <- set_argnames(dots(...),args)
-  results <- do.call(map,c(function(...) {
-    list(...)
-  },args))
+  if(use.argnames) args <- set_argnames(dots(...), args)
+  results <- do.call("map", c("args_list", args))
   if(!use.names) names(results) <- NULL
   results
 }

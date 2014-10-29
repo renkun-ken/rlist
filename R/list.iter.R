@@ -14,7 +14,7 @@
 #' list.iter(x,cat(paste(type,"\n")))
 #' list.iter(x,cat(str(.)))
 #' }
-list.iter <- function(.data,expr) {
-  list.map.internal(.data,substitute(expr),envir = parent.frame())
+list.iter <- function(.data, expr) {
+  list.map.internal(.data, substitute(expr), parent.frame())
   invisible(.data)
 }

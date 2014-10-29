@@ -12,9 +12,9 @@
 #' list.takeWhile(x,type=="B")
 #' list.takeWhile(x,min(score$c1,score$c2) >= 8)
 #' }
-list.takeWhile <- function(.data,cond) {
+list.takeWhile <- function(.data, cond) {
   args <- args_env(i = 0L)
-  try(list.map.internal(.data,substitute(cond),
-    list.while.fun, parent.frame(), args),silent = TRUE)
+  try(list.map.internal(.data, substitute(cond), parent.frame(),
+    list.while.fun, args),silent = TRUE)
   .data[0L:args$i]
 }

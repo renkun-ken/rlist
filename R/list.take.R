@@ -11,6 +11,6 @@
 #' list.take(x,1)
 #' list.take(x,10)
 #' }
-list.take <- function(.data,n,force=FALSE) {
-  .data[0L:ifelse(force,n,min(length(.data),n))]
+list.take <- function(.data, n, force = FALSE) {
+  .data[0L:ifelse(force, n, min(length(.data), n))]
 }

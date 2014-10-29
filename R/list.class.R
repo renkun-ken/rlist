@@ -23,6 +23,6 @@
 #' list.class(x,names(lang))
 #' }
 list.class <- function(.data, ..., sorted = TRUE) {
-  list.group.internal(.data, dots(...),
-    proc = "unlist", compare = "contains", sorted = sorted, envir = parent.frame())
+  list.group.internal(.data, dots(...), parent.frame(),
+    proc = "unlist", compare = "contains", sorted = sorted)
 }

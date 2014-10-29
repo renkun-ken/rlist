@@ -16,7 +16,7 @@
 #' list.cases(x,mean(unlist(score)))
 #' }
 list.cases <- function(.data, expr, simplify = TRUE, sorted = TRUE) {
-  values <- list.map.internal(.data, substitute(expr), envir = parent.frame())
+  values <- list.map.internal(.data, substitute(expr), parent.frame())
   if(simplify && all(vapply(values, is.atomic, logical(1L)))) {
     values <- unlist(values, use.names = FALSE)
   }

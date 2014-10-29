@@ -12,13 +12,13 @@ list.map.fun <- function(.data, ., .i, .name) {
   eval(.expr, .evalwith(.data), environment())
 }
 
-list.map.internal <- function(.data, expr, fun = list.map.fun,
-  envir = parent.frame(), args = NULL) {
+list.map.internal <- function(.data, expr, envir,
+  fun = list.map.fun, args = NULL) {
   if(is.empty(.data)) return(list())
   l <- lambda(expr)
   xnames <- getnames(.data, character(1L))
-  environment(fun) <- args_env(.expr = l$expr, .args = args,
-    .evalwith = evalwith, parent = envir)
+  environment(fun) <- args_env(.expr = l$expr,
+    .args = args, .evalwith = evalwith, parent = envir)
   formals(fun) <- setnames(formals(fun), c(".data",l$symbols))
   args <- list(fun,.data, .data, seq_along(.data), xnames)
   do.call("map", args)
@@ -30,7 +30,7 @@ list.is.fun <- function(.data, ., .i, .name) {
 }
 
 list.is.internal <- function(.data, cond, envir) {
-  as.logical(list.map.internal(.data, cond, list.is.fun, envir))
+  as.logical(list.map.internal(.data, cond, envir, list.is.fun))
 }
 
 list.findi.fun <- function(.data, ., .i, .name) {
@@ -47,11 +47,11 @@ list.findi.fun <- function(.data, ., .i, .name) {
   }
 }
 
-list.findi.internal <- function(.data, cond, n, envir, na.stop = FALSE) {
+list.findi.internal <- function(.data, cond, envir, n, na.stop = FALSE) {
   args <- args_env(i = 0L, n = 0L, indices = integer(), N = n,
     na.stop = na.stop)
-  result <- try(list.map.internal(.data, cond,
-    list.findi.fun, envir, args), silent = TRUE)
+  result <- try(list.map.internal(.data, cond, envir,
+    list.findi.fun, args), silent = TRUE)
   if(inherits(result, "try-error")) {
     switch(attr(result, "condition")$message,
       "TRUE" = args$indices,
@@ -75,9 +75,9 @@ list.first.fun <- function(.data, ., .i, .name) {
   }
 }
 
-list.first.internal <- function(.data, cond, envir, na.stop = FALSE) {
+list.first.internal <- function(.data, cond, envir, na.stop) {
   args <- args_env(res = list(state = FALSE))
-  try(list.map.internal(.data, cond, list.first.fun, envir, args),
+  try(list.map.internal(.data, cond, envir, list.first.fun, args),
     silent = TRUE)
   args$res
 }
@@ -99,7 +99,7 @@ list.order.internal <- function(.data, args, envir) {
       desc <- TRUE
     }
     if(desc) arg <- arg[[2L]]
-    col <- unlist(list.map.internal(.data, arg, envir = envir),
+    col <- unlist(list.map.internal(.data, arg, envir),
       recursive = FALSE, use.names = FALSE)
     if(desc) col <- -xtfrm(col)
     col
@@ -130,10 +130,10 @@ list.search.fun <- function(.data, .expr, .counter, .n,
   }
 }
 
-list.group.internal <- function(.data, keys, proc = NULL,
-  compare = "identical", sorted = TRUE, envir) {
+list.group.internal <- function(.data, keys, envir, proc = NULL,
+  compare = "identical", sorted = TRUE) {
   if(is.empty(keys)) return(.data)
-  values <- list.map.internal(.data, keys[[1L]], envir = envir)
+  values <- list.map.internal(.data, keys[[1L]], envir)
   uvalues <- if(!missing(proc) && !is.null(proc))
     match.fun(proc)(values) else values
   uniques <- unique.default(uvalues)

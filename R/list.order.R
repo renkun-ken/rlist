@@ -14,7 +14,7 @@
 #' list.order(x,min(score$c1,score$c2))
 #' list.order(x,min(score$c1,score$c2),keep.names=TRUE)
 #' }
-list.order <- function(.data,...,keep.names=FALSE) {
-  result <- list.order.internal(.data,dots(...),envir = parent.frame())
-  if(keep.names) setnames(result,names(.data)) else result
+list.order <- function(.data, ..., keep.names=FALSE) {
+  result <- list.order.internal(.data, dots(...), parent.frame())
+  if(keep.names) setnames(result, names(.data)) else result
 }

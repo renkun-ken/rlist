@@ -13,6 +13,6 @@ list.names <- function(.data, expr) {
   if(missing(expr)) return(names(.data))
   expr <- substitute(expr)
   if(is.null(expr)) return(setnames(.data, NULL))
-  values <- list.map.internal(.data, expr, envir = parent.frame())
+  values <- list.map.internal(.data, expr, parent.frame())
   setnames(.data, values)
 }

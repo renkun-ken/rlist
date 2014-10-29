@@ -13,5 +13,5 @@
 #' list.exclude(x,min(score$c1,score$c2) >= 8)
 #' }
 list.exclude <- function(.data,cond) {
-  .data[!list.is.internal(.data,substitute(cond),envir = parent.frame())]
+  .data[!list.is.internal(.data, substitute(cond), parent.frame())]
 }

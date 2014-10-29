@@ -14,5 +14,5 @@
 #' }
 list.count <- function(.data,cond) {
   if(missing(cond)) return(length(.data))
-  length(which(list.is.internal(.data,substitute(cond),envir = parent.frame())))
+  length(which(list.is.internal(.data, substitute(cond), parent.frame())))
 }

@@ -13,6 +13,6 @@
 #' list.which(x,type=="B")
 #' list.which(x,min(score$c1,score$c2) >= 8)
 #' }
-list.which <- function(.data,cond) {
-  which(list.is.internal(.data,substitute(cond),envir = parent.frame()))
+list.which <- function(.data, cond) {
+  which(list.is.internal(.data,substitute(cond), parent.frame()))
 }

@@ -11,8 +11,8 @@
 #' list.unserialize("test.dat")
 #' list.unserialize("test.json")
 #' }
-list.unserialize <- function(file,type=tolower(tools::file_ext(file)),...) {
-  fun <- paste("list.unserialize",type,sep = ".")
+list.unserialize <- function(file, type = tolower(tools::file_ext(file)), ...) {
+  fun <- paste("list.unserialize", type, sep = ".")
   if(exists(fun, mode = "function")) {
     fun <- get(fun, mode = "function")
     fun(file,...)
@@ -23,7 +23,7 @@ list.unserialize <- function(file,type=tolower(tools::file_ext(file)),...) {
   }
 }
 
-list.unserialize.json <- function(file,...) {
+list.unserialize.json <- function(file, ...) {
   info <- file.info(file)
   txt <- readChar(file,info$size)
   jsonlite::unserializeJSON(txt,...)

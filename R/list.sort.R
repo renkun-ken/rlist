@@ -13,6 +13,6 @@
 #' list.sort(x,type,(score$c2))
 #' list.sort(x,min(score$c1,score$c2))
 #' }
-list.sort <- function(.data,...) {
-  .data[list.order.internal(.data,dots(...),envir = parent.frame())]
+list.sort <- function(.data, ...) {
+  .data[list.order.internal(.data, dots(...), parent.frame())]
 }

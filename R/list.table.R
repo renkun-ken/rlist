@@ -18,7 +18,7 @@ list.table <- function(.data, ..., table.args = list(useNA = "ifany")) {
   args <- set_argnames(dots(...))
   envir <- parent.frame()
   items <- lapply(args, function(arg) {
-    values <- list.map.internal(.data, arg, envir = envir)
+    values <- list.map.internal(.data, arg, envir)
     values[vapply(values, is.null, logical(1L))] <- NA
     unlist(values, use.names = FALSE)
   })

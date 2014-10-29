@@ -17,12 +17,12 @@
 #' list.rbind(x)
 #' list.rbind(df)
 #' }
-list.sample <- function(.data,size,replace=FALSE,weight=1,prob=NULL) {
+list.sample <- function(.data, size, replace = FALSE, weight = 1, prob = NULL) {
   if(is.null(prob)) {
-    ws <- unlist(list.map.internal(.data,substitute(weight),envir = parent.frame()),
+    ws <- unlist(list.map.internal(.data,substitute(weight), parent.frame()),
       use.names = FALSE)
-    if(any(ws<0)) stop("Negative weight is not allowed")
+    if(any(ws < 0)) stop("Negative weight is not allowed")
     prob <- ws / sum(ws)
   }
-  sample(.data,size,replace,prob)
+  sample(.data, size, replace, prob)
 }

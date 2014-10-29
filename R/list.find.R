@@ -13,6 +13,6 @@
 #' list.find(x,type=="B",1)
 #' list.find(x,min(score$c1,score$c2) >= 9)
 #' }
-list.find <- function(.data,cond,n=1L) {
-  .data[list.findi.internal(.data,substitute(cond),n,parent.frame())]
+list.find <- function(.data, cond, n = 1L) {
+  .data[list.findi.internal(.data, substitute(cond), parent.frame(), n)]
 }

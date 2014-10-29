@@ -16,9 +16,9 @@
 #' list.update(x,grade=ifelse(type=="A",score$c1,score$c2))
 #' list.update(x,score=list(min=0,max=10))
 #' }
-list.update <- function(.data,...,keep.null=FALSE) {
-  items <- lapply(dots(...),list.map.internal,
-    .data=.data,envir = parent.frame())
-  do.call(map,c(function(.data,...)
-    modifyList(.data,list(...),keep.null = keep.null),list(.data),items))
+list.update <- function(.data, ..., keep.null=FALSE) {
+  items <- lapply(dots(...), list.map.internal,
+    .data = .data, envir = parent.frame())
+  do.call("map", c(function(.data,...)
+    modifyList(.data, list(...), keep.null = keep.null), list(.data), items))
 }

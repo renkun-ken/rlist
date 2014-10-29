@@ -34,8 +34,8 @@ list.join <- function(x,y,xkey,ykey,...,keep.order=TRUE) {
     dfsykey <- substitute(data.frame(ykey))
   }
 
-  xkeys.list <- list.map.internal(x,dfsxkey,envir = parent.frame())
-  ykeys.list <- list.map.internal(y,dfsykey,envir = parent.frame())
+  xkeys.list <- list.map.internal(x, dfsxkey, parent.frame())
+  ykeys.list <- list.map.internal(y, dfsykey, parent.frame())
   xkeys.df <- list.rbind(xkeys.list)
   ykeys.df <- list.rbind(ykeys.list)
   if(is.name(sxkey)) colnames(xkeys.df) <- as.character(sxkey)

@@ -14,8 +14,8 @@
 #' list.select(x,type,score)
 #' list.select(x,type,score.range=range(unlist(score)))
 #' }
-list.select <- function(.data,...) {
+list.select <- function(.data, ...) {
   args <- set_argnames(dots(...))
-  quote <- as.call(c(quote(list),args))
-  list.map.internal(.data,quote,envir = parent.frame())
+  quote <- as.call(c(quote(list), args))
+  list.map.internal(.data, quote, parent.frame())
 }

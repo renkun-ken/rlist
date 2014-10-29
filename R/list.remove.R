@@ -13,15 +13,15 @@
 #' list.remove(x,"p1")
 #' list.remove(x,c(1,2))
 #' }
-list.remove <- function(.data,range=integer()) {
+list.remove <- function(.data, range = integer()) {
   if(is.logical(range)) {
     .data[!range]
   } else if(is.numeric(range)) {
     .data[-range]
   } else if(is.character(range)) {
     names <- names(.data)
-    m <- vapply(range,`==`,logical(length(.data)),names)
-    selector <- apply(m,1L,any)
+    m <- vapply(range,`==`,logical(length(.data)), names)
+    selector <- apply(m, 1L, any)
     .data[!selector]
   }
 }

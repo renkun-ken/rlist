@@ -14,9 +14,9 @@
 #' list.is(x,type=="B")
 #' list.is(x,min(score$c1,score$c2) >= 8)
 #' }
-list.is <- function(.data,cond,use.names=TRUE) {
-  items <- list.is.internal(.data,substitute(cond),parent.frame())
-  if(use.names) setnames(items,names(.data)) else items
+list.is <- function(.data, cond, use.names=TRUE) {
+  items <- list.is.internal(.data, substitute(cond), parent.frame())
+  if(use.names) setnames(items, names(.data)) else items
 }
 
 #' @export

@@ -11,5 +11,5 @@
 #' list.rbind(df)
 #' }
 list.rbind <- function(.data) {
-  list.do(.data,"rbind")
+  list.do(.data, "rbind")
 }

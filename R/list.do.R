@@ -14,5 +14,5 @@
 #' as.list(1:10) %>>% list.map(x -> list.do(x,rnorm))
 #' }
 list.do <- function(.data, fun, ...) {
-  do.call(fun,as.list(.data),...)
+  do.call(fun, as.list(.data), ...)
 }
