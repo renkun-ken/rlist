@@ -14,7 +14,8 @@
 #' }
 list.takeWhile <- function(.data,cond) {
   .i <- 0L
+  parent <- environment()
   try(list.map.internal(.data,substitute(cond),
-    list.while.fun,parent.frame()),silent = TRUE)
+    list.while.fun, parent.frame(), parent),silent = TRUE)
   .data[0L:.i]
 }

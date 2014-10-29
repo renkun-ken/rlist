@@ -14,7 +14,8 @@
 #' }
 list.skipWhile <- function(.data,cond) {
   .i <- 0L
-  try(list.map.internal(.data,substitute(cond),
-    list.while.fun,parent.frame()),silent = TRUE)
+  parent <- environment()
+  try(list.map.internal(.data, substitute(cond),
+    list.while.fun, parent.frame(), parent),silent = TRUE)
   .data[-(0L:.i)]
 }

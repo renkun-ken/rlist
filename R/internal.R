@@ -10,41 +10,45 @@ reduce <- function(f, x, init, ...) {
   y
 }
 
-list.map.fun <- function(.data,.expr) {
-  eval(.expr,.list.env(.data),environment())
+list.map.fun <- function(.data, ., .i, .name) {
+  eval(.expr, .evalwith(.data), environment())
 }
 
-list.map.internal <- function(.data,expr,fun = list.map.fun, envir) {
+list.map.internal <- function(.data, expr, fun = list.map.fun,
+  envir, parent = parent.frame()) {
   if(is.empty(.data)) return(list())
   l <- lambda(expr)
-  xnames <- getnames(.data,character(1L))
-  environment(fun) <- envir
-  formals(fun) <- setnames(vector("pairlist",.nfsymbol),
-    c(".data",".expr",l$symbols))
-  args <- list(fun,.data,list(l$expr),.data,seq_along(.data),xnames)
+  xnames <- getnames(.data, character(1L))
+  environment(fun) <- list2env(
+    list(.expr = l$expr,
+      .evalwith = evalwith,
+      .envir = envir,
+      .parent = parent),
+    parent = envir)
+  formals(fun) <- setnames(formals(fun), c(".data",l$symbols))
+  args <- list(fun,.data, .data, seq_along(.data), xnames)
   do.call("map", args)
 }
 
-list.is.fun <- function(.data,.expr) {
-  x <- eval(.expr,.list.env(.data),environment())
+list.is.fun <- function(.data, ., .i, .name) {
+  x <- eval(.expr, .evalwith(.data), environment())
   if(is.logical(x) && length(x) == 1L) x else NA
 }
 
-list.is.internal <- function(.data,cond,envir) {
-  as.logical(list.map.internal(.data,cond,list.is.fun,envir))
+list.is.internal <- function(.data, cond, envir) {
+  as.logical(list.map.internal(.data, cond, list.is.fun, envir))
 }
 
-list.findi.fun <- function(.data,.expr) {
-  env <- parent.frame(4L)
-  env$.i <- env$.i + 1L
-  x <- eval(.expr,.list.env(.data),environment())
+list.findi.fun <- function(.data, ., .i, .name) {
+  .parent$.i <- .parent$.i + 1L
+  x <- eval(.expr, .evalwith(.data), environment())
   if(identical(x, TRUE)) {
-    env$.n <- env$.n + 1L
-    env$.indices <- c(env$.indices, env$.i)
-    if(env$.n == env$n) stop("TRUE", call. = FALSE)
+    .parent$.n <- .parent$.n + 1L
+    .parent$.indices <- c(.parent$.indices, .parent$.i)
+    if(.parent$.n == .parent$n) stop("TRUE", call. = FALSE)
   } else if(identical(x, FALSE)) {
     # do nothing
-  } else if(env$na.stop) {
+  } else if(.parent$na.stop) {
     stop("NA", call. = FALSE)
   }
 }
@@ -53,7 +57,8 @@ list.findi.internal <- function(.data, cond, n, envir, na.stop = FALSE) {
   .i <- 0L
   .n <- 0L
   .indices <- integer()
-  result <- try(list.map.internal(.data, cond, list.findi.fun, envir), silent = TRUE)
+  result <- try(list.map.internal(.data, cond,
+    list.findi.fun, envir, environment()), silent = TRUE)
   if(inherits(result, "try-error")) {
     switch(attr(result, "condition")$message,
       "TRUE" = .indices,
@@ -64,34 +69,34 @@ list.findi.internal <- function(.data, cond, n, envir, na.stop = FALSE) {
   }
 }
 
-list.first.fun <- function(.data, .expr) {
-  env <- parent.frame(4L)
-  x <- eval(.expr, .list.env(.data), environment())
+list.first.fun <- function(.data, ., .i, .name) {
+  x <- eval(.expr, .evalwith(.data), environment())
   if(identical(x, TRUE)) {
-    env$res <- list(state = TRUE, value = .data)
+    .parent$res <- list(state = TRUE, value = .data)
     stop(call. = FALSE)
   } else if(identical(x, FALSE)) {
     # do nothing
-  } else if(env$na.stop) {
-    env$res <- list(state = NA, value = .data)
+  } else if(.parent$na.stop) {
+    .parent$res <- list(state = NA, value = .data)
     stop(call. = FALSE)
   }
 }
 
 list.first.internal <- function(.data, cond, envir, na.stop = FALSE) {
   res <- list(state = FALSE)
-  try(list.map.internal(.data, cond, list.first.fun, envir), silent = TRUE)
+  parent <- environment()
+  try(list.map.internal(.data, cond, list.first.fun, envir, parent),
+    silent = TRUE)
   res
 }
 
-list.while.fun <- function(.data,.expr) {
-  env <- parent.frame(4L)
-  x <- eval(.expr,.list.env(.data),environment())
-  if(identical(x, TRUE)) env$.i <- env$.i + 1L
+list.while.fun <- function(.data, ., .i, .name) {
+  x <- eval(.expr, .evalwith(.data), environment())
+  if(identical(x, TRUE)) .parent$.i <- .parent$.i + 1L
   else stop(call. = FALSE)
 }
 
-list.order.internal <- function(.data,args,envir) {
+list.order.internal <- function(.data, args, envir) {
   if(is.empty(.data)) return(integer())
   if(is.empty(args)) return(order(.data))
   cols <- lapply(args, function(arg) {

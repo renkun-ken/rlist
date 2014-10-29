@@ -83,7 +83,7 @@ list.search <- function(.data, expr, classes = "ANY",
   fun <- list.search.fun
   environment(fun) <- parent.frame()
   formals(fun) <- setnames(formals(fun),
-    c(".data",".expr",".counter",".n",l$symbols))
+    c(".data",".expr",".counter",".n", l$symbols))
   results <- rapply(.data, fun, classes = classes,
     how = if(unlist) "unlist" else "list",
     .expr = l$expr, .counter = counter, .n = n)
