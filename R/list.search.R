@@ -79,7 +79,7 @@
 list.search <- function(.data, expr, classes = "ANY",
   n = Inf, unlist = FALSE) {
   l <- lambda(substitute(expr))
-  counter <- as.environment(list(i = 0L))
+  counter <- args_env(i = 0L)
   fun <- list.search.fun
   environment(fun) <- parent.frame()
   formals(fun) <- setnames(formals(fun),

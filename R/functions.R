@@ -87,3 +87,11 @@ evalwith <- function(x) {
   else if(is.vector(x)) setclass(x,"list")
   else NULL
 }
+
+args_env <- function(..., parent = parent.frame()) {
+  list2env(list(...), parent = parent)
+}
+
+args_list <- function(...) {
+  list(...)
+}
