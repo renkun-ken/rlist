@@ -1,17 +1,19 @@
 createListClosure <- function(f, data) {
+  f <- substitute(f)
   function(...) {
-    dots <- match.call(expand.dots = FALSE)$`...`
-    rcall <- as.call(c(f,quote(data),dots))
-    data <- eval(rcall,list(data = data),parent.frame())
+    dots <- match.call(expand.dots = FALSE)$...
+    rcall <- as.call(c(f, quote(data), dots))
+    data <- eval(rcall, list(data = data), parent.frame())
     List(data)
   }
 }
 
 createCallClosure <- function(data) {
   function(f, ...) {
-    dots <- match.call(expand.dots = FALSE)$`...`
-    rcall <- as.call(c(f,quote(data),dots))
-    data <- eval(rcall,list(data = data),parent.frame())
+    f <- substitute(f)
+    dots <- match.call(expand.dots = FALSE)$...
+    rcall <- as.call(c(f, quote(data), dots))
+    data <- eval(rcall, list(data = data), parent.frame())
     List(data)
   }
 }
@@ -74,12 +76,14 @@ List <- function(data = list()) {
   filter <- createListClosure(list.filter, data)
   find <- createListClosure(list.find, data)
   findi <- createListClosure(list.findi, data)
+  first <- createListClosure(list.first, data)
   flatten <- createListClosure(list.flatten, data)
   group <- createListClosure(list.group, data)
   is <- createListClosure(list.is, data)
   insert <- createListClosure(list.insert, data)
   iter <- createListClosure(list.iter, data)
   join <- createListClosure(list.join, data)
+  last <- createListClosure(list.last, data)
   load <- createListClosure(list.load, data)
   map <- createListClosure(list.map, data)
   mapv <- createListClosure(list.mapv, data)
