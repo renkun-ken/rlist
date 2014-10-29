@@ -91,10 +91,12 @@ evalwith <- function(x) {
   else NULL
 }
 
+# create an environment for args
 args_env <- function(..., parent = parent.frame()) {
   list2env(list(...), parent = parent)
 }
 
+# create a list for args
 args_list <- function(...) {
   list(...)
 }
