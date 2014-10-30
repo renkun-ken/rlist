@@ -1,4 +1,4 @@
-Version 0.3-3 (2014-10-27)
+Version 0.3.3
 ===
 Update documentation
 Improve function implementation
@@ -10,18 +10,18 @@ list.load() supports automatic type selection
 Add list.first() and list.last()
 Improve the implementation of list.all() and list.any()
 
-Version 0.3-2 (2014-08-21)
+Version 0.3-2
 ===
 Fix environemnt issues (#50).
 Deprecate lambda expression of the form "x -> expr", use "x ~ expr" instead.
 Add subsetting, extracing, and assigning functionality to List environment.
 
-Version 0.3-1 (2014-08-10)
+Version 0.3-1
 ===
 Add `list.subset` that supports list subsetting by name, index, pattern matching, string distance to names.
 `List$subset` switched from `subset.list` to `list.subset`.
 
-Version 0.3 (2014-08-08)
+Version 0.3
 ===
 API Break: `list.search` now evaluates expression recursively in a list and supports lambda expression.
 
@@ -31,7 +31,7 @@ Add `List()` to provide an environment in which most list functions are defined 
 
 
 
-Version 0.2.5 (2014-08-01)
+Version 0.2.5
 ===
 Add `list.apply` which is a wrapper function of lapply.
 Add `list.search` that searches a list recursively.
@@ -39,19 +39,19 @@ Add exact search functions: `equal`, `unequal`, `unidentical`, `include`, and `e
 Add fuzzy search functions: `like` and `unlike` based on stringdist package.
 Enhance `list.clean` which now supports recursive cleaning.
 
-Version 0.2.4 (2014-07-26)
+Version 0.2.4
 ===
 Add `list.common` that returns the common cases of all list member by expression.
 
 
-Version 0.2.3 (2014-07-18)
+Version 0.2.3
 ===
 Improve performance (#26, #27)
 Add `list.flatten` that flattens a nested list to one-level.
 
 
 
-Version 0.2.2 (2014-07-11)
+Version 0.2.2
 ===
 Add `list.stack` that binds list members to a data.frame.
 Add `list.zip` that combines multiple lists element-wisely.
@@ -65,7 +65,7 @@ Fixed [#25](https://github.com/renkun-ken/rlist/issues/25)
 Vignettes updated
 
 
-Version 0.2.1 (2014-07-04)
+Version 0.2.1
 ===
 Add new function `list.table`
 Minor maintainence updates.
@@ -75,12 +75,12 @@ Fixed [#20](https://github.com/renkun-ken/rlist/issues/20)
 Fixed [#21](https://github.com/renkun-ken/rlist/issues/21)
 
 
-Version 0.2 (2014-07-02)
+Version 0.2
 ===
 Add `list.join`, `list.mapv`, `list.do`, `list.clean`, `list.parse`
 Add vignettes
 
 
-Version 0.1 (2014-06-27)
+Version 0.1
 ===
 Implement functions
