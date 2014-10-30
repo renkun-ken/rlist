@@ -14,7 +14,8 @@
 #' list.any(x,mean(unlist(score))>=6)
 #' }
 list.any <- function(.data, cond, na.rm = FALSE) {
-  if(is.empty(.data)) return(any(logical(0L)))
+  if(missing(.data)) return(any(na.rm = na.rm))
+  if(is.empty(.data) || missing(cond)) return(any(.data, na.rm = na.rm))
   res <- list.first.internal(.data, substitute(cond),
     parent.frame(), na.stop = !na.rm)
   res$state
