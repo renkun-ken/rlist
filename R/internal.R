@@ -19,8 +19,8 @@ list.map.internal <- function(.data, expr, envir,
   xnames <- getnames(.data, character(1L))
   environment(fun) <- args_env(.expr = l$expr,
     .args = args, .evalwith = evalwith, parent = envir)
-  formals(fun) <- setnames(formals(fun), c(".data",l$symbols))
-  args <- list(fun,.data, .data, seq_along(.data), xnames)
+  formals(fun) <- setnames(formals(fun), c(".data", l$symbols))
+  args <- list(fun, .data, .data, seq_along(.data), xnames)
   do.call("map", args)
 }
 
@@ -95,7 +95,7 @@ list.order.internal <- function(.data, args, envir) {
     if(is.null(arg)) stop("NULL condition", call. = FALSE)
     desc <- class(arg) == "("
     if(is.call(arg) && arg[[1L]] == "desc") {
-      warning("desc() in list.sort() has been deprecated. Please use () to indicate descending order. Example: list.sort(data, (count))", call. = FALSE)
+      warning("desc() has been deprecated. Please use () to indicate descending order. Example: list.sort(data, (count))", call. = FALSE)
       desc <- TRUE
     }
     if(desc) arg <- arg[[2L]]
