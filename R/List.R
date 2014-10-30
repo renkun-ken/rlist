@@ -152,57 +152,48 @@ ndots <- function(dots) {
   length(dots) >= 1L && any(nzchar(dots))
 }
 
-List.get <- function(f, data, dots, envir) {
-  rcall <- as.call(c(f,quote(data),dots))
-  eval(rcall,list(data = data),envir)
+List_get <- function(f, data, dots, envir) {
+  if(!ndots(dots)) return(data)
+  rcall <- as.call(c(f, quote(data), dots))
+  data <- eval(rcall,list(data = data),envir)
+  List(data)
 }
 
-#' @export
-`[.List` <- function(x, ...) {
-  dots <- match.call(expand.dots = FALSE)$`...`
-  if(ndots(dots)) {
-    data <- List.get(`[`,x$data,dots,parent.frame())
-    List(data)
+List_get_function <- function(op) {
+  op <- as.symbol(op)
+  function(x, ...) {
+    dots <- match.call(expand.dots = FALSE)$...
+    List_get(op, x$data, dots, parent.frame())
   }
-  else x$data
 }
 
 #' @export
-`[[.List` <- function(x, ...) {
-  dots <- match.call(expand.dots = FALSE)$`...`
-  if(ndots(dots)) {
-    data <- List.get(`[[`,x$data,dots,parent.frame())
-    List(data)
+`[.List` <- List_get_function("[")
+
+#' @export
+`[[.List` <- List_get_function("[[")
+
+
+List_set <- function(f, x, dots, value, envir) {
+  if(!ndots(dots)) return(value)
+  rcall <- as.call(c(f, quote(x), dots, quote(value)))
+  data <- eval(rcall,list(x = x, value = value),envir)
+  List(data)
+}
+
+List_set_function <- function(op) {
+  op <- as.symbol(op)
+  function(x, ..., value) {
+    dots <- match.call(expand.dots = FALSE)$...
+    List_set(op, x$data, dots, value, parent.frame())
   }
-  else x$data
-}
-
-
-List.set <- function(f, x, dots, value, envir) {
-  rcall <- as.call(c(f,quote(x),dots,quote(value)))
-  eval(rcall,list(x = x, value = value),envir)
 }
 
 #' @export
-`$<-.List` <- function(x,...,value) {
-  dots <- match.call(expand.dots = FALSE)$`...`
-  if(ndots(dots))
-    value <- List.set(`$<-`, x$data, dots, value, parent.frame())
-  List(value)
-}
+`$<-.List` <- List_set_function("$<-")
 
 #' @export
-`[<-.List` <- function(x,...,value) {
-  dots <- match.call(expand.dots = FALSE)$`...`
-  if(ndots(dots))
-    value <- List.set(`[<-`, x$data, dots, value, parent.frame())
-  List(value)
-}
+`[<-.List` <- List_set_function("[<-")
 
 #' @export
-`[[<-.List` <- function(x,...,value) {
-  dots <- match.call(expand.dots = FALSE)$`...`
-  if(ndots(dots))
-    value <- List.set(`[[<-`, x$data, dots, value, parent.frame())
-  List(value)
-}
+`[[<-.List` <- List_set_function("[[<-")
