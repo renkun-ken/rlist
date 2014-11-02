@@ -1,7 +1,7 @@
 Package: rlist
 Type: Package
 Title: A set of tools for working with list objects
-Version: 0.3.3.2
+Version: 0.3.3.3
 Author: Kun Ren <ken@renkun.me>
 Maintainer: Kun Ren <ken@renkun.me>
 Description: A set of tools for working with lists as dataset,

@@ -118,13 +118,13 @@ list.search.fun <- function(.data, .expr, .counter, .n,
     # the vector will be returned
     if(is.logical(q)) {
       if(identical(q, TRUE)) {
-        .counter$i <- .counter$i + length(.data)
+        .counter$i <- .counter$i + 1L
         return(.data)
       } else {
         return(NULL)
       }
     } else if(length(q) >= 1L && any(vq)) {
-      .counter$i <- .counter$i + length(which(vq))
+      .counter$i <- .counter$i + 1L
       return(q[vq])
     }
   }

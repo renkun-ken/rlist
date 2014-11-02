@@ -12,7 +12,7 @@ list.search(.data, expr, classes = "ANY", n = Inf, unlist = FALSE)
 
 \item{classes}{a character vector of class names that restrict the search. By default, the range is unrestricted (\code{ANY}).}
 
-\item{n}{the number of results to get}
+\item{n}{the maximal number of vectors to return}
 
 \item{unlist}{\code{logical} Should the result be unlisted?}
 }

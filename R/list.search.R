@@ -3,7 +3,7 @@
 #' @param .data \code{list}
 #' @param expr a lambda expression
 #' @param classes a character vector of class names that restrict the search. By default, the range is unrestricted (\code{ANY}).
-#' @param n the number of results to get
+#' @param n the maximal number of vectors to return
 #' @param unlist \code{logical} Should the result be unlisted?
 #' @details
 #' \code{list.search} evaluates an expression (\code{expr}) recursively
