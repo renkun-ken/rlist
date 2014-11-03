@@ -38,8 +38,13 @@ equal <- function(x, y,
     else FALSE
   }
   else if(pattern) grepl(x, y, ...)
-  else if(!is.na(dist)) stringdist::stringdist(x,y,...) <= dist
-  else {
+  else if(!is.na(dist)) {
+    if (!requireNamespace("stringdist", quietly = TRUE)) {
+      stop("stringdist is needed for this function to work. Please install it.",
+        call. = FALSE)
+    }
+    stringdist::stringdist(x,y,...) <= dist
+  } else {
     if(mode(x) == mode(y) && length(x) == length(y)) x == y
     else FALSE
   }
