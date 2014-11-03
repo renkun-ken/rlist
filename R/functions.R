@@ -84,10 +84,10 @@ try_list <- function(exprs, finally, envir = NULL, enclos = parent.frame()) {
 # Convert an object to evaluating environment for list elements
 # Users should not directly use this function
 # @param x the object
-evalwith <- function(x) {
+.evalwith <- function(x) {
   if(is.null(names(x))) NULL
   else if(is.list(x)) x
-  else if(is.vector(x)) setclass(x,"list")
+  else if(is.vector(x)) setclass(x, "list")
   else NULL
 }
 

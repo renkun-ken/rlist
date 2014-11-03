@@ -1,3 +1,5 @@
+.expr <- NULL
+
 map <- function(f, ...) {
   mapply(FUN = f, ..., SIMPLIFY = FALSE)
 }
@@ -18,7 +20,7 @@ list.map.internal <- function(.data, expr, envir,
   l <- lambda(expr)
   xnames <- getnames(.data, character(1L))
   environment(fun) <- args_env(.expr = l$expr,
-    .args = args, .evalwith = evalwith, parent = envir)
+    .args = args, .evalwith = .evalwith, parent = envir)
   formals(fun) <- setnames(formals(fun), c(".data", l$symbols))
   args <- list(fun, .data, .data, seq_along(.data), xnames)
   do.call("map", args)
