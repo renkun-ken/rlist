@@ -1,27 +1,13 @@
-.lambda <- list(expr = NULL, symbols = c(".",".i",".name"))
-.nsymbol <- length(.lambda$symbols)
+lambda_symbols <- c(".",".i",".name")
 
 lambda <- function(expr) {
-  .lambda$expr <- expr
-  if(is.call(expr) && length(expr[[1L]])==1L) {
-    symbol <- expr[[1L]]
-    if(symbol == "<-") {
-      warning("lambda expression of the form \"x -> expr\" has been deprecated, please use \"x ~ expr\" instead.", call. = FALSE)
-      symbols <- expr[[3L]]
-      .lambda$expr <- expr[[2L]]
-    } else if(symbol == "~") {
-      if(length(expr) != 3L)
-        stop("Invalid lambda expression", call. = FALSE)
-      symbols <- expr[[2L]]
-      .lambda$expr <- expr[[3L]]
-    } else return(.lambda)
-    if(is.name(symbols))
-      .lambda$symbols[1L] <- as.character(symbols)
-    else if(is.call(symbols)) {
-      symbols <- as.character(symbols)[-1L]
-      indices <- which(symbols != "")
-      .lambda$symbols[indices] <- symbols[indices]
-    } else stop("Invalid lambda expression", call. = FALSE)
+  if(is.formula(expr)) {
+    if(length(expr) == 2L) return(Recall(expr[[2L]]))
+    lhs <- expr[[2L]]
+    expr <- expr[[3L]]
+    lhs_symbols <- as.character(if(is.symbol(lhs)) lhs else lhs[-1L])
+    lambda_symbols[which(nzchar(lhs_symbols))] <- lhs_symbols
   }
-  .lambda
+
+  list(expr = expr, symbols = lambda_symbols)
 }

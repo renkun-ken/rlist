@@ -27,6 +27,10 @@ setnames <- `names<-`
 setclass <- `class<-`
 setmembers <- `[<-`
 
+is.formula <- function(object) {
+  is.call(object) && object[[1L]] == "~"
+}
+
 # Test if a vector contains certain values
 # @param table the values to be matched against
 # @param x the values to be matched
