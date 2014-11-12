@@ -27,8 +27,8 @@ setnames <- `names<-`
 setclass <- `class<-`
 setmembers <- `[<-`
 
-is.formula <- function(object) {
-  is.call(object) && object[[1L]] == "~"
+is.formula <- function(expr) {
+  inherits(expr, "formula") || (is.call(expr) && expr[[1L]] == "~")
 }
 
 # Test if a vector contains certain values
