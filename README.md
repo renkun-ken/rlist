@@ -18,7 +18,7 @@ Install from [CRAN](http://cran.r-project.org/web/packages/rlist/) (v0.3-2)
 install.packages("rlist")
 ```
 
-Install the development version (v0.3.3) from GitHub:
+Install the development version (v0.3.4) from GitHub:
 
 ```r
 devtools::install_github("renkun-ken/rlist")
