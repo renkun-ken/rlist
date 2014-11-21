@@ -115,7 +115,7 @@ List of 3
 
 ### More functions
 
-In addition to these basic functions, rlist also supports various types of grouping, joining, searching, sorting, updating, etc. For the introduction to more functionality, please go through the [rlist Tutorial](/rlist-tutorial).
+In addition to these basic functions, rlist also supports various types of grouping, joining, searching, sorting, updating, etc. For the introduction to more functionality, please go through the [rlist Tutorial](http://renkun.me/rlist-tutorial).
 
 ## Lambda expression
 
