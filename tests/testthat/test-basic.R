@@ -243,8 +243,10 @@ test_that("list.zip", {
 
 test_that("list.flatten", {
   p <- list(a=1,b=list(b1=2,b2=3),c=list(c1=list(c11="a",c12="x"),c2=3))
+  q <- list(a=c(1,2,3),b=list(x=1,y=list(z=1,z2=2)))
   expect_identical(list.flatten(p),list(a=1,b.b1=2,b.b2=3,c.c1.c11="a",
     c.c1.c12="x",c.c2=3))
+  expect_identical(list.flatten(q),list(a=c(1,2,3),b.x=1,b.y.z=1,b.y.z2=2))
 })
 
 test_that("list.names", {

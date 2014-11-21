@@ -13,7 +13,11 @@ list.flatten <- function(x,use.names=TRUE) {
   len <- sum(rapply(x, function(x) 1L))
   y <- vector("list", len)
   i <- 0L
-  items <- rapply(x, function(x) { i <<- i+1L; y[[i]] <<- x })
+  items <- rapply(x, function(x) {
+    i <<- i + 1L
+    y[[i]] <<- x
+    TRUE
+  })
   if(use.names) names(y) <- names(items)
   y
 }
