@@ -2,7 +2,8 @@
 #'
 #' @param .data \code{list}
 #' @param expr a lambda expression
-#' @param classes a character vector of class names that restrict the search. By default, the range is unrestricted (\code{ANY}).
+#' @param classes a character vector of class names that restrict the search.
+#' By default, the range is unrestricted (\code{ANY}).
 #' @param n the maximal number of vectors to return
 #' @param unlist \code{logical} Should the result be unlisted?
 #' @details
@@ -76,20 +77,20 @@
 #'
 #' list.search(data, .[grepl("e", .)], "character")
 #' }
-list.search <- function(.data, expr, classes = "ANY",
-  n = Inf, unlist = FALSE) {
+list.search <- function(.data, expr, classes = "ANY", n, unlist = FALSE) {
+  vec <- rapply(.data, function(x) TRUE, classes = classes)
+  if(missing(n)) n <- sum(vec)
   l <- lambda(substitute(expr))
-  counter <- args_env(i = 0L)
+  args <- args_env(i = 0L, n = 0L, N = n,
+    indices = integer(n), result = vector("list", n))
   fun <- list.search.fun
   environment(fun) <- parent.frame()
   formals(fun) <- setnames(formals(fun),
-    c(".data",".expr",".counter",".n", l$symbols))
-  results <- rapply(.data, fun, classes = classes,
-    how = if(unlist) "unlist" else "list",
-    .expr = l$expr, .counter = counter, .n = n)
-  if(!unlist) {
-    results <- list.clean(results,
-      fun = is.empty, recursive = TRUE)
-  }
-  results
+    c(".data",".expr",".args", ".n", l$symbols))
+  try(rapply(.data, fun, classes = classes,
+    .expr = l$expr, .args = args), silent = TRUE)
+  result <- list.clean(args$result, is.null, recursive = FALSE)
+  names(result) <- names(vec)[args$indices]
+  if(unlist) result <- unlist(result)
+  result
 }

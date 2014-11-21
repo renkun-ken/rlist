@@ -10,7 +10,7 @@
 #' list.flatten(p)
 #' }
 list.flatten <- function(x,use.names=TRUE) {
-  len <- sum(rapply(x, function(x) 1L))
+  len <- sum(rapply(x, function(x) TRUE))
   y <- vector("list", len)
   i <- 0L
   items <- rapply(x, function(x) {

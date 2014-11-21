@@ -3,14 +3,15 @@
 \alias{list.search}
 \title{Search a list recusively by an expression}
 \usage{
-list.search(.data, expr, classes = "ANY", n = Inf, unlist = FALSE)
+list.search(.data, expr, classes = "ANY", n, unlist = FALSE)
 }
 \arguments{
 \item{.data}{\code{list}}
 
 \item{expr}{a lambda expression}
 
-\item{classes}{a character vector of class names that restrict the search. By default, the range is unrestricted (\code{ANY}).}
+\item{classes}{a character vector of class names that restrict the search.
+By default, the range is unrestricted (\code{ANY}).}
 
 \item{n}{the maximal number of vectors to return}
 

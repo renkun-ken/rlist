@@ -110,25 +110,25 @@ list.order.internal <- function(.data, args, envir) {
   do.call("order",cols)
 }
 
-list.search.fun <- function(.data, .expr, .counter, .n,
-  . = .data, .i = .counter$i, .name = NULL) {
-  q <- eval(.expr, environment())
+list.search.fun <- function(.data, .expr, .args, .n = .args$n,
+  . = .data, .i = .args$i, .name = NULL) {
+  .args$i <- .args$i + 1L
+  q <- eval(.expr, NULL, environment())
   vq <- !is.na(q)
-  if(.counter$i < .n){
-    # for logical vector, only single-valued TRUE will return value;
-    # for other vectors, if it contains any non-NA values,
-    # the vector will be returned
-    if(is.logical(q)) {
-      if(identical(q, TRUE)) {
-        .counter$i <- .counter$i + 1L
-        return(.data)
-      } else {
-        return(NULL)
-      }
-    } else if(length(q) >= 1L && any(vq)) {
-      .counter$i <- .counter$i + 1L
-      return(q[vq])
+  if(is.logical(q)) {
+    if(identical(q, TRUE)) {
+    .args$n <- .args$n + 1L
+    .args$indices[[.args$n]] <- .args$i
+    .args$result[[.args$n]] <- .data
+    if(.args$n == .args$N) stop("finished", call. = FALSE)
     }
+  } else if(length(q) >= 1L && any(vq)) {
+    .args$n <- .args$n + 1L
+    .args$indices[[.args$n]] <- .args$i
+    .args$result[[.args$n]] <- q[vq]
+    if(.args$n == .args$N) stop("finished", call. = FALSE)
+  } else {
+    NULL
   }
 }
 
