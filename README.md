@@ -115,9 +115,7 @@ List of 3
 
 ### More functions
 
-In addition to these basic functions, rlist also supports various types of grouping, joining, searching, sorting, updating. Moreover, a unified `equal()` function is provided to support exact matching, value comparing, pattern matching, and fuzzy matching. 
-
-For more details, view the vignettes and documentation.
+In addition to these basic functions, rlist also supports various types of grouping, joining, searching, sorting, updating, etc. For the introduction to more functionality, please go through the [rlist Tutorial](/rlist-tutorial).
 
 ## Lambda expression
 
