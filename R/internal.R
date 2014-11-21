@@ -40,24 +40,24 @@ list.findi.fun <- function(.data, ., .i, .name) {
   x <- eval(.expr, .evalwith(.data), environment())
   if(identical(x, TRUE)) {
     .args$n <- .args$n + 1L
-    .args$indices <- c(.args$indices, .args$i)
-    if(.args$n == .args$N) stop("TRUE", call. = FALSE)
+    .args$indices[[.args$n]] <- .args$i
+    if(.args$n == .args$N) stop("finished", call. = FALSE)
   } else if(identical(x, FALSE)) {
     # do nothing
   } else if(.args$na.stop) {
-    stop("NA", call. = FALSE)
+    stop("stopped", call. = FALSE)
   }
 }
 
 list.findi.internal <- function(.data, cond, envir, n, na.stop = FALSE) {
-  args <- args_env(i = 0L, n = 0L, indices = integer(), N = n,
-    na.stop = na.stop)
+  n <- min(n, length(.data))
+  args <- args_env(i = 0L, n = 0L, N = n, na.stop = na.stop, indices = integer(n))
   result <- try(list.map.internal(.data, cond, envir,
     list.findi.fun, args), silent = TRUE)
-  if(inherits(result, "try-error")) {
+  if(is.error(result)) {
     switch(attr(result, "condition")$message,
-      "TRUE" = args$indices,
-      "NA" = NULL,
+      finished = args$indices[0L:args$n],
+      stopped = NULL,
       integer())
   } else {
     return(integer())

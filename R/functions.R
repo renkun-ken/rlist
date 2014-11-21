@@ -31,6 +31,10 @@ is.formula <- function(expr) {
   inherits(expr, "formula") || (is.call(expr) && expr[[1L]] == "~")
 }
 
+is.error <- function(x) {
+  inherits(x, "try-error")
+}
+
 # Test if a vector contains certain values
 # @param table the values to be matched against
 # @param x the values to be matched
