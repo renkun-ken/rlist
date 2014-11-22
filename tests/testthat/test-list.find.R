@@ -1,5 +1,13 @@
 context("list.find")
 
+test_that("list.findi", {
+  x <- list(1,2,c(3,4))
+  expect_identical(list.findi(x, any(. >= 2)), 2L)
+  expect_identical(list.findi(x, any(. >= 2), 2), c(2L, 3L))
+  expect_identical(list.findi(x, any(. >= 2), 3), c(2L, 3L))
+  expect_identical(list.findi(x, any(. >= 2), 4), c(2L, 3L))
+})
+
 test_that("list.find", {
 
   # simple list

@@ -56,12 +56,11 @@ list.findi.internal <- function(.data, cond, envir, n, na.stop = FALSE) {
     list.findi.fun, args), silent = TRUE)
   if(is.error(result)) {
     switch(attr(result, "condition")$message,
-      finished = args$indices[0L:args$n],
-      stopped = NULL,
-      integer())
-  } else {
-    return(integer())
+      finished = NULL,
+      stopped = warning("Encountered value that is not TRUE or FALSE"),
+      stop(message, call. = FALSE))
   }
+  args$indices[0L:args$n]
 }
 
 list.first.fun <- function(.data, ., .i, .name) {
