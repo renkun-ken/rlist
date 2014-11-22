@@ -60,6 +60,10 @@ getnames <- function(x, def = NULL)
 # @param x the object
 is.empty <- function(x) length(x) == 0L
 
+is.TF <- function(x) is.logical(x) && length(x) == 1L && !is.na(z)
+is.TRUE <- function(x) is.TF(x) && x
+is.FALSE <- function(x) is.TF(x) && !x
+
 # Make names for unnamed symbol arguments
 # @details
 # The elements of an unevaluated list of arguments may or may not

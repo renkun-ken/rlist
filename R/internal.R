@@ -38,15 +38,13 @@ list.is.internal <- function(.data, cond, envir) {
 list.findi.fun <- function(.data, ., .i, .name) {
   .args$i <- .args$i + 1L
   x <- eval(.expr, .evalwith(.data), environment())
-  if(identical(x, TRUE)) {
-    .args$n <- .args$n + 1L
-    .args$indices[[.args$n]] <- .args$i
-    if(.args$n == .args$N) stop("finished", call. = FALSE)
-  } else if(identical(x, FALSE)) {
-    # do nothing
-  } else if(.args$na.stop) {
-    stop("stopped", call. = FALSE)
-  }
+  if(is.logical(x) && length(x) == 1L && !is.na(x)) {
+    if(x) {
+      .args$n <- .args$n + 1L
+      .args$indices[[.args$n]] <- .args$i
+      if(.args$n == .args$N) stop("finished", call. = FALSE)
+    }
+  } else if(.args$na.stop) stop("stopped", call. = FALSE)
 }
 
 list.findi.internal <- function(.data, cond, envir, n, na.stop = FALSE) {
@@ -65,11 +63,11 @@ list.findi.internal <- function(.data, cond, envir, n, na.stop = FALSE) {
 
 list.first.fun <- function(.data, ., .i, .name) {
   x <- eval(.expr, .evalwith(.data), environment())
-  if(identical(x, TRUE)) {
-    .args$res <- list(state = TRUE, value = .data)
-    stop(call. = FALSE)
-  } else if(identical(x, FALSE)) {
-    # do nothing
+  if(is.logical(x) && length(x) == 1L && !is.na(x)) {
+    if(x) {
+      .args$res <- list(state = TRUE, value = .data)
+      stop(call. = FALSE)
+    }
   } else if(.args$na.stop) {
     .args$res <- list(state = NA, value = .data)
     stop(call. = FALSE)
@@ -85,7 +83,7 @@ list.first.internal <- function(.data, cond, envir, na.stop) {
 
 list.while.fun <- function(.data, ., .i, .name) {
   x <- eval(.expr, .evalwith(.data), environment())
-  if(identical(x, TRUE)) .args$i <- .args$i + 1L
+  if(is.logical(x) && length(x) && !is.na(x) && x) .args$i <- .args$i + 1L
   else stop(call. = FALSE)
 }
 
@@ -114,20 +112,18 @@ list.search.fun <- function(.data, .expr, .args, .n = .args$n,
   .args$i <- .args$i + 1L
   q <- eval(.expr, NULL, environment())
   vq <- !is.na(q)
-  if(is.logical(q)) {
-    if(identical(q, TRUE)) {
-    .args$n <- .args$n + 1L
-    .args$indices[[.args$n]] <- .args$i
-    .args$result[[.args$n]] <- .data
-    if(.args$n == .args$N) stop("finished", call. = FALSE)
+  if(is.logical(q) && length(q) == 1L && !is.na(q)) {
+    if(q) {
+      .args$n <- .args$n + 1L
+      .args$indices[[.args$n]] <- .args$i
+      .args$result[[.args$n]] <- .data
+      if(.args$n == .args$N) stop("finished", call. = FALSE)
     }
   } else if(length(q) >= 1L && any(vq)) {
     .args$n <- .args$n + 1L
     .args$indices[[.args$n]] <- .args$i
     .args$result[[.args$n]] <- q[vq]
     if(.args$n == .args$N) stop("finished", call. = FALSE)
-  } else {
-    NULL
   }
 }
 
