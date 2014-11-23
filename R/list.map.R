@@ -1,8 +1,9 @@
-#' Map each member of a list by an expression.
+#' Map each element in a list or vector by an expression.
 #'
-#' @param .data \code{list}
+#' @param .data a \code{list} or \code{vector}
 #' @param expr A lambda expression
 #' @name list.map
+#' @return \code{list}
 #' @export
 #' @examples
 #' \dontrun{
@@ -18,8 +19,10 @@ list.map <- function(.data, expr) {
 
 #' Map each member of a list by an expression to a vector.
 #'
-#' @param .data \code{list}
-#' @param expr The expression
+#' @param .data a \code{list} or \code{vector}
+#' @param expr a lambda expression
+#' @param as the mode to corece. Missing to \code{unlist}
+#' the mapped results.
 #' @param use.names Should the names of the results be preserved?
 #' @name list.mapv
 #' @export
@@ -31,7 +34,12 @@ list.map <- function(.data, expr) {
 #' list.mapv(x,type)
 #' list.mapv(x,min(score$c1,score$c2))
 #' }
-list.mapv <- function(.data, expr, use.names=TRUE) {
-  unlist(list.map.internal(.data, substitute(expr), parent.frame()),
-    use.names = use.names)
+list.mapv <- function(.data, expr, as, use.names = TRUE) {
+  res <- list.map.internal(.data, substitute(expr), parent.frame())
+  if(missing(as)) unlist(res, use.names = use.names)
+  else {
+    res <- as.vector(res, as)
+    if(use.names) names(res) <- names(.data)
+    res
+  }
 }

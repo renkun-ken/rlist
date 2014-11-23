@@ -3,12 +3,15 @@
 \alias{list.mapv}
 \title{Map each member of a list by an expression to a vector.}
 \usage{
-list.mapv(.data, expr, use.names = TRUE)
+list.mapv(.data, expr, as, use.names = TRUE)
 }
 \arguments{
-\item{.data}{\code{list}}
+\item{.data}{a \code{list} or \code{vector}}
 
-\item{expr}{The expression}
+\item{expr}{a lambda expression}
+
+\item{as}{the mode to corece. Missing to \code{unlist}
+the mapped results.}
 
 \item{use.names}{Should the names of the results be preserved?}
 }
