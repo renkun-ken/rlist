@@ -26,3 +26,4 @@ URL: http://renkun.me/rlist,
 BugReports: https://github.com/renkun-ken/rlist/issues
 Roxygen: list(wrap = FALSE)
 ByteCompile: TRUE
+LazyData: true
