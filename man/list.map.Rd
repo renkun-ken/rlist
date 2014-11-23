@@ -11,7 +11,7 @@ list.map(.data, expr)
 \item{expr}{A lambda expression}
 }
 \value{
-\code{list}
+A \code{list} in which each element is mapped by \code{expr} in \code{.data}
 }
 \description{
 Map each element in a list or vector by an expression.

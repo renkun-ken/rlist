@@ -2,8 +2,7 @@
 #'
 #' @param .data a \code{list} or \code{vector}
 #' @param expr A lambda expression
-#' @name list.map
-#' @return \code{list}
+#' @return A \code{list} in which each element is mapped by \code{expr} in \code{.data}
 #' @export
 #' @examples
 #' \dontrun{
@@ -24,7 +23,7 @@ list.map <- function(.data, expr) {
 #' @param as the mode to corece. Missing to \code{unlist}
 #' the mapped results.
 #' @param use.names Should the names of the results be preserved?
-#' @name list.mapv
+#' @return A \code{vector} in which each element is mapped by \code{expr} in \code{.data}
 #' @export
 #' @examples
 #' \dontrun{

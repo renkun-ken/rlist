@@ -15,6 +15,9 @@ the mapped results.}
 
 \item{use.names}{Should the names of the results be preserved?}
 }
+\value{
+A \code{vector} in which each element is mapped by \code{expr} in \code{.data}
+}
 \description{
 Map each member of a list by an expression to a vector.
 }
