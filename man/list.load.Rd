@@ -4,7 +4,8 @@
 \title{Load a list from file}
 \usage{
 list.load(file, type = tools::file_ext(file), ..., guess = c("json", "yaml",
-  "rds", "rdata"), action = c("none", "merge", "ungroup"))
+  "rds", "rdata"), action = c("none", "merge", "ungroup"),
+  progress = length(file) >= 5L)
 }
 \arguments{
 \item{file}{The file as input}
@@ -32,6 +33,11 @@ the later lists always modify the former ones through
 
 \code{"ungroup"} to ungroup the list elements, especially when
 each file is a page of elements with identical structure.}
+
+\item{progress}{\code{TRUE} to show a text progress bar in console
+while loading files. By default, if \code{file} contains 5 elements,
+then the progress bar will automatically be triggered to indicate
+loading progress.}
 }
 \description{
 Load a list from file

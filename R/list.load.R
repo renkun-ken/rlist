@@ -21,7 +21,10 @@
 #'
 #' \code{"ungroup"} to ungroup the list elements, especially when
 #' each file is a page of elements with identical structure.
-#' @name list.load
+#' @param progress \code{TRUE} to show a text progress bar in console
+#' while loading files. By default, if \code{file} contains 5 elements,
+#' then the progress bar will automatically be triggered to indicate
+#' loading progress.
 #' @export
 #' @examples
 #' \dontrun{
@@ -32,37 +35,45 @@
 #' }
 list.load <- function(file, type = tools::file_ext(file), ...,
   guess = c("json", "yaml", "rds", "rdata"),
-  action = c("none", "merge", "ungroup")) {
+  action = c("none", "merge", "ungroup"),
+  progress = length(file) >= 5L) {
   if(length(file) == 0L) return(list())
   nztype <- !is.na(type) & nzchar(type)
   fun <- paste("list.loadfile", tolower(type), sep = ".")
   fun[!nztype] <- NA_character_
   guess <- tolower(guess)
-  if(length(file) == 1L) list.loadfile(file, fun, guess, ...)
+  pb <- if(progress) txtProgressBar(min = 0L, max = length(file), style = 3L) else NULL
+  res <- if(length(file) == 1L) list.loadfile(file, fun, guess, ..., pb = pb, index = 1L)
   else {
-    items <- map("list.loadfile", file, fun,
-      MoreArgs = list(guess = guess, ...))
+    items <- map("list.loadfile", file, fun, index = seq_along(file),
+      MoreArgs = list(guess = guess, ..., pb = pb))
     switch(match.arg(action),
       merge = do.call("list.merge", items),
       ungroup = list.ungroup(items),
       items)
   }
+  if(!is.null(pb)) close(pb)
+  res
 }
 
-list.loadfile <- function(file, fun, guess, ...) {
+list.loadfile <- function(file, fun, guess, ..., pb = NULL, index = NULL) {
+  res <- NULL
   if(is.na(fun)) {
     if(!missing(guess) && length(guess) > 0L) {
       exprs <- lapply(paste("list.loadfile", guess, sep = "."),
         function(f) call(f, file))
-      try_list(exprs, stop("Unrecognized type of file: ", file, call. = FALSE))
+      res <- try_list(exprs, stop("Unrecognized type of file: ", file, call. = FALSE))
+      if(!is.null(pb)) pb$up(index)
     } else
       stop("Unrecognized type of file: ", file, call. = FALSE)
   } else if(exists(fun, mode = "function")) {
     fun <- get(fun, mode = "function")
-    fun(file, ...)
+    res <- fun(file, ...)
+    if(!is.null(pb)) pb$up(index)
   } else {
     stop("Unrecognized type of file: ", file, call. = FALSE)
   }
+  res
 }
 
 list.loadfile.json <- function(file, ...) {
