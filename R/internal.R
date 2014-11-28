@@ -139,7 +139,6 @@ list.group.internal <- function(.data, keys, envir, proc = NULL,
     uniques <- sort(unlist(uniques))
   lapply(uniques, function(key, ...) {
     selector <- vapply(values, compare, logical(1L), key, USE.NAMES = FALSE)
-    data <- .data[selector]
-    list.group.internal(data, keys[-1L], ...)
-  }, proc, compare, sorted, envir)
+    list.group.internal(.data[selector], keys[-1L], ...)
+  }, envir, proc, compare, sorted)
 }

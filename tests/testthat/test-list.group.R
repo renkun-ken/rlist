@@ -12,6 +12,12 @@ test_that("list.group", {
   expect_identical(list.group(x,type),list(A=x["p1"],B=x[c("p2","p3")]))
   expect_identical(list.group(x,mean(unlist(score))),list(`8`=x["p3"],`9`=x[c("p1","p2")]))
 
+  expect_identical(list.group(1:10, . %% 3, . %% 2),
+    structure(list("0" = structure(list("0" = 6L, "1" = c(3L, 9L)), .Names = c("0",  "1")),
+      "1" = structure(list("0" = c(4L, 10L), "1" = c(1L, 7L)), .Names = c("0",  "1")),
+      "2" = structure(list("0" = c(2L, 8L), "1" = 5L), .Names = c("0",  "1"))),
+      .Names = c("0", "1", "2")))
+
   lapply(2:4,function(i) list.group(x,sum(unlist(score))<=i))
 })
 
