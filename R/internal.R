@@ -103,7 +103,6 @@ list.order.internal <- function(.data, args, envir) {
     if(desc) col <- -xtfrm(col)
     col
   })
-  names(cols) <- NULL
   do.call("order",cols)
 }
 
