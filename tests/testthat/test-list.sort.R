@@ -20,6 +20,10 @@ test_that("list.sort", {
   expect_identical(list.sort(list("a","b","c"),.),list("a","b","c"))
   expect_identical(list.sort(list("a","b","c"),(.)),list("c","b","a"))
 
+  # warning in irregular cases
+  expect_warning(list.sort(list(1,2,c(2,3)), .), "^Non-single value in column")
+  expect_warning(list.sort(list(1,2,"a"), .), "^Inconsistent classes")
+
   lapply(1:3,function(i) list.sort(x,sum(.)+i))
 })
 
@@ -34,4 +38,8 @@ test_that("list.order", {
   x <- list(a=c(x=1,y=2),b=c(x=3,y=4))
   expect_equal(lapply(1:3,function(i) list.order(x,sum(.)+i)),
     list(c(1,2),c(1,2),c(1,2)))
+
+  # warning in irregular cases
+  expect_warning(list.order(list(1,2,c(2,3)), .), "^Non-single value in column")
+  expect_warning(list.order(list(1,2,"a"), .), "^Inconsistent classes")
 })

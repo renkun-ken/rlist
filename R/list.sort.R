@@ -3,6 +3,7 @@
 #' @param .data \code{list}
 #' @param ... A group of lambda expressions. For each expression, the data
 #' is sorted ascending by default unless the expression is enclosed by ().
+#' @param na.last The way to deal with \code{NA}s.
 #' @name list.sort
 #' @export
 #' @examples
@@ -13,6 +14,7 @@
 #' list.sort(x,type,(score$c2))
 #' list.sort(x,min(score$c1,score$c2))
 #' }
-list.sort <- function(.data, ...) {
-  .data[list.order.internal(.data, dots(...), parent.frame())]
+list.sort <- function(.data, ..., na.last = NA) {
+  .data[list.order.internal(.data, dots(...), parent.frame(),
+    na.last = na.last)]
 }

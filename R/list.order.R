@@ -3,6 +3,7 @@
 #' @param .data \code{list}
 #' @param ... A group of lambda expressions
 #' @param keep.names Whether to keep the names of \code{x} in the result
+#' @param na.last The way to deal with \code{NA}s.
 #' @name list.order
 #' @export
 #' @examples
@@ -14,7 +15,8 @@
 #' list.order(x,min(score$c1,score$c2))
 #' list.order(x,min(score$c1,score$c2),keep.names=TRUE)
 #' }
-list.order <- function(.data, ..., keep.names=FALSE) {
-  result <- list.order.internal(.data, dots(...), parent.frame())
+list.order <- function(.data, ..., keep.names = FALSE, na.last = TRUE) {
+  result <- list.order.internal(.data, dots(...), parent.frame(),
+    na.last = na.last)
   if(keep.names) setnames(result, names(.data)) else result
 }

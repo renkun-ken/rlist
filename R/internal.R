@@ -87,7 +87,7 @@ list.while.fun <- function(.data, ., .i, .name) {
   else stop(call. = FALSE)
 }
 
-list.order.internal <- function(.data, args, envir) {
+list.order.internal <- function(.data, args, envir, na.last = TRUE) {
   if(is.empty(.data)) return(integer())
   if(is.empty(args)) return(order(.data))
   cols <- lapply(args, function(arg) {
@@ -98,12 +98,23 @@ list.order.internal <- function(.data, args, envir) {
       desc <- TRUE
     }
     if(desc) arg <- arg[[2L]]
-    col <- unlist(list.map.internal(.data, arg, envir),
-      recursive = FALSE, use.names = FALSE)
+    col <- list.map.internal(.data, arg, envir)
+
+    if(length(unique.default(vapply(col, "class", character(1L)))) > 1L) {
+      warning("Inconsistent classes of values in column [", deparse(arg), "]. The column will be coerced to the same class.", call. = FALSE)
+    }
+
+    lens <- vapply(col, "length", integer(1L))
+    if(any(lens != 1L)) {
+      warning("Non-single value in column [", deparse(arg), "]. Use NA instead to order.", call. = FALSE)
+      col[lens != 1L] <- NA
+    }
+
+    col <- unlist(col, recursive = FALSE, use.names = FALSE)
     if(desc) col <- -xtfrm(col)
     col
   })
-  do.call("order",cols)
+  do.call("order", c(cols, na.last = na.last))
 }
 
 list.search.fun <- function(.data, .expr, .args, .n = .args$n,

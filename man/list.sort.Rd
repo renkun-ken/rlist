@@ -3,13 +3,15 @@
 \alias{list.sort}
 \title{Sort a list by given expressions in order}
 \usage{
-list.sort(.data, ...)
+list.sort(.data, ..., na.last = NA)
 }
 \arguments{
 \item{.data}{\code{list}}
 
 \item{...}{A group of lambda expressions. For each expression, the data
 is sorted ascending by default unless the expression is enclosed by ().}
+
+\item{na.last}{The way to deal with \code{NA}s.}
 }
 \description{
 Sort a list by given expressions in order
