@@ -2,9 +2,7 @@
 
 # rlist
 
-[![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/renkun-ken/rlist?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
-
-[![Build Status](https://travis-ci.org/renkun-ken/rlist.png?branch=master)](https://travis-ci.org/renkun-ken/rlist)
+[![Build Status](https://travis-ci.org/renkun-ken/rlist.png?branch=master)](https://travis-ci.org/renkun-ken/rlist) [![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/renkun-ken/rlist?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 rlist is a set of tools for working with list objects. Its goal is to make it easier to work with lists by providing a wide range of functions that operate on non-tabular data stored in them.
 
