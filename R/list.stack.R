@@ -21,11 +21,8 @@
 #' list.stack(x)
 #' }
 list.stack <- function(.data, ..., data.table = FALSE) {
-  if (!requireNamespace("data.table", quietly = TRUE)) {
-    stop("data.table is needed for this function to work. Please install it.",
-      call. = FALSE)
-  }
+  if (!requireNamespace("data.table", quietly = TRUE))
+    stop("data.table is needed for this function to work. Please install it.", call. = FALSE)
   dt <- data.table::rbindlist(.data, ...)
-  if(!data.table) class(dt) <- "data.frame"
-  dt
+  if(data.table) dt else data.table::setDF(dt)
 }
