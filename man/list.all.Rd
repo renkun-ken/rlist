@@ -2,28 +2,35 @@
 % Please edit documentation in R/list.all.R
 \name{list.all}
 \alias{list.all}
-\title{Examine if a condition is true for all list elements}
+\title{Examine if a condition is true for all elements of a list}
 \usage{
 list.all(.data, cond, na.rm = FALSE)
 }
 \arguments{
-\item{.data}{\code{list}}
+\item{.data}{A \code{list} or \code{vector}}
 
 \item{cond}{A logical lambda expression}
 
-\item{na.rm}{logical. If true the function returns \code{NA} when \code{NA}
-is encountered as \code{cond} is evaluated.}
+\item{na.rm}{logical. If true \code{NA} values are ignored in
+the evaluation.}
+}
+\value{
+\code{TRUE} if \code{cond} is evaluated to be \code{TRUE}
+for all elements in \code{.data}.
 }
 \description{
-Examine if a condition is true for all list elements
+Examine if a condition is true for all elements of a list
 }
 \examples{
-\dontrun{
 x <- list(p1 = list(type="A",score=list(c1=10,c2=8)),
        p2 = list(type="B",score=list(c1=9,c2=9)),
        p3 = list(type="B",score=list(c1=9,c2=7)))
-list.all(x,type=="B")
-list.all(x,mean(unlist(score))>=6)
+list.all(x, type=="B")
+list.all(x, mean(unlist(score))>=6)
+list.all(x, score$c2 > 8 || score$c3 > 5, na.rm = TRUE)
+list.all(x, score$c2 > 8 || score$c3 > 5, na.rm = FALSE)
 }
+\seealso{
+\code{\link{list.any}}
 }
 

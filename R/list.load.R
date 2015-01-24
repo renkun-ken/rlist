@@ -1,6 +1,6 @@
 #' Load a list from file
 #'
-#' @param file The file as input
+#' @param file a \code{character} vector. The file as input.
 #' @param type The type of input which, by default, is determined
 #'    by file extension. Currently supports RData, RDS, JSON, YAML.
 #' @param ... Additional parameters passed to the loader function

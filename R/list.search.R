@@ -1,6 +1,6 @@
 #' Search a list recusively by an expression
 #'
-#' @param .data \code{list}
+#' @param .data A \code{list} or \code{vector}
 #' @param expr a lambda expression
 #' @param classes a character vector of class names that restrict the search.
 #' By default, the range is unrestricted (\code{ANY}).
@@ -25,7 +25,6 @@
 #' @name list.search
 #' @export
 #' @examples
-#' \dontrun{
 #' # Exact search
 #'
 #' x <- list(p1 = list(type="A",score=c(c1=9)),
@@ -35,7 +34,7 @@
 #'
 #' ## Search exact values
 #' list.search(x, identical(., "A"))
-#' list.search(x, identical(., c("A","B"))
+#' list.search(x, identical(., c("A","B")))
 #' list.search(x, identical(., c(9,7)))
 #' list.search(x, identical(., c(c1=9,c2=7)))
 #'
@@ -60,10 +59,12 @@
 #'
 #' list.search(data, grepl("^K\\w+n$", .), "character")
 #'
+#' \dontrun{
 #' library(stringdist)
 #' list.search(data, stringdist(., "Ken") <= 1, "character")
 #' list.search(data, stringdist(., "Man") <= 2, "character")
 #' list.search(data, stringdist(., "Man") > 2, "character")
+#' }
 #'
 #' data <- list(
 #'   p1 = list(name=c("Ken", "Ren"),age=24),
@@ -72,10 +73,11 @@
 #'   p4 = list(name=c("Keynes", "Bond"),age=30),
 #'   p5 = list(name=c("Kwen", "Hu"),age=31))
 #'
+#' list.search(data, .[grepl("e", .)], "character")
+#'
+#' \dontrun{
 #' list.search(data, all(stringdist(., "Ken") <= 1), "character")
 #' list.search(data, any(stringdist(., "Ken") > 1), "character")
-#'
-#' list.search(data, .[grepl("e", .)], "character")
 #' }
 list.search <- function(.data, expr, classes = "ANY", n, unlist = FALSE) {
   vec <- rapply(.data, function(x) TRUE, classes = classes)

@@ -7,7 +7,7 @@
 list.prepend(.data, ...)
 }
 \arguments{
-\item{.data}{\code{list}}
+\item{.data}{A \code{list} or \code{vector}}
 
 \item{...}{The \code{vector} or \code{list} to prepend before \code{x}}
 }
@@ -15,10 +15,8 @@ list.prepend(.data, ...)
 Prepend a list
 }
 \examples{
-\dontrun{
 x <- list(a=1,b=2,c=3)
-list.prepend(x,d=4,e=5)
-list.prepend(x,d=4,f=c(2,3))
-}
+list.prepend(x, d=4, e=5)
+list.prepend(x, d=4, f=c(2,3))
 }
 

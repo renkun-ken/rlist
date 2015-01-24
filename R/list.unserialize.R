@@ -4,7 +4,7 @@
 #' @param type The type of serialization, including native unserializer and
 #'    json unserializer, which is by default determined by file extension
 #' @param ... Additional parameters passed to the unserializer function
-#' @name list.unserialize
+#' @seealso \code{\link{list.serialize}}
 #' @export
 #' @examples
 #' \dontrun{

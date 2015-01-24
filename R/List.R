@@ -21,8 +21,7 @@ createCallClosure <- function(data) {
 #' Create a \code{List environment} that wraps given \code{data} and
 #' most list functions are defined for chainable operations.
 #'
-#' @param data \code{list}
-#' @name List
+#' @param data A \code{list} or \code{vector}
 #' @export
 #' @details
 #' Most list functions are defined in \code{List environment}.
@@ -34,7 +33,6 @@ createCallClosure <- function(data) {
 #' \code{x[]}.
 #'
 #' @examples
-#' \dontrun{
 #' x <- list(p1 = list(type="A",score=list(c1=10,c2=8)),
 #'        p2 = list(type="B",score=list(c1=9,c2=9)),
 #'        p3 = list(type="B",score=list(c1=9,c2=7)))
@@ -43,7 +41,7 @@ createCallClosure <- function(data) {
 #'   map(score$c1) []
 #'
 #' m$group(type)$
-#'   map(g -> List(g)$
+#'   map(g ~ List(g)$
 #'       map(score)$
 #'       call(unlist)$
 #'       call(mean) []) []
@@ -56,7 +54,6 @@ createCallClosure <- function(data) {
 #' p$a <- 2
 #' p["b"] <- NULL
 #' p[["a"]] <- 3
-#' }
 List <- function(data = list()) {
   call <- createCallClosure(data)
 

@@ -1,6 +1,5 @@
 #' Merge a series of named lists
 #' @param ... named lists
-#' @name list.merge
 #' @export
 #' @examples
 #' \dontrun{

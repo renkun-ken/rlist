@@ -2,14 +2,15 @@
 #' @name rlist-package
 #' @docType package
 #' @details
-#' rlist is a set of tools for working with list objects. Its goal is to make it easier
-#' to work with lists by providing a wide range of functions that operate on non-tabular
-#' data stored in them.
+#' rlist is a set of tools for working with list objects. Its goal
+#' is to make it easier to work with lists by providing a wide range
+#' of functions that operate on non-tabular data stored in them.
 #'
-#' This package supports list filtering, mapping, grouping, sorting, updating, searching,
-#' file input/output, and many other functions. It implements collection pipeline and
-#' strongly recommends functional programming style in list operations.
+#' The package provides a set of functions for data manipulation with
+#' list objects, including mapping, filtering, grouping, sorting,
+#' updating, searching, and other useful functions. Most functions
+#' are designed to be pipeline friendly so that data processing with
+#' lists can be chained.
 #'
-#' rlist Tutorial (\url{http://renkun.me/rlist-tutorial}) is a highly recommended
-#' complete guide to rlist.
+#' rlist Tutorial (\url{http://renkun.me/rlist-tutorial}) is a complete guide to rlist.
 NULL

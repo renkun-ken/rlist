@@ -1,5 +1,5 @@
 #' Get or set the names of a list by expression
-#' @param .data the list
+#' @param .data A \code{list} or \code{vector}
 #' @param expr the expression whose value will be set as the name
 #' for each list element. If missing then the names of the list will be
 #' returned. If \code{NULL} then the names of the list will be removed.

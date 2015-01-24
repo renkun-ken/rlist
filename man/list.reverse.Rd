@@ -7,15 +7,13 @@
 list.reverse(.data)
 }
 \arguments{
-\item{.data}{\code{list}}
+\item{.data}{A \code{list} or \code{vector}}
 }
 \description{
 Reverse a list
 }
 \examples{
-\dontrun{
 x <- list(a=1,b=2,c=3)
 list.reverse(x)
-}
 }
 

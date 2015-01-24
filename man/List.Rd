@@ -8,7 +8,7 @@ most list functions are defined for chainable operations.}
 List(data = list())
 }
 \arguments{
-\item{data}{\code{list}}
+\item{data}{A \code{list} or \code{vector}}
 }
 \description{
 Create a \code{List environment} that wraps given \code{data} and
@@ -24,7 +24,6 @@ To extract the data from List \code{x}, call \code{x$data} or simply
 \code{x[]}.
 }
 \examples{
-\dontrun{
 x <- list(p1 = list(type="A",score=list(c1=10,c2=8)),
        p2 = list(type="B",score=list(c1=9,c2=9)),
        p3 = list(type="B",score=list(c1=9,c2=7)))
@@ -33,7 +32,7 @@ m$filter(type=="B")$
   map(score$c1) []
 
 m$group(type)$
-  map(g -> List(g)$
+  map(g ~ List(g)$
       map(score)$
       call(unlist)$
       call(mean) []) []
@@ -46,6 +45,5 @@ p[["a"]]
 p$a <- 2
 p["b"] <- NULL
 p[["a"]] <- 3
-}
 }
 

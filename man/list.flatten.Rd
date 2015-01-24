@@ -15,9 +15,7 @@ list.flatten(x, use.names = TRUE)
 Flatten a list to only one level
 }
 \examples{
-\dontrun{
 p <- list(a=1,b=list(b1=2,b2=3),c=list(c1=list(c11="a",c12="x"),c2=3))
 list.flatten(p)
-}
 }
 

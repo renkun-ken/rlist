@@ -2,10 +2,8 @@
 #'
 #' @param x \code{The object}
 #' @param ... Additional parameters
-#' @name list.parse
 #' @export
 #' @examples
-#' \dontrun{
 #' x <- data.frame(a=1:3,type=c("A","C","B"))
 #' list.parse(x)
 #'
@@ -21,7 +19,6 @@
 #'   registered: yes
 #' "
 #' list.parse(z,type="yaml")
-#' }
 list.parse <- function(x,...)
   UseMethod("list.parse")
 

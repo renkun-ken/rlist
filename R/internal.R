@@ -68,14 +68,13 @@ list.first.fun <- function(.data, ., .i, .name) {
       .args$res <- list(state = TRUE, value = .data)
       stop(call. = FALSE)
     }
-  } else if(.args$na.stop) {
+  } else if(!.args$na.rm) {
     .args$res <- list(state = NA, value = .data)
-    stop(call. = FALSE)
   }
 }
 
-list.first.internal <- function(.data, cond, envir, na.stop) {
-  args <- args_env(res = list(state = FALSE))
+list.first.internal <- function(.data, cond, envir, na.rm) {
+  args <- args_env(res = list(state = FALSE), na.rm = na.rm)
   try(list.map.internal(.data, cond, envir, list.first.fun, args),
     silent = TRUE)
   args$res
@@ -93,23 +92,18 @@ list.order.internal <- function(.data, args, envir, na.last = TRUE) {
   cols <- lapply(args, function(arg) {
     if(is.null(arg)) stop("NULL condition", call. = FALSE)
     desc <- class(arg) == "("
-    if(is.call(arg) && arg[[1L]] == "desc") {
-      warning("desc() has been deprecated. Please use () to indicate descending order. Example: list.sort(data, (count))", call. = FALSE)
-      desc <- TRUE
-    }
     if(desc) arg <- arg[[2L]]
     col <- list.map.internal(.data, arg, envir)
-
     if(length(unique.default(vapply(col, "class", character(1L)))) > 1L) {
-      warning("Inconsistent classes of values in column [", deparse(arg), "]. The column will be coerced to the same class.", call. = FALSE)
+      warning("Inconsistent classes of values in column [", deparse(arg),
+        "]. The column will be coerced to the same class.", call. = FALSE)
     }
-
     lens <- vapply(col, "length", integer(1L))
     if(any(lens != 1L)) {
-      warning("Non-single value in column [", deparse(arg), "]. Use NA instead to order.", call. = FALSE)
+      warning("Non-single value in column [", deparse(arg),
+        "]. Use NA instead to order.", call. = FALSE)
       col[lens != 1L] <- NA
     }
-
     col <- unlist(col, recursive = FALSE, use.names = FALSE)
     if(desc) col <- -xtfrm(col)
     col

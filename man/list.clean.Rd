@@ -7,7 +7,7 @@
 list.clean(.data, fun = is.null, recursive = FALSE)
 }
 \arguments{
-\item{.data}{\code{list}}
+\item{.data}{A \code{list} or \code{vector}}
 
 \item{fun}{A logical \code{function} for clean}
 
@@ -18,9 +18,7 @@ cleaned recursively?}
 Clean a list by a function
 }
 \examples{
-\dontrun{
 x <- list(a=NULL,b=NULL,c=NULL,d=1,e=2)
 list.clean(x)
-}
 }
 

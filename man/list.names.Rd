@@ -7,7 +7,7 @@
 list.names(.data, expr)
 }
 \arguments{
-\item{.data}{the list}
+\item{.data}{A \code{list} or \code{vector}}
 
 \item{expr}{the expression whose value will be set as the name
 for each list element. If missing then the names of the list will be

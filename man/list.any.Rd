@@ -7,23 +7,30 @@
 list.any(.data, cond, na.rm = FALSE)
 }
 \arguments{
-\item{.data}{\code{list}}
+\item{.data}{A \code{list} or \code{vector}}
 
 \item{cond}{A logical lambda expression}
 
-\item{na.rm}{logical. If true the function returns \code{NA} when \code{NA}
-is encountered as \code{cond} is evaluated.}
+\item{na.rm}{logical. If true \code{NA} values are ignored in
+the evaluation.}
+}
+\value{
+\code{TRUE} if \code{cond} is evaluated to be \code{TRUE}
+for any element in \code{.data}.
 }
 \description{
 Examine if a condition is true for at least one list element
 }
 \examples{
-\dontrun{
 x <- list(p1 = list(type="A",score=list(c1=10,c2=8)),
        p2 = list(type="B",score=list(c1=9,c2=9)),
        p3 = list(type="B",score=list(c1=9,c2=7)))
 list.any(x,type=="B")
 list.any(x,mean(unlist(score))>=6)
+list.any(x, score$c2 > 8 || score$c3 > 5, na.rm = TRUE)
+list.any(x, score$c2 > 8 || score$c3 > 5, na.rm = FALSE)
 }
+\seealso{
+\code{\link{list.all}}
 }
 

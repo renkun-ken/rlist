@@ -2,7 +2,7 @@
 % Please edit documentation in R/list.update.R
 \name{list.update}
 \alias{list.update}
-\title{Update a list by modifying its elements.}
+\title{Update a list by adding or modifying its elements.}
 \usage{
 list.update(.data, ..., keep.null = FALSE)
 }
@@ -15,17 +15,15 @@ list.update(.data, ..., keep.null = FALSE)
 for \code{modifyList}}
 }
 \description{
-Update a list by modifying its elements.
+Update a list by adding or modifying its elements.
 }
 \examples{
-\dontrun{
 x <- list(p1 = list(type="A",score=list(c1=10,c2=8)),
        p2 = list(type="B",score=list(c1=9,c2=9)),
        p3 = list(type="B",score=list(c1=9,c2=7)))
-list.update(x,high=max(score$c1,score$c2),low=min(score$c1,score$c2))
-list.update(x,exams=length(score))
-list.update(x,grade=ifelse(type=="A",score$c1,score$c2))
-list.update(x,score=list(min=0,max=10))
-}
+list.update(x, high=max(score$c1,score$c2), low=min(score$c1,score$c2))
+list.update(x, exams=length(score))
+list.update(x, grade=ifelse(type=="A", score$c1, score$c2))
+list.update(x, score=list(min=0, max=10))
 }
 

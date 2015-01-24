@@ -2,7 +2,7 @@
 % Please edit documentation in R/list.cbind.R
 \name{list.cbind}
 \alias{list.cbind}
-\title{Bind all list members by column}
+\title{Bind all list elements by column}
 \usage{
 list.cbind(.data)
 }
@@ -10,13 +10,14 @@ list.cbind(.data)
 \item{.data}{\code{list}}
 }
 \description{
-Bind all list members by column
+Bind all list elements by column
 }
 \examples{
-\dontrun{
 x <- list(data.frame(i=1:5,x=rnorm(5)),
    data.frame(y=rnorm(5),z=rnorm(5)))
 list.cbind(x)
 }
+\seealso{
+\code{\link{list.cbind}}, \code{\link{list.stack}}
 }
 

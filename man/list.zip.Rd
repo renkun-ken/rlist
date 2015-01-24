@@ -19,10 +19,11 @@ argument be used as the zipped list?}
 Combine multiple lists element-wisely.
 }
 \examples{
-\dontrun{
 x <- list(1,2,3)
 y <- list("x","y","z")
 list.zip(num=x,sym=y)
 }
+\seealso{
+\code{\link{list.unzip}}
 }
 

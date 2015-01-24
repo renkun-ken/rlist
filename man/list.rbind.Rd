@@ -2,7 +2,7 @@
 % Please edit documentation in R/list.rbind.R
 \name{list.rbind}
 \alias{list.rbind}
-\title{Bind all list members by row}
+\title{Bind all list elements by row}
 \usage{
 list.rbind(.data)
 }
@@ -10,14 +10,15 @@ list.rbind(.data)
 \item{.data}{\code{list}}
 }
 \description{
-Bind all list members by row
+Bind all list elements by row
 }
 \examples{
-\dontrun{
 x <- lapply(1:3,function(i) { c(a=i,b=i^2)})
 df <- lapply(1:3,function(i) { data.frame(a=i,b=i^2,c=letters[i])})
 list.rbind(x)
 list.rbind(df)
 }
+\seealso{
+\code{\link{list.cbind}}, \code{\link{list.stack}}
 }
 

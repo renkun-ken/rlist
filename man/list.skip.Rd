@@ -7,18 +7,16 @@
 list.skip(.data, n)
 }
 \arguments{
-\item{.data}{\code{list}}
+\item{.data}{A \code{list} or \code{vector}}
 
-\item{n}{\code{integer}. The number to skip}
+\item{n}{\code{integer}. The number of elements to skip}
 }
 \description{
 Skip a number of members in a list
 }
 \examples{
-\dontrun{
 x <- list(a=1,b=2,c=3)
-list.skip(x,1)
-list.skip(x,2)
-}
+list.skip(x, 1)
+list.skip(x, 2)
 }
 

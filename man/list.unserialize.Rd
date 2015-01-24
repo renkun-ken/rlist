@@ -23,4 +23,7 @@ list.unserialize("test.dat")
 list.unserialize("test.json")
 }
 }
+\seealso{
+\code{\link{list.serialize}}
+}
 

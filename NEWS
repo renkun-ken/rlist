@@ -1,25 +1,45 @@
-Version 0.3.3
+Version 0.4
 ===
-Update documentation
-Improve function implementation
-Remove summary.list()
-Deprecate equal()
-list.load() now supports loading multiple files
-list.load() and list.save() support RDS format
-list.load() supports automatic type selection
-Add list.first() and list.last()
-Improve the implementation of list.all() and list.any()
+* New features
+  * Include a dataset `nyweather` scraped from [OpenWeatherMap](http://openweathermap.org/) (#2)
+  * `list.load` now supports text-based progress bar when `progress = TRUE` which is by default
+    enabled if over 5 files are to be loaded. (#92)
+  * New function `list.names` gives a list or vector names by mapping.
+  * New functions `list.first` and `list.last` find the first or last list element that meets a
+    given condition.
+  * New function `list.unzip` to transform a list of elements with similar structure into a
+    list of decoupled fields
+* Improvements
+  * Add error handling in several edge cases. (#18)
+  * `list.group` now supports grouping by multi-key which produces multi-level list. (#69)
+  * `list.load` now supports loading from multiple filenames given in character vector. (#74)
+  * `list.load` is now able to guess the file format even if the file type is not specified. (#76)
+  * `list.maps` now allows the usage of `..1`, `..2`, etc. to refer to unnamed arguments. (#80)
+  * `list.load` now supports merging and ungrouping as means to aggregating loaded results. (#82)
+  * `list.stack` now uses `data.table::setDF` to convert `data.table` to `data.frame` if
+    `data.table = FALSE`, which is done by reference and thus has higher performance.
+* Bug fixes
+  * `list.search` now takes `n` as the number of returned vector rather than that of the
+    elements in all returned vectors, and is now able to jump out when the result set reaches
+    given capacity. (#47, #84)
+  * Fix how `list.table` deals with `NULL` values. (#73)
+  * Fix how wrapper functions deal with default arguments. (#75)
+  * Fix the dynamic scoping issues in `list.table`. (#86)
+  * `list.all` and `list.any` behave the same as `all` and `any` respectively when the input is empty. (#87)
+  * One-sided formula does not result in error now. (#89)
+  * `list.flatten` now preserves names as specified. (#90)
+  * Fix incorrect processing for fallback in `list.findi`. (#91)
+  * Fix the implementation in `list.group` working with multi-key. (#93)
+  * Fix incorrect ordering if some entries are multi-valued vectors and others and single-
+    valued. If `list.order` and `list.sort` encounter such situation, they now report
+    error rather than silently produced unreliable results. (#94)
+  * Fix inconsistencies in `list.all`, `list.any`, `list.first` and `list.last`.
+* Deprecation
+  * `equal()` is removed and related packages are now suggested rather than imported. (#70)
+  * `summary.list()` is deprecated. (#70)
+  * No longer interprets `x -> f(x)` as a form a lambda expression. Use `x ~ f(x)` instead. (#54)
+  * `desc(x)` is no longer supported in `list.sort` and `list.order`. Use `-x` or `(x)` instead. (#66)
 
-Version 0.3-2
-===
-Fix environemnt issues (#50).
-Deprecate lambda expression of the form "x -> expr", use "x ~ expr" instead.
-Add subsetting, extracing, and assigning functionality to List environment.
-
-Version 0.3-1
-===
-Add `list.subset` that supports list subsetting by name, index, pattern matching, string distance to names.
-`List$subset` switched from `subset.list` to `list.subset`.
 
 Version 0.3
 ===

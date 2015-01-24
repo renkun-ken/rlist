@@ -1,16 +1,17 @@
 Package: rlist
 Type: Package
-Title: A set of tools for working with list objects
-Version: 0.3.6.2
+Title: A Toolbox for Non-tabular Data Manipulation
+Version: 0.4
 Author: Kun Ren <ken@renkun.me>
 Maintainer: Kun Ren <ken@renkun.me>
-Description: A set of tools for working with lists as dataset,
-    including filtering, mapping, grouping, sorting, updating,
-    searching, and many other functions. It recommends functional
-    programming and collection pipeline in list operations.
+Description: Provides a set of functions for data manipulation with
+    list objects, including mapping, filtering, grouping, sorting,
+    updating, searching, and other useful functions. Most functions
+    are designed to be pipeline friendly so that data processing with
+    lists can be chained.
 Depends:
     R (>= 2.15)
-Date: 2015-01-14
+Date: 2015-01-24
 Suggests:
     testthat,
     data.table,

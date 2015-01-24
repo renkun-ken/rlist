@@ -17,10 +17,8 @@ list.take(.data, n, force = FALSE)
 Take a number of members from a list
 }
 \examples{
-\dontrun{
 x <- list(a=1,b=2,c=3)
 list.take(x,1)
 list.take(x,10)
-}
 }
 

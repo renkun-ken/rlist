@@ -8,6 +8,5 @@ lambda <- function(expr) {
     lhs_symbols <- as.character(if(is.symbol(lhs)) lhs else lhs[-1L])
     lambda_symbols[which(nzchar(lhs_symbols))] <- lhs_symbols
   }
-
   list(expr = expr, symbols = lambda_symbols)
 }

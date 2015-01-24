@@ -1,6 +1,6 @@
 #' Append a list
 #'
-#' @param .data The original list
+#' @param .data A \code{list} or \code{vector}
 #' @param ... A \code{vector} or \code{list} to append after \code{x}
 #' @name list.append
 #' @export

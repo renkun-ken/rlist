@@ -5,7 +5,6 @@
 #' @param type The type of output which, by default, is determined
 #'    by file extension. Currently supports RData, RDS, JSON, YAML.
 #' @param ... Additional parameters passed to the output function
-#' @name list.save
 #' @export
 #' @return \code{x} will be returned.
 #' @examples

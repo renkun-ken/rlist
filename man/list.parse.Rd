@@ -29,7 +29,6 @@ list.parse(x, ...)
 Parse an object to be a list with identical structure
 }
 \examples{
-\dontrun{
 x <- data.frame(a=1:3,type=c("A","C","B"))
 list.parse(x)
 
@@ -45,6 +44,5 @@ a:
   registered: yes
 "
 list.parse(z,type="yaml")
-}
 }
 

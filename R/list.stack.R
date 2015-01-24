@@ -1,10 +1,9 @@
-#' Stack all list members to construct a \code{data.frame}
+#' Stack all list elements to tabular data
 #'
 #' @param .data \code{list} of \code{vector}s, \code{list}s,
-#'    or \code{data.frame}s.
+#'    \code{data.frame}s or \code{data.table}s.
 #' @param ... additional parameters passed to \code{data.table::rbindlist}.
-#' @param data.table \code{TRUE} to keep the data as \code{data.table}
-#' @name list.stack
+#' @param data.table \code{TRUE} to keep the result as \code{data.table}
 #' @export
 #' @examples
 #' \dontrun{

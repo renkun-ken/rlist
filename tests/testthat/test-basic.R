@@ -195,6 +195,12 @@ test_that("list.all", {
   expect_equal(list.all(x,type=="B"),FALSE)
   expect_equal(list.all(x,mean(unlist(score))>=6),TRUE)
   expect_equal(sapply(8:10,function(i) list.all(x,score$c1>=i)),c(T,T,F))
+  expect_equal(list.all(logical()), all())
+  expect_equal(list.all(logical(), na.rm = TRUE), all(na.rm = TRUE))
+  expect_equal(list.all(c(TRUE, NA, TRUE)), all(c(TRUE, NA, TRUE)))
+  expect_equal(list.all(c(TRUE, NA, FALSE)), all(c(TRUE, NA, FALSE)))
+  expect_equal(list.all(c(TRUE, NA, TRUE), na.rm = TRUE), all(c(TRUE, NA, TRUE), na.rm = TRUE))
+  expect_equal(list.all(c(TRUE, NA, FALSE), na.rm = TRUE), all(c(TRUE, NA, FALSE), na.rm = TRUE))
 })
 
 test_that("list.any", {
@@ -204,14 +210,21 @@ test_that("list.any", {
   expect_equal(list.any(x,type=="B"),TRUE)
   expect_equal(list.any(x,mean(unlist(score))>=20),FALSE)
   expect_equal(sapply(8:10,function(i) list.any(x,score$c1>=i)),c(T,T,T))
+  expect_equal(list.any(logical()), any())
+  expect_equal(list.any(logical(), na.rm = TRUE), any(na.rm = TRUE))
+  expect_equal(list.any(c(TRUE, NA, TRUE)), any(c(TRUE, NA, TRUE)))
+  expect_equal(list.any(c(TRUE, NA, FALSE)), any(c(TRUE, NA, FALSE)))
+  expect_equal(list.any(c(TRUE, NA, TRUE), na.rm = TRUE), any(c(TRUE, NA, TRUE), na.rm = TRUE))
+  expect_equal(list.any(c(TRUE, NA, FALSE), na.rm = TRUE), any(c(TRUE, NA, FALSE), na.rm = TRUE))
 })
 
 test_that("list.first", {
   x <- list(p1 = list(type="A",score=list(c1=10,c2=8)),
     p2 = list(type="B",score=list(c1=9,c2=9)),
     p3 = list(type="B",score=list(c1=9,c2=7)))
-  expect_equal(list.first(x,type=="B"),x[[2L]])
-  expect_equal(list.first(x,unlist(score$c1 <= 9)),x[[2L]])
+  expect_equal(list.first(x, type=="B"),x[[2L]])
+  expect_equal(list.first(x, unlist(score$c1 <= 9)),x[[2L]])
+  expect_identical(list.first(x, score$c1 < 9 || score$c3 >= 5), NULL)
 })
 
 test_that("list.last", {
@@ -220,6 +233,7 @@ test_that("list.last", {
     p3 = list(type="B",score=list(c1=9,c2=7)))
   expect_equal(list.last(x,type=="B"),x[[3L]])
   expect_equal(list.last(x,unlist(score$c1 <= 9)),x[[3L]])
+  expect_identical(list.last(x, score$c1 < 9 || score$c3 >= 5), NULL)
 })
 
 test_that("list.table", {
@@ -239,6 +253,18 @@ test_that("list.zip", {
   a <- list(1,2)
   b <- list("a","b")
   expect_identical(list.zip(a,b),list(list(a=1,b="a"),list(a=2,b="b")))
+})
+
+test_that("list.unzip", {
+  x <- list(p1 = list(a = 1, b = 5), p2 = list(a = 2, b = 3))
+  x1 <- list(p1 = list(a = 1, b = 5), p2 = list(a = 2, b = 3, c = 4))
+  expect_identical(list.unzip(x), list(a = c(p1 = 1, p2 = 2), b = c(p1 = 5, p2 = 3)))
+  expect_identical(list.unzip(x1, .fields = "union"),
+    list(a = c(p1 = 1, p2 = 2), b = c(p1 = 5, p2 = 3), c = c(p1 = NA, p2 = 4)))
+  expect_identical(list.unzip(x, a = "identity"),
+    list(a = list(p1 = 1, p2 = 2), b = c(p1 = 5, p2 = 3)))
+  expect_identical(list.unzip(x, a = NULL),
+    list(b = c(p1 = 5, p2 = 3)))
 })
 
 test_that("list.flatten", {

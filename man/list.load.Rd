@@ -9,7 +9,7 @@ list.load(file, type = tools::file_ext(file), ..., guess = c("json", "yaml",
   progress = length(file) >= 5L)
 }
 \arguments{
-\item{file}{The file as input}
+\item{file}{a \code{character} vector. The file as input.}
 
 \item{type}{The type of input which, by default, is determined
 by file extension. Currently supports RData, RDS, JSON, YAML.}

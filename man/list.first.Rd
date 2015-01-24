@@ -4,16 +4,24 @@
 \alias{list.first}
 \title{Find the first element that meets a condition}
 \usage{
-list.first(.data, cond, na.rm = TRUE)
+list.first(.data, cond)
 }
 \arguments{
-\item{.data}{list}
+\item{.data}{A \code{list} or \code{vector}}
 
 \item{cond}{a logical lambda expression}
-
-\item{na.rm}{\code{TRUE} to ignore \code{NA} values}
 }
 \description{
 Find the first element that meets a condition
+}
+\examples{
+x <- list(p1 = list(type="A",score=list(c1=10,c2=8)),
+       p2 = list(type="B",score=list(c1=9,c2=9)),
+       p3 = list(type="B",score=list(c1=9,c2=7)))
+list.first(x, score$c1 < 10)
+list.first(x, score$c1 < 9 || score$c3 >= 5) # NULL for all results are NA or FALSE
+}
+\seealso{
+\code{\link{list.last}}
 }
 

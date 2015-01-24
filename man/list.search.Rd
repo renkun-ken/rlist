@@ -7,7 +7,7 @@
 list.search(.data, expr, classes = "ANY", n, unlist = FALSE)
 }
 \arguments{
-\item{.data}{\code{list}}
+\item{.data}{A \code{list} or \code{vector}}
 
 \item{expr}{a lambda expression}
 
@@ -39,7 +39,6 @@ expression, that is, \code{.[cond]} or lambda expression like
 select the elements in the vector.
 }
 \examples{
-\dontrun{
 # Exact search
 
 x <- list(p1 = list(type="A",score=c(c1=9)),
@@ -49,7 +48,7 @@ x <- list(p1 = list(type="A",score=c(c1=9)),
 
 ## Search exact values
 list.search(x, identical(., "A"))
-list.search(x, identical(., c("A","B"))
+list.search(x, identical(., c("A","B")))
 list.search(x, identical(., c(9,7)))
 list.search(x, identical(., c(c1=9,c2=7)))
 
@@ -74,10 +73,12 @@ data <- list(
 
 list.search(data, grepl("^K\\\\w+n$", .), "character")
 
+\dontrun{
 library(stringdist)
 list.search(data, stringdist(., "Ken") <= 1, "character")
 list.search(data, stringdist(., "Man") <= 2, "character")
 list.search(data, stringdist(., "Man") > 2, "character")
+}
 
 data <- list(
   p1 = list(name=c("Ken", "Ren"),age=24),
@@ -86,10 +87,11 @@ data <- list(
   p4 = list(name=c("Keynes", "Bond"),age=30),
   p5 = list(name=c("Kwen", "Hu"),age=31))
 
+list.search(data, .[grepl("e", .)], "character")
+
+\dontrun{
 list.search(data, all(stringdist(., "Ken") <= 1), "character")
 list.search(data, any(stringdist(., "Ken") > 1), "character")
-
-list.search(data, .[grepl("e", .)], "character")
 }
 }
 

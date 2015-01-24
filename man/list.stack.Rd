@@ -2,20 +2,20 @@
 % Please edit documentation in R/list.stack.R
 \name{list.stack}
 \alias{list.stack}
-\title{Stack all list members to construct a \code{data.frame}}
+\title{Stack all list elements to tabular data}
 \usage{
 list.stack(.data, ..., data.table = FALSE)
 }
 \arguments{
 \item{.data}{\code{list} of \code{vector}s, \code{list}s,
-or \code{data.frame}s.}
+\code{data.frame}s or \code{data.table}s.}
 
 \item{...}{additional parameters passed to \code{data.table::rbindlist}.}
 
-\item{data.table}{\code{TRUE} to keep the data as \code{data.table}}
+\item{data.table}{\code{TRUE} to keep the result as \code{data.table}}
 }
 \description{
-Stack all list members to construct a \code{data.frame}
+Stack all list elements to tabular data
 }
 \examples{
 \dontrun{

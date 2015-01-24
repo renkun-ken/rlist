@@ -2,18 +2,18 @@
 % Please edit documentation in R/list.apply.R
 \name{list.apply}
 \alias{list.apply}
-\title{Apply a function to each list member (\code{lapply})}
+\title{Apply a function to each list element (\code{lapply})}
 \usage{
 list.apply(.data, .fun, ...)
 }
 \arguments{
-\item{.data}{\code{list}}
+\item{.data}{A \code{list} or \code{vector}}
 
 \item{.fun}{\code{function}}
 
 \item{...}{Additional parameters passed to \code{FUN}.}
 }
 \description{
-Apply a function to each list member (\code{lapply})
+Apply a function to each list element (\code{lapply})
 }
 

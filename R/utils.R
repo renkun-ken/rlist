@@ -10,10 +10,8 @@
 #' and get the symbol
 #' @export
 #' @examples
-#' \dontrun{
 #' x <- list(a=c(x=1,y=2),b=c(x=2,p=3))
 #' list.map(x, tryGet(y,0))
-#' }
 tryGet <- function(symbol, def = NULL, ..., envir = parent.frame()) {
   symbol <- substitute(symbol)
   if(is.symbol(symbol)) {
@@ -33,10 +31,8 @@ tryGet <- function(symbol, def = NULL, ..., envir = parent.frame()) {
 #' of \code{expr}
 #' @export
 #' @examples
-#' \dontrun{
 #' x <- list(a=c(x=1,y=2),b=c(x=2,p=3))
 #' list.map(x, tryEval(x+y, NA))
-#' }
 tryEval <- function(expr, def = NULL) {
   x <- try(expr,silent = TRUE)
   if(inherits(x,"try-error")) def else x

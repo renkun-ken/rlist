@@ -2,12 +2,12 @@
 % Please edit documentation in R/list.class.R
 \name{list.class}
 \alias{list.class}
-\title{Classify list members into unique cases evaluated by given expression.}
+\title{Classify list elments into unique cases evaluated by given expression.}
 \usage{
 list.class(.data, ..., sorted = TRUE)
 }
 \arguments{
-\item{.data}{\code{list}}
+\item{.data}{A \code{list} or \code{vector}}
 
 \item{...}{keys}
 
@@ -15,10 +15,9 @@ list.class(.data, ..., sorted = TRUE)
 multiple entries.}
 }
 \description{
-Classify list members into unique cases evaluated by given expression.
+Classify list elments into unique cases evaluated by given expression.
 }
 \examples{
-\dontrun{
 x <-
   list(
     p1=list(name="Ken",age=24,
@@ -32,6 +31,5 @@ x <-
       lang=list(r=1,cpp=4,python=2)))
 list.class(x,interest)
 list.class(x,names(lang))
-}
 }
 
