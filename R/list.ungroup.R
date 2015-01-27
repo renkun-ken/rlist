@@ -13,7 +13,7 @@
 #' list.ungroup(xg)
 list.ungroup <- function(.data, sort.names = FALSE) {
   names(.data) <- NULL
-  result <- unlist(.data,recursive = FALSE)
+  result <- unlist(.data, recursive = FALSE)
   result.names <- names(result)
   if (sort.names && !is.null(result.names)) {
     result[sort(result.names)]

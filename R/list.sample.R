@@ -14,8 +14,8 @@
 #' list.sample(x, 2, weight = sum(.))
 list.sample <- function(.data, size, replace = FALSE, weight = 1, prob = NULL) {
   if(is.null(prob)) {
-    ws <- unlist(list.map.internal(.data,substitute(weight), parent.frame()),
-      use.names = FALSE)
+    ws <- c(list.map.internal(.data,substitute(weight), parent.frame()),
+      recursive = TRUE)
     if(any(ws < 0)) stop("Negative weight is not allowed")
     prob <- ws / sum(ws)
   }

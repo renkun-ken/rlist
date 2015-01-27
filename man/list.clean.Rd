@@ -4,12 +4,12 @@
 \alias{list.clean}
 \title{Clean a list by a function}
 \usage{
-list.clean(.data, fun = is.null, recursive = FALSE)
+list.clean(.data, fun = "is.null", recursive = FALSE)
 }
 \arguments{
 \item{.data}{A \code{list} or \code{vector}}
 
-\item{fun}{A logical \code{function} for clean}
+\item{fun}{A logical \code{function} for cleaning}
 
 \item{recursive}{\code{logical}. Should the list be
 cleaned recursively?}

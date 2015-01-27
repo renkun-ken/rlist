@@ -16,7 +16,7 @@
 #'        p3=list(name="James",age=22,type="A"))
 #' list.join(l1, l2, name)
 #' list.join(l1, l2, .[c("name","age")])
-list.join <- function(x,y,xkey,ykey,...,keep.order=TRUE) {
+list.join <- function(x, y, xkey, ykey, ..., keep.order = TRUE) {
   if(missing(xkey) && missing(ykey))
     stop("At least one key should be specified")
 

@@ -93,6 +93,6 @@ list.search <- function(.data, expr, classes = "ANY", n, unlist = FALSE) {
     .expr = l$expr, .args = args), silent = TRUE)
   result <- list.clean(args$result, is.null, recursive = FALSE)
   names(result) <- names(vec)[args$indices]
-  if(unlist) result <- unlist(result)
+  if(unlist) result <- c(result, recursive = TRUE)
   result
 }

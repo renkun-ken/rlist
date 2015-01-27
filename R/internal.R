@@ -135,12 +135,13 @@ list.group.internal <- function(.data, keys, envir, proc = NULL,
   compare = "identical", sorted = TRUE) {
   if(is.empty(keys)) return(.data)
   values <- list.map.internal(.data, keys[[1L]], envir)
-  uvalues <- if(!missing(proc) && !is.null(proc))
-    match.fun(proc)(values) else values
+  proc <- if(!missing(proc) && !is.null(proc) && !is.function(proc))
+    match.fun(proc) else NULL
+  uvalues <- if(is.function(proc)) proc(values) else values
   uniques <- unique.default(uvalues)
   names(uniques) <- uniques
   if(sorted && all(vapply(uniques, length, integer(1L)) == 1L))
-    uniques <- sort(unlist(uniques))
+    uniques <- sort(c(uniques, recursive = TRUE))
   lapply(uniques, function(key, ...) {
     selector <- vapply(values, compare, logical(1L), key, USE.NAMES = FALSE)
     list.group.internal(.data[selector], keys[-1L], ...)
