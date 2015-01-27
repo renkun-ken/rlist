@@ -24,4 +24,7 @@ x <- list(p1 = list(type="A",score=list(c1=10,c2=8)),
 list.insert(x, 2, p2.1 = list(type="B",score=list(c1=8,c2=9)))
 }
 }
+\seealso{
+\code{\link{list.append}}, \code{\link{list.prepend}}
+}
 
