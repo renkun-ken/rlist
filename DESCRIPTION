@@ -1,7 +1,7 @@
 Package: rlist
 Type: Package
 Title: A Toolbox for Non-tabular Data Manipulation
-Version: 0.4.0.2
+Version: 0.4.0.3
 Author: Kun Ren <ken@renkun.me>
 Maintainer: Kun Ren <ken@renkun.me>
 Description: Provides a set of functions for data manipulation with
@@ -14,13 +14,13 @@ Depends:
 Date: 2015-01-27
 Suggests:
     testthat,
-    data.table,
-    XML,
     stringdist,
     pipeR
 Imports:
     yaml,
-    jsonlite
+    jsonlite,
+    XML,
+    data.table
 License: MIT + file LICENSE
 URL: http://renkun.me/rlist,
     https://github.com/renkun-ken/rlist,

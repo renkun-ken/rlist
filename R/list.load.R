@@ -34,7 +34,7 @@
 #' list.load("list.json")
 #' }
 list.load <- function(file, type = tools::file_ext(file), ...,
-  guess = c("json", "yaml", "rds", "rdata"),
+  guess = c("json", "yaml", "xml", "rds", "rdata"),
   action = c("none", "merge", "ungroup"),
   progress = length(file) >= 5L) {
   if(length(file) == 0L) return(list())
@@ -81,9 +81,16 @@ list.loadfile.json <- function(file, ...) {
     list(file, simplifyDataFrame = FALSE), list(...))
 }
 
-list.loadfile.yaml <- yaml::yaml.load_file
+list.loadfile.yaml <- function(file, ...) {
+  yaml::yaml.load_file(file, ...)
+}
 
 list.loadfile.yml <- list.loadfile.yaml
+
+list.loadfile.xml <- function(file, ...) {
+  xmlData <- XML::xmlParse(file, ...)
+  XML::xmlToList(xmlData)
+}
 
 list.loadfile.rdata <- function(file, name = "x") {
   env <- new.env(parent = parent.frame(), size = 1L)

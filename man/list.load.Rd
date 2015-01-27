@@ -5,7 +5,7 @@
 \title{Load a list from file}
 \usage{
 list.load(file, type = tools::file_ext(file), ..., guess = c("json", "yaml",
-  "rds", "rdata"), action = c("none", "merge", "ungroup"),
+  "xml", "rds", "rdata"), action = c("none", "merge", "ungroup"),
   progress = length(file) >= 5L)
 }
 \arguments{

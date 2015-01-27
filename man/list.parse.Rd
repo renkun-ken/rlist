@@ -16,7 +16,7 @@ list.parse(x, ...)
 
 \method{list.parse}{data.frame}(x, ...)
 
-\method{list.parse}{character}(x, type = NA, ...)
+\method{list.parse}{character}(x, type, ...)
 }
 \arguments{
 \item{x}{\code{The object}}
@@ -43,6 +43,6 @@ a:
   class: A
   registered: yes
 "
-list.parse(z,type="yaml")
+list.parse(z, type="yaml")
 }
 
