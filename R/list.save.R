@@ -26,13 +26,13 @@ list.save <- function(x, file, type = tools::file_ext(file), ...) {
   invisible(x)
 }
 
-list.savefile.json <- function(x,file,...) {
-  json <- jsonlite::toJSON(x,...)
-  writeLines(json,file)
+list.savefile.json <- function(x, file, ...) {
+  json <- jsonlite::toJSON(x, ...)
+  writeLines(json, file)
 }
 
-list.savefile.yaml <- function(x,file,...) {
-  yaml <- yaml::as.yaml(x,...)
+list.savefile.yaml <- function(x, file, ...) {
+  yaml <- yaml::as.yaml(x, ...)
   writeLines(yaml,file)
 }
 
