@@ -45,8 +45,9 @@ list.load <- function(file, type = tools::file_ext(file), ...,
   pb <- if(progress) txtProgressBar(min = 0L, max = length(file), style = 3L) else NULL
   res <- if(length(file) == 1L) list.loadfile(file, fun, guess, ..., pb = pb, index = 1L)
   else {
-    items <- map("list.loadfile", file, fun, index = seq_along(file),
-      MoreArgs = list(guess = guess, ..., pb = pb))
+    items <- map(list.loadfile,
+      list(file, fun, index = seq_along(file)),
+      list(guess = guess, ..., pb = pb))
     switch(match.arg(action),
       merge = do.call("list.merge", items),
       ungroup = list.ungroup(items),

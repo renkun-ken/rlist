@@ -38,9 +38,7 @@ list.parse.matrix <- function(x, ...) {
 #' @rdname list.parse
 list.parse.data.frame <- function(x,...) {
   cols <- colnames(x)
-  items <- do.call("map", c(function(...) {
-    setnames(list(...), cols)
-  },x))
+  items <- map(function(...) setnames(list(...), cols), x)
   setnames(items, rownames(x))
 }
 
@@ -65,7 +63,6 @@ list.parse.character <- function(x, type, ...) {
       stop("Unsupported type of data", call. = FALSE)
     }
   } else if(length(x) > 1L) {
-    map(list.parse.character, x, type = type, MoreArgs = list(...),
-      USE.NAMES = !is.null(names(x)))
+    map(list.parse.character, list(x, type), list(...))
   }
 }

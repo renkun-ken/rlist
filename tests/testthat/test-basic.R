@@ -281,3 +281,10 @@ test_that("list.names", {
   expect_identical(list.names(list(1,2),letters[.]),list(a=1,b=2))
   expect_identical(list.names(list(a=1,b=2),NULL),list(1,2))
 })
+
+test_that("list.parse", {
+  expect_identical(list.parse(data.table(x=c(1,2), y=c(2,3))),
+    list(`1` = list(x=1,y=2), `2` = list(x=2,y=3)))
+  expect_equal(list.parse("a: 1", "yaml"), list(a=1))
+  expect_equal(list.parse('{ "a": 1, "b": 2 }', "json"), list(a=1, b=2))
+})

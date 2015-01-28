@@ -1,7 +1,14 @@
 .expr <- NULL
 
-map <- function(f, ...) {
-  mapply(FUN = f, ..., SIMPLIFY = FALSE)
+map <- function(f, dots, more = NULL) {
+  res <- .mapply(f, dots, more)
+  if (length(dots)) {
+    if(!is.null(names1 <- names(dot1 <- dots[[1L]])))
+      names(res) <- names1
+    else if(is.character(dot1))
+      names(res) <- dot1
+  }
+  res
 }
 
 reduce <- function(f, x, init, ...) {
@@ -22,8 +29,7 @@ list.map.internal <- function(.data, expr, envir,
   environment(fun) <- args_env(.expr = l$expr,
     .args = args, .evalwith = .evalwith, parent = envir)
   formals(fun) <- setnames(formals(fun), c(".data", l$symbols))
-  args <- list(fun, .data, .data, seq_along(.data), xnames)
-  do.call("map", args)
+  map(fun, list(.data, .data, seq_along(.data), xnames))
 }
 
 list.is.fun <- function(.data, ., .i, .name) {

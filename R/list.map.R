@@ -60,13 +60,12 @@ list.maps <- function(expr, ...) {
   expr <- substitute(expr)
   envir <- parent.frame()
   lists <- list(...)
-  if(length(lists) == 0L) return(list())
+  if(is.empty(lists)) return(list())
   list1 <- lists[[1L]]
-  xnames <- getnames(list1,character(1L))
-  fun <- function(.expr, ...) eval(.expr, list(...))
-  environment(fun) <- envir
-  do.call("map", c(c(fun, lists), list(.expr = list(expr),
-    .i = seq_along(list1), .name = xnames) ))
+  xnames <- getnames(list1, character(1L))
+  fun <- with(envir, function(..., .expr) eval(.expr, list(...)))
+  args <- c(lists, list(.i = seq_along(list1), .name = xnames, .expr = list(expr)))
+  map(fun, args)
 }
 
 #' Iterate a list by evaluating an expression on

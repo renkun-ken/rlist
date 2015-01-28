@@ -45,5 +45,5 @@ list.join <- function(x, y, xkey, ykey, ..., keep.order = TRUE) {
   ykeys <- cbind(.yi=seq_along(ykeys.list),ykeys.df)
   df <- merge.data.frame(xkeys,ykeys,by=colnames(xkeys)[-1L],...)
   if(keep.order) df <- df[order(df$.xi),]
-  map(modifyList,x[df$.xi],y[df$.yi])
+  map(modifyList, list(x[df$.xi],y[df$.yi]))
 }
