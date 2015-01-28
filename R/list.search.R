@@ -91,7 +91,7 @@ list.search <- function(.data, expr, classes = "ANY", n, unlist = FALSE) {
     c(".data",".expr",".args", ".n", l$symbols))
   try(rapply(.data, fun, classes = classes,
     .expr = l$expr, .args = args), silent = TRUE)
-  result <- list.clean(args$result, is.null, recursive = FALSE)
+  result <- list.clean(args$result, recursive = FALSE)
   names(result) <- names(vec)[args$indices]
   if(unlist) result <- c(result, recursive = TRUE)
   result
