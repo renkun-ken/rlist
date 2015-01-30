@@ -18,7 +18,10 @@ test_that("list.group", {
       "2" = structure(list("0" = c(2L, 8L), "1" = 5L), .Names = c("0",  "1"))),
       .Names = c("0", "1", "2")))
 
-  lapply(2:4,function(i) list.group(x,sum(unlist(score))<=i))
+  expect_identical(list.group(c(3,1,3,3,2,2), letters[.], sorted = FALSE), list(c=c(3,3,3), a=1,b=c(2,2)))
+  expect_identical(list.group(c(3,1,3,3,2,2), letters[.], sorted = TRUE), list(a=1,b=c(2,2),c=c(3,3,3)))
+
+  expect_output(lapply(2:4,function(i) list.group(x,sum(unlist(score))<=i)), "")
 })
 
 test_that("list.ungroup",{

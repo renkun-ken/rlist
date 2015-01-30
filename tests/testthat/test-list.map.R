@@ -24,12 +24,20 @@ test_that("list.mapv", {
 
   expect_equal(list.mapv(x,score$c1),c(p1=10,p2=9,p3=9))
   expect_equal(list.mapv(x,x ~ sum(unlist(x$score))),c(p1=18,p2=18,p3=16))
+  expect_identical(list.mapv(x, score$c1, "integer"), c(p1=10L, p2=9L, p3=9L))
+  expect_identical(list.mapv(x, score$c1, "integer", use.names = FALSE), c(10L, 9L, 9L))
 
   # list of vectors
   x <- list(a=c(x=1,y=2),b=c(x=3,y=4))
   expect_equal(list.mapv(x,sum(.)),c(a=3,b=7))
 
   lapply(1:3,function(i) list.mapv(x,sum(.)+i))
+})
+
+test_that("list.iter", {
+  l1 <- list(1,2,3)
+  expect_output(list.iter(l1, cat(.)), "123")
+  expect_equal(list.iter(l1, {}), l1)
 })
 
 test_that("list.maps", {

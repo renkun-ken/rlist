@@ -141,8 +141,8 @@ summary.List <- function(object,...) {
 }
 
 #' @export
-subset.List <- function(x,...) {
-  subset(x$data,...)
+subset.List <- function(x, ...) {
+  subset(x$data, ...)
 }
 
 ndots <- function(dots) {

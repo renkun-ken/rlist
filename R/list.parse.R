@@ -63,6 +63,6 @@ list.parse.character <- function(x, type, ...) {
       stop("Unsupported type of data", call. = FALSE)
     }
   } else if(length(x) > 1L) {
-    map(list.parse.character, list(x, type), list(...))
+    map(list.parse.character, list(x, type), list(...), use.names = FALSE)
   }
 }

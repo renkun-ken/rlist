@@ -31,6 +31,7 @@ test_that("list.prepend", {
 })
 
 test_that("list.insert", {
+  expect_identical(list.insert(c(1,2,3), 2, 0), c(1,0,2,3))
   x <- list(a=1,b=2,c=3)
   expect_identical(list.insert(x,2,q=0),list(a=1,q=0,b=2,c=3))
   expect_identical(lapply(1:2,function(i) list.insert(x,2,q=i)),
@@ -103,6 +104,16 @@ test_that("list.merge", {
 
 })
 
+test_that("list.do", {
+  expect_equal(list.do(list(1,2,3), sum), sum(1:3))
+  expect_equal(list.do(list(1,2,3), "sum"), sum(1:3))
+})
+
+test_that("list.apply", {
+  expect_identical(list.apply(c(1,2,3), "+", 1), list(2,3,4))
+  expect_identical(list.apply(c(1,2,3), `+`, 1), list(2,3,4))
+})
+
 test_that("list.rbind", {
   x <- lapply(1:10,function(i) c(a=i,b=i^2))
   expect_identical(list.rbind(x),do.call(rbind,x))
@@ -157,9 +168,15 @@ test_that("list.takeWhile, list.skipWhile", {
 
 test_that("list.remove", {
   x <- list(a=1,b=2)
+  expect_identical(list.remove(x,c(FALSE,TRUE)),x[1])
   expect_identical(list.remove(x,1),x[2])
   expect_identical(list.remove(x,"b"),x["a"])
   expect_identical(list.remove(x,c("a","b")),x[0])
+})
+
+test_that("list.exclude", {
+  x <- list(a=1,b=2)
+  expect_identical(list.exclude(x, . >= 2), x[1])
 })
 
 test_that("list.sample", {
@@ -225,6 +242,7 @@ test_that("list.first", {
   expect_equal(list.first(x, type=="B"),x[[2L]])
   expect_equal(list.first(x, unlist(score$c1 <= 9)),x[[2L]])
   expect_identical(list.first(x, score$c1 < 9 || score$c3 >= 5), NULL)
+  expect_equal(list.first(c(NA, NA, 1), . <= 1),1)
 })
 
 test_that("list.last", {
@@ -283,8 +301,35 @@ test_that("list.names", {
 })
 
 test_that("list.parse", {
-  expect_identical(list.parse(data.frame(x=c(1,2), y=c(2,3))),
+  expect_identical(list.parse(c(a=1)), list(a=1))
+  expect_identical({
+    mat <- matrix(c(1,2,3,4,5,6), nrow = 3)
+    rownames(mat) <- c("a","b","c")
+    colnames(mat) <- paste0("V", 1:2)
+    list.parse(mat)
+  }, list(a=list(V1=1,V2=4), b=list(V1=2,V2=5), c=list(V1=3,V2=6)))
+  expect_identical(list.parse("hello"), list("hello"))
+  expect_identical(
+    list.parse(data.frame(x=c(1,2), y=c(2,3))),
     list(`1` = list(x=1,y=2), `2` = list(x=2,y=3)))
   expect_equal(list.parse("a: 1", "yaml"), list(a=1))
   expect_equal(list.parse('{ "a": 1, "b": 2 }', "json"), list(a=1, b=2))
+  expect_equal(list.parse("<root><a>1</a><b>2</b></root>", "xml"), list(a="1",b="2"))
+  expect_error(list.parse("a:1,b:2", "js"), "Unsupported type of data")
+  expect_equal(list.parse(c("a: 1", '{ "a": 1, "b": 2 }'), c("yaml", "json")), list(list(a=1),list(a=1,b=2)))
+})
+
+test_that("list.clean", {
+  expect_identical(list.clean(list(1,2,NULL)), list(1,2))
+  expect_identical(list.clean(list(1,2,NA), is.na), list(1,2))
+  expect_identical(
+    list.clean(list(1,2,numeric(),list(1,2,NULL)),
+      function(x) length(x) == 0L, recursive = TRUE),
+    list(1,2,list(1,2)))
+  expect_identical(list.clean(list(1,2,list(1,2,NULL),NULL), recursive = TRUE), list(1,2,list(1,2)))
+})
+
+test_that("list.which", {
+  x <- c(1,2,3)
+  expect_identical(list.which(x, . >= 2), which(x >= 2))
 })

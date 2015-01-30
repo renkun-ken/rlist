@@ -1,8 +1,8 @@
 .expr <- NULL
 
-map <- function(f, dots, more = NULL) {
+map <- function(f, dots, more = NULL, use.names = TRUE) {
   res <- .mapply(f, dots, more)
-  if (length(dots)) {
+  if (use.names && length(dots)) {
     if(!is.null(names1 <- names(dot1 <- dots[[1L]])))
       names(res) <- names1
     else if(is.character(dot1))

@@ -11,4 +11,6 @@ test_that("list.join",{
     p3=list(name="Jenny",age=20,type="A"))
   expect_identical(list.join(l1,l2,name),l3)
   expect_identical(list.join(l1,l2,.[c("name","age")]),l3)
+  expect_identical(list.join(l1,l2,.[c("name","age")], .[c("name","age")]), l3)
+  expect_error(list.join(l1,l2,name,age))
 })

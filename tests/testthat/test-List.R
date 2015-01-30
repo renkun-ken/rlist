@@ -45,7 +45,8 @@ test_that("List", {
     list.table(1:200, . %% 2, . %% 3))
   expect_identical(List(x)$update(mean=mean(unlist(score)))[],
     list.update(x,mean=mean(unlist(score))))
-
+  expect_equal(List(c(1,2,3)) == c(1,2,3), c(TRUE, TRUE, TRUE))
+  expect_equal(subset(List(1:10), c(TRUE, FALSE)), subset(1:10, c(TRUE, FALSE)))
 })
 
 test_that("subsetting", {
@@ -81,4 +82,13 @@ test_that("assignment", {
     z[["a"]] <- 2
     z$data
   },c(a=2,b=2))
+})
+
+test_that("printing", {
+  expect_output(print(List(list(1,2,3))),
+    "\\$data : list.+")
+  expect_output(str(List(list(1,2,3))),
+    "\\$data : List of 3.+")
+  expect_output(summary(List(rnorm(100))),
+    "Min.+")
 })

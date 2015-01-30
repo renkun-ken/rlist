@@ -14,14 +14,12 @@
 #' list.map(x, tryGet(y,0))
 tryGet <- function(symbol, def = NULL, ..., envir = parent.frame()) {
   symbol <- substitute(symbol)
-  if(is.symbol(symbol)) {
-    symbol <- as.character(symbol)
+  if(is.symbol(symbol)) symbol <- as.character(symbol)
+  if(is.character(symbol)) {
     if(exists(symbol, inherits = FALSE, ..., envir = envir))
       get(symbol, inherits = FALSE, ..., envir = envir)
     else def
-  } else {
-    stop("x must be a symbol name")
-  }
+  } else stop("symbol must be a name or character", call. = FALSE)
 }
 
 #' Try to evaluate an expression and return a default value if
@@ -34,6 +32,6 @@ tryGet <- function(symbol, def = NULL, ..., envir = parent.frame()) {
 #' x <- list(a=c(x=1,y=2),b=c(x=2,p=3))
 #' list.map(x, tryEval(x+y, NA))
 tryEval <- function(expr, def = NULL) {
-  x <- try(expr,silent = TRUE)
-  if(inherits(x,"try-error")) def else x
+  x <- try(expr, silent = TRUE)
+  if(inherits(x, "try-error")) def else x
 }

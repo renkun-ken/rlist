@@ -59,9 +59,6 @@ getnames <- function(x, def = NULL)
 # is called empty.
 # @param x the object
 is.empty <- function(x) length(x) == 0L
-is.TF <- function(x) is.logical(x) && length(x) == 1L && !is.na(x)
-is.TRUE <- function(x) is.TF(x) && x
-is.FALSE <- function(x) is.TF(x) && !x
 
 # Make names for unnamed symbol arguments
 # @details
@@ -83,12 +80,9 @@ set_argnames <- function(args, data = args) {
 try_list <- function(exprs, finally, envir = NULL, enclos = parent.frame()) {
   for(expr in exprs) {
     result <- try(eval(expr, envir, enclos), silent = TRUE)
-    if(!inherits(result, "try-error"))
-      return(result)
+    if(!inherits(result, "try-error")) return(result)
   }
-
-  if(missing(finally))
-    stop("No valid results produced", call. = FALSE)
+  if(missing(finally)) stop("No valid results produced", call. = FALSE)
   eval(substitute(finally), envir, enclos)
 }
 
