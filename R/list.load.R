@@ -34,7 +34,7 @@
 #' list.load("list.json")
 #' }
 list.load <- function(file, type = tools::file_ext(file), ...,
-  guess = c("json", "yaml", "xml", "rds", "rdata"),
+  guess = c("json", "yaml", "rds", "rdata", "xml"),
   action = c("none", "merge", "ungroup"),
   progress = length(file) >= 5L) {
   if(length(file) == 0L) return(list())
