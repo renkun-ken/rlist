@@ -75,6 +75,7 @@ list.first.fun <- function(.data, ., .i, .name) {
       stop(call. = FALSE)
     }
   } else if(!.args$na.rm) {
+    browser()
     .args$res <- list(state = NA, value = .data)
   }
 }

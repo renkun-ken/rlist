@@ -221,8 +221,10 @@ test_that("list.all", {
   expect_equal(list.all(logical(), na.rm = TRUE), all(na.rm = TRUE))
   expect_equal(list.all(c(TRUE, NA, TRUE)), all(c(TRUE, NA, TRUE)))
   expect_equal(list.all(c(TRUE, NA, FALSE)), all(c(TRUE, NA, FALSE)))
-  expect_equal(list.all(c(TRUE, NA, TRUE), na.rm = TRUE), all(c(TRUE, NA, TRUE), na.rm = TRUE))
-  expect_equal(list.all(c(TRUE, NA, FALSE), na.rm = TRUE), all(c(TRUE, NA, FALSE), na.rm = TRUE))
+  expect_equal(list.all(c(TRUE, NA, TRUE), na.rm = TRUE),
+    all(c(TRUE, NA, TRUE), na.rm = TRUE))
+  expect_equal(list.all(c(TRUE, NA, FALSE), na.rm = TRUE),
+    all(c(TRUE, NA, FALSE), na.rm = TRUE))
 })
 
 test_that("list.any", {
