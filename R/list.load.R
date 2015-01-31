@@ -63,7 +63,8 @@ list.loadfile <- function(file, fun, guess, ..., pb = NULL, index = NULL) {
     if(!missing(guess) && length(guess) > 0L) {
       exprs <- lapply(paste("list.loadfile", guess, sep = "."),
         function(f) call(f, file))
-      res <- try_list(exprs, stop("Unrecognized type of file: ", file, call. = FALSE))
+      res <- try_list(exprs,
+        stop("Unrecognized type of file: ", file, call. = FALSE))
       if(!is.null(pb)) pb$up(index)
     } else
       stop("Unrecognized type of file: ", file, call. = FALSE)

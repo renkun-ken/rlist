@@ -1,7 +1,9 @@
 context("basic functions")
 
 test_that("list.append", {
-
+  # atomic vector
+  expect_identical(list.append(c(1,2,3), 4, 5), c(1,2,3,4,5))
+  expect_identical(list.append(c(a=1,b=2), c=3), c(a=1,b=2,c=3))
   # simple list
   x <- list(a=1,b=2)
   expect_identical(list.append(x,c=3),c(x,c=3))
@@ -16,6 +18,9 @@ test_that("list.append", {
 })
 
 test_that("list.prepend", {
+  # atomic vector
+  expect_identical(list.prepend(c(1,2,3), 4, 5), c(4,5,1,2,3))
+  expect_identical(list.prepend(c(a=1,b=2), c=3), c(c=3,a=1,b=2))
 
   # simple list
   x <- list(a=1,b=2)

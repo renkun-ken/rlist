@@ -25,7 +25,10 @@ test_that("list.group", {
 })
 
 test_that("list.ungroup",{
-  x <- list(a=1,b=2,c=3,d=2,e=3,f=1)
   xg <- list(`1`=list(a=1,f=1),`2`=list(b=2,d=2),`3`=list(c=3,e=3))
-  expect_identical(list.ungroup(xg,sort.names = TRUE),x)
+  xg2 <- list(a=list(a=1,f=1),c=list(b=2,d=2),b=list(c=3,e=3))
+  expect_identical(list.ungroup(xg, sort.names = TRUE),
+    list(a=1,b=2,c=3,d=2,e=3,f=1))
+  expect_identical(list.ungroup(xg2, sort.names = FALSE),
+    list(a=1,f=1,b=2,d=2,c=3,e=3))
 })
