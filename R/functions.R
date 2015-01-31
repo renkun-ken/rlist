@@ -105,8 +105,3 @@ args_env <- function(..., parent = parent.frame()) {
 args_list <- function(...) {
   list(...)
 }
-
-require_package <- function(package) {
-  if (!requireNamespace(package, quietly = TRUE))
-    stop(package, " is needed for this function to work. Please install it.", call. = FALSE)
-}

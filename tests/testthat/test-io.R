@@ -47,6 +47,12 @@ test_that("list.save, list.load", {
   expect_equal(list.load(f), x)
   file.remove(f)
 
+  f <- tempfile()
+  expect_error(list.save(x, file = f, type = "unsupported_file_type"))
+
+  f <- tempfile()
+  expect_error(list.load(f, "unsupported_file_type"))
+
   n <- 3
   fs <- vapply(seq_len(n), function(i) tempfile(fileext = ".json"), character(1L))
   ds <- lapply(seq_len(n), function(i) list(a=i, b=i+1L))
