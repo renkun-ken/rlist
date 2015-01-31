@@ -51,8 +51,9 @@ list.unserialize <- function(file, type = tolower(tools::file_ext(file)), ...) {
     fun(file, ...)
   } else {
     conn <- file(file, open="r")
-    unserialize(conn)
+    res <- unserialize(conn)
     close(conn)
+    res
   }
 }
 
