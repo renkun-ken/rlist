@@ -107,7 +107,7 @@ List <- function(data = list()) {
   takeWhile <- createListClosure(list.takeWhile, data)
   ungroup <- createListClosure(list.ungroup, data)
   unserialize <- createListClosure(list.unserialize, data)
-  upzip <- createListclosure(list.unzip, data)
+  upzip <- createListClosure(list.unzip, data)
   update <- createListClosure(list.update, data)
   which <- createListClosure(list.which, data)
   zip <- createListClosure(list.zip, data)
