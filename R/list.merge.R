@@ -24,7 +24,6 @@
 #' l2 <- list(a=2,b=list(z=2))
 #' l3 <- list(a=2,b=list(x=3))
 #' list.merge(l1,l2,l3)
-#' list.merge(list = list(l1, l2, l3))
 list.merge <- function(...) {
   lists <- list(...)
   if(any(vapply(lists, function(x) is.null(names(x)), logical(1L))))
