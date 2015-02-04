@@ -19,8 +19,8 @@ Unserialize a file
 }
 \examples{
 \dontrun{
-list.unserialize("test.dat")
-list.unserialize("test.json")
+list.unserialize('test.dat')
+list.unserialize('test.json')
 }
 }
 \seealso{

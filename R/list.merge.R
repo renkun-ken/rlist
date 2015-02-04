@@ -26,7 +26,7 @@
 #' list.merge(l1,l2,l3)
 list.merge <- function(...) {
   lists <- list(...)
-  if(any(vapply(lists, function(x) is.null(names(x)), logical(1L))))
+  if (any(vapply(lists, function(x) is.null(names(x)), logical(1L)))) 
     stop("All arguments must be named list", call. = FALSE)
   reduce(modifyList, lists, list())
-}
+} 

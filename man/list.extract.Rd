@@ -12,6 +12,6 @@ Extract a member from a list
 \examples{
 x <- list(a=1, b=2, c=3)
 list.extract(x, 1)
-list.extract(x, "a")
+list.extract(x, 'a')
 }
 

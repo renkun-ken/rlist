@@ -10,4 +10,4 @@
 #' @format
 #' See \url{http://openweathermap.org/weather-data#current}
 #' @source \url{http://api.openweathermap.org/data/2.5/history/city?q=New York}
-"nyweather"
+"nyweather" 

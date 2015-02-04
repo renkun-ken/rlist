@@ -13,4 +13,4 @@
 #' lists can be chained.
 #'
 #' rlist Tutorial (\url{http://renkun.me/rlist-tutorial}) is a complete guide to rlist.
-NULL
+NULL 

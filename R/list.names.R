@@ -8,11 +8,13 @@
 #' list.names(c(1,2,3))
 #' list.names(c(a=1,b=2,c=3))
 #' list.names(c(1,2,3),letters[.])
-#' list.names(list(list(name="A",value=10),list(name="B",value=20)), name)
+#' list.names(list(list(name='A',value=10),list(name='B',value=20)), name)
 list.names <- function(.data, expr) {
-  if(missing(expr)) return(names(.data))
+  if (missing(expr)) 
+    return(names(.data))
   expr <- substitute(expr)
-  if(is.null(expr)) return(setnames(.data, NULL))
+  if (is.null(expr)) 
+    return(setnames(.data, NULL))
   values <- list.map.internal(.data, expr, parent.frame())
   setnames(.data, values)
-}
+} 

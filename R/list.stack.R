@@ -21,6 +21,7 @@
 #' }
 list.stack <- function(.data, ..., data.table = FALSE) {
   dt <- data.table::rbindlist(.data, ...)
-  if(!data.table) data.table::setDF(dt)
+  if (!data.table) 
+    data.table::setDF(dt)
   dt
-}
+} 

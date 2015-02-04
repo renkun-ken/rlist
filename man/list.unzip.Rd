@@ -10,8 +10,8 @@ list.unzip(.data, .fields = c("intersect", "union"), ...,
 \arguments{
 \item{.data}{A \code{list} of elements containing common fields}
 
-\item{.fields}{\code{"intersect"} to select only common fields for
-all \code{.data}'s elements. \code{"union"} to select any field that
+\item{.fields}{\code{'intersect'} to select only common fields for
+all \code{.data}'s elements. \code{'union'} to select any field that
 is defined in any elements in \code{.data}.}
 
 \item{...}{The custom aggregate functions. Can be a named list of functions or
@@ -23,7 +23,7 @@ avoid aggregating results. Use \code{NULL} to remove certain field.}
 Can be a function, character vector or a list of functions. Use \code{identity} to avoid
 aggregating results.}
 
-\item{.missing}{When \code{.fields} is \code{"union"} and some elements do not contain
+\item{.missing}{When \code{.fields} is \code{'union'} and some elements do not contain
 certain fields, then \code{NULL} will be replaced by the value of \code{.missing},
 by default, \code{NA}. This often makes the result more friendly.}
 }
@@ -33,19 +33,19 @@ Transform a list of elements with similar structure into a list of decoupled fie
 \examples{
 list.unzip(list(p1 = list(a = 1, b = 2), p2 = list(a = 2, b = 3)))
 list.unzip(list(p1 = list(a = 1, b = 2), p2 = list(a = 2, b = 3, c = 4)))
-list.unzip(list(p1 = list(a = 1, b = 2), p2 = list(a = 2, b = 3, c = 4)), "union")
-list.unzip(list(p1 = list(a = 1, b = 2), p2 = list(a = 2, b = 3, c = 4)), "union", a = "identity")
-list.unzip(list(p1 = list(a = 1, b = 2), p2 = list(a = 2, b = 3, c = 4)), "intersect", a = NULL)
+list.unzip(list(p1 = list(a = 1, b = 2), p2 = list(a = 2, b = 3, c = 4)), 'union')
+list.unzip(list(p1 = list(a = 1, b = 2), p2 = list(a = 2, b = 3, c = 4)), 'union', a = 'identity')
+list.unzip(list(p1 = list(a = 1, b = 2), p2 = list(a = 2, b = 3, c = 4)), 'intersect', a = NULL)
 
 x <-
  list(april = list(n_days = 30,
-   holidays = list(list("2015-04-01", "april fools"),
- list("2015-04-05", "easter")),
-   month_info = c(number = "4", season = "spring")),
+   holidays = list(list('2015-04-01', 'april fools'),
+ list('2015-04-05', 'easter')),
+   month_info = c(number = '4', season = 'spring')),
      july = list(n_days = 31,
- holidays = list(list("2014-07-04", "july 4th")),
-   month_info = c(number = "7", season = "summer")))
-list.unzip(x, holidays = c("list.ungroup", "unname", "simplify2array"))
+ holidays = list(list('2014-07-04', 'july 4th')),
+   month_info = c(number = '7', season = 'summer')))
+list.unzip(x, holidays = c('list.ungroup', 'unname', 'simplify2array'))
 }
 \seealso{
 \code{\link{list.zip}}

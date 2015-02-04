@@ -5,10 +5,10 @@
 #' @param n The number of items to find
 #' @export
 #' @examples
-#' x <- list(p1 = list(type="A",score=list(c1=10,c2=8)),
-#'        p2 = list(type="B",score=list(c1=9,c2=9)),
-#'        p3 = list(type="B",score=list(c1=9,c2=7)))
-#' list.find(x, type=="B", 1)
+#' x <- list(p1 = list(type='A',score=list(c1=10,c2=8)),
+#'        p2 = list(type='B',score=list(c1=9,c2=9)),
+#'        p3 = list(type='B',score=list(c1=9,c2=7)))
+#' list.find(x, type=='B', 1)
 #' list.find(x, min(score$c1,score$c2) >= 9)
 list.find <- function(.data, cond, n = 1L) {
   .data[list.findi.internal(.data, substitute(cond), parent.frame(), n)]
@@ -22,12 +22,12 @@ list.find <- function(.data, cond, n = 1L) {
 #' @param n The maximal number of members to find out
 #' @export
 #' @examples
-#' x <- list(p1 = list(type="A",score=list(c1=10,c2=8)),
-#'        p2 = list(type="B",score=list(c1=9,c2=9)),
-#'        p3 = list(type="B",score=list(c1=9,c2=7)))
-#' list.findi(x, type=="B")
+#' x <- list(p1 = list(type='A',score=list(c1=10,c2=8)),
+#'        p2 = list(type='B',score=list(c1=9,c2=9)),
+#'        p3 = list(type='B',score=list(c1=9,c2=7)))
+#' list.findi(x, type=='B')
 #' list.findi(x, min(score$c1,score$c2) >= 8)
 #' list.findi(x, min(score$c1,score$c2) <= 8, n = 2)
 list.findi <- function(.data, cond, n = 1L) {
   list.findi.internal(.data, substitute(cond), parent.frame(), n)
-}
+} 

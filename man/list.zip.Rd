@@ -20,7 +20,7 @@ Combine multiple lists element-wisely.
 }
 \examples{
 x <- list(1,2,3)
-y <- list("x","y","z")
+y <- list('x','y','z')
 list.zip(num=x,sym=y)
 }
 \seealso{

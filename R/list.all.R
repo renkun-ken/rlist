@@ -9,18 +9,19 @@
 #' for all elements in \code{.data}.
 #' @export
 #' @examples
-#' x <- list(p1 = list(type="A",score=list(c1=10,c2=8)),
-#'        p2 = list(type="B",score=list(c1=9,c2=9)),
-#'        p3 = list(type="B",score=list(c1=9,c2=7)))
-#' list.all(x, type=="B")
+#' x <- list(p1 = list(type='A',score=list(c1=10,c2=8)),
+#'        p2 = list(type='B',score=list(c1=9,c2=9)),
+#'        p3 = list(type='B',score=list(c1=9,c2=7)))
+#' list.all(x, type=='B')
 #' list.all(x, mean(unlist(score))>=6)
 #' list.all(x, score$c2 > 8 || score$c3 > 5, na.rm = TRUE)
 #' list.all(x, score$c2 > 8 || score$c3 > 5, na.rm = FALSE)
 list.all <- function(.data, cond, na.rm = FALSE) {
-  if(missing(.data)) return(all(na.rm = na.rm))
-  if(is.empty(.data) || missing(cond)) return(all(.data, na.rm = na.rm))
-  res <- list.first.internal(.data, substitute(!cond),
-    parent.frame(), na.rm = na.rm)
+  if (missing(.data)) 
+    return(all(na.rm = na.rm))
+  if (is.empty(.data) || missing(cond)) 
+    return(all(.data, na.rm = na.rm))
+  res <- list.first.internal(.data, substitute(!cond), parent.frame(), na.rm = na.rm)
   !res$state
 }
 
@@ -35,17 +36,18 @@ list.all <- function(.data, cond, na.rm = FALSE) {
 #' for any element in \code{.data}.
 #' @export
 #' @examples
-#' x <- list(p1 = list(type="A",score=list(c1=10,c2=8)),
-#'        p2 = list(type="B",score=list(c1=9,c2=9)),
-#'        p3 = list(type="B",score=list(c1=9,c2=7)))
-#' list.any(x,type=="B")
+#' x <- list(p1 = list(type='A',score=list(c1=10,c2=8)),
+#'        p2 = list(type='B',score=list(c1=9,c2=9)),
+#'        p3 = list(type='B',score=list(c1=9,c2=7)))
+#' list.any(x,type=='B')
 #' list.any(x,mean(unlist(score))>=6)
 #' list.any(x, score$c2 > 8 || score$c3 > 5, na.rm = TRUE)
 #' list.any(x, score$c2 > 8 || score$c3 > 5, na.rm = FALSE)
 list.any <- function(.data, cond, na.rm = FALSE) {
-  if(missing(.data)) return(any(na.rm = na.rm))
-  if(is.empty(.data) || missing(cond)) return(any(.data, na.rm = na.rm))
-  res <- list.first.internal(.data, substitute(cond),
-    parent.frame(), na.rm = na.rm)
+  if (missing(.data)) 
+    return(any(na.rm = na.rm))
+  if (is.empty(.data) || missing(cond)) 
+    return(any(.data, na.rm = na.rm))
+  res <- list.first.internal(.data, substitute(cond), parent.frame(), na.rm = na.rm)
   res$state
-}
+} 

@@ -10,24 +10,24 @@
 #' @examples
 #' \dontrun{
 #' x <- list(a=1,b=2,c=3)
-#' list.serialize(x,"test.dat")
-#' list.serialize(x,"test.json")
+#' list.serialize(x,'test.dat')
+#' list.serialize(x,'test.json')
 #' }
 list.serialize <- function(x, file, type = tools::file_ext(file), ...) {
   fun <- paste("list.serialize", tolower(type), sep = ".")
-  if(exists(fun, mode = "function")) {
+  if (exists(fun, mode = "function")) {
     fun <- get(fun, mode = "function")
     fun(x, file, ...)
   } else {
-    conn <- file(file, open="w")
-    serialize(x,conn)
+    conn <- file(file, open = "w")
+    serialize(x, conn)
     close(conn)
   }
   invisible(x)
 }
 
 list.serialize.json <- function(x, file, ...) {
-  json <- jsonlite::serializeJSON(x,...)
+  json <- jsonlite::serializeJSON(x, ...)
   writeLines(json, file)
 }
 
@@ -41,16 +41,16 @@ list.serialize.json <- function(x, file, ...) {
 #' @export
 #' @examples
 #' \dontrun{
-#' list.unserialize("test.dat")
-#' list.unserialize("test.json")
+#' list.unserialize('test.dat')
+#' list.unserialize('test.json')
 #' }
 list.unserialize <- function(file, type = tolower(tools::file_ext(file)), ...) {
   fun <- paste("list.unserialize", type, sep = ".")
-  if(exists(fun, mode = "function")) {
+  if (exists(fun, mode = "function")) {
     fun <- get(fun, mode = "function")
     fun(file, ...)
   } else {
-    conn <- file(file, open="r")
+    conn <- file(file, open = "r")
     res <- unserialize(conn)
     close(conn)
     res
@@ -61,4 +61,4 @@ list.unserialize.json <- function(file, ...) {
   info <- file.info(file)
   txt <- readChar(file, info$size)
   jsonlite::unserializeJSON(txt, ...)
-}
+} 

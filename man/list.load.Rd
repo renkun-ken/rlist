@@ -24,15 +24,15 @@ string.}
 supplied. This parameter will be ignored if only a single file
 is supplied.
 
-\code{"none"} (default) to leave the resulted list as
+\code{'none'} (default) to leave the resulted list as
 a list of elements corresponding to elements in \code{file}
 vector.
 
-\code{"merge"} to merge the list elements iteratively,
+\code{'merge'} to merge the list elements iteratively,
 the later lists always modify the former ones through
 \code{modifyList}.
 
-\code{"ungroup"} to ungroup the list elements, especially when
+\code{'ungroup'} to ungroup the list elements, especially when
 each file is a page of elements with identical structure.}
 
 \item{progress}{\code{TRUE} to show a text progress bar in console
@@ -45,10 +45,10 @@ Load a list from file
 }
 \examples{
 \dontrun{
-list.load("list.rds")
-list.load("list.rdata")
-list.load("list.yaml")
-list.load("list.json")
+list.load('list.rds')
+list.load('list.rdata')
+list.load('list.yaml')
+list.load('list.json')
 }
 }
 

@@ -7,4 +7,4 @@
 #' list.reverse(x)
 list.reverse <- function(.data) {
   .data[rev.default(seq_along(.data))]
-}
+} 

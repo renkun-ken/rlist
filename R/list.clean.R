@@ -9,11 +9,11 @@
 #' x <- list(a=NULL,b=NULL,c=NULL,d=1,e=2)
 #' list.clean(x)
 list.clean <- function(.data, fun = "is.null", recursive = FALSE) {
-  if(recursive) {
+  if (recursive) {
     .data <- lapply(.data, function(.item) {
-      if(is.list(.item)) list.clean(.item, fun, recursive = TRUE)
-      else .item
+      if (is.list(.item)) 
+        list.clean(.item, fun, recursive = TRUE) else .item
     })
   }
   setmembers(.data, vapply(.data, fun, logical(1L)), NULL)
-}
+} 

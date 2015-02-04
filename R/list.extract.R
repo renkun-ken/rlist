@@ -4,5 +4,5 @@
 #' @examples
 #' x <- list(a=1, b=2, c=3)
 #' list.extract(x, 1)
-#' list.extract(x, "a")
-list.extract <- `[[`
+#' list.extract(x, 'a')
+list.extract <- `[[` 

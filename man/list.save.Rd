@@ -25,10 +25,10 @@ Save a list to a file
 \examples{
 \dontrun{
 x <- lapply(1:5,function(i) data.frame(a=i,b=i^2))
-list.save(x, "list.rds")
-list.save(x, "list.rdata")
-list.save(x, "list.yaml")
-list.save(x, "list.json")
+list.save(x, 'list.rds')
+list.save(x, 'list.rdata')
+list.save(x, 'list.yaml')
+list.save(x, 'list.json')
 }
 }
 

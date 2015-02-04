@@ -22,8 +22,8 @@ Serialize a list
 \examples{
 \dontrun{
 x <- list(a=1,b=2,c=3)
-list.serialize(x,"test.dat")
-list.serialize(x,"test.json")
+list.serialize(x,'test.dat')
+list.serialize(x,'test.json')
 }
 }
 \seealso{
