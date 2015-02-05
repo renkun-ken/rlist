@@ -1,0 +1,248 @@
+﻿<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="description" content="rlist : 非表形式データを操作するためのツールボックス">
+
+    <link rel="stylesheet" type="text/css" media="screen" href="../stylesheets/stylesheet.css">
+
+    <title>rlist</title>
+  </head>
+
+  <body>
+
+    <!-- HEADER -->
+    <div id="header_wrap" class="outer">
+        <header class="inner">
+          <a id="forkme_banner" href="https://github.com/renkun-ken/rlist">View on GitHub</a>
+
+          <h1 id="project_title">rlist</h1>
+          <h2 id="project_tagline">非表形式データを操作するためのツールボックス</h2>
+
+            <section id="downloads">
+              <a class="zip_download_link" href="https://github.com/renkun-ken/rlist/zipball/master">Download this project as a .zip file</a>
+              <a class="tar_download_link" href="https://github.com/renkun-ken/rlist/tarball/master">Download this project as a tar.gz file</a>
+            </section>
+        </header>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div id="main_content_wrap" class="outer">
+      <section id="main_content" class="inner">
+        <h1>
+<a id="rlist" class="anchor" href="#rlist" aria-hidden="true"><span class="octicon octicon-link"></span></a>rlist</h1>
+
+<p><a href="https://travis-ci.org/renkun-ken/rlist"><img src="https://travis-ci.org/renkun-ken/rlist.png?branch=master" alt="Build Status"></a> <a href="https://coveralls.io/r/renkun-ken/rlist"><img src="https://coveralls.io/repos/renkun-ken/rlist/badge.svg" alt="Coverage Status"></a> <a href="http://issuestats.com/github/renkun-ken/rlist"><img src="http://issuestats.com/github/renkun-ken/rlist/badge/issue?style=flat" alt="Issue Stats"></a>  <a href="http://issuestats.com/github/renkun-ken/rlist"><img src="http://issuestats.com/github/renkun-ken/rlist/badge/pr?style=flat" alt="Issue Stats"></a></p>
+
+<p>rlistはlistオブジェクトを操作するためのツール群です。このライブラリの目標は、listの中に格納されている表形式(data.frame)ではないデータを操作するための、幅広い関数をユーザに提供することで、listを操作しやすくすることです。</p>
+
+<p>このパッケージは、listに対するマップ, フィルタリング、グルーピング、ソート、更新、検索、ファイル入出力などの数多くの関数を提供するものです。
+このパッケージにおける大半の関数は、listに対するデータ処理において、チェーン(連鎖)操作できるように、"パイプ・フレンドリー"な設計となっています。</p>
+
+<p><strong>rlistの完璧なガイドとしては、<a href="http://renkun.me/rlist-tutorial">rlist Tutorial</a> を強くお勧めします</strong></p>
+
+<h2><a id="installation" class="anchor" href="#installation" aria-hidden="true"><span class="octicon octicon-link"></span></a>インストール</h2>
+
+<p>最新版をGithubからインストールする:</p>
+
+<div class="highlight highlight-r"><pre><span class="pl-e">devtools</span><span class="pl-k">::</span>install_github(<span class="pl-s1"><span class="pl-pds">"</span>renkun-ken/rlist<span class="pl-pds">"</span></span>)</pre></div>
+
+<p><a href="http://cran.r-project.org/web/packages/rlist/">CRAN</a>からインストールする:</p>
+
+<div class="highlight highlight-r"><pre>install.packages(<span class="pl-s1"><span class="pl-pds">"</span>rlist<span class="pl-pds">"</span></span>)</pre></div>
+
+<h2><a id="motivation" class="anchor" href="#motivation" aria-hidden="true"><span class="octicon octicon-link"></span></a>モチベーション</h2>
+
+<p>Rにおいては、data.frameに代表されるような表形式で格納されている構造化されたデータを扱うための強力なツールがたくさんあります。
+しかし、ある種のデータは非表形式であり、例えば異なるDBなどのレコードが異なる属性(列)を持っているようなケースがあり、
+それぞれの属性(列)が異なる数値を格納しているようなケースも考えられます。</p>
+
+<p>このような形式のデータをdata.frameに格納するのは難しいことではある一方、Rにおいては<code>list</code>オブジェクトは、
+          このようなレコードの違い、あるいは多様性といったものを表現するために十分フレキシブルな構造を持っています。rlistは<code>list</code>オブジェクトにため込まれた非構造データを処理するためのツールボックスであり、
+    listに対するパイプ・フレンドリーな多数の高階関数を提供するものです。</p>
+
+<h2>
+<a id="getting-started" class="anchor" href="#getting-started" aria-hidden="true"><span class="octicon octicon-link"></span></a>はじめに</h2>
+
+<p>まず、私たちが、名前・年齢・趣味(複数)・使用するプログラミング言語、およびその使用年数を持つ"開発者"のリストを持っているとしましょう</p>
+
+<div class="highlight highlight-r"><pre>library(<span class="pl-vo">rlist</span>)
+<span class="pl-vo">devs</span> <span class="pl-k">&lt;-</span> 
+  <span class="pl-st">list</span>(
+    <span class="pl-v">p1</span><span class="pl-k">=</span><span class="pl-st">list</span>(<span class="pl-v">name</span><span class="pl-k">=</span><span class="pl-s1"><span class="pl-pds">"</span>Ken<span class="pl-pds">"</span></span>,<span class="pl-v">age</span><span class="pl-k">=</span><span class="pl-c1">24</span>,
+      <span class="pl-v">interest</span><span class="pl-k">=</span>c(<span class="pl-s1"><span class="pl-pds">"</span>reading<span class="pl-pds">"</span></span>,<span class="pl-s1"><span class="pl-pds">"</span>music<span class="pl-pds">"</span></span>,<span class="pl-s1"><span class="pl-pds">"</span>movies<span class="pl-pds">"</span></span>),
+      <span class="pl-v">lang</span><span class="pl-k">=</span><span class="pl-st">list</span>(<span class="pl-v">r</span><span class="pl-k">=</span><span class="pl-c1">2</span>,<span class="pl-v">csharp</span><span class="pl-k">=</span><span class="pl-c1">4</span>)),
+    <span class="pl-v">p2</span><span class="pl-k">=</span><span class="pl-st">list</span>(<span class="pl-v">name</span><span class="pl-k">=</span><span class="pl-s1"><span class="pl-pds">"</span>James<span class="pl-pds">"</span></span>,<span class="pl-v">age</span><span class="pl-k">=</span><span class="pl-c1">25</span>,
+      <span class="pl-v">interest</span><span class="pl-k">=</span>c(<span class="pl-s1"><span class="pl-pds">"</span>sports<span class="pl-pds">"</span></span>,<span class="pl-s1"><span class="pl-pds">"</span>music<span class="pl-pds">"</span></span>),
+      <span class="pl-v">lang</span><span class="pl-k">=</span><span class="pl-st">list</span>(<span class="pl-v">r</span><span class="pl-k">=</span><span class="pl-c1">3</span>,<span class="pl-v">java</span><span class="pl-k">=</span><span class="pl-c1">2</span>,<span class="pl-v">cpp</span><span class="pl-k">=</span><span class="pl-c1">5</span>)),
+    <span class="pl-v">p3</span><span class="pl-k">=</span><span class="pl-st">list</span>(<span class="pl-v">name</span><span class="pl-k">=</span><span class="pl-s1"><span class="pl-pds">"</span>Penny<span class="pl-pds">"</span></span>,<span class="pl-v">age</span><span class="pl-k">=</span><span class="pl-c1">24</span>,
+      <span class="pl-v">interest</span><span class="pl-k">=</span>c(<span class="pl-s1"><span class="pl-pds">"</span>movies<span class="pl-pds">"</span></span>,<span class="pl-s1"><span class="pl-pds">"</span>reading<span class="pl-pds">"</span></span>),
+      <span class="pl-v">lang</span><span class="pl-k">=</span><span class="pl-st">list</span>(<span class="pl-v">r</span><span class="pl-k">=</span><span class="pl-c1">1</span>,<span class="pl-v">cpp</span><span class="pl-k">=</span><span class="pl-c1">4</span>,<span class="pl-v">python</span><span class="pl-k">=</span><span class="pl-c1">2</span>)))</pre></div>
+
+
+<p>これはデータフレームの形とは合わないので、データのタイプとしては、関係データベースの用語でいうところの非リレーショナルなものです。しかし、JSONやYAMLのデータ形式としては、容易に格納される形ではあります。Rにおいては、listオブジェクトは、このような幅広い非リレーショナルなデータを表現するための十分な柔軟性があります。このパッケージは、この手のデータに対する問い合わせ(Queryの発行)や操作ための幅広い関数を提供します。</p>
+
+<p>次で示す例においては、出力のデータ構造を示すために、<code>str()</code>を使います。</p>
+
+<h3>
+<a id="filtering" class="anchor" href="#filtering" aria-hidden="true"><span class="octicon octicon-link"></span></a>フィルタリング</h3>
+
+<p>音楽が好きで3年以上のRの経験がある開発者をフィルタリングして抽出してみましょう。</p>
+
+<div class="highlight highlight-r"><pre>str( list.filter(<span class="pl-vo">devs</span>, <span class="pl-s1"><span class="pl-pds">"</span>music<span class="pl-pds">"</span></span> <span class="pl-k">%in%</span> <span class="pl-vo">interest</span> <span class="pl-k">&amp;</span> <span class="pl-vo">lang</span><span class="pl-k">$</span><span class="pl-vo">r</span> <span class="pl-k">&gt;</span><span class="pl-k">=</span> <span class="pl-c1">3</span>) )</pre></div>
+
+<pre><code>List of 1
+ $ p2:List of 4
+  ..$ name    : chr "James"
+  ..$ age     : num 25
+  ..$ interest: chr [1:2] "sports" "music"
+  ..$ lang    :List of 3
+  .. ..$ r   : num 3
+  .. ..$ java: num 2
+  .. ..$ cpp : num 5
+</code></pre>
+
+<h3>
+<a id="selecting" class="anchor" href="#selecting" aria-hidden="true"><span class="octicon octicon-link"></span></a>選択</h3>
+
+<p>彼らの名前・年齢だけを選択してみましょう。</p>
+
+<div class="highlight highlight-r"><pre>str( list.select(<span class="pl-vo">devs</span>, <span class="pl-vo">name</span>, <span class="pl-vo">age</span>) )</pre></div>
+
+<pre><code>List of 3
+ $ p1:List of 2
+  ..$ name: chr "Ken"
+  ..$ age : num 24
+ $ p2:List of 2
+  ..$ name: chr "James"
+  ..$ age : num 25
+ $ p3:List of 2
+  ..$ name: chr "Penny"
+  ..$ age : num 24
+</code></pre>
+
+<h3>
+<a id="mapping" class="anchor" href="#mapping" aria-hidden="true"><span class="octicon octicon-link"></span></a>マッピング</h3>
+
+<p>開発者のリストデータを、趣味の数のデータへとmap(変換)してみましょう。</p>
+
+<div class="highlight highlight-r"><pre>str( list.map(<span class="pl-vo">devs</span>, length(<span class="pl-vo">interest</span>)) )</pre></div>
+
+<pre><code>List of 3
+ $ p1: int 3
+ $ p2: int 2
+ $ p3: int 2
+</code></pre>
+
+<h3>
+<a id="more-functions" class="anchor" href="#more-functions" aria-hidden="true"><span class="octicon octicon-link"></span></a>その他の関数達</h3>
+
+<p>これらの基本的な関数に加えて、rlistはグルーピング・結合・検索・ソート・更新などの様々な関数もサポートしています。その他の機能については、<a href="http://renkun.me/rlist-tutorial">rlist Tutorial</a>を読んでください。</p>
+
+<h2>
+<a id="lambda-expression" class="anchor" href="#lambda-expression" aria-hidden="true"><span class="octicon octicon-link"></span></a>ラムダ式</h2>
+
+<p>このパッケージにおいて、ほとんどすべての関数は、次に示すラムダ式の形式を使用することができます：</p>
+
+<ul>
+<li>暗黙のラムダ式: <code>expression</code>
+</li>
+<li>単変数のラムダ式: 
+
+<ul>
+<li><code>x ~ expression</code></li>
+<li><code>f(x) ~ expression</code></li>
+</ul>
+</li>
+<li>複数変数のラムダ式:
+
+<ul>
+<li><code>f(x,i) ~ expression</code></li>
+<li><code>f(x,i,name) ~ expression</code></li>
+</ul>
+</li>
+</ul>
+
+<p>ここで、<code>x</code> リストの要素を表し、<code>i</code> はリストのインデックス、<code>name</code> はリストの要素の名前を表す. もし、<code>x, i, name</code>といった、シンボルが明示的に与えられなかった場合
+           <code>.</code>、<code>.i</code> 、<code>.name</code> がそれぞれのデフォルトのオブジェクトとして使われます。</p>
+
+<div class="highlight highlight-r"><pre><span class="pl-vo">nums</span> <span class="pl-k">&lt;-</span> <span class="pl-st">list</span>(<span class="pl-v">a</span><span class="pl-k">=</span>c(<span class="pl-c1">1</span>,<span class="pl-c1">2</span>,<span class="pl-c1">3</span>),<span class="pl-v">b</span><span class="pl-k">=</span>c(<span class="pl-c1">2</span>,<span class="pl-c1">3</span>,<span class="pl-c1">4</span>),<span class="pl-v">c</span><span class="pl-k">=</span>c(<span class="pl-c1">3</span>,<span class="pl-c1">4</span>,<span class="pl-c1">5</span>))
+list.map(<span class="pl-vo">nums</span>, c(<span class="pl-v">min</span><span class="pl-k">=</span>min(.),<span class="pl-v">max</span><span class="pl-k">=</span>max(.)))
+list.filter(<span class="pl-vo">nums</span>, <span class="pl-vo">x</span> <span class="pl-k">~</span> mean(<span class="pl-vo">x</span>)<span class="pl-k">&gt;</span><span class="pl-k">=</span><span class="pl-c1">3</span>)
+list.map(<span class="pl-vo">nums</span>, f(<span class="pl-vo">x</span>,<span class="pl-vo">i</span>) <span class="pl-k">~</span> sum(<span class="pl-vo">x</span>,<span class="pl-vo">i</span>))</pre></div>
+
+<h2>
+<a id="using-pipeline" class="anchor" href="#using-pipeline" aria-hidden="true"><span class="octicon octicon-link"></span></a>パイプを使う</h2>
+
+<h3>
+<a id="working-with-piper" class="anchor" href="#working-with-piper" aria-hidden="true"><span class="octicon octicon-link"></span></a>pipeRを用いた処理</h3>
+
+<p>音楽が好きでRを使う開発者の名前を問い合わせ、その結果をdata.frameとして出力してみましょう。</p>
+
+<div class="highlight highlight-r"><pre>library(<span class="pl-vo">pipeR</span>)
+<span class="pl-vo">devs</span> %<span class="pl-k">&gt;&gt;</span>% 
+  list.filter(<span class="pl-s1"><span class="pl-pds">"</span>music<span class="pl-pds">"</span></span> <span class="pl-k">%in%</span> <span class="pl-vo">interest</span> <span class="pl-k">&amp;</span> <span class="pl-s1"><span class="pl-pds">"</span>r<span class="pl-pds">"</span></span> <span class="pl-k">%in%</span> names(<span class="pl-vo">lang</span>)) %<span class="pl-k">&gt;&gt;</span>%
+  list.select(<span class="pl-vo">name</span>,<span class="pl-vo">age</span>) %<span class="pl-k">&gt;&gt;</span>%
+  <span class="pl-vo">list.stack</span></pre></div>
+
+<pre><code>   name age
+1   Ken  24
+2 James  25
+</code></pre>
+
+<p>上の例では、Rのコマンドを流暢に連鎖させる<code>pipeR</code>(<a href="http://renkun.me/pipeR/">http://renkun.me/pipeR/</a>) パッケージのパイプライン演算子<code>%&gt;&gt;%</code>を使っています。</p>
+
+<h3>
+<a id="list-environment" class="anchor" href="#list-environment" aria-hidden="true"><span class="octicon octicon-link"></span></a>List環境</h3>
+
+<p><code>List()</code> 関数はほとんど全てのlist関数が定義された環境とデータであるlistを１つにまとめあげるものです。先ほどの例をList環境を用いて書いたものが以下になります。</p>
+
+<div class="highlight highlight-r"><pre><span class="pl-vo">ldevs</span> <span class="pl-k">&lt;-</span> List(<span class="pl-vo">devs</span>)
+<span class="pl-vo">ldevs</span><span class="pl-k">$</span>filter(<span class="pl-s1"><span class="pl-pds">"</span>music<span class="pl-pds">"</span></span> <span class="pl-k">%in%</span> <span class="pl-vo">interest</span> <span class="pl-k">&amp;</span> <span class="pl-s1"><span class="pl-pds">"</span>r<span class="pl-pds">"</span></span> <span class="pl-k">%in%</span> names(<span class="pl-vo">lang</span>))<span class="pl-k">$</span>
+  select(<span class="pl-vo">name</span>,<span class="pl-vo">age</span>)<span class="pl-k">$</span>
+  stack()<span class="pl-k">$</span>
+  <span class="pl-vo">data</span></pre></div>
+
+<pre><code>   name age
+1   Ken  24
+2 James  25
+</code></pre>
+
+<h2>
+<a id="help-overview" class="anchor" href="#help-overview" aria-hidden="true"><span class="octicon octicon-link"></span></a>ヘルプの表示</h2>
+
+<div class="highlight highlight-r"><pre>help(<span class="pl-v">package</span> <span class="pl-k">=</span> <span class="pl-vo">rlist</span>)</pre></div>
+
+<p>または、<a href="http://cran.r-project.org/web/packages/rlist/rlist.pdf">CRAN</a>にあるドキュメントを見てください。</p>
+
+<h2>
+<a id="license" class="anchor" href="#license" aria-hidden="true"><span class="octicon octicon-link"></span></a>License</h2>
+
+<p>このパッケージは<a href="http://opensource.org/licenses/MIT">MIT License</a>の下で公開されています。</p>
+      </section>
+    </div>
+
+    <!-- FOOTER  -->
+    <div id="footer_wrap" class="outer">
+      <footer class="inner">
+        <p class="copyright">rlist maintained by <a href="https://github.com/renkun-ken">renkun-ken</a></p>
+        <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
+      </footer>
+    </div>
+
+              <script type="text/javascript">
+            var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+            document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+          </script>
+          <script type="text/javascript">
+            try {
+              var pageTracker = _gat._getTracker("UA-47159422-1");
+            pageTracker._trackPageview();
+            } catch(err) {}
+          </script>
+
+
+  </body>
+</html>
