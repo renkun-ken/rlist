@@ -13,10 +13,10 @@
 #' list.zip(num=x,sym=y)
 list.zip <- function(..., use.argnames = TRUE, use.names = TRUE) {
   args <- list(...)
-  if (use.argnames) 
+  if (use.argnames)
     args <- set_argnames(dots(...), args)
   results <- map(args_list, args)
-  if (!use.names) 
+  if (!use.names)
     names(results) <- NULL
   results
 }
@@ -54,17 +54,18 @@ list.zip <- function(..., use.argnames = TRUE, use.names = TRUE) {
 #'      july = list(n_days = 31,
 #'  holidays = list(list('2014-07-04', 'july 4th')),
 #'    month_info = c(number = '7', season = 'summer')))
-#' list.unzip(x, holidays = c('list.ungroup', 'unname', 'simplify2array'))
-list.unzip <- function(.data, .fields = c("intersect", "union"), ..., .aggregate = "simplify2array", 
+#' list.unzip(x, holidays = c('list.ungroup', 'unname', 'list.stack',
+#'   function(df) setNames(df, c("date", "name"))))
+list.unzip <- function(.data, .fields = c("intersect", "union"), ..., .aggregate = "simplify2array",
   .missing = NA) {
   data_names <- lapply(.data, names)
   aggregator <- lapply(.aggregate, match.fun)
   args <- list(...)
-  if (length(args) >= 1L && (is.null(names(args)) || !all(nzchar(names(args))))) 
+  if (length(args) >= 1L && (is.null(names(args)) || !all(nzchar(names(args)))))
     stop("Custom aggregate function must have a name", call. = FALSE)
   args <- lapply(args, function(f) {
-    if (is.null(f)) 
-      NULL else if (is.vector(f)) 
+    if (is.null(f))
+      NULL else if (is.vector(f))
       lapply(f, match.fun) else match.fun(f)
   })
   fields <- Reduce(match.fun(match.arg(.fields)), data_names)
@@ -77,10 +78,10 @@ list.unzip <- function(.data, .fields = c("intersect", "union"), ..., .aggregate
       missings <- vapply(items, is.null, logical(1L))
       items[missings] <- .missing
     }
-    agg_fun <- if (!is.null(args[[field]])) 
+    agg_fun <- if (!is.null(args[[field]]))
       args[[field]] else aggregator
     if (is.list(agg_fun)) {
       reduce(function(res, f) f(res), agg_fun, items)
     } else agg_fun(items)
   })
-} 
+}

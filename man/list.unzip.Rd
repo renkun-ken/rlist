@@ -45,7 +45,8 @@ x <-
      july = list(n_days = 31,
  holidays = list(list('2014-07-04', 'july 4th')),
    month_info = c(number = '7', season = 'summer')))
-list.unzip(x, holidays = c('list.ungroup', 'unname', 'simplify2array'))
+list.unzip(x, holidays = c('list.ungroup', 'unname', 'list.stack',
+  function(df) setNames(df, c("date", "name"))))
 }
 \seealso{
 \code{\link{list.zip}}
