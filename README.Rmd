@@ -14,9 +14,7 @@ This package supports list mapping, filtering, grouping, sorting, updating, sear
 
 **[rlist Tutorial](http://renkun.me/rlist-tutorial) is a highly recommended complete guide to rlist.**
 
-This document is also translated into 
-
-* [日本語](https://github.com/renkun-ken/rlist/blob/master/README.ja.md) (by [@teramonagi](https://github.com/teramonagi))
+This document is also translated into  [日本語](https://github.com/renkun-ken/rlist/blob/master/README.ja.md) (by [@teramonagi](https://github.com/teramonagi)).
 
 ## Installation
 

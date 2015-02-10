@@ -1,7 +1,7 @@
 Package: rlist
 Type: Package
 Title: A Toolbox for Non-tabular Data Manipulation
-Version: 0.4.0.27
+Version: 0.4.0.28
 Author: Kun Ren <ken@renkun.me>
 Maintainer: Kun Ren <ken@renkun.me>
 Description: Provides a set of functions for data manipulation with
