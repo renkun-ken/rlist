@@ -1,7 +1,7 @@
 Package: rlist
 Type: Package
 Title: A Toolbox for Non-tabular Data Manipulation
-Version: 0.4.0.28
+Version: 0.4.0.29
 Author: Kun Ren <ken@renkun.me>
 Maintainer: Kun Ren <ken@renkun.me>
 Description: Provides a set of functions for data manipulation with
@@ -11,7 +11,7 @@ Description: Provides a set of functions for data manipulation with
     lists can be chained.
 Depends:
     R (>= 2.15)
-Date: 2015-02-10
+Date: 2015-02-17
 Suggests:
     testthat,
     stringdist,

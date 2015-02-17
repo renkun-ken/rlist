@@ -2,23 +2,28 @@
 % Please edit documentation in R/list.count.R
 \name{list.count}
 \alias{list.count}
-\title{Count the number of members that meet given condition}
+\title{Count the number of elements that satisfy given condition}
 \usage{
 list.count(.data, cond)
 }
 \arguments{
 \item{.data}{A \code{list} or \code{vector}}
 
-\item{cond}{A logical lambda expression.}
+\item{cond}{A logical lambda expression for each element of \code{.data} to evaluate. If
+\code{cond} is missing then the total number of elements in \code{.data} will be returned.}
+}
+\value{
+An integer that indicates the number of elements with which \code{cond} is evaluated
+to be \code{TRUE}.
 }
 \description{
-Count the number of members that meet given condition
+Count the number of elements that satisfy given condition
 }
 \examples{
 x <- list(p1 = list(type='A',score=list(c1=10,c2=8)),
        p2 = list(type='B',score=list(c1=9,c2=9)),
        p3 = list(type='B',score=list(c1=9,c2=7)))
-list.count(x,type=='B')
-list.count(x,min(unlist(score)) >= 9)
+list.count(x, type=='B')
+list.count(x, min(unlist(score)) >= 9)
 }
 
