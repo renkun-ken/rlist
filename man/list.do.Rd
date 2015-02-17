@@ -2,19 +2,20 @@
 % Please edit documentation in R/list.do.R
 \name{list.do}
 \alias{list.do}
-\title{Call a function with a list of arguments as provided}
+\title{Call a function with a list of arguments}
 \usage{
 list.do(.data, fun, ...)
 }
 \arguments{
-\item{.data}{\code{list}}
+\item{.data}{\code{list}. \code{vector} will be coreced to \code{list} before
+being passed to \code{fun}.}
 
 \item{fun}{The \code{function} to call}
 
 \item{...}{The additional parameters passed to \code{do.call}}
 }
 \description{
-Call a function with a list of arguments as provided
+Call a function with a list of arguments
 }
 \examples{
 x <- lapply(1:3, function(i) { c(a=i,b=i^2)})

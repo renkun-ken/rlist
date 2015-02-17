@@ -10,7 +10,10 @@ list.rbind(.data)
 \item{.data}{\code{list}}
 }
 \description{
-Bind all list elements by row
+The function binds all list elements by row. Each element of the list is expected
+to be an atomic vector, \code{data.frame}, or \code{data.table}. If list elements
+are also lists, the result can be a list-valued matrix. In this case,
+\code{list.stack} may produce a better result.
 }
 \examples{
 x <- lapply(1:3,function(i) { c(a=i,b=i^2)})
