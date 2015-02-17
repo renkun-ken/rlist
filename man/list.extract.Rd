@@ -2,12 +2,12 @@
 % Please edit documentation in R/list.extract.R
 \name{list.extract}
 \alias{list.extract}
-\title{Extract a member from a list}
+\title{Extract an element from a list or vector}
 \usage{
 list.extract()
 }
 \description{
-Extract a member from a list
+Extract an element from a list or vector
 }
 \examples{
 x <- list(a=1, b=2, c=3)

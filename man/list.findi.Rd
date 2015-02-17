@@ -2,8 +2,8 @@
 % Please edit documentation in R/list.find.R
 \name{list.findi}
 \alias{list.findi}
-\title{Find the indices of a number of members in a list that
-meet given condition}
+\title{Find the indices of a number of elements in a list or vector
+satisfying a given condition}
 \usage{
 list.findi(.data, cond, n = 1L)
 }
@@ -12,11 +12,14 @@ list.findi(.data, cond, n = 1L)
 
 \item{cond}{A logical lambda expression}
 
-\item{n}{The maximal number of members to find out}
+\item{n}{The number of items to find. (\code{n = 1L} by default)}
+}
+\value{
+an integer vector consisting of the elements indices
 }
 \description{
-Find the indices of a number of members in a list that
-meet given condition
+Find the indices of a number of elements in a list or vector
+satisfying a given condition
 }
 \examples{
 x <- list(p1 = list(type='A',score=list(c1=10,c2=8)),

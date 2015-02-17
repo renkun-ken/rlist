@@ -2,7 +2,7 @@
 % Please edit documentation in R/list.filter.R
 \name{list.filter}
 \alias{list.filter}
-\title{Filter a list by a condition.}
+\title{Filter a list or vector by a series of conditions}
 \usage{
 list.filter(.data, ...)
 }
@@ -11,8 +11,17 @@ list.filter(.data, ...)
 
 \item{...}{logical conditions}
 }
+\value{
+elements in \code{.data} satisfying all conditions
+}
 \description{
-Filter a list by a condition.
+The function recursively filters the data by a given series of
+conditions. The filter can be a single condition or multiple
+conditions. \code{.data} will be filtered by the first condition;
+then the results will be filtered by the second condition, if any;
+then the results will be filtered by the third, if any, etc. The
+results only contain elements satisfying all conditions specified
+in \code{...}.
 }
 \examples{
 x <- list(p1 = list(type='A',score=list(c1=10,c2=8)),

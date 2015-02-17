@@ -2,7 +2,8 @@
 % Please edit documentation in R/list.find.R
 \name{list.find}
 \alias{list.find}
-\title{Find a specific number of members in a list that meeting given condition}
+\title{Find a specific number of elements in a list or vector
+satisfying a given condition}
 \usage{
 list.find(.data, cond, n = 1L)
 }
@@ -11,10 +12,15 @@ list.find(.data, cond, n = 1L)
 
 \item{cond}{A logical lambda expression}
 
-\item{n}{The number of items to find}
+\item{n}{The number of items to find. (\code{n = 1L} by default)}
+}
+\value{
+A list or vector of at most \code{n} elements in \code{.data}
+found to satisfy \code{cond}.
 }
 \description{
-Find a specific number of members in a list that meeting given condition
+Find a specific number of elements in a list or vector
+satisfying a given condition
 }
 \examples{
 x <- list(p1 = list(type='A',score=list(c1=10,c2=8)),
