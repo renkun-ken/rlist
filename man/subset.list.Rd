@@ -2,12 +2,12 @@
 % Please edit documentation in R/subset.list.R
 \name{subset.list}
 \alias{subset.list}
-\title{Return subsets of a list which meet conditions.}
+\title{Subset a list by a logical condition}
 \usage{
-\method{subset}{list}(x, subset = TRUE, select = ., ...)
+\method{subset}{list}(x, subset, select, ...)
 }
 \arguments{
-\item{x}{The list to be subsetted}
+\item{x}{The list to subset}
 
 \item{subset}{A logical lambda expression of subsetting condition}
 
@@ -16,16 +16,17 @@
 \item{...}{Additional parameters}
 }
 \description{
-Return subsets of a list which meet conditions.
+Subset a list by a logical condition
 }
 \examples{
 x <- list(p1 = list(type='A',score=list(c1=10,c2=8)),
        p2 = list(type='B',score=list(c1=9,c2=9)),
        p3 = list(type='B',score=list(c1=9,c2=7)))
-subset(x, type=='B')
-subset(x, select=score)
-subset(x, min(score$c1,score$c2) >= 8, data.frame(score))
+subset(x, type == 'B')
+subset(x, select = score)
+subset(x, min(score$c1, score$c2) >= 8, data.frame(score))
+subset(x, type == 'B', score$c1)
 do.call(rbind,
-   subset(x,min(score$c1,score$c2) >= 8,data.frame(score)))
+   subset(x, min(score$c1, score$c2) >= 8, data.frame(score)))
 }
 
