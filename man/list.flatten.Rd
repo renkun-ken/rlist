@@ -2,7 +2,7 @@
 % Please edit documentation in R/list.flatten.R
 \name{list.flatten}
 \alias{list.flatten}
-\title{Flatten a list to only one level}
+\title{Flatten a nested list to a one-level list}
 \usage{
 list.flatten(x, use.names = TRUE)
 }
@@ -12,7 +12,7 @@ list.flatten(x, use.names = TRUE)
 \item{use.names}{\code{logical}. Should the names of \code{x} be kept?}
 }
 \description{
-Flatten a list to only one level
+Flatten a nested list to a one-level list
 }
 \examples{
 p <- list(a=1,b=list(b1=2,b2=3),c=list(c1=list(c11='a',c12='x'),c2=3))

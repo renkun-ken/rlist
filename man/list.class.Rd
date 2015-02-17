@@ -2,7 +2,7 @@
 % Please edit documentation in R/list.group.R
 \name{list.class}
 \alias{list.class}
-\title{Classify list elments into unique cases evaluated by given expression.}
+\title{Classify list elments into unique but non-exclusive cases}
 \usage{
 list.class(.data, ..., sorted = TRUE)
 }
@@ -15,7 +15,7 @@ list.class(.data, ..., sorted = TRUE)
 multiple entries.}
 }
 \description{
-Classify list elments into unique cases evaluated by given expression.
+Classify list elments into unique but non-exclusive cases
 }
 \examples{
 x <-

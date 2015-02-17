@@ -1,4 +1,4 @@
-#' Flatten a list to only one level
+#' Flatten a nested list to a one-level list
 #'
 #' @param x \code{list}
 #' @param use.names \code{logical}. Should the names of \code{x} be kept?
@@ -15,7 +15,7 @@ list.flatten <- function(x, use.names = TRUE) {
     y[[i]] <<- x
     TRUE
   })
-  if (use.names) 
+  if (use.names)
     names(y) <- names(items)
   y
-} 
+}

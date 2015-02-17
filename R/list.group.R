@@ -1,11 +1,14 @@
-#' Group a list by the value of an expression evaluated for each member.
+#' Divide list/vector elements into exclusive groups
 #'
 #' @param .data A \code{list} or \code{vector}
-#' @param ... keys
+#' @param ... One or more expressions in the scope of each element to evaluate
+#' as keys
 #' @param sorted \code{TRUE} to sort the group keys. Ignored when the key has
 #' multiple entries.
-#' @seealso \code{\link{list.group}}
+#' @seealso \code{\link{list.ungroup}}
 #' @export
+#' @return A list of group elements each contain all the elements in \code{.data}
+#' belonging to the group
 #' @examples
 #' x <- list(p1 = list(type='A',score=list(c1=10,c2=8)),
 #'        p2 = list(type='B',score=list(c1=9,c2=9)),
@@ -13,7 +16,7 @@
 #' list.group(x, type)
 #' list.group(x, mean(unlist(score)))
 list.group <- function(.data, ..., sorted = TRUE) {
-  list.group.internal(.data, dots(...), parent.frame(), compare = "identical", 
+  list.group.internal(.data, dots(...), parent.frame(), compare = "identical",
     sorted = sorted)
 }
 
@@ -41,7 +44,7 @@ list.ungroup <- function(.data, sort.names = FALSE) {
   }
 }
 
-#' Classify list elments into unique cases evaluated by given expression.
+#' Classify list elments into unique but non-exclusive cases
 #'
 #' @param .data A \code{list} or \code{vector}
 #' @param ... keys
@@ -63,7 +66,7 @@ list.ungroup <- function(.data, sort.names = FALSE) {
 #' list.class(x,interest)
 #' list.class(x,names(lang))
 list.class <- function(.data, ..., sorted = TRUE) {
-  list.group.internal(.data, dots(...), parent.frame(), proc = "unlist", compare = "contains", 
+  list.group.internal(.data, dots(...), parent.frame(), proc = "unlist", compare = "contains",
     sorted = sorted)
 }
 
@@ -87,7 +90,7 @@ list.cases <- function(.data, expr, simplify = TRUE, sorted = TRUE) {
     values <- c(values, recursive = TRUE)
   }
   cases <- unique(values)
-  if (sorted && is.atomic(cases)) 
+  if (sorted && is.atomic(cases))
     cases <- sort(cases)
   cases
-} 
+}

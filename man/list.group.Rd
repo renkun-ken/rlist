@@ -2,20 +2,25 @@
 % Please edit documentation in R/list.group.R
 \name{list.group}
 \alias{list.group}
-\title{Group a list by the value of an expression evaluated for each member.}
+\title{Divide list/vector elements into exclusive groups}
 \usage{
 list.group(.data, ..., sorted = TRUE)
 }
 \arguments{
 \item{.data}{A \code{list} or \code{vector}}
 
-\item{...}{keys}
+\item{...}{One or more expressions in the scope of each element to evaluate
+as keys}
 
 \item{sorted}{\code{TRUE} to sort the group keys. Ignored when the key has
 multiple entries.}
 }
+\value{
+A list of group elements each contain all the elements in \code{.data}
+belonging to the group
+}
 \description{
-Group a list by the value of an expression evaluated for each member.
+Divide list/vector elements into exclusive groups
 }
 \examples{
 x <- list(p1 = list(type='A',score=list(c1=10,c2=8)),
@@ -25,6 +30,6 @@ list.group(x, type)
 list.group(x, mean(unlist(score)))
 }
 \seealso{
-\code{\link{list.group}}
+\code{\link{list.ungroup}}
 }
 
