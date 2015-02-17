@@ -2,17 +2,17 @@
 % Please edit documentation in R/list.take.R
 \name{list.takeWhile}
 \alias{list.takeWhile}
-\title{Take out members until the given condition is broken}
+\title{Take out elements until a condition is violated}
 \usage{
 list.takeWhile(.data, cond)
 }
 \arguments{
-\item{.data}{\code{list}}
+\item{.data}{\code{list} or \code{vector}}
 
 \item{cond}{A logical lambda expression}
 }
 \description{
-Take out members until the given condition is broken
+Take out elements until a condition is violated
 }
 \examples{
 x <- list(p1 = list(type='A',score=list(c1=10,c2=8)),
@@ -20,5 +20,9 @@ x <- list(p1 = list(type='A',score=list(c1=10,c2=8)),
        p3 = list(type='B',score=list(c1=9,c2=7)))
 list.takeWhile(x, type=='B')
 list.takeWhile(x, min(score$c1,score$c2) >= 8)
+}
+\seealso{
+\code{\link{list.take}}, \code{\link{list.skip}},
+\code{\link{list.skipWhile}}
 }
 

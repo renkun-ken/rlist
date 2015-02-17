@@ -2,7 +2,7 @@
 % Please edit documentation in R/list.skip.R
 \name{list.skip}
 \alias{list.skip}
-\title{Skip a number of members in a list}
+\title{Skip a number of elements in a list or vector}
 \usage{
 list.skip(.data, n)
 }
@@ -12,11 +12,15 @@ list.skip(.data, n)
 \item{n}{\code{integer}. The number of elements to skip}
 }
 \description{
-Skip a number of members in a list
+Skip a number of elements in a list or vector
 }
 \examples{
 x <- list(a=1,b=2,c=3)
 list.skip(x, 1)
 list.skip(x, 2)
+}
+\seealso{
+\code{\link{list.skipWhile}}, \code{\link{list.take}},
+\code{\link{list.takeWhile}}
 }
 

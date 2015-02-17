@@ -2,8 +2,8 @@
 % Please edit documentation in R/list.which.R
 \name{list.which}
 \alias{list.which}
-\title{Return a integer vector of the indices of list members that satisfy
-given condition}
+\title{Give the indices of list elements satisfying
+a given condition}
 \usage{
 list.which(.data, cond)
 }
@@ -12,15 +12,18 @@ list.which(.data, cond)
 
 \item{cond}{A logical lambda expression}
 }
+\value{
+an \code{integer} vector
+}
 \description{
-Return a integer vector of the indices of list members that satisfy
-given condition
+Give the indices of list elements satisfying
+a given condition
 }
 \examples{
 x <- list(p1 = list(type='A',score=list(c1=10,c2=8)),
        p2 = list(type='B',score=list(c1=9,c2=9)),
        p3 = list(type='B',score=list(c1=9,c2=7)))
-list.which(x,type=='B')
-list.which(x,min(score$c1,score$c2) >= 8)
+list.which(x, type == 'B')
+list.which(x, min(score$c1,score$c2) >= 8)
 }
 

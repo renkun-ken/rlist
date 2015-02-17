@@ -1,4 +1,12 @@
-#' Update a list by adding or modifying its elements.
+#' Update a list by appending or modifying its elements.
+#'
+#' The function updates each element of a list by evaluating
+#' a group of expressions in the scope of the element. If the
+#' name of an expression alreadys exists in an list element,
+#' then the field with the name will be updated. Otherwise,
+#' the value with the name will be appended to the list
+#' element. The functionality is essentially done by
+#' \code{modifyList}.
 #'
 #' @param .data \code{list}
 #' @param ... A group of labmda expressions
@@ -15,6 +23,6 @@
 #' list.update(x, score=list(min=0, max=10))
 list.update <- function(.data, ..., keep.null = FALSE) {
   items <- lapply(dots(...), list.map.internal, .data = .data, envir = parent.frame())
-  map(function(.data, ...) modifyList(.data, list(...), keep.null = keep.null), 
+  map(function(.data, ...) modifyList(.data, list(...), keep.null = keep.null),
     c(list(.data), items))
-} 
+}

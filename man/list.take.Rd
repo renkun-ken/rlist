@@ -2,23 +2,27 @@
 % Please edit documentation in R/list.take.R
 \name{list.take}
 \alias{list.take}
-\title{Take a number of members from a list}
+\title{Take a number of elements from a list or vector}
 \usage{
 list.take(.data, n, force = FALSE)
 }
 \arguments{
-\item{.data}{\code{list}}
+\item{.data}{\code{list} or \code{vector}}
 
-\item{n}{\code{integer}. The number to take}
+\item{n}{\code{integer}. The number of elements to take}
 
-\item{force}{\code{TRUE} disables the length check}
+\item{force}{\code{TRUE} to disable the length check}
 }
 \description{
-Take a number of members from a list
+Take a number of elements from a list or vector
 }
 \examples{
 x <- list(a=1,b=2,c=3)
 list.take(x,1)
 list.take(x,10)
+}
+\seealso{
+\code{\link{list.takeWhile}}, \code{\link{list.skip}},
+\code{\link{list.skipWhile}}
 }
 

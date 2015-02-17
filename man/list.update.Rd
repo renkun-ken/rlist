@@ -2,7 +2,7 @@
 % Please edit documentation in R/list.update.R
 \name{list.update}
 \alias{list.update}
-\title{Update a list by adding or modifying its elements.}
+\title{Update a list by appending or modifying its elements.}
 \usage{
 list.update(.data, ..., keep.null = FALSE)
 }
@@ -15,7 +15,13 @@ list.update(.data, ..., keep.null = FALSE)
 for \code{modifyList}}
 }
 \description{
-Update a list by adding or modifying its elements.
+The function updates each element of a list by evaluating
+a group of expressions in the scope of the element. If the
+name of an expression alreadys exists in an list element,
+then the field with the name will be updated. Otherwise,
+the value with the name will be appended to the list
+element. The functionality is essentially done by
+\code{modifyList}.
 }
 \examples{
 x <- list(p1 = list(type='A',score=list(c1=10,c2=8)),

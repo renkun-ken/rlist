@@ -2,7 +2,7 @@
 % Please edit documentation in R/list.skip.R
 \name{list.skipWhile}
 \alias{list.skipWhile}
-\title{Skip members until the given condition is broken}
+\title{Skip elements until a condition is violated}
 \usage{
 list.skipWhile(.data, cond)
 }
@@ -12,7 +12,7 @@ list.skipWhile(.data, cond)
 \item{cond}{A logical lambda expression}
 }
 \description{
-Skip members until the given condition is broken
+Skip elements until a condition is violated
 }
 \examples{
 x <- list(p1 = list(type='A',score=list(c1=10,c2=8)),
@@ -20,5 +20,9 @@ x <- list(p1 = list(type='A',score=list(c1=10,c2=8)),
        p3 = list(type='B',score=list(c1=9,c2=7)))
 list.skipWhile(x, type=='A')
 list.skipWhile(x, min(score$c1,score$c2) >= 8)
+}
+\seealso{
+\code{\link{list.skip}}, \code{\link{list.take}},
+\code{\link{list.takeWhile}}
 }
 
