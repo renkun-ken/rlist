@@ -20,8 +20,15 @@ list.group <- function(.data, ..., sorted = TRUE) {
     sorted = sorted)
 }
 
-#' Ungroup a list
+#' Ungroup a list by taking out second-level elements
 #'
+#' This functon reverses the grouping operation by taking out
+#' second-level elements of a nested list and removing the labels
+#' of the first-level elements. For example, a list may be created
+#' from paged data, that is, its first-level elements only indicate
+#' the page container. To unpage the list, the first-level elements
+#' must be removed and their inner elements should be taken out to
+#' to the first level.
 #' @param .data \code{list}
 #' @param sort.names \code{logical}. Should the members be sorted
 #' after ungrouping?
@@ -46,11 +53,17 @@ list.ungroup <- function(.data, sort.names = FALSE) {
 
 #' Classify list elments into unique but non-exclusive cases
 #'
+#' In non-tabular data, a certain field may take multiple values in a
+#' collection non-exclusively. To classify these elements into different
+#' cases, this function detects all possible cases and for each case all
+#' elements are examined whether to belong to that case.
 #' @param .data A \code{list} or \code{vector}
 #' @param ... keys
 #' @param sorted \code{TRUE} to sort the group keys. Ignored when the key has
 #' multiple entries.
 #' @export
+#' @return a list of possible cases each of which contains elements belonging to
+#' the case non-exclusively.
 #' @examples
 #' x <-
 #'   list(
@@ -70,7 +83,7 @@ list.class <- function(.data, ..., sorted = TRUE) {
     sorted = sorted)
 }
 
-#' Get all unique cases by expression for a list
+#' Get all unique cases of a list field by expression
 #'
 #' @param .data A \code{list} or \code{vector}
 #' @param expr expression

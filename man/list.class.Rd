@@ -14,8 +14,15 @@ list.class(.data, ..., sorted = TRUE)
 \item{sorted}{\code{TRUE} to sort the group keys. Ignored when the key has
 multiple entries.}
 }
+\value{
+a list of possible cases each of which contains elements belonging to
+the case non-exclusively.
+}
 \description{
-Classify list elments into unique but non-exclusive cases
+In non-tabular data, a certain field may take multiple values in a
+collection non-exclusively. To classify these elements into different
+cases, this function detects all possible cases and for each case all
+elements are examined whether to belong to that case.
 }
 \examples{
 x <-

@@ -2,7 +2,7 @@
 % Please edit documentation in R/list.group.R
 \name{list.ungroup}
 \alias{list.ungroup}
-\title{Ungroup a list}
+\title{Ungroup a list by taking out second-level elements}
 \usage{
 list.ungroup(.data, sort.names = FALSE)
 }
@@ -13,7 +13,13 @@ list.ungroup(.data, sort.names = FALSE)
 after ungrouping?}
 }
 \description{
-Ungroup a list
+This functon reverses the grouping operation by taking out
+second-level elements of a nested list and removing the labels
+of the first-level elements. For example, a list may be created
+from paged data, that is, its first-level elements only indicate
+the page container. To unpage the list, the first-level elements
+must be removed and their inner elements should be taken out to
+to the first level.
 }
 \examples{
 x <- list(p1 = list(type='A',score=list(c1=10,c2=8)),

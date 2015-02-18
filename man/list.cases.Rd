@@ -2,7 +2,7 @@
 % Please edit documentation in R/list.group.R
 \name{list.cases}
 \alias{list.cases}
-\title{Get all unique cases by expression for a list}
+\title{Get all unique cases of a list field by expression}
 \usage{
 list.cases(.data, expr, simplify = TRUE, sorted = TRUE)
 }
@@ -17,7 +17,7 @@ by \code{unlist}?}
 \item{sorted}{\code{logical}. Should the cases be sorted in ascending order?}
 }
 \description{
-Get all unique cases by expression for a list
+Get all unique cases of a list field by expression
 }
 \examples{
 x <- list(p1 = list(type='A',score=list(c1=10,c2=8)),
