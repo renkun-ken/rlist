@@ -6,7 +6,7 @@
 \alias{list.parse.data.frame}
 \alias{list.parse.default}
 \alias{list.parse.matrix}
-\title{Parse an object to be a list with identical structure}
+\title{Convert an object to list with identical structure}
 \usage{
 list.parse(x, ...)
 
@@ -19,14 +19,24 @@ list.parse(x, ...)
 \method{list.parse}{character}(x, type, ...)
 }
 \arguments{
-\item{x}{\code{The object}}
+\item{x}{\code{An object}}
 
-\item{...}{Additional parameters}
+\item{...}{Additional parameters passed to converter function}
 
 \item{type}{The type of data to parse. Currently json and yaml are supported.}
 }
+\value{
+\code{list} object representing the data in \code{x}
+}
 \description{
-Parse an object to be a list with identical structure
+This function converts an object representing data to
+list that represents the same data. For example, a
+\code{data.frame} stored tabular data column-wisely,
+that is, each column represents a vector of a certain
+type. \code{list.parse} converts a \code{data.frame} to
+a list which represents the data row-wisely so that it
+can be more convinient to perform other non-tabular data
+manipulation methods.
 }
 \examples{
 x <- data.frame(a=1:3,type=c('A','C','B'))
