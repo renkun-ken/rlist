@@ -1,11 +1,11 @@
-#' Return the order of each member in a list by expression
+#' Give the order of each list element by expression
 #'
 #' @param .data A \code{list} or \code{vector}
 #' @param ... A group of lambda expressions
 #' @param keep.names Whether to keep the names of \code{x} in the result
 #' @param na.last The way to deal with \code{NA}s.
 #' @export
-#' @return \code{integer}.
+#' @return an \code{integer} vector.
 #' @seealso \code{\link{list.sort}}
 #' @examples
 #' x <- list(p1 = list(type='A',score=list(c1=10,c2=8)),
@@ -16,13 +16,13 @@
 #' list.order(x, min(score$c1,score$c2), keep.names=TRUE)
 list.order <- function(.data, ..., keep.names = FALSE, na.last = TRUE) {
   result <- list.order.internal(.data, dots(...), parent.frame(), na.last = na.last)
-  if (keep.names) 
+  if (keep.names)
     setnames(result, names(.data)) else result
 }
 
-#' Sort a list by given expressions in order
+#' Sort a list by given expressions
 #'
-#' @param .data \code{list}
+#' @param .data a \code{list} or \code{vector}
 #' @param ... A group of lambda expressions. For each expression, the data
 #' is sorted ascending by default unless the expression is enclosed by ().
 #' @param na.last The way to deal with \code{NA}s.
@@ -36,4 +36,4 @@ list.order <- function(.data, ..., keep.names = FALSE, na.last = TRUE) {
 #' list.sort(x, min(score$c1,score$c2))
 list.sort <- function(.data, ..., na.last = NA) {
   .data[list.order.internal(.data, dots(...), parent.frame(), na.last = na.last)]
-} 
+}

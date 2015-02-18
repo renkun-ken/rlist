@@ -2,7 +2,7 @@
 % Please edit documentation in R/list.order.R
 \name{list.order}
 \alias{list.order}
-\title{Return the order of each member in a list by expression}
+\title{Give the order of each list element by expression}
 \usage{
 list.order(.data, ..., keep.names = FALSE, na.last = TRUE)
 }
@@ -16,10 +16,10 @@ list.order(.data, ..., keep.names = FALSE, na.last = TRUE)
 \item{na.last}{The way to deal with \code{NA}s.}
 }
 \value{
-\code{integer}.
+an \code{integer} vector.
 }
 \description{
-Return the order of each member in a list by expression
+Give the order of each list element by expression
 }
 \examples{
 x <- list(p1 = list(type='A',score=list(c1=10,c2=8)),

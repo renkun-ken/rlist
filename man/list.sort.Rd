@@ -2,12 +2,12 @@
 % Please edit documentation in R/list.order.R
 \name{list.sort}
 \alias{list.sort}
-\title{Sort a list by given expressions in order}
+\title{Sort a list by given expressions}
 \usage{
 list.sort(.data, ..., na.last = NA)
 }
 \arguments{
-\item{.data}{\code{list}}
+\item{.data}{a \code{list} or \code{vector}}
 
 \item{...}{A group of lambda expressions. For each expression, the data
 is sorted ascending by default unless the expression is enclosed by ().}
@@ -15,7 +15,7 @@ is sorted ascending by default unless the expression is enclosed by ().}
 \item{na.last}{The way to deal with \code{NA}s.}
 }
 \description{
-Sort a list by given expressions in order
+Sort a list by given expressions
 }
 \examples{
 x <- list(p1 = list(type='A',score=list(c1=10,c2=8)),
