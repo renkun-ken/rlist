@@ -1,4 +1,7 @@
-#' Take a number of elements from a list or vector
+#' Take a number of elements
+#'
+#' Take the first \code{n} elements out from a list or
+#' vector.
 #'
 #' @param .data \code{list} or \code{vector}
 #' @param n \code{integer}. The number of elements to take
@@ -11,10 +14,16 @@
 #' list.take(x,1)
 #' list.take(x,10)
 list.take <- function(.data, n, force = FALSE) {
-  .data[0L:ifelse(force, n, min(length(.data), n))]
+  if(!is.numeric(n)) stop("n must be numeric or integer", call. = FALSE)
+  .data[0L:if(force) n else min(length(.data), n)]
 }
 
-#' Take out elements until a condition is violated
+#' Keep taking elements while a condition holds
+#'
+#' Keep taking elements out from a list or vector while
+#' a condition holds for the element. If the condition is
+#' violated for an element, the element will not be taken and
+#' all taken elements will be returned.
 #'
 #' @param .data \code{list} or \code{vector}
 #' @param cond A logical lambda expression

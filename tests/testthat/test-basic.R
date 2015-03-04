@@ -155,7 +155,11 @@ test_that("list.take, list.skip", {
   # simple list
   x <- list(a = 1, b = 2)
   expect_identical(list.take(x, 1), x[1])
+  expect_identical(list.take(x, 0), x[0])
+  expect_identical(list.take(x, -1), x[-1])
   expect_identical(list.skip(x, 1), x[2])
+  expect_identical(list.skip(x, 0), x)
+  expect_identical(list.skip(x, -1), x[1])
 })
 
 test_that("list.takeWhile, list.skipWhile", {

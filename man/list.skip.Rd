@@ -2,7 +2,7 @@
 % Please edit documentation in R/list.skip.R
 \name{list.skip}
 \alias{list.skip}
-\title{Skip a number of elements in a list or vector}
+\title{Skip a number of elements}
 \usage{
 list.skip(.data, n)
 }
@@ -12,7 +12,8 @@ list.skip(.data, n)
 \item{n}{\code{integer}. The number of elements to skip}
 }
 \description{
-Skip a number of elements in a list or vector
+Skip the first \code{n} elements of a list or vector and
+return the remaining elements if any.
 }
 \examples{
 x <- list(a=1,b=2,c=3)

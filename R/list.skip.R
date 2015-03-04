@@ -1,4 +1,7 @@
-#' Skip a number of elements in a list or vector
+#' Skip a number of elements
+#'
+#' Skip the first \code{n} elements of a list or vector and
+#' return the remaining elements if any.
 #'
 #' @param .data A \code{list} or \code{vector}
 #' @param n \code{integer}. The number of elements to skip
@@ -10,10 +13,18 @@
 #' list.skip(x, 1)
 #' list.skip(x, 2)
 list.skip <- function(.data, n) {
-  .data[-(1L:n)]
+  if(!is.numeric(n)) stop("n must be numeric or integer", call. = FALSE)
+  if(n > 0L) .data[-(1L:n)]
+  else if(n < 0L) .data[1L:(-n)]
+  else .data
 }
 
-#' Skip elements until a condition is violated
+#' Keep skipping elements while a condition holds
+#'
+#' Keep skipping elements in a list or vector while a
+#' condition holds for the element. As long as the condition
+#' is violated, the element will be kept and all remaining
+#' elements are returned.
 #'
 #' @param .data A \code{list} or \code{vector}
 #' @param cond A logical lambda expression

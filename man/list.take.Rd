@@ -2,7 +2,7 @@
 % Please edit documentation in R/list.take.R
 \name{list.take}
 \alias{list.take}
-\title{Take a number of elements from a list or vector}
+\title{Take a number of elements}
 \usage{
 list.take(.data, n, force = FALSE)
 }
@@ -14,7 +14,8 @@ list.take(.data, n, force = FALSE)
 \item{force}{\code{TRUE} to disable the length check}
 }
 \description{
-Take a number of elements from a list or vector
+Take the first \code{n} elements out from a list or
+vector.
 }
 \examples{
 x <- list(a=1,b=2,c=3)

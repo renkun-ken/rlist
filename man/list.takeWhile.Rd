@@ -2,7 +2,7 @@
 % Please edit documentation in R/list.take.R
 \name{list.takeWhile}
 \alias{list.takeWhile}
-\title{Take out elements until a condition is violated}
+\title{Keep taking elements while a condition holds}
 \usage{
 list.takeWhile(.data, cond)
 }
@@ -12,7 +12,10 @@ list.takeWhile(.data, cond)
 \item{cond}{A logical lambda expression}
 }
 \description{
-Take out elements until a condition is violated
+Keep taking elements out from a list or vector while
+a condition holds for the element. If the condition is
+violated for an element, the element will not be taken and
+all taken elements will be returned.
 }
 \examples{
 x <- list(p1 = list(type='A',score=list(c1=10,c2=8)),
