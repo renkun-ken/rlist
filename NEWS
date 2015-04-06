@@ -1,9 +1,12 @@
 Changes since version 0.4
 ===
+* New features
+  `list.ungroup` now supports `level` arguments to `unlist` a nested list recursively. (#102)
 * Improvements
   * Support loading and parsing from xml to list. (#43)
   * `list.search` now uses `is.null` to clean the results.
   * Add `list.unzip` to `List` object.
+  * `list.ungroup` now supports `group.names` to indicate whether to preserve group names.
 * Bug fixes
   * Fix returned value of `list.unserialize`.
   * `list.skip` returns the original data when asked to skip 0 elements.

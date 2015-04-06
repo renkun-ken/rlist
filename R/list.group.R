@@ -30,6 +30,11 @@ list.group <- function(.data, ..., sorted = TRUE) {
 #' must be removed and their inner elements should be taken out to
 #' to the first level.
 #' @param .data \code{list}
+#' @param level {integer} to indicate to which level of list elements
+#' should be ungroupped to the first level.
+#' @param ... Preserved use of parameter passing
+#' @param group.names \code{logical}. Should the group names be
+#' preserved?
 #' @param sort.names \code{logical}. Should the members be sorted
 #' after ungrouping?
 #' @seealso \code{\link{list.group}}
@@ -40,9 +45,18 @@ list.group <- function(.data, ..., sorted = TRUE) {
 #'        p3 = list(type='B',score=list(c1=9,c2=7)))
 #' xg <- list.group(x, type)
 #' list.ungroup(xg)
-list.ungroup <- function(.data, sort.names = FALSE) {
-  names(.data) <- NULL
-  result <- unlist(.data, recursive = FALSE)
+#'
+#' x <- list(a = list(a1 = list(x=list(x1=2,x2=3),y=list(y1=1,y2=3))),
+#'        b = list(b1 = list(x=list(x1=2,x2=6),y=list(y1=3,y2=2))))
+#' list.ungroup(x, level = 1)
+#' list.ungroup(x, level = 2)
+#' list.ungroup(x, level = 2, group.names = TRUE)
+list.ungroup <- function(.data, level = 1L, ..., group.names = FALSE, sort.names = FALSE) {
+  result <- .data
+  for(i in seq_len(level)) {
+    if(!group.names) names(result) <- NULL
+    result <- unlist(result, recursive = FALSE)
+  }
   result.names <- names(result)
   if (sort.names && !is.null(result.names)) {
     result[sort(result.names)]

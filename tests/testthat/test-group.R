@@ -36,4 +36,11 @@ test_that("list.ungroup", {
     d = 2, e = 3, f = 1))
   expect_identical(list.ungroup(xg2, sort.names = FALSE), list(a = 1, f = 1, b = 2,
     d = 2, c = 3, e = 3))
+
+  x <- list(a = list(a1 = list(x=list(x1=2,x2=3),y=list(y1=1,y2=3)), a0 = list(x=list(x1=1,x2=5),y=list(y1=0,y2=1))),
+    b = list(b1 = list(x=list(x1=2,x2=6),y=list(y1=3,y2=2))))
+  expect_identical(list.ungroup(x, level = 1L), c(x$a, x$b))
+  expect_identical(list.ungroup(x, level = 2L), c(unlist(unname(x$a), recursive = FALSE), unlist(unname(x$b), recursive = FALSE)))
+  expect_identical(list.ungroup(x, level = 1L, group.names = TRUE), unlist(x, recursive = FALSE))
+  expect_identical(list.ungroup(x, level = 2L, group.names = TRUE), c(unlist(unlist(x, recursive = FALSE), recursive = FALSE)))
 })
