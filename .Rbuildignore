@@ -5,3 +5,4 @@
 ^data-raw$
 ^_.*$
 ^README.*\.Rmd$
+^README\..*\.md$
