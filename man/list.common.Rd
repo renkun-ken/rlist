@@ -9,7 +9,8 @@ list.common(.data, expr)
 \arguments{
 \item{.data}{\code{list}}
 
-\item{expr}{A lambda expression}
+\item{expr}{A lambda expression. The function will return
+the common elements if \code{expr} is missing.}
 }
 \description{
 Get all common cases by expression for a list
@@ -22,5 +23,8 @@ x <- list(p1 = list(type='A',score=list(c1=10,c2=8)),
        p3 = list(type='B',score=list(c1=9,c2=7)))
 list.common(x,type)
 list.common(x,names(score))
+
+foo <- list(x = LETTERS[1:3], y = LETTERS[3:5])
+list.common(foo)
 }
 

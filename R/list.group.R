@@ -100,7 +100,8 @@ list.class <- function(.data, ..., sorted = TRUE) {
 #' Get all unique cases of a list field by expression
 #'
 #' @param .data A \code{list} or \code{vector}
-#' @param expr expression
+#' @param expr A lambda expression. The function will returns all cases
+#' of the elements if \code{expr} is missing.
 #' @param simplify \code{logical}. Should atomic vectors be simplified
 #'    by \code{unlist}?
 #' @param sorted \code{logical}. Should the cases be sorted in ascending order?
@@ -111,8 +112,12 @@ list.class <- function(.data, ..., sorted = TRUE) {
 #'        p3 = list(type='B',score=list(c1=9,c2=7)))
 #' list.cases(x,type)
 #' list.cases(x,mean(unlist(score)))
+#'
+#' foo <- list(x = LETTERS[1:3], y = LETTERS[3:5])
+#' list.cases(foo)
 list.cases <- function(.data, expr, simplify = TRUE, sorted = TRUE) {
-  values <- list.map.internal(.data, substitute(expr), parent.frame())
+  expr <- if(missing(expr)) quote(.) else substitute(expr)
+  values <- list.map.internal(.data, expr, parent.frame())
   if (simplify && all(vapply(values, is.atomic, logical(1L)))) {
     values <- c(values, recursive = TRUE)
   }

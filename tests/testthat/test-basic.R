@@ -198,7 +198,10 @@ test_that("list.cases", {
     c2 = 7)))
   expect_equal(list.cases(x, type, sort = T), c("A", "B"))
   expect_equal(list.cases(x, mean(unlist(score))), c(8, 9))
-  lapply(c("A", "B"), function(i) list.cases(x, type == i))
+  expect_equal(lapply(c("A", "B"), function(i) list.cases(x, type == i)),
+    list(c(FALSE, TRUE), c(FALSE, TRUE)))
+  x <- list(x = LETTERS[1:3], y = LETTERS[3:5])
+  expect_equal(list.cases(x), Reduce(union, x))
 })
 
 test_that("list.common", {
@@ -210,6 +213,9 @@ test_that("list.common", {
     c2 = 7)))
   expect_equal(list.common(x, names(.)), c("type", "score"))
   expect_equal(list.common(x, names(score)), c("c1", "c2"))
+
+  x <- list(x = LETTERS[1:3], y = LETTERS[3:5])
+  expect_equal(list.common(x), Reduce(intersect, x))
 })
 
 test_that("list.all", {

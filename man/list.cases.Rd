@@ -9,7 +9,8 @@ list.cases(.data, expr, simplify = TRUE, sorted = TRUE)
 \arguments{
 \item{.data}{A \code{list} or \code{vector}}
 
-\item{expr}{expression}
+\item{expr}{A lambda expression. The function will returns all cases
+of the elements if \code{expr} is missing.}
 
 \item{simplify}{\code{logical}. Should atomic vectors be simplified
 by \code{unlist}?}
@@ -25,5 +26,8 @@ x <- list(p1 = list(type='A',score=list(c1=10,c2=8)),
        p3 = list(type='B',score=list(c1=9,c2=7)))
 list.cases(x,type)
 list.cases(x,mean(unlist(score)))
+
+foo <- list(x = LETTERS[1:3], y = LETTERS[3:5])
+list.cases(foo)
 }
 
