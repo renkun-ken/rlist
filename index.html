@@ -1,37 +1,25 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="en-us">
   <head>
-    <meta charset='utf-8'>
-    <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <meta name="description" content="rlist : A Toolbox for Non-tabular Data Manipulation">
-
-    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
-
-    <title>rlist</title>
+    <meta charset="UTF-8">
+    <title>rlist by renkun-ken</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" media="screen">
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
   </head>
-
   <body>
+    <section class="page-header">
+      <h1 class="project-name">rlist</h1>
+      <h2 class="project-tagline">A Toolbox for Non-tabular Data Manipulation</h2>
+      <a href="https://github.com/renkun-ken/rlist" class="btn">View on GitHub</a>
+      <a href="https://github.com/renkun-ken/rlist/zipball/master" class="btn">Download .zip</a>
+      <a href="https://github.com/renkun-ken/rlist/tarball/master" class="btn">Download .tar.gz</a>
+    </section>
 
-    <!-- HEADER -->
-    <div id="header_wrap" class="outer">
-        <header class="inner">
-          <a id="forkme_banner" href="https://github.com/renkun-ken/rlist">View on GitHub</a>
-
-          <h1 id="project_title">rlist</h1>
-          <h2 id="project_tagline">A Toolbox for Non-tabular Data Manipulation</h2>
-
-            <section id="downloads">
-              <a class="zip_download_link" href="https://github.com/renkun-ken/rlist/zipball/master">Download this project as a .zip file</a>
-              <a class="tar_download_link" href="https://github.com/renkun-ken/rlist/tarball/master">Download this project as a tar.gz file</a>
-            </section>
-        </header>
-    </div>
-
-    <!-- MAIN CONTENT -->
-    <div id="main_content_wrap" class="outer">
-      <section id="main_content" class="inner">
-        <h1>
+    <section class="main-content">
+      <h1>
 <a id="rlist" class="anchor" href="#rlist" aria-hidden="true"><span class="octicon octicon-link"></span></a>rlist</h1>
 
 <p><a href="https://travis-ci.org/renkun-ken/rlist"><img src="https://travis-ci.org/renkun-ken/rlist.png?branch=master" alt="Build Status"></a> <a href="https://coveralls.io/r/renkun-ken/rlist"><img src="https://coveralls.io/repos/renkun-ken/rlist/badge.svg" alt="Coverage Status"></a> <a href="http://issuestats.com/github/renkun-ken/rlist"><img src="http://issuestats.com/github/renkun-ken/rlist/badge/issue?style=flat" alt="Issue Stats"></a>  <a href="http://issuestats.com/github/renkun-ken/rlist"><img src="http://issuestats.com/github/renkun-ken/rlist/badge/pr?style=flat" alt="Issue Stats"></a></p>
@@ -49,11 +37,11 @@
 
 <p>Install the latest version from GitHub:</p>
 
-<div class="highlight highlight-r"><pre><span class="pl-e">devtools</span><span class="pl-k">::</span>install_github(<span class="pl-s1"><span class="pl-pds">"</span>renkun-ken/rlist<span class="pl-pds">"</span></span>)</pre></div>
+<div class="highlight highlight-r"><pre><span class="pl-e">devtools</span><span class="pl-k">::</span>install_github(<span class="pl-s"><span class="pl-pds">"</span>renkun-ken/rlist<span class="pl-pds">"</span></span>)</pre></div>
 
 <p>Install from <a href="http://cran.r-project.org/web/packages/rlist/">CRAN</a>:</p>
 
-<div class="highlight highlight-r"><pre>install.packages(<span class="pl-s1"><span class="pl-pds">"</span>rlist<span class="pl-pds">"</span></span>)</pre></div>
+<div class="highlight highlight-r"><pre>install.packages(<span class="pl-s"><span class="pl-pds">"</span>rlist<span class="pl-pds">"</span></span>)</pre></div>
 
 <h2>
 <a id="motivation" class="anchor" href="#motivation" aria-hidden="true"><span class="octicon octicon-link"></span></a>Motivation</h2>
@@ -67,18 +55,18 @@
 
 <p>Suppose we have a list of developers, each of whom has a name, age, a few interests, a list of programming languages they use and the number of years they have been using them.</p>
 
-<div class="highlight highlight-r"><pre>library(<span class="pl-vo">rlist</span>)
-<span class="pl-vo">devs</span> <span class="pl-k">&lt;-</span> 
-  <span class="pl-st">list</span>(
-    <span class="pl-v">p1</span><span class="pl-k">=</span><span class="pl-st">list</span>(<span class="pl-v">name</span><span class="pl-k">=</span><span class="pl-s1"><span class="pl-pds">"</span>Ken<span class="pl-pds">"</span></span>,<span class="pl-v">age</span><span class="pl-k">=</span><span class="pl-c1">24</span>,
-      <span class="pl-v">interest</span><span class="pl-k">=</span>c(<span class="pl-s1"><span class="pl-pds">"</span>reading<span class="pl-pds">"</span></span>,<span class="pl-s1"><span class="pl-pds">"</span>music<span class="pl-pds">"</span></span>,<span class="pl-s1"><span class="pl-pds">"</span>movies<span class="pl-pds">"</span></span>),
-      <span class="pl-v">lang</span><span class="pl-k">=</span><span class="pl-st">list</span>(<span class="pl-v">r</span><span class="pl-k">=</span><span class="pl-c1">2</span>,<span class="pl-v">csharp</span><span class="pl-k">=</span><span class="pl-c1">4</span>)),
-    <span class="pl-v">p2</span><span class="pl-k">=</span><span class="pl-st">list</span>(<span class="pl-v">name</span><span class="pl-k">=</span><span class="pl-s1"><span class="pl-pds">"</span>James<span class="pl-pds">"</span></span>,<span class="pl-v">age</span><span class="pl-k">=</span><span class="pl-c1">25</span>,
-      <span class="pl-v">interest</span><span class="pl-k">=</span>c(<span class="pl-s1"><span class="pl-pds">"</span>sports<span class="pl-pds">"</span></span>,<span class="pl-s1"><span class="pl-pds">"</span>music<span class="pl-pds">"</span></span>),
-      <span class="pl-v">lang</span><span class="pl-k">=</span><span class="pl-st">list</span>(<span class="pl-v">r</span><span class="pl-k">=</span><span class="pl-c1">3</span>,<span class="pl-v">java</span><span class="pl-k">=</span><span class="pl-c1">2</span>,<span class="pl-v">cpp</span><span class="pl-k">=</span><span class="pl-c1">5</span>)),
-    <span class="pl-v">p3</span><span class="pl-k">=</span><span class="pl-st">list</span>(<span class="pl-v">name</span><span class="pl-k">=</span><span class="pl-s1"><span class="pl-pds">"</span>Penny<span class="pl-pds">"</span></span>,<span class="pl-v">age</span><span class="pl-k">=</span><span class="pl-c1">24</span>,
-      <span class="pl-v">interest</span><span class="pl-k">=</span>c(<span class="pl-s1"><span class="pl-pds">"</span>movies<span class="pl-pds">"</span></span>,<span class="pl-s1"><span class="pl-pds">"</span>reading<span class="pl-pds">"</span></span>),
-      <span class="pl-v">lang</span><span class="pl-k">=</span><span class="pl-st">list</span>(<span class="pl-v">r</span><span class="pl-k">=</span><span class="pl-c1">1</span>,<span class="pl-v">cpp</span><span class="pl-k">=</span><span class="pl-c1">4</span>,<span class="pl-v">python</span><span class="pl-k">=</span><span class="pl-c1">2</span>)))</pre></div>
+<div class="highlight highlight-r"><pre>library(<span class="pl-smi">rlist</span>)
+<span class="pl-smi">devs</span> <span class="pl-k">&lt;-</span> 
+  <span class="pl-k">list</span>(
+    <span class="pl-v">p1</span><span class="pl-k">=</span><span class="pl-k">list</span>(<span class="pl-v">name</span><span class="pl-k">=</span><span class="pl-s"><span class="pl-pds">"</span>Ken<span class="pl-pds">"</span></span>,<span class="pl-v">age</span><span class="pl-k">=</span><span class="pl-c1">24</span>,
+      <span class="pl-v">interest</span><span class="pl-k">=</span>c(<span class="pl-s"><span class="pl-pds">"</span>reading<span class="pl-pds">"</span></span>,<span class="pl-s"><span class="pl-pds">"</span>music<span class="pl-pds">"</span></span>,<span class="pl-s"><span class="pl-pds">"</span>movies<span class="pl-pds">"</span></span>),
+      <span class="pl-v">lang</span><span class="pl-k">=</span><span class="pl-k">list</span>(<span class="pl-v">r</span><span class="pl-k">=</span><span class="pl-c1">2</span>,<span class="pl-v">csharp</span><span class="pl-k">=</span><span class="pl-c1">4</span>)),
+    <span class="pl-v">p2</span><span class="pl-k">=</span><span class="pl-k">list</span>(<span class="pl-v">name</span><span class="pl-k">=</span><span class="pl-s"><span class="pl-pds">"</span>James<span class="pl-pds">"</span></span>,<span class="pl-v">age</span><span class="pl-k">=</span><span class="pl-c1">25</span>,
+      <span class="pl-v">interest</span><span class="pl-k">=</span>c(<span class="pl-s"><span class="pl-pds">"</span>sports<span class="pl-pds">"</span></span>,<span class="pl-s"><span class="pl-pds">"</span>music<span class="pl-pds">"</span></span>),
+      <span class="pl-v">lang</span><span class="pl-k">=</span><span class="pl-k">list</span>(<span class="pl-v">r</span><span class="pl-k">=</span><span class="pl-c1">3</span>,<span class="pl-v">java</span><span class="pl-k">=</span><span class="pl-c1">2</span>,<span class="pl-v">cpp</span><span class="pl-k">=</span><span class="pl-c1">5</span>)),
+    <span class="pl-v">p3</span><span class="pl-k">=</span><span class="pl-k">list</span>(<span class="pl-v">name</span><span class="pl-k">=</span><span class="pl-s"><span class="pl-pds">"</span>Penny<span class="pl-pds">"</span></span>,<span class="pl-v">age</span><span class="pl-k">=</span><span class="pl-c1">24</span>,
+      <span class="pl-v">interest</span><span class="pl-k">=</span>c(<span class="pl-s"><span class="pl-pds">"</span>movies<span class="pl-pds">"</span></span>,<span class="pl-s"><span class="pl-pds">"</span>reading<span class="pl-pds">"</span></span>),
+      <span class="pl-v">lang</span><span class="pl-k">=</span><span class="pl-k">list</span>(<span class="pl-v">r</span><span class="pl-k">=</span><span class="pl-c1">1</span>,<span class="pl-v">cpp</span><span class="pl-k">=</span><span class="pl-c1">4</span>,<span class="pl-v">python</span><span class="pl-k">=</span><span class="pl-c1">2</span>)))</pre></div>
 
 <p>This type of data is non-relational since it does not well fit the shape of a data frame,  yet it can be easily stored in JSON or YAML format. In R, list objects are flexible enough to represent a wide range of non-relational datasets like this. This package provides a wide range of functions to query and manipulate this type of data.</p>
 
@@ -89,7 +77,7 @@
 
 <p>Filter those who like music and has been using R for more than 3 years.</p>
 
-<div class="highlight highlight-r"><pre>str( list.filter(<span class="pl-vo">devs</span>, <span class="pl-s1"><span class="pl-pds">"</span>music<span class="pl-pds">"</span></span> <span class="pl-k">%in%</span> <span class="pl-vo">interest</span> <span class="pl-k">&amp;</span> <span class="pl-vo">lang</span><span class="pl-k">$</span><span class="pl-vo">r</span> <span class="pl-k">&gt;</span><span class="pl-k">=</span> <span class="pl-c1">3</span>) )</pre></div>
+<div class="highlight highlight-r"><pre>str( list.filter(<span class="pl-smi">devs</span>, <span class="pl-s"><span class="pl-pds">"</span>music<span class="pl-pds">"</span></span> <span class="pl-k">%in%</span> <span class="pl-smi">interest</span> <span class="pl-k">&amp;</span> <span class="pl-smi">lang</span><span class="pl-k">$</span><span class="pl-smi">r</span> <span class="pl-k">&gt;</span><span class="pl-k">=</span> <span class="pl-c1">3</span>) )</pre></div>
 
 <pre><code>List of 1
  $ p2:List of 4
@@ -107,7 +95,7 @@
 
 <p>Select their names and ages.</p>
 
-<div class="highlight highlight-r"><pre>str( list.select(<span class="pl-vo">devs</span>, <span class="pl-vo">name</span>, <span class="pl-vo">age</span>) )</pre></div>
+<div class="highlight highlight-r"><pre>str( list.select(<span class="pl-smi">devs</span>, <span class="pl-smi">name</span>, <span class="pl-smi">age</span>) )</pre></div>
 
 <pre><code>List of 3
  $ p1:List of 2
@@ -126,7 +114,7 @@
 
 <p>Map each of them to the number of interests.</p>
 
-<div class="highlight highlight-r"><pre>str( list.map(<span class="pl-vo">devs</span>, length(<span class="pl-vo">interest</span>)) )</pre></div>
+<div class="highlight highlight-r"><pre>str( list.map(<span class="pl-smi">devs</span>, length(<span class="pl-smi">interest</span>)) )</pre></div>
 
 <pre><code>List of 3
  $ p1: int 3
@@ -165,10 +153,10 @@
 
 <p>where <code>x</code> refers to the list member itself, <code>i</code> denotes the index, <code>name</code> denotes the name. If the symbols are not explicitly declared, <code>.</code>, <code>.i</code> and <code>.name</code> will by default be used to represent them, respectively.</p>
 
-<div class="highlight highlight-r"><pre><span class="pl-vo">nums</span> <span class="pl-k">&lt;-</span> <span class="pl-st">list</span>(<span class="pl-v">a</span><span class="pl-k">=</span>c(<span class="pl-c1">1</span>,<span class="pl-c1">2</span>,<span class="pl-c1">3</span>),<span class="pl-v">b</span><span class="pl-k">=</span>c(<span class="pl-c1">2</span>,<span class="pl-c1">3</span>,<span class="pl-c1">4</span>),<span class="pl-v">c</span><span class="pl-k">=</span>c(<span class="pl-c1">3</span>,<span class="pl-c1">4</span>,<span class="pl-c1">5</span>))
-list.map(<span class="pl-vo">nums</span>, c(<span class="pl-v">min</span><span class="pl-k">=</span>min(.),<span class="pl-v">max</span><span class="pl-k">=</span>max(.)))
-list.filter(<span class="pl-vo">nums</span>, <span class="pl-vo">x</span> <span class="pl-k">~</span> mean(<span class="pl-vo">x</span>)<span class="pl-k">&gt;</span><span class="pl-k">=</span><span class="pl-c1">3</span>)
-list.map(<span class="pl-vo">nums</span>, f(<span class="pl-vo">x</span>,<span class="pl-vo">i</span>) <span class="pl-k">~</span> sum(<span class="pl-vo">x</span>,<span class="pl-vo">i</span>))</pre></div>
+<div class="highlight highlight-r"><pre><span class="pl-smi">nums</span> <span class="pl-k">&lt;-</span> <span class="pl-k">list</span>(<span class="pl-v">a</span><span class="pl-k">=</span>c(<span class="pl-c1">1</span>,<span class="pl-c1">2</span>,<span class="pl-c1">3</span>),<span class="pl-v">b</span><span class="pl-k">=</span>c(<span class="pl-c1">2</span>,<span class="pl-c1">3</span>,<span class="pl-c1">4</span>),<span class="pl-v">c</span><span class="pl-k">=</span>c(<span class="pl-c1">3</span>,<span class="pl-c1">4</span>,<span class="pl-c1">5</span>))
+list.map(<span class="pl-smi">nums</span>, c(<span class="pl-v">min</span><span class="pl-k">=</span>min(.),<span class="pl-v">max</span><span class="pl-k">=</span>max(.)))
+list.filter(<span class="pl-smi">nums</span>, <span class="pl-smi">x</span> <span class="pl-k">~</span> mean(<span class="pl-smi">x</span>)<span class="pl-k">&gt;</span><span class="pl-k">=</span><span class="pl-c1">3</span>)
+list.map(<span class="pl-smi">nums</span>, f(<span class="pl-smi">x</span>,<span class="pl-smi">i</span>) <span class="pl-k">~</span> sum(<span class="pl-smi">x</span>,<span class="pl-smi">i</span>))</pre></div>
 
 <h2>
 <a id="using-pipeline" class="anchor" href="#using-pipeline" aria-hidden="true"><span class="octicon octicon-link"></span></a>Using pipeline</h2>
@@ -178,11 +166,11 @@ list.map(<span class="pl-vo">nums</span>, f(<span class="pl-vo">x</span>,<span c
 
 <p>Query the name of each developer who likes music and uses R, and put the results in a data frame.</p>
 
-<div class="highlight highlight-r"><pre>library(<span class="pl-vo">pipeR</span>)
-<span class="pl-vo">devs</span> %<span class="pl-k">&gt;&gt;</span>% 
-  list.filter(<span class="pl-s1"><span class="pl-pds">"</span>music<span class="pl-pds">"</span></span> <span class="pl-k">%in%</span> <span class="pl-vo">interest</span> <span class="pl-k">&amp;</span> <span class="pl-s1"><span class="pl-pds">"</span>r<span class="pl-pds">"</span></span> <span class="pl-k">%in%</span> names(<span class="pl-vo">lang</span>)) %<span class="pl-k">&gt;&gt;</span>%
-  list.select(<span class="pl-vo">name</span>,<span class="pl-vo">age</span>) %<span class="pl-k">&gt;&gt;</span>%
-  <span class="pl-vo">list.stack</span></pre></div>
+<div class="highlight highlight-r"><pre>library(<span class="pl-smi">pipeR</span>)
+<span class="pl-smi">devs</span> %<span class="pl-k">&gt;&gt;</span>% 
+  list.filter(<span class="pl-s"><span class="pl-pds">"</span>music<span class="pl-pds">"</span></span> <span class="pl-k">%in%</span> <span class="pl-smi">interest</span> <span class="pl-k">&amp;</span> <span class="pl-s"><span class="pl-pds">"</span>r<span class="pl-pds">"</span></span> <span class="pl-k">%in%</span> names(<span class="pl-smi">lang</span>)) %<span class="pl-k">&gt;&gt;</span>%
+  list.select(<span class="pl-smi">name</span>,<span class="pl-smi">age</span>) %<span class="pl-k">&gt;&gt;</span>%
+  <span class="pl-smi">list.stack</span></pre></div>
 
 <pre><code>   name age
 1   Ken  24
@@ -196,11 +184,11 @@ list.map(<span class="pl-vo">nums</span>, f(<span class="pl-vo">x</span>,<span c
 
 <p><code>List()</code> function wraps a list within an environment where almost all list functions are defined. Here is the List-environment version of the previous example.</p>
 
-<div class="highlight highlight-r"><pre><span class="pl-vo">ldevs</span> <span class="pl-k">&lt;-</span> List(<span class="pl-vo">devs</span>)
-<span class="pl-vo">ldevs</span><span class="pl-k">$</span>filter(<span class="pl-s1"><span class="pl-pds">"</span>music<span class="pl-pds">"</span></span> <span class="pl-k">%in%</span> <span class="pl-vo">interest</span> <span class="pl-k">&amp;</span> <span class="pl-s1"><span class="pl-pds">"</span>r<span class="pl-pds">"</span></span> <span class="pl-k">%in%</span> names(<span class="pl-vo">lang</span>))<span class="pl-k">$</span>
-  select(<span class="pl-vo">name</span>,<span class="pl-vo">age</span>)<span class="pl-k">$</span>
+<div class="highlight highlight-r"><pre><span class="pl-smi">ldevs</span> <span class="pl-k">&lt;-</span> List(<span class="pl-smi">devs</span>)
+<span class="pl-smi">ldevs</span><span class="pl-k">$</span>filter(<span class="pl-s"><span class="pl-pds">"</span>music<span class="pl-pds">"</span></span> <span class="pl-k">%in%</span> <span class="pl-smi">interest</span> <span class="pl-k">&amp;</span> <span class="pl-s"><span class="pl-pds">"</span>r<span class="pl-pds">"</span></span> <span class="pl-k">%in%</span> names(<span class="pl-smi">lang</span>))<span class="pl-k">$</span>
+  select(<span class="pl-smi">name</span>,<span class="pl-smi">age</span>)<span class="pl-k">$</span>
   stack()<span class="pl-k">$</span>
-  <span class="pl-vo">data</span></pre></div>
+  <span class="pl-smi">data</span></pre></div>
 
 <pre><code>   name age
 1   Ken  24
@@ -210,7 +198,7 @@ list.map(<span class="pl-vo">nums</span>, f(<span class="pl-vo">x</span>,<span c
 <h2>
 <a id="help-overview" class="anchor" href="#help-overview" aria-hidden="true"><span class="octicon octicon-link"></span></a>Help overview</h2>
 
-<div class="highlight highlight-r"><pre>help(<span class="pl-v">package</span> <span class="pl-k">=</span> <span class="pl-vo">rlist</span>)</pre></div>
+<div class="highlight highlight-r"><pre>help(<span class="pl-v">package</span> <span class="pl-k">=</span> <span class="pl-smi">rlist</span>)</pre></div>
 
 <p>or view the documentation on <a href="http://cran.r-project.org/web/packages/rlist/rlist.pdf">CRAN</a></p>
 
@@ -218,18 +206,16 @@ list.map(<span class="pl-vo">nums</span>, f(<span class="pl-vo">x</span>,<span c
 <a id="license" class="anchor" href="#license" aria-hidden="true"><span class="octicon octicon-link"></span></a>License</h2>
 
 <p>This package is under <a href="http://opensource.org/licenses/MIT">MIT License</a>.</p>
-      </section>
-    </div>
 
-    <!-- FOOTER  -->
-    <div id="footer_wrap" class="outer">
-      <footer class="inner">
-        <p class="copyright">rlist maintained by <a href="https://github.com/renkun-ken">renkun-ken</a></p>
-        <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
+      <footer class="site-footer">
+        <span class="site-footer-owner"><a href="https://github.com/renkun-ken/rlist">rlist</a> is maintained by <a href="https://github.com/renkun-ken">renkun-ken</a>.</span>
+
+        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the <a href="https://github.com/jasonlong/cayman-theme">Cayman theme</a> by <a href="https://twitter.com/jasonlong">Jason Long</a>.</span>
       </footer>
-    </div>
 
-              <script type="text/javascript">
+    </section>
+
+            <script type="text/javascript">
             var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
             document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
           </script>
@@ -240,6 +226,6 @@ list.map(<span class="pl-vo">nums</span>, f(<span class="pl-vo">x</span>,<span c
             } catch(err) {}
           </script>
 
-
   </body>
 </html>
+
