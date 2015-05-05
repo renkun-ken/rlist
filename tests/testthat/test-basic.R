@@ -233,6 +233,7 @@ test_that("list.all", {
     na.rm = TRUE))
   expect_equal(list.all(c(TRUE, NA, FALSE), na.rm = TRUE), all(c(TRUE, NA, FALSE),
     na.rm = TRUE))
+  expect_equal(list.all(list(c(1,2,3),c(2,3,4)), . <= 3, na.rm = FALSE), NA)
 })
 
 test_that("list.any", {

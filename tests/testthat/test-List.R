@@ -1,8 +1,8 @@
 context("List")
 
 test_that("List", {
-  x <- list(p1 = list(type = "A", score = list(c1 = 10, c2 = 8)), p2 = list(type = "B", 
-    score = list(c1 = 9, c2 = 9)), p3 = list(type = "B", score = list(c1 = 9, 
+  x <- list(p1 = list(type = "A", score = list(c1 = 10, c2 = 8)), p2 = list(type = "B",
+    score = list(c1 = 9, c2 = 9)), p3 = list(type = "B", score = list(c1 = 9,
     c2 = 7)))
   expect_identical({
     List(x)$group(type)$map(g ~ List(g)$map(score)$call(unlist)$call(mean)$data)$data
@@ -29,17 +29,22 @@ test_that("List", {
   expect_identical(List(1:10)$find(.%%2 == 0, 3)[], c(2L, 4L, 6L))
   expect_identical(List(1:10)$findi(.%%2 == 0, 3)[], c(2L, 4L, 6L))
   expect_identical(List(1:10)$group(.%%3)[], list.group(1:10, .%%3))
-  expect_identical(List(list(1:10, 2:15))$search(any(. >= 11))[], list.search(list(1:10, 
+  expect_identical(List(list(1:10, 2:15))$search(any(. >= 11))[], list.search(list(1:10,
     2:15), any(. >= 11)))
   expect_identical(local({
     i <- 12
     List(list(1:10, 2:15))$search(any(. >= i))[]
   }), list.search(list(1:10, 2:15), any(. >= 12)))
   expect_identical(List(1:200)$table(.%%2, .%%3)[], list.table(1:200, .%%2, .%%3))
-  expect_identical(List(x)$update(mean = mean(unlist(score)))[], list.update(x, 
+  expect_identical(List(x)$update(mean = mean(unlist(score)))[], list.update(x,
     mean = mean(unlist(score))))
   expect_equal(List(c(1, 2, 3)) == c(1, 2, 3), c(TRUE, TRUE, TRUE))
   expect_equal(subset(List(1:10), c(TRUE, FALSE)), subset(1:10, c(TRUE, FALSE)))
+})
+
+test_that("closure", {
+  expect_is(List_get_function(quote(`[`)), "function")
+  expect_is(List_set_function(quote(`[`)), "function")
 })
 
 test_that("subsetting", {
@@ -81,4 +86,4 @@ test_that("printing", {
   expect_output(print(List(list(1, 2, 3))), "\\$data : list.+")
   expect_output(str(List(list(1, 2, 3))), "\\$data : List of 3.+")
   expect_output(summary(List(rnorm(100))), "Min.+")
-}) 
+})
