@@ -12,6 +12,7 @@ dots <- function(...) {
 # user-specific input (usually from ...)  @param keep.null \code{TRUE} to keep
 # \code{NULL} values after argument modifications @param envir the environment
 # to evaluate the function call
+#' @importFrom utils modifyList
 callwith <- function(fun, args, dots = list(), keep.null = FALSE, envir = parent.frame()) {
   do.call(fun, modifyList(args, dots, keep.null = keep.null), envir = envir)
 }
@@ -64,10 +65,10 @@ set_argnames <- function(args, data = args) {
 try_list <- function(exprs, finally, envir = NULL, enclos = parent.frame()) {
   for (expr in exprs) {
     result <- try(eval(expr, envir, enclos), silent = TRUE)
-    if (!inherits(result, "try-error")) 
+    if (!inherits(result, "try-error"))
       return(result)
   }
-  if (missing(finally)) 
+  if (missing(finally))
     stop("No valid results produced", call. = FALSE)
   eval(substitute(finally), envir, enclos)
 }
@@ -75,9 +76,9 @@ try_list <- function(exprs, finally, envir = NULL, enclos = parent.frame()) {
 # Convert an object to evaluating environment for list elements Users should not
 # directly use this function @param x the object
 .evalwith <- function(x) {
-  if (is.null(names(x))) 
-    NULL else if (is.list(x)) 
-    x else if (is.vector(x)) 
+  if (is.null(names(x)))
+    NULL else if (is.list(x))
+    x else if (is.vector(x))
     setclass(x, "list") else NULL
 }
 
@@ -89,4 +90,4 @@ args_env <- function(..., parent = parent.frame()) {
 # create a list for args
 args_list <- function(...) {
   list(...)
-} 
+}

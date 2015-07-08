@@ -37,6 +37,7 @@ list.zip <- function(..., use.argnames = TRUE, use.names = TRUE) {
 #' @param .missing When \code{.fields} is \code{'union'} and some elements do not contain
 #' certain fields, then \code{NULL} will be replaced by the value of \code{.missing},
 #' by default, \code{NA}. This often makes the result more friendly.
+#' @importFrom stats na.omit
 #' @export
 #' @seealso \code{\link{list.zip}}
 #' @examples

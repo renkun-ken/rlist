@@ -5,6 +5,7 @@
 #' @param ... additional parameters passed to \code{data.table::rbindlist}.
 #' @param data.table \code{TRUE} to keep the result as \code{data.table}
 #' @export
+#' @importFrom data.table rbindlist
 #' @examples
 #' \dontrun{
 #' x <- lapply(1:3, function(i) { list(a=i,b=i^2) })
@@ -21,7 +22,7 @@
 #' }
 list.stack <- function(.data, ..., data.table = FALSE) {
   dt <- data.table::rbindlist(.data, ...)
-  if (!data.table) 
+  if (!data.table)
     data.table::setDF(dt)
   dt
-} 
+}

@@ -56,7 +56,7 @@ createCallClosure <- function(data) {
 #' p[['a']] <- 3
 List <- function(data = list()) {
   call <- createCallClosure(data)
-  
+
   all <- createListClosure(list.all, data)
   any <- createListClosure(list.any, data)
   append <- createListClosure(list.append, data)
@@ -112,7 +112,7 @@ List <- function(data = list()) {
   which <- createListClosure(list.which, data)
   zip <- createListClosure(list.zip, data)
   subset <- createListClosure(list.subset, data)
-  
+
   envir <- environment()
   setclass(envir, c("List", "environment"))
 }
@@ -120,15 +120,16 @@ List <- function(data = list()) {
 #' @export
 print.List <- function(x, ..., header = getOption("List.header", TRUE)) {
   if (!is.null(x$data)) {
-    if (header) 
+    if (header)
       cat("$data :", class(x$data), "\n------\n")
     print(x$data, ...)
   }
 }
 
+#' @importFrom utils str
 #' @export
 str.List <- function(object, ..., header = getOption("List.header", TRUE)) {
-  if (header) 
+  if (header)
     cat("$data : ")
   str(object$data, ...)
 }
@@ -153,7 +154,7 @@ ndots <- function(dots) {
 }
 
 List_get <- function(f, data, dots, envir) {
-  if (!ndots(dots)) 
+  if (!ndots(dots))
     return(data)
   rcall <- as.call(c(f, quote(data), dots))
   data <- eval(rcall, list(data = data), envir)
@@ -176,7 +177,7 @@ List_get_function <- function(op) {
 
 
 List_set <- function(f, x, dots, value, envir) {
-  if (!ndots(dots)) 
+  if (!ndots(dots))
     return(value)
   rcall <- as.call(c(f, quote(x), dots, quote(value)))
   data <- eval(rcall, list(x = x, value = value), envir)
@@ -198,4 +199,4 @@ List_set_function <- function(op) {
 `[<-.List` <- List_set_function("[<-")
 
 #' @export
-`[[<-.List` <- List_set_function("[[<-") 
+`[[<-.List` <- List_set_function("[[<-")

@@ -12,6 +12,7 @@
 #' @param ... A group of labmda expressions
 #' @param keep.null Should \code{NULL} values be preserved
 #'    for \code{modifyList}
+#' @importFrom utils modifyList
 #' @export
 #' @examples
 #' x <- list(p1 = list(type='A',score=list(c1=10,c2=8)),

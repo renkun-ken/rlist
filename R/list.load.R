@@ -25,6 +25,7 @@
 #' while loading files. By default, if \code{file} contains 5 elements,
 #' then the progress bar will automatically be triggered to indicate
 #' loading progress.
+#' @importFrom utils txtProgressBar
 #' @export
 #' @examples
 #' \dontrun{
@@ -33,25 +34,25 @@
 #' list.load('list.yaml')
 #' list.load('list.json')
 #' }
-list.load <- function(file, type = tools::file_ext(file), ..., guess = c("json", 
-  "yaml", "rds", "rdata", "xml"), action = c("none", "merge", "ungroup"), progress = length(file) >= 
+list.load <- function(file, type = tools::file_ext(file), ..., guess = c("json",
+  "yaml", "rds", "rdata", "xml"), action = c("none", "merge", "ungroup"), progress = length(file) >=
   5L) {
-  if (length(file) == 0L) 
+  if (length(file) == 0L)
     return(list())
   nztype <- !is.na(type) & nzchar(type)
   fun <- paste("list.loadfile", tolower(type), sep = ".")
   fun[!nztype] <- NA_character_
   guess <- tolower(guess)
-  pb <- if (progress) 
+  pb <- if (progress)
     txtProgressBar(min = 0L, max = length(file), style = 3L) else NULL
-  res <- if (length(file) == 1L) 
+  res <- if (length(file) == 1L)
     list.loadfile(file, fun, guess, ..., pb = pb, index = 1L) else {
-    items <- map(list.loadfile, list(file, fun, index = seq_along(file)), list(guess = guess, 
+    items <- map(list.loadfile, list(file, fun, index = seq_along(file)), list(guess = guess,
       ..., pb = pb))
-    switch(match.arg(action), merge = do.call("list.merge", items), ungroup = list.ungroup(items), 
+    switch(match.arg(action), merge = do.call("list.merge", items), ungroup = list.ungroup(items),
       items)
   }
-  if (!is.null(pb)) 
+  if (!is.null(pb))
     close(pb)
   res
 }
@@ -60,16 +61,16 @@ list.loadfile <- function(file, fun, guess, ..., pb = NULL, index = NULL) {
   res <- NULL
   if (is.na(fun)) {
     if (!missing(guess) && length(guess) > 0L) {
-      exprs <- lapply(paste("list.loadfile", guess, sep = "."), function(f) call(f, 
+      exprs <- lapply(paste("list.loadfile", guess, sep = "."), function(f) call(f,
         file))
       res <- try_list(exprs, stop("Unrecognized type of file: ", file, call. = FALSE))
-      if (!is.null(pb)) 
+      if (!is.null(pb))
         pb$up(index)
     } else stop("Unrecognized type of file: ", file, call. = FALSE)
   } else if (exists(fun, mode = "function")) {
     fun <- get(fun, mode = "function")
     res <- fun(file, ...)
-    if (!is.null(pb)) 
+    if (!is.null(pb))
       pb$up(index)
   } else {
     stop("Unrecognized type of file: ", file, call. = FALSE)
@@ -98,4 +99,4 @@ list.loadfile.rdata <- function(file, name = "x") {
   env[[name]]
 }
 
-list.loadfile.rds <- function(file, ...) readRDS(file, ...) 
+list.loadfile.rds <- function(file, ...) readRDS(file, ...)
