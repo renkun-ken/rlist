@@ -2,7 +2,10 @@
 
 # rlist
 
-[![Build Status](https://travis-ci.org/renkun-ken/rlist.png?branch=master)](https://travis-ci.org/renkun-ken/rlist) [![Coverage Status](https://coveralls.io/repos/renkun-ken/rlist/badge.svg)](https://coveralls.io/r/renkun-ken/rlist) [![CRAN Version](http://www.r-pkg.org/badges/version/rlist)](http://cran.rstudio.com/web/packages/rlist)
+[![Linux Build Status](https://travis-ci.org/renkun-ken/rlist.png?branch=master)](https://travis-ci.org/renkun-ken/rlist) 
+[![Windows Build status](https://ci.appveyor.com/api/projects/status/github/renkun-ken/rlist?svg=true)](https://ci.appveyor.com/project/renkun-ken/rlist)
+[![Coverage Status](https://coveralls.io/repos/renkun-ken/rlist/badge.svg)](https://coveralls.io/r/renkun-ken/rlist) 
+[![CRAN Version](http://www.r-pkg.org/badges/version/rlist)](http://cran.rstudio.com/web/packages/rlist)
 
 rlistはlistオブジェクトを操作するためのツール群です。このライブラリの目標は、listの中に格納されている表形式(data.frame)ではないデータを操作するための、幅広い関数をユーザに提供することで、listを操作しやすくすることです。
 
