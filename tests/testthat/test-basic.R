@@ -309,6 +309,13 @@ test_that("list.flatten", {
   expect_identical(list.flatten(p), list(a = 1, b.b1 = 2, b.b2 = 3, c.c1.c11 = "a",
     c.c1.c12 = "x", c.c2 = 3))
   expect_identical(list.flatten(q), list(a = c(1, 2, 3), b.x = 1, b.y.z = 1, b.y.z2 = 2))
+
+  p <- list(a=1,b=list(x="a",y="b",z=10))
+  expect_identical(list.flatten(p), list(a=1, b.x = "a", b.y = "b", b.z = 10))
+  expect_identical(list.flatten(p, classes = "numeric"), list(a = 1, b.z = 10))
+  expect_identical(list.flatten(p, classes = "character"), list(b.x = "a", b.y = "b"))
+  expect_identical(list.flatten(p, classes = "integer"), list())
+  expect_identical(list.flatten(p, use.names = FALSE), list(1, "a", "b", 10))
 })
 
 test_that("list.names", {

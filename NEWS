@@ -1,7 +1,8 @@
 Changes since version 0.4
 ===
 * New features
-  `list.ungroup` now supports `level` arguments to `unlist` a nested list recursively. (#102)
+  * `list.ungroup` now supports `level` arguments to `unlist` a nested list recursively. (#102)
+  * `list.flatten` now accepts `classes` to filter list element recursively by class name.
 * Improvements
   * Support loading and parsing from xml to list. (#43)
   * `list.search` now uses `is.null` to clean the results.
