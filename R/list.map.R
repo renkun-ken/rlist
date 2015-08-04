@@ -33,11 +33,11 @@ list.map <- function(.data, expr) {
 #' list.mapv(x, min(score$c1,score$c2))
 list.mapv <- function(.data, expr, as, use.names = TRUE) {
   res <- list.map.internal(.data, substitute(expr), parent.frame())
-  if (missing(as)) 
+  if (missing(as))
     unlist(res, use.names = use.names) else {
     res <- as.vector(res, as)
-    if (use.names) 
-      names(res) <- names(.data)
+    if (use.names && !is.null(nm <- names(.data)))
+      names(res) <- nm
     res
   }
 }
@@ -61,7 +61,7 @@ list.maps <- function(expr, ...) {
   expr <- substitute(expr)
   envir <- parent.frame()
   lists <- list(...)
-  if (is.empty(lists)) 
+  if (is.empty(lists))
     return(list())
   list1 <- lists[[1L]]
   xnames <- getnames(list1, character(1L))
@@ -87,4 +87,4 @@ list.maps <- function(expr, ...) {
 list.iter <- function(.data, expr) {
   list.map.internal(.data, substitute(expr), parent.frame())
   invisible(.data)
-} 
+}
