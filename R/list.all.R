@@ -17,11 +17,13 @@
 #' list.all(x, score$c2 > 8 || score$c3 > 5, na.rm = TRUE)
 #' list.all(x, score$c2 > 8 || score$c3 > 5, na.rm = FALSE)
 list.all <- function(.data, cond, na.rm = FALSE) {
-  if (missing(.data)) 
+  if (missing(.data))
     return(all(na.rm = na.rm))
-  if (is.empty(.data) || missing(cond)) 
+  if (is.empty(.data) || missing(cond))
     return(all(.data, na.rm = na.rm))
-  res <- list.first.internal(.data, substitute(!cond), parent.frame(), na.rm = na.rm)
+  l <- lambda(substitute(cond))
+  l$expr <- as.call(list(quote(`!`), l$expr))
+  res <- list.first.internal(.data, l, parent.frame(), na.rm = na.rm)
   !res$state
 }
 
@@ -44,10 +46,10 @@ list.all <- function(.data, cond, na.rm = FALSE) {
 #' list.any(x, score$c2 > 8 || score$c3 > 5, na.rm = TRUE)
 #' list.any(x, score$c2 > 8 || score$c3 > 5, na.rm = FALSE)
 list.any <- function(.data, cond, na.rm = FALSE) {
-  if (missing(.data)) 
+  if (missing(.data))
     return(any(na.rm = na.rm))
-  if (is.empty(.data) || missing(cond)) 
+  if (is.empty(.data) || missing(cond))
     return(any(.data, na.rm = na.rm))
   res <- list.first.internal(.data, substitute(cond), parent.frame(), na.rm = na.rm)
   res$state
-} 
+}

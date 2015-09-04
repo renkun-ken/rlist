@@ -224,7 +224,7 @@ test_that("list.all", {
     c2 = 7)))
   expect_equal(list.all(x, type == "B"), FALSE)
   expect_equal(list.all(x, mean(unlist(score)) >= 6), TRUE)
-  expect_equal(sapply(8:10, function(i) list.all(x, score$c1 >= i)), c(T, T, F))
+  expect_equal(sapply(8:10, function(i) list.all(x, score$c1 >= i)), c(TRUE, TRUE, FALSE))
   expect_equal(list.all(logical()), all())
   expect_equal(list.all(logical(), na.rm = TRUE), all(na.rm = TRUE))
   expect_equal(list.all(c(TRUE, NA, TRUE)), all(c(TRUE, NA, TRUE)))
@@ -234,6 +234,8 @@ test_that("list.all", {
   expect_equal(list.all(c(TRUE, NA, FALSE), na.rm = TRUE), all(c(TRUE, NA, FALSE),
     na.rm = TRUE))
   expect_equal(list.all(list(c(1,2,3),c(2,3,4)), . <= 3, na.rm = FALSE), NA)
+  expect_equal(list.all(list(1,-2,10), x ~ x > 0), FALSE)
+  expect_equal(list.all(list(1,-2,10), x ~ x + 10 > 0), TRUE)
 })
 
 test_that("list.any", {
@@ -251,6 +253,8 @@ test_that("list.any", {
     na.rm = TRUE))
   expect_equal(list.any(c(TRUE, NA, FALSE), na.rm = TRUE), any(c(TRUE, NA, FALSE),
     na.rm = TRUE))
+  expect_equal(list.any(list(1,-2,10), x ~ x > 0), TRUE)
+  expect_equal(list.any(list(1,-2,10), x ~ x - 10 > 0), FALSE)
 })
 
 test_that("list.first", {

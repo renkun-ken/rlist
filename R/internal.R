@@ -21,8 +21,7 @@ list.map.fun <- function(.data, ., .i, .name) {
 }
 
 list.map.internal <- function(.data, expr, envir, fun = list.map.fun, args = NULL) {
-  if (is.empty(.data))
-    return(list())
+  if (is.empty(.data)) return(list())
   l <- lambda(expr)
   xnames <- getnames(.data, character(1L))
   environment(fun) <- args_env(.expr = l$expr, .args = args, .evalwith = .evalwith,
