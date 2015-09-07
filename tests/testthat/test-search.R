@@ -49,6 +49,7 @@ test_that("list.search", {
   expect_identical(list.search(y, .[grepl("a", .)], "character"), list(df.letter = "a",
     "aa"))
 
+  expect_error(list.search(y, . <= p))
 })
 
 test_that("counting", {
@@ -57,4 +58,5 @@ test_that("counting", {
     p5 = list(name = "Kwen", age = 31))
   expect_equal(list.search(x, n ~ n >= 25, "numeric", n = 2, unlist = TRUE), c(p2.age = 26,
     p4.age = 30))
+  expect_error(list.search(x, . <= p))
 })
