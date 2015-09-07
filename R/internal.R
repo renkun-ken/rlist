@@ -16,6 +16,10 @@ reduce <- function(f, x, init, ...) {
   y
 }
 
+tryWithCondition <- function(expr, ...) {
+  tryCatch(expr, condition = function(e) switch(e$message, ..., stop(e)))
+}
+
 list.map.fun <- function(.data, ., .i, .name) {
   eval(.expr, .evalwith(.data), environment())
 }
@@ -57,14 +61,9 @@ list.findi.fun <- function(.data, ., .i, .name) {
 list.findi.internal <- function(.data, cond, envir, n, na.stop = FALSE) {
   n <- min(n, length(.data))
   args <- args_env(i = 0L, n = 0L, N = n, na.stop = na.stop, indices = integer(n))
-  result <- try(list.map.internal(.data, cond, envir, list.findi.fun, args), silent = TRUE)
-  if (is.error(result)) {
-    error <- attr(result, "condition")
-    switch(error$message,
-      rlist.finished = NULL,
-      rlist.stopped = warning("Encountered value that is not TRUE or FALSE"),
-      stop(error))
-  }
+  tryWithCondition(list.map.internal(.data, cond, envir, list.findi.fun, args),
+    rlist.finished = NULL,
+    rlist.stopped = warning("Encountered value that is not TRUE or FALSE"))
   args$indices[0L:args$n]
 }
 
@@ -82,11 +81,7 @@ list.first.fun <- function(.data, ., .i, .name) {
 
 list.first.internal <- function(.data, cond, envir, na.rm) {
   args <- args_env(res = list(state = FALSE), na.rm = na.rm)
-  result <- try(list.map.internal(.data, cond, envir, list.first.fun, args), silent = TRUE)
-  if (is.error(result)) {
-    error <- attr(result, "condition")
-    switch(error$message, rlist.finished = NULL, stop(error))
-  }
+  tryWithCondition(list.map.internal(.data, cond, envir, list.first.fun, args), rlist.finished = NULL)
   args$res
 }
 

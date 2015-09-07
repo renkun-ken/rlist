@@ -81,18 +81,13 @@
 #' }
 list.search <- function(.data, expr, classes = "ANY", n, unlist = FALSE) {
   vec <- rapply(.data, function(x) TRUE, classes = classes)
-  if (missing(n))
-    n <- sum(vec)
+  if (missing(n)) n <- sum(vec)
   l <- lambda(substitute(expr))
   args <- args_env(i = 0L, n = 0L, N = n, indices = integer(n), result = vector("list", n))
   fun <- list.search.fun
   environment(fun) <- parent.frame()
   formals(fun) <- setnames(formals(fun), c(".data", ".expr", ".args", ".n", l$symbols))
-  result <- try(rapply(.data, fun, classes = classes, .expr = l$expr, .args = args), silent = TRUE)
-  if (is.error(result)) {
-    condition <- attr(result, "condition")
-    switch(condition$message, rlist.finished = NULL, stop(condition))
-  }
+  tryWithCondition(rapply(.data, fun, classes = classes, .expr = l$expr, .args = args), rlist.finished = NULL)
   result <- list.clean(args$result, recursive = FALSE)
   names(result) <- names(vec)[args$indices]
   if (unlist)
