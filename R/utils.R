@@ -14,10 +14,9 @@
 #' list.map(x, tryGet(y,0))
 tryGet <- function(symbol, def = NULL, ..., envir = parent.frame()) {
   symbol <- substitute(symbol)
-  if (is.symbol(symbol)) 
-    symbol <- as.character(symbol)
+  if (is.symbol(symbol)) symbol <- as.character(symbol)
   if (is.character(symbol)) {
-    if (exists(symbol, inherits = FALSE, ..., envir = envir)) 
+    if (exists(symbol, inherits = FALSE, ..., envir = envir))
       get(symbol, inherits = FALSE, ..., envir = envir) else def
   } else stop("symbol must be a name or character", call. = FALSE)
 }
@@ -33,6 +32,5 @@ tryGet <- function(symbol, def = NULL, ..., envir = parent.frame()) {
 #' list.map(x, tryEval(x+y, NA))
 tryEval <- function(expr, def = NULL) {
   x <- try(expr, silent = TRUE)
-  if (inherits(x, "try-error")) 
-    def else x
-} 
+  if (is.error(x)) def else x
+}

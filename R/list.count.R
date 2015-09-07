@@ -13,7 +13,6 @@
 #' list.count(x, type=='B')
 #' list.count(x, min(unlist(score)) >= 9)
 list.count <- function(.data, cond) {
-  if (missing(cond))
-    return(length(.data))
+  if (missing(cond)) return(length(.data))
   length(which(list.is.internal(.data, substitute(cond), parent.frame())))
 }

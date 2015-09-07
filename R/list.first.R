@@ -10,10 +10,8 @@
 #' list.first(x, score$c1 < 10)
 #' list.first(x, score$c1 < 9 || score$c3 >= 5) # NULL for all results are NA or FALSE
 list.first <- function(.data, cond) {
-  if (is.empty(.data)) 
-    return(NULL)
-  if (missing(cond)) 
-    return(.data[[1L]])
+  if (is.empty(.data))  return(NULL)
+  if (missing(cond))  return(.data[[1L]])
   res <- list.first.internal(.data, substitute(cond), parent.frame(), na.rm = TRUE)
   res$value
 }
@@ -30,10 +28,8 @@ list.first <- function(.data, cond) {
 #' list.last(x, score$c1 < 10)
 #' list.last(x, score$c1 < 9 || score$c3 >= 5) # NULL for all results are NA or FALSE
 list.last <- function(.data, cond) {
-  if (is.empty(.data)) 
-    return(NULL)
-  if (missing(cond)) 
-    return(.data[[length(.data)]])
+  if (is.empty(.data)) return(NULL)
+  if (missing(cond)) return(.data[[length(.data)]])
   res <- list.first.internal(rev(.data), substitute(cond), parent.frame(), na.rm = TRUE)
   res$value
-} 
+}

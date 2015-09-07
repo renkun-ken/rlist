@@ -38,7 +38,11 @@ list.take <- function(.data, n, force = FALSE) {
 #' list.takeWhile(x, min(score$c1,score$c2) >= 8)
 list.takeWhile <- function(.data, cond) {
   args <- args_env(i = 0L)
-  try(list.map.internal(.data, substitute(cond), parent.frame(), list.while.fun,
+  result <- try(list.map.internal(.data, substitute(cond), parent.frame(), list.while.fun,
     args), silent = TRUE)
+  if (is.error(result)) {
+    condition <- attr(result, "condition")
+    switch(condition$message, rlist.finished = NULL, stop(condition))
+  }
   .data[0L:args$i]
 }

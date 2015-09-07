@@ -4,7 +4,7 @@
 \alias{list.clean}
 \title{Clean a list by a function}
 \usage{
-list.clean(.data, fun = "is.null", recursive = FALSE)
+list.clean(.data, fun = is.null, recursive = FALSE)
 }
 \arguments{
 \item{.data}{A \code{list} or \code{vector}}

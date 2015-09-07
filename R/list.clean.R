@@ -31,7 +31,7 @@
 #' list.clean(x)
 #' list.clean(x, recursive = TRUE)
 #' list.clean(x, function(x) length(x) == 0L, TRUE)
-list.clean <- function(.data, fun = "is.null", recursive = FALSE) {
+list.clean <- function(.data, fun = is.null, recursive = FALSE) {
   if (recursive) {
     .data <- lapply(.data, function(.item) {
       if (is.list(.item))

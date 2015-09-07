@@ -16,8 +16,7 @@
 #' list.order(x, min(score$c1,score$c2), keep.names=TRUE)
 list.order <- function(.data, ..., keep.names = FALSE, na.last = TRUE) {
   result <- list.order.internal(.data, dots(...), parent.frame(), na.last = na.last)
-  if (keep.names)
-    setnames(result, names(.data)) else result
+  if (keep.names) setnames(result, names(.data)) else result
 }
 
 #' Sort a list by given expressions
