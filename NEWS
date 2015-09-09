@@ -8,10 +8,12 @@ Changes since version 0.4
   * `list.search` now uses `is.null` to clean the results.
   * Add `list.unzip` to `List` object.
   * `list.ungroup` now supports `group.names` to indicate whether to preserve group names.
+  * Implement better error handling mechanism in `list.all`, `list.takeWhile`, `list.skipWhile`, etc.
 * Bug fixes
   * Fix returned value of `list.unserialize`.
   * `list.skip` returns the original data when asked to skip 0 elements.
   * `list.skip` takes the first `n` elements when asked to skip a negative number of elements.
+  * Fix bug in lambda expression handling of `list.all` (#105)
 
 Version 0.4
 ===
