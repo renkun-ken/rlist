@@ -4,7 +4,7 @@
 
 [![Linux Build Status](https://travis-ci.org/renkun-ken/rlist.png?branch=master)](https://travis-ci.org/renkun-ken/rlist) 
 [![Windows Build status](https://ci.appveyor.com/api/projects/status/github/renkun-ken/rlist?svg=true)](https://ci.appveyor.com/project/renkun-ken/rlist)
-[![Coverage Status](https://coveralls.io/repos/renkun-ken/rlist/badge.svg)](https://coveralls.io/r/renkun-ken/rlist) 
+[![codecov.io](http://codecov.io/github/renkun-ken/rlist/coverage.svg?branch=master)](http://codecov.io/github/renkun-ken/rlist?branch=master)
 [![CRAN Version](http://www.r-pkg.org/badges/version/rlist)](http://cran.rstudio.com/web/packages/rlist)
 
 rlist is a set of tools for working with list objects. Its goal is to make it easier to work with lists by providing a wide range of functions that operate on non-tabular data stored in them.
