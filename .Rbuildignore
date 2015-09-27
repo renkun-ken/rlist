@@ -7,3 +7,4 @@
 ^_.*$
 ^README.*\.Rmd$
 ^README\..*\.md$
+^.*\.o$
