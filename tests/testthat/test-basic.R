@@ -369,3 +369,12 @@ test_that("list.which", {
   x <- c(1, 2, 3)
   expect_identical(list.which(x, . >= 2), which(x >= 2))
 })
+
+test_that("list.expand", {
+  expect_identical(list.expand(), list())
+  expect_identical(list.expand(x = integer()), list())
+  expect_identical(list.expand(x = 1:3, y = integer()), list())
+  expect_identical(list.expand(x = c(1,2), y = c(2,3)),
+    list(list(x = 1, y = 2), list(x = 2, y = 2),
+      list(x = 1, y = 3), list(x = 2, y = 3)))
+})
