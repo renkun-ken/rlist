@@ -7,24 +7,24 @@
 list.clean(.data, fun = is.null, recursive = FALSE)
 }
 \arguments{
-\item{.data}{A \code{list} or \code{vector}}
+\item{.data}{A \code{list} or \code{vector} to operate over.}
 
 \item{fun}{A \code{character} or a \code{function} that returns
 \code{TRUE} or \code{FALSE} to indicate if an element of
-\code{.data} (its sublists) should be removed.}
+\code{.data} should be removed.}
 
 \item{recursive}{\code{logical}. Should the list be
-cleaned recursively?}
+cleaned recursively? Set to FALSE by default.}
 }
 \description{
 This function removes all elements evaluated to be
-\code{TRUE} by a indicator function. The removal can be recursive
+\code{TRUE} by an indicator function. The removal can be recursive
 so that the resulted list surely does not include such elements in
 any level.
 }
 \details{
-Raw data is usually not completely ready for analysis before they
-are cleaned by certain standards. For example, some data operations
+Raw data is usually not completely ready for analysis, and needs to
+be cleaned up to certain standards. For example, some data operations
 require that the input does not include \code{NULL} values in any
 level, therefore \code{fun = "is.null"} and \code{recursive = TRUE}
 can be useful to clean out all \code{NULL} values in a list at any
