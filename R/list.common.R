@@ -21,7 +21,12 @@ list.common <- function(.data, expr) {
     return(NULL)
   }
 
-  expr <- ifelse(missing(expr), quote(.), substitute(expr))
+  if(missing(expr)){
+    expr <- quote(.)
+  } else {
+    expr <- substitute(expr)
+  }
+
   values <- list.map.internal(.data, expr, parent.frame())
   return(reduce(intersect, values, values[[1L]]))
 }
