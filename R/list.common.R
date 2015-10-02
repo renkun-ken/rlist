@@ -15,13 +15,13 @@
 #'
 #' foo <- list(x = LETTERS[1:3], y = LETTERS[3:5])
 #' list.common(foo)
-list.common <- function(.data, expr = NULL) {
+list.common <- function(.data, expr) {
 
   if (!length(.data)) {
     return(NULL)
   }
 
-  expr <- ifelse(is.null(expr), quote(.), substitute(expr))
+  expr <- ifelse(missing(expr), quote(.), substitute(expr))
   values <- list.map.internal(.data, expr, parent.frame())
   return(reduce(intersect, values, values[[1L]]))
 }

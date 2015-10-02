@@ -4,7 +4,7 @@
 \alias{list.common}
 \title{Get all common cases by expression for a list}
 \usage{
-list.common(.data, expr = NULL)
+list.common(.data, expr)
 }
 \arguments{
 \item{.data}{\code{list}}
