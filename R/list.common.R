@@ -1,8 +1,8 @@
 #' Get all common cases by expression for a list
 #'
 #' @param .data \code{list}
-#' @param expr A lambda expression. The function will return
-#' the common elements if \code{expr} is missing.
+#' @param expr An anonymous (or "lambda") expression to determine common cases. If one
+#' is not specified, \code{list.common} simply returns all identical sub-elements within lists.
 #' @export
 #' @examples
 #' x <- list(c('a','b','c'),c('a','b'),c('b','c'))
@@ -16,8 +16,17 @@
 #' foo <- list(x = LETTERS[1:3], y = LETTERS[3:5])
 #' list.common(foo)
 list.common <- function(.data, expr) {
-  if (length(.data) == 0L) return(NULL)
-  expr <- if(missing(expr)) quote(.) else substitute(expr)
+
+  if (!length(.data)) {
+    return(NULL)
+  }
+
+  if(missing(expr)){
+    expr <- quote(.)
+  } else {
+    expr <- substitute(expr)
+  }
+
   values <- list.map.internal(.data, expr, parent.frame())
-  reduce(intersect, values, values[[1L]])
+  return(reduce(intersect, values, values[[1L]]))
 }

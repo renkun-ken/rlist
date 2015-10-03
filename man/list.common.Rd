@@ -9,8 +9,8 @@ list.common(.data, expr)
 \arguments{
 \item{.data}{\code{list}}
 
-\item{expr}{A lambda expression. The function will return
-the common elements if \code{expr} is missing.}
+\item{expr}{An anonymous (or "lambda") expression to determine common cases. If one
+is not specified, \code{list.common} simply returns all identical sub-elements within lists.}
 }
 \description{
 Get all common cases by expression for a list
