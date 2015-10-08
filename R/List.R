@@ -90,6 +90,7 @@ List <- function(data = list()) {
   order <- createListClosure(list.order, data)
   parse <- createListClosure(list.parse, data)
   prepend <- createListClosure(list.prepend, data)
+  query <- createListClosure(list.query, data)
   rbind <- createListClosure(list.rbind, data)
   remove <- createListClosure(list.remove, data)
   reverse <- createListClosure(list.reverse, data)
