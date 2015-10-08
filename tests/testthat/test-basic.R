@@ -378,3 +378,54 @@ test_that("list.expand", {
     list(list(x = 1, y = 2), list(x = 2, y = 2),
       list(x = 1, y = 3), list(x = 2, y = 3)))
 })
+
+test_that("list.query", {
+  x <- list(list(name = "A", x = 1, y = 2),
+    list(name = "B", x = 2, y = 3),
+    list(name = "C", x = 2, y = 2),
+    list(name = "D", x = 1, y = 2))
+  expect_identical(list.query(x, "$..name"), c("A", "B", "C", "D"))
+  expect_identical(list.query(x, "$..[?(@.x <= 1)].name"), c("A", "D"))
+
+  json <- '
+{
+  "store": {
+  "book": [
+  {
+  "category": "reference",
+  "author": "Nigel Rees",
+  "title": "Sayings of the Century",
+  "price": 8.95
+  },
+  {
+  "category": "fiction",
+  "author": "Evelyn Waugh",
+  "title": "Sword of Honour",
+  "price": 12.99
+  },
+  {
+  "category": "fiction",
+  "author": "Herman Melville",
+  "title": "Moby Dick",
+  "isbn": "0-553-21311-3",
+  "price": 8.99
+  },
+  {
+  "category": "fiction",
+  "author": "J. R. R. Tolkien",
+  "title": "The Lord of the Rings",
+  "isbn": "0-395-19395-8",
+  "price": 22.99
+  }
+  ],
+  "bicycle": {
+  "color": "red",
+  "price": 19.95
+  }
+}
+  }
+  '
+
+  expect_identical(list.query(json, "$..book[?(@.price<10)].price"), c(8.95, 8.99))
+  expect_identical(list.query(json, "$..book[?(@.price<10 && @.isbn)].price"), 8.99)
+})
