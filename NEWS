@@ -4,6 +4,7 @@ Changes since version 0.4
   * `list.ungroup` now supports `level` arguments to `unlist` a nested list recursively. (#102)
   * `list.flatten` now accepts `classes` to filter list element recursively by class name.
   * `list.expand` implements a list version of `expand.grid` (#107)
+  * `list.query` supports JsonPath to query list object (#110)
 * Improvements
   * Support loading and parsing from xml to list. (#43)
   * `list.search` now uses `is.null` to clean the results.
