@@ -9,7 +9,9 @@ list.table(.data, ..., table.args = list(useNA = "ifany"))
 \arguments{
 \item{.data}{A \code{list} or \code{vector}}
 
-\item{...}{A group of lambda expressions}
+\item{...}{A group of lambda expressions. If missing,
+\code{table} will be directly called upon \code{.data} with
+\code{table.args}.}
 
 \item{table.args}{\code{list}. The additional parameters
 passed to \code{table}}

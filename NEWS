@@ -10,6 +10,7 @@ Changes since version 0.4
   * Add `list.unzip` to `List` object.
   * `list.ungroup` now supports `group.names` to indicate whether to preserve group names.
   * Implement better error handling mechanism in `list.all`, `list.takeWhile`, `list.skipWhile`, etc.
+  * `list.table` will directly call `table` upon input data if `...` is missing.
 * Bug fixes
   * Fix returned value of `list.unserialize`.
   * `list.skip` returns the original data when asked to skip 0 elements.
