@@ -4,14 +4,21 @@
 \alias{list.query}
 \title{Query a list with JsonPath}
 \usage{
-list.query(x, query, with = list())
+list.query(x, query, with = list(), validate = TRUE, ...)
 }
 \arguments{
-\item{x}{a list}
+\item{x}{a list, JSON string, file path or a web link to a json document.}
 
-\item{query}{a JsonPath string}
+\item{query}{a JsonPath string.}
 
-\item{with}{a list of elements to be used in \code{query}}
+\item{with}{a list of elements to be used in \code{query}.}
+
+\item{validate}{\code{TRUE} to validate the JSON document if \code{x}
+is supplied one. Ignored if \code{x} is a list.}
+
+\item{...}{Additional parameters. If \code{x} is supplied a file path
+or a web address, then these arguments will be passed to \code{readLines}
+that reads the file content.}
 }
 \description{
 Query a list with JsonPath
