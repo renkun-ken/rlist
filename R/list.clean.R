@@ -28,9 +28,7 @@
 #'
 #' @param recursive \code{logical}. Should the list be
 #' cleaned recursively? Set to FALSE by default.
-#'
 #' @export
-#'
 #' @examples
 #' x <- list(a=NULL,b=list(x=NULL,y=character()),d=1,e=2)
 #' list.clean(x)

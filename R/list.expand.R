@@ -10,7 +10,6 @@
 #' A list of all combinations of the supplied vectors or
 #' lists.
 #' @export
-#'
 #' @examples
 #' list.expand(x=1:10, y=c("a","b","c"))
 #' list.expand(x=list(c(1,2), c(2,3)), y = c("a","b","c"))
