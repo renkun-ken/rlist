@@ -85,5 +85,5 @@ test_that("assignment", {
 test_that("printing", {
   expect_output(print(List(list(1, 2, 3))), "\\$data : list.+")
   expect_output(str(List(list(1, 2, 3))), "\\$data : List of 3.+")
-  expect_output(summary(List(rnorm(100))), "Min.+")
+  expect_output(print(summary(List(rnorm(100)))), "Min.+")
 })

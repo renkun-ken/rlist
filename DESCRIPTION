@@ -11,7 +11,7 @@ Description: Provides a set of functions for data manipulation with
     lists can be chained.
 Depends:
     R (>= 2.15)
-Date: 2015-09-27
+Date: 2016-03-06
 Suggests:
     testthat,
     stringdist,
@@ -29,4 +29,4 @@ BugReports: https://github.com/renkun-ken/rlist/issues
 Roxygen: list(wrap = FALSE)
 ByteCompile: TRUE
 LazyData: true
-RoxygenNote: 5.0.0
+RoxygenNote: 5.0.1
