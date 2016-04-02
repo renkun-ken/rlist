@@ -14,7 +14,7 @@ test_that("list.group", {
   expect_identical(list.group(x, mean(unlist(score))), list(`8` = x["p3"], `9` = x[c("p1",
     "p2")]))
 
-  expect_identical(list.group(1:10, .%%3, .%%2), structure(list(`0` = structure(list(`0` = 6L,
+  expect_identical(list.group(1:10, . %% 3, . %% 2), structure(list(`0` = structure(list(`0` = 6L,
     `1` = c(3L, 9L)), .Names = c("0", "1")), `1` = structure(list(`0` = c(4L,
     10L), `1` = c(1L, 7L)), .Names = c("0", "1")), `2` = structure(list(`0` = c(2L,
     8L), `1` = 5L), .Names = c("0", "1"))), .Names = c("0", "1", "2")))
@@ -24,8 +24,8 @@ test_that("list.group", {
   expect_identical(list.group(c(3, 1, 3, 3, 2, 2), letters[.], sorted = TRUE),
     list(a = 1, b = c(2, 2), c = c(3, 3, 3)))
 
-  expect_output(lapply(2:4, function(i) list.group(x, sum(unlist(score)) <= i)),
-    "")
+  # test dynamic scoping
+  lapply(2:4, function(i) list.group(x, sum(unlist(score)) <= i))
 })
 
 test_that("list.ungroup", {

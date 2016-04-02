@@ -9,7 +9,8 @@ test_that("list.is", {
     "B")))
 
   l1 <- list(a = list(x = 1, y = 2), b = list(x = 2, y = 3))
-  expect_output(lapply(2:4, function(i) list.is(l1, sum(unlist(.)) <= i)), "")
+  expect_identical(lapply(2:4, function(i) list.is(l1, sum(unlist(.)) <= i)),
+    list(c(a = FALSE, b = FALSE), c(a = TRUE, b = FALSE), c(a = TRUE, b = FALSE)))
 })
 
 test_that("list.filter", {
@@ -30,8 +31,7 @@ test_that("list.filter", {
   l1 <- list(a = list(x = 1, y = 2), b = list(x = 2, y = 3))
   expect_identical(list.filter(l1, sum(unlist(.)) <= 4), l1["a"])
 
-  # scoping
-  expect_output(lapply(2:4, function(i) list.filter(l1, sum(unlist(.)) <= i)),
-    "")
+  # test dynamic scoping
+  lapply(2:4, function(i) list.filter(l1, sum(unlist(.)) <= i))
 })
 
