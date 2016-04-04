@@ -27,7 +27,7 @@ Install the latest version from GitHub:
 devtools::install_github("renkun-ken/rlist")
 ```
 
-Install from [CRAN](http://cran.r-project.org/web/packages/rlist/):
+Install from [CRAN](https://cran.r-project.org/package=rlist):
 
 ```r
 install.packages("rlist")
@@ -145,7 +145,7 @@ ldevs$filter("music" %in% interest & "r" %in% names(lang))$
 help(package = rlist)
 ```
 
-or view the documentation on [CRAN](http://cran.r-project.org/web/packages/rlist/rlist.pdf)
+or view the documentation on [CRAN](https://cran.r-project.org/web/packages/rlist/rlist.pdf)
 
 ## License
 

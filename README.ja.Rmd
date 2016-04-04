@@ -25,7 +25,7 @@ rlistはlistオブジェクトを操作するためのツール群です。こ�
 devtools::install_github("renkun-ken/rlist")
 ```
 
-[CRAN](http://cran.r-project.org/web/packages/rlist/)からインストールする:
+[CRAN](https://cran.r-project.org/package=rlist)からインストールする:
 
 ```r
 install.packages("rlist")

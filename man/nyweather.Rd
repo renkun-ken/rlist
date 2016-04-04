@@ -5,9 +5,6 @@
 \alias{nyweather}
 \title{New York hourly weather data}
 \format{See \url{http://openweathermap.org/weather-data#current}}
-\source{
-\url{http://api.openweathermap.org/data/2.5/history/city?q=New\%20York}
-}
 \usage{
 nyweather
 }
@@ -19,6 +16,9 @@ from 2013-01-01 to 2013-03-01.
 Fetch date: 2014-11-23.
 
 Processed by rlist.
+
+To retrieve the data, please visit \url{http://openweathermap.org/api} for
+API usage.
 }
 \keyword{datasets}
 

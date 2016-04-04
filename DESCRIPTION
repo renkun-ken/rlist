@@ -11,7 +11,7 @@ Description: Provides a set of functions for data manipulation with
     lists can be chained.
 Depends:
     R (>= 2.15)
-Date: 2016-04-02
+Date: 2016-04-04
 Suggests:
     testthat,
     stringdist,
@@ -22,9 +22,9 @@ Imports:
     XML,
     data.table
 License: MIT + file LICENSE
-URL: http://renkun.me/rlist,
+URL: https://renkun.me/rlist,
     https://github.com/renkun-ken/rlist,
-    http://renkun.me/rlist-tutorial
+    https://renkun.me/rlist-tutorial
 BugReports: https://github.com/renkun-ken/rlist/issues
 Roxygen: list(wrap = FALSE)
 ByteCompile: TRUE

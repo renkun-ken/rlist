@@ -23,7 +23,7 @@ Install the latest version from GitHub:
 devtools::install_github("renkun-ken/rlist")
 ```
 
-Install from [CRAN](http://cran.r-project.org/web/packages/rlist/):
+Install from [CRAN](https://cran.r-project.org/package=rlist):
 
 ```r
 install.packages("rlist")
