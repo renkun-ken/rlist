@@ -4,9 +4,6 @@
 \name{rlist-package}
 \alias{rlist-package}
 \title{The rlist package}
-\description{
-The rlist package
-}
 \details{
 rlist is a set of tools for working with list objects. Its goal
 is to make it easier to work with lists by providing a wide range
@@ -20,4 +17,3 @@ lists can be chained.
 
 rlist Tutorial (\url{http://renkun.me/rlist-tutorial}) is a complete guide to rlist.
 }
-

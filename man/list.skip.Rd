@@ -24,4 +24,3 @@ list.skip(x, 2)
 \code{\link{list.skipWhile}}, \code{\link{list.take}},
 \code{\link{list.takeWhile}}
 }
-

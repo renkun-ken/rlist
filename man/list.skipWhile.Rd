@@ -28,4 +28,3 @@ list.skipWhile(x, min(score$c1,score$c2) >= 8)
 \code{\link{list.skip}}, \code{\link{list.take}},
 \code{\link{list.takeWhile}}
 }
-

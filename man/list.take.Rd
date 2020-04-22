@@ -26,4 +26,3 @@ list.take(x,10)
 \code{\link{list.takeWhile}}, \code{\link{list.skip}},
 \code{\link{list.skipWhile}}
 }
-

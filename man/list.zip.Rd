@@ -26,4 +26,3 @@ list.zip(num=x,sym=y)
 \seealso{
 \code{\link{list.unzip}}
 }
-

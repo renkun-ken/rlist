@@ -4,9 +4,14 @@
 \alias{list.load}
 \title{Load a list from file}
 \usage{
-list.load(file, type = tools::file_ext(file), ..., guess = c("json", "yaml",
-  "rds", "rdata", "xml"), action = c("none", "merge", "ungroup"),
-  progress = length(file) >= 5L)
+list.load(
+  file,
+  type = tools::file_ext(file),
+  ...,
+  guess = c("json", "yaml", "rds", "rdata", "xml"),
+  action = c("none", "merge", "ungroup"),
+  progress = length(file) >= 5L
+)
 }
 \arguments{
 \item{file}{a \code{character} vector. The file as input.}
@@ -51,4 +56,3 @@ list.load('list.yaml')
 list.load('list.json')
 }
 }
-

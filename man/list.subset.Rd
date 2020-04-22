@@ -19,4 +19,3 @@ list.subset(x, grepl('^p', names(x)))
 list.subset(x, stringdist::stringdist(names(x), 'x1') <= 1)
 }
 }
-

@@ -33,4 +33,3 @@ l2 <- list(p1=list(name='Jenny',age=20,type='A'),
 list.join(l1, l2, name)
 list.join(l1, l2, .[c('name','age')])
 }
-

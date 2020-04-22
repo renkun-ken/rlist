@@ -39,4 +39,3 @@ x <-
 list.class(x,interest)
 list.class(x,names(lang))
 }
-

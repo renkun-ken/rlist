@@ -32,4 +32,3 @@ x <- lapply(1:3, function(i) { data.frame(a=c(i,i+1), b=c(i^2,i^2+1))})
 list.stack(x)
 }
 }
-

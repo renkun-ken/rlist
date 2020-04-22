@@ -22,4 +22,3 @@ x <- list(p1 = list(type='A',score=list(c1=10,c2=8)),
 list.remove(x, 'p1')
 list.remove(x, c(1,2))
 }
-

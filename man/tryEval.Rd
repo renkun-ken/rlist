@@ -21,4 +21,3 @@ an error occurs or otherwise return its value.
 x <- list(a=c(x=1,y=2),b=c(x=2,p=3))
 list.map(x, tryEval(x+y, NA))
 }
-

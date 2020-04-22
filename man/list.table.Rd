@@ -27,4 +27,3 @@ list.table(x, type)
 list.table(x, type, c1 = score$c1)
 list.table(x, type, score$c1, table.args = list(dnn=c('type','c1')))
 }
-

@@ -29,4 +29,3 @@ list.findi(x, type=='B')
 list.findi(x, min(score$c1,score$c2) >= 8)
 list.findi(x, min(score$c1,score$c2) <= 8, n = 2)
 }
-

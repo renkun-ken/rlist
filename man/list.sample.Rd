@@ -27,4 +27,3 @@ Sample a list or vector
 x <- list(a = 1, b = c(1,2,3), c = c(2,3,4))
 list.sample(x, 2, weight = sum(.))
 }
-

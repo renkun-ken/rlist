@@ -4,8 +4,13 @@
 \alias{list.unzip}
 \title{Transform a list of elements with similar structure into a list of decoupled fields}
 \usage{
-list.unzip(.data, .fields = c("intersect", "union"), ...,
-  .aggregate = "simplify2array", .missing = NA)
+list.unzip(
+  .data,
+  .fields = c("intersect", "union"),
+  ...,
+  .aggregate = "simplify2array",
+  .missing = NA
+)
 }
 \arguments{
 \item{.data}{A \code{list} of elements containing common fields}
@@ -51,4 +56,3 @@ list.unzip(x, holidays = c('list.ungroup', 'unname', 'list.stack',
 \seealso{
 \code{\link{list.zip}}
 }
-

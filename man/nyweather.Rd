@@ -4,7 +4,9 @@
 \name{nyweather}
 \alias{nyweather}
 \title{New York hourly weather data}
-\format{See \url{http://openweathermap.org/weather-data#current}}
+\format{
+See \url{http://openweathermap.org/weather-data#current}
+}
 \usage{
 nyweather
 }
@@ -21,4 +23,3 @@ To retrieve the data, please visit \url{http://openweathermap.org/api} for
 API usage.
 }
 \keyword{datasets}
-

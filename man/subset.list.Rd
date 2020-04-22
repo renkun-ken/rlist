@@ -29,4 +29,3 @@ subset(x, type == 'B', score$c1)
 do.call(rbind,
    subset(x, min(score$c1, score$c2) >= 8, data.frame(score)))
 }
-

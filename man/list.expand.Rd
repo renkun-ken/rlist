@@ -25,4 +25,3 @@ list.expand(
   a=list(list(x=1,y="a"), list(x=2, y="b")),
   b=list(c("x","y"), c("y","z","w")))
 }
-

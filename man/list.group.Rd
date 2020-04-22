@@ -32,4 +32,3 @@ list.group(x, mean(unlist(score)))
 \seealso{
 \code{\link{list.ungroup}}
 }
-

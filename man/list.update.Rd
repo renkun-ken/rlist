@@ -32,4 +32,3 @@ list.update(x, exams=length(score))
 list.update(x, grade=ifelse(type=='A', score$c1, score$c2))
 list.update(x, score=list(min=0, max=10))
 }
-

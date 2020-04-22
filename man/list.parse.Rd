@@ -2,10 +2,10 @@
 % Please edit documentation in R/list.parse.R
 \name{list.parse}
 \alias{list.parse}
-\alias{list.parse.character}
-\alias{list.parse.data.frame}
 \alias{list.parse.default}
 \alias{list.parse.matrix}
+\alias{list.parse.data.frame}
+\alias{list.parse.character}
 \title{Convert an object to list with identical structure}
 \usage{
 list.parse(x, ...)
@@ -55,4 +55,3 @@ a:
 '
 list.parse(z, type='yaml')
 }
-

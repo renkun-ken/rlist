@@ -33,4 +33,3 @@ list.all(x, score$c2 > 8 || score$c3 > 5, na.rm = FALSE)
 \seealso{
 \code{\link{list.any}}
 }
-

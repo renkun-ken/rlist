@@ -24,4 +24,3 @@ list.rbind(df)
 \seealso{
 \code{\link{list.cbind}}, \code{\link{list.stack}}
 }
-

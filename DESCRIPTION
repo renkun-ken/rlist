@@ -26,7 +26,8 @@ URL: https://renkun.me/rlist,
     https://github.com/renkun-ken/rlist,
     https://renkun.me/rlist-tutorial
 BugReports: https://github.com/renkun-ken/rlist/issues
-Roxygen: list(wrap = FALSE)
+Roxygen: list()
 ByteCompile: TRUE
 LazyData: true
-RoxygenNote: 5.0.1
+RoxygenNote: 7.1.0
+Encoding: UTF-8

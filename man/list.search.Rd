@@ -94,4 +94,3 @@ list.search(data, all(stringdist(., 'Ken') <= 1), 'character')
 list.search(data, any(stringdist(., 'Ken') > 1), 'character')
 }
 }
-

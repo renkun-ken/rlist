@@ -26,4 +26,3 @@ x <- list(p1 = list(type='A',score=list(c1=10,c2=8)),
 list.count(x, type=='B')
 list.count(x, min(unlist(score)) >= 9)
 }
-

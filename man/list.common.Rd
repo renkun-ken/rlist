@@ -27,4 +27,3 @@ list.common(x,names(score))
 foo <- list(x = LETTERS[1:3], y = LETTERS[3:5])
 list.common(foo)
 }
-

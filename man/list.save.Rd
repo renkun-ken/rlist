@@ -31,4 +31,3 @@ list.save(x, 'list.yaml')
 list.save(x, 'list.json')
 }
 }
-

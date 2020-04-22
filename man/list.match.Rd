@@ -23,4 +23,3 @@ x <- list(p1 = list(type='A',score=list(c1=10,c2=8)),
 list.match(x,'p[12]')
 list.match(x,'3')
 }
-

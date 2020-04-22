@@ -32,4 +32,3 @@ list.flatten(p, classes = "character")
 \author{
 \href{http://stackoverflow.com/users/662787/tommy}{Tommy}
 }
-

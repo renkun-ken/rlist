@@ -4,8 +4,7 @@
 \alias{list.ungroup}
 \title{Ungroup a list by taking out second-level elements}
 \usage{
-list.ungroup(.data, level = 1L, ..., group.names = FALSE,
-  sort.names = FALSE)
+list.ungroup(.data, level = 1L, ..., group.names = FALSE, sort.names = FALSE)
 }
 \arguments{
 \item{.data}{\code{list}}
@@ -46,4 +45,3 @@ list.ungroup(x, level = 2, group.names = TRUE)
 \seealso{
 \code{\link{list.group}}
 }
-

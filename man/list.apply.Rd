@@ -16,4 +16,3 @@ list.apply(.data, .fun, ...)
 \description{
 Apply a function to each list element (\code{lapply})
 }
-

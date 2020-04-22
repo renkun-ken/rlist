@@ -32,4 +32,3 @@ list.order(x, min(score$c1,score$c2), keep.names=TRUE)
 \seealso{
 \code{\link{list.sort}}
 }
-

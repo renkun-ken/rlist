@@ -23,4 +23,3 @@ list.cbind(x)
 \seealso{
 \code{\link{list.cbind}}, \code{\link{list.stack}}
 }
-

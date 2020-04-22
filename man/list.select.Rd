@@ -23,4 +23,3 @@ list.select(x, tp = type)
 list.select(x, type, score)
 list.select(x, type, score.range = range(unlist(score)))
 }
-

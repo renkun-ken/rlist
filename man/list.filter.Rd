@@ -31,4 +31,3 @@ list.filter(x, type=='B')
 list.filter(x, min(score$c1, score$c2) >= 8)
 list.filter(x, type=='B', score$c2 >= 8)
 }
-

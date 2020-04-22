@@ -24,4 +24,3 @@ list.last(x, score$c1 < 9 || score$c3 >= 5) # NULL for all results are NA or FAL
 \seealso{
 \code{\link{list.first}}
 }
-

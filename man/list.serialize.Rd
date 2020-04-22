@@ -29,4 +29,3 @@ list.serialize(x,'test.json')
 \seealso{
 \code{\link{list.unserialize}}
 }
-

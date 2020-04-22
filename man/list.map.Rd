@@ -27,4 +27,3 @@ list.map(x, min(score$c1,score$c2))
 \seealso{
 \code{\link{list.mapv}}
 }
-

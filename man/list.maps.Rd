@@ -24,4 +24,3 @@ list.maps(a$x*b+a$y,a=l1,b=l2)
 list.maps(..1$x*..2+..1$y,l1,l2)
 }
 }
-

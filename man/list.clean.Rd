@@ -43,4 +43,3 @@ list.clean(x)
 list.clean(x, recursive = TRUE)
 list.clean(x, function(x) length(x) == 0L, TRUE)
 }
-

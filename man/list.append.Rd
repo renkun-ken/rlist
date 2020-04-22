@@ -24,4 +24,3 @@ list.append(x,d=4,f=c(2,3))
 \seealso{
 \code{\link{list.prepend}}, \code{\link{list.insert}}
 }
-

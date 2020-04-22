@@ -21,4 +21,3 @@ x <- list(p1 = list(type='A',score=list(c1=10,c2=8)),
 list.exclude(x, type=='B')
 list.exclude(x, min(score$c1,score$c2) >= 8)
 }
-

@@ -24,4 +24,3 @@ list.first(x, score$c1 < 9 || score$c3 >= 5) # NULL for all results are NA or FA
 \seealso{
 \code{\link{list.last}}
 }
-
