@@ -29,5 +29,5 @@ BugReports: https://github.com/renkun-ken/rlist/issues
 Roxygen: list()
 ByteCompile: TRUE
 LazyData: true
-RoxygenNote: 7.1.0
+RoxygenNote: 7.1.1
 Encoding: UTF-8
