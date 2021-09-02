@@ -27,11 +27,27 @@ test_that("list.search", {
   expect_equal(list.search(x, grepl("^K\\w+[ts]", .), "character", unlist = TRUE),
     c(p2.name = "Kent", p4.name = "Keynes"))
 
+  y <- list(n = 1:10, list(df = data.frame(id = 1:10, letter = letters[1:10], stringsAsFactors = F)),
+    list("aa", "bb"))
+
+  expect_identical(list.search(y, .[grepl("a", .)], "character"), list(df.letter = "a",
+    "aa"))
+
+  expect_error(list.search(y, . <= p))
+})
+
+test_that("stringdist", {
+  skip_if_not_installed("stringdist")
+
+  x <- list(p1 = list(name = "Ken", age = 24), p2 = list(name = "Kent", age = 26),
+    p3 = list(name = "Sam", age = 24), p4 = list(name = "Keynes", age = 30),
+    p5 = list(name = "Kwen", age = 31))
+  
   expect_equal(list.search(x, any(stringdist::stringdist(., "Ken") <= 1), "character",
     unlist = TRUE), c(p1.name = "Ken", p2.name = "Kent", p5.name = "Kwen"))
   expect_identical(list.search(x, all(stringdist::stringdist(., "Ken") == 0), "character"),
     list(p1.name = "Ken"))
-
+  
   x <- list(p1 = list(name = c("Ken", "Ren"), age = 24), p2 = list(name = c("Kent",
     "Potter"), age = 26), p3 = list(name = c("Sam", "Lee"), age = 24), p4 = list(name = c("Keynes",
     "Bond"), age = 30), p5 = list(name = c("Kwen", "Hu"), age = 31))
@@ -42,14 +58,6 @@ test_that("list.search", {
       "Hu")))
   expect_equal(list.search(x, !any(stringdist::stringdist(., "Ken") <= 1), "character"),
     list(p3.name = c("Sam", "Lee"), p4.name = c("Keynes", "Bond")))
-
-  y <- list(n = 1:10, list(df = data.frame(id = 1:10, letter = letters[1:10], stringsAsFactors = F)),
-    list("aa", "bb"))
-
-  expect_identical(list.search(y, .[grepl("a", .)], "character"), list(df.letter = "a",
-    "aa"))
-
-  expect_error(list.search(y, . <= p))
 })
 
 test_that("counting", {

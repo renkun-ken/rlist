@@ -2,13 +2,15 @@
 % Please edit documentation in R/functions.R
 \name{contains}
 \alias{contains}
-\title{Test if a vector contains certain values @param table the values to be matched against}
+\title{Test if a vector contains certain values}
 \usage{
 contains(table, x)
 }
 \arguments{
+\item{table}{the values to be matched against}
+
 \item{x}{the values to be matched}
 }
 \description{
-Test if a vector contains certain values @param table the values to be matched against
+Test if a vector contains certain values
 }

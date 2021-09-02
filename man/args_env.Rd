@@ -6,6 +6,11 @@
 \usage{
 args_env(..., parent = parent.frame())
 }
+\arguments{
+\item{...}{objects}
+
+\item{parent}{parent environment}
+}
 \description{
 create an environment for args
 }

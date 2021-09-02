@@ -30,7 +30,8 @@ is.error <- function(x) {
   inherits(x, "try-error")
 }
 
-#' Test if a vector contains certain values @param table the values to be matched against
+#' Test if a vector contains certain values
+#' @param table the values to be matched against
 #' @param x the values to be matched
 contains <- function(table, x) {
   match(x, table, nomatch = 0L) > 0L
@@ -88,11 +89,14 @@ try_list <- function(exprs, finally, envir = NULL, enclos = parent.frame()) {
 }
 
 #' create an environment for args
+#' @param ... objects
+#' @param parent parent environment
 args_env <- function(..., parent = parent.frame()) {
   list2env(list(...), parent = parent)
 }
 
 #' create a list for args
+#' @param ... objects
 args_list <- function(...) {
   list(...)
 }

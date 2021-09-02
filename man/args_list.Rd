@@ -6,6 +6,9 @@
 \usage{
 args_list(...)
 }
+\arguments{
+\item{...}{objects}
+}
 \description{
 create a list for args
 }

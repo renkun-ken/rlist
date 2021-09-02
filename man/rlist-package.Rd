@@ -4,7 +4,7 @@
 \name{rlist-package}
 \alias{rlist-package}
 \title{The rlist package}
-\details{
+\description{
 rlist is a set of tools for working with list objects. Its goal
 is to make it easier to work with lists by providing a wide range
 of functions that operate on non-tabular data stored in them.
