@@ -8,14 +8,14 @@ opts_chunk$set(prompt=FALSE, comment='', results='markup')
 
 [![Linux Build Status](https://travis-ci.org/renkun-ken/rlist.png?branch=master)](https://travis-ci.org/renkun-ken/rlist) 
 [![Windows Build status](https://ci.appveyor.com/api/projects/status/github/renkun-ken/rlist?svg=true)](https://ci.appveyor.com/project/renkun-ken/rlist)
-[![codecov.io](http://codecov.io/github/renkun-ken/rlist/coverage.svg?branch=master)](http://codecov.io/github/renkun-ken/rlist?branch=master)
-[![CRAN Version](http://www.r-pkg.org/badges/version/rlist)](https://cran.r-project.org/package=rlist)
+[![codecov.io](https://codecov.io/github/renkun-ken/rlist/coverage.svg?branch=master)](https://codecov.io/github/renkun-ken/rlist?branch=master)
+[![CRAN Version](https://www.r-pkg.org/badges/version/rlist)](https://cran.r-project.org/package=rlist)
 
 rlistはlistオブジェクトを操作するためのツール群です。このライブラリの目標は、listの中に格納されている表形式(data.frame)ではないデータを操作するための、幅広い関数をユーザに提供することで、listを操作しやすくすることです。
 
 このパッケージは、listに対するマップ, フィルタリング、グルーピング、ソート、更新、検索、ファイル入出力などの数多くの関数を提供するものです。このパッケージにおける大半の関数は、listに対するデータ処理において、チェーン(連鎖)操作できるように、"パイプ・フレンドリー"な設計となっています。
 
-**rlistの完璧なガイドとしては、[rlist Tutorial](http://renkun.me/rlist-tutorial)を強くお勧めします。**
+**rlistの完璧なガイドとしては、[rlist Tutorial](https://renkun-ken.github.io/rlist-tutorial/)を強くお勧めします。**
 
 ## インストール
 
@@ -86,7 +86,7 @@ str( list.map(devs, length(interest)) )
 
 ### その他の関数群
 
-これらの基本的な関数に加えて、rlistはグルーピング・結合・検索・ソート・更新などの様々な関数もサポートしています。その他の機能については、[rlist Tutorial](http://renkun.me/rlist-tutorial)を読んでください。
+これらの基本的な関数に加えて、rlistはグルーピング・結合・検索・ソート・更新などの様々な関数もサポートしています。その他の機能については、[rlist Tutorial](https://renkun-ken.github.io/rlist-tutorial/)を読んでください。
 
 ## ラムダ式 
 
@@ -111,19 +111,18 @@ list.map(nums, f(x,i) ~ sum(x,i))
 
 ## パイプを使う
 
-### pipeRを用いた処理<
+### パイプ構文の操作
 
 音楽が好きでRを使う開発者の名前を問い合わせ、その結果をdata.frameとして出力してみましょう。
 
 ```{r}
-library(pipeR)
-devs %>>% 
-  list.filter("music" %in% interest & "r" %in% names(lang)) %>>%
-  list.select(name,age) %>>%
+devs |> 
+  list.filter("music" %in% interest & "r" %in% names(lang)) |>
+  list.select(name,age) |>
   list.stack
 ```
 
-上の例では、Rのコマンドを流暢に連鎖させる`pipeR`(http://renkun.me/pipeR/) パッケージのパイプライン演算子 `%>>%` を使っています。
+上記の例では、R4.1で導入されたパイプ構文 `|>`を使用して、コマンドを流暢なスタイルでチェーンします。 
 
 ### List環境
 
@@ -137,14 +136,6 @@ ldevs$filter("music" %in% interest & "r" %in% names(lang))$
   data
 ```
 
-## ヘルプの表示
-
-```r
-help(package = rlist)
-```
-
-または、[CRAN](http://cran.r-project.org/web/packages/rlist/rlist.pdf)にあるドキュメントを見てください。
-
 ## ライセンス
 
-このパッケージは[MIT License](http://opensource.org/licenses/MIT)の下で公開されています。
+このパッケージは[MIT License](https://opensource.org/licenses/MIT)の下で公開されています。

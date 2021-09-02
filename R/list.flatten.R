@@ -2,12 +2,12 @@
 #'
 #' @details
 #' The function is essentially a slightly modified version of \code{flatten2}
-#' provided by Tommy at \href{http://stackoverflow.com/a/8139959/2906900}{stackoverflow.com} who
+#' provided by Tommy at \href{https://stackoverflow.com/a/8139959/2906900}{stackoverflow.com} who
 #' has full credit of the implementation of this function.
 #' @param x \code{list}
 #' @param use.names \code{logical}. Should the names of \code{x} be kept?
 #' @param classes A character vector of class names, or "ANY" to match any class.
-#' @author \href{http://stackoverflow.com/users/662787/tommy}{Tommy}
+#' @author \href{https://stackoverflow.com/users/662787/tommy}{Tommy}
 #' @export
 #' @examples
 #' p <- list(a=1,b=list(b1=2,b2=3),c=list(c1=list(c11='a',c12='x'),c2=3))

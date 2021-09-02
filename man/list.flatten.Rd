@@ -18,7 +18,7 @@ Flatten a nested list to a one-level list
 }
 \details{
 The function is essentially a slightly modified version of \code{flatten2}
-provided by Tommy at \href{http://stackoverflow.com/a/8139959/2906900}{stackoverflow.com} who
+provided by Tommy at \href{https://stackoverflow.com/a/8139959/2906900}{stackoverflow.com} who
 has full credit of the implementation of this function.
 }
 \examples{
@@ -30,5 +30,5 @@ list.flatten(p, classes = "numeric")
 list.flatten(p, classes = "character")
 }
 \author{
-\href{http://stackoverflow.com/users/662787/tommy}{Tommy}
+\href{https://stackoverflow.com/users/662787/tommy}{Tommy}
 }

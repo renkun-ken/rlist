@@ -4,14 +4,14 @@
 
 [![Linux Build Status](https://travis-ci.org/renkun-ken/rlist.png?branch=master)](https://travis-ci.org/renkun-ken/rlist) 
 [![Windows Build status](https://ci.appveyor.com/api/projects/status/github/renkun-ken/rlist?svg=true)](https://ci.appveyor.com/project/renkun-ken/rlist)
-[![codecov.io](http://codecov.io/github/renkun-ken/rlist/coverage.svg?branch=master)](http://codecov.io/github/renkun-ken/rlist?branch=master)
-[![CRAN Version](http://www.r-pkg.org/badges/version/rlist)](https://cran.r-project.org/package=rlist)
+[![codecov.io](https://codecov.io/github/renkun-ken/rlist/coverage.svg?branch=master)](https://codecov.io/github/renkun-ken/rlist?branch=master)
+[![CRAN Version](https://www.r-pkg.org/badges/version/rlist)](https://cran.r-project.org/package=rlist)
 
 rlist is a set of tools for working with list objects. Its goal is to make it easier to work with lists by providing a wide range of functions that operate on non-tabular data stored in them.
 
 This package supports list mapping, filtering, grouping, sorting, updating, searching, file input/output, and many other functions. Most functions in the package are designed to be pipeline friendly so that data processing with lists can be chained.
 
-**[rlist Tutorial](http://renkun.me/rlist-tutorial) is a highly recommended complete guide to rlist.**
+**[rlist Tutorial](https://renkun-ken.github.io/rlist-tutorial/) is a highly recommended complete guide to rlist.**
 
 This document is also translated into  [日本語](https://github.com/renkun-ken/rlist/blob/master/README.ja.md) (by [@teramonagi](https://github.com/teramonagi)).
 
@@ -120,7 +120,7 @@ List of 3
 
 ### More functions
 
-In addition to these basic functions, rlist also supports various types of grouping, joining, searching, sorting, updating, etc. For the introduction to more functionality, please go through the [rlist Tutorial](http://renkun.me/rlist-tutorial).
+In addition to these basic functions, rlist also supports various types of grouping, joining, searching, sorting, updating, etc. For the introduction to more functionality, please go through the [rlist Tutorial](https://renkun-ken.github.io/rlist-tutorial/).
 
 ## Lambda expression
 
@@ -145,16 +145,15 @@ list.map(nums, f(x,i) ~ sum(x,i))
 
 ## Using pipeline
 
-### Working with pipeR
+### Working with pipe syntax
 
 Query the name of each developer who likes music and uses R, and put the results in a data frame.
 
 
 ```r
-library(pipeR)
-devs %>>% 
-  list.filter("music" %in% interest & "r" %in% names(lang)) %>>%
-  list.select(name,age) %>>%
+devs |> 
+  list.filter("music" %in% interest & "r" %in% names(lang)) |>
+  list.select(name,age) |>
   list.stack
 ```
 
@@ -164,7 +163,7 @@ devs %>>%
 2 James  25
 ```
 
-The example above uses `pipeR`(http://renkun.me/pipeR/) package for pipeline operator `%>>%` that chains commands in a fluent style.
+The example above uses the pipe syntax `|>` introduced in R 4.1 that chains commands in a fluent style.
 
 ### List environment
 
@@ -185,14 +184,6 @@ ldevs$filter("music" %in% interest & "r" %in% names(lang))$
 2 James  25
 ```
 
-## Help overview
-
-```r
-help(package = rlist)
-```
-
-or view the documentation on [CRAN](http://cran.r-project.org/web/packages/rlist/rlist.pdf)
-
 ## License
 
-This package is under [MIT License](http://opensource.org/licenses/MIT).
+This package is under [MIT License](https://opensource.org/licenses/MIT).

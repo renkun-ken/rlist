@@ -20,7 +20,7 @@ Changes since version 0.4
 Version 0.4
 ===
 * New features
-  * Include a dataset `nyweather` scraped from [OpenWeatherMap](http://openweathermap.org/) (#2)
+  * Include a dataset `nyweather` scraped from [OpenWeatherMap](https://openweathermap.org/) (#2)
   * `list.load` now supports text-based progress bar when `progress = TRUE` which is by default
     enabled if over 5 files are to be loaded. (#92)
   * New function `list.names` gives a list or vector names by mapping.

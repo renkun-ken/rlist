@@ -7,8 +7,8 @@
 #'
 #' Processed by rlist.
 #'
-#' To retrieve the data, please visit \url{http://openweathermap.org/api} for
+#' To retrieve the data, please visit \url{https://openweathermap.org/api} for
 #' API usage.
 #' @format
-#' See \url{http://openweathermap.org/weather-data#current}
+#' See \url{https://openweathermap.org/weather-data}
 "nyweather"

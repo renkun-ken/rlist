@@ -14,17 +14,16 @@ Depends:
 Date: 2021-09-02
 Suggests:
     testthat,
-    stringdist,
-    pipeR
+    stringdist
 Imports:
     yaml,
     jsonlite,
     XML,
     data.table
 License: MIT + file LICENSE
-URL: https://renkun.me/rlist,
+URL: https://renkun-ken.github.io/rlist/,
     https://github.com/renkun-ken/rlist,
-    https://renkun.me/rlist-tutorial
+    https://renkun-ken.github.io/rlist-tutorial/
 BugReports: https://github.com/renkun-ken/rlist/issues
 Roxygen: list()
 ByteCompile: TRUE
