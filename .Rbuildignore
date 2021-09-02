@@ -8,3 +8,5 @@
 ^README.*\.Rmd$
 ^README\..*\.md$
 ^.*\.o$
+^CRAN-RELEASE$
+^cran-comments\.md$
