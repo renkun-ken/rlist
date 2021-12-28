@@ -101,9 +101,9 @@ list.order.internal <- function(.data, args, envir, na.last = TRUE) {
     desc <- class(arg) == "("
     if (desc) arg <- arg[[2L]]
     col <- list.map.internal(.data, arg, envir)
-    if (length(unique.default(vapply(col, "class", character(1L)))) > 1L) {
+    if (length(unique.default(lapply(col, class))) > 1L) {
       warning("Inconsistent classes of values in column [", deparse(arg),
-        "]. The column will be coerced to the same class.", call. = FALSE)
+        "]. The column might be coerced to the same class.", call. = FALSE)
     }
     lens <- vapply(col, length, integer(1L))
     if (any(lens != 1L)) {
