@@ -4,9 +4,9 @@
 
 <!-- badges: start -->
 [![R-CMD-check](https://github.com/renkun-ken/rlist/workflows/R-CMD-check/badge.svg)](https://github.com/renkun-ken/rlist/actions)
-<!-- badges: end -->
 [![codecov.io](https://codecov.io/github/renkun-ken/rlist/coverage.svg?branch=master)](https://codecov.io/github/renkun-ken/rlist?branch=master)
 [![CRAN Version](https://www.r-pkg.org/badges/version/rlist)](https://cran.r-project.org/package=rlist)
+<!-- badges: end -->
 
 rlist is a set of tools for working with list objects. Its goal is to make it easier to work with lists by providing a wide range of functions that operate on non-tabular data stored in them.
 

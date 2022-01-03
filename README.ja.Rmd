@@ -8,9 +8,9 @@ opts_chunk$set(prompt=FALSE, comment='', results='markup')
 
 <!-- badges: start -->
 [![R-CMD-check](https://github.com/renkun-ken/rlist/workflows/R-CMD-check/badge.svg)](https://github.com/renkun-ken/rlist/actions)
-<!-- badges: end -->
 [![codecov.io](https://codecov.io/github/renkun-ken/rlist/coverage.svg?branch=master)](https://codecov.io/github/renkun-ken/rlist?branch=master)
 [![CRAN Version](https://www.r-pkg.org/badges/version/rlist)](https://cran.r-project.org/package=rlist)
+<!-- badges: end -->
 
 rlistはlistオブジェクトを操作するためのツール群です。このライブラリの目標は、listの中に格納されている表形式(data.frame)ではないデータを操作するための、幅広い関数をユーザに提供することで、listを操作しやすくすることです。
 
