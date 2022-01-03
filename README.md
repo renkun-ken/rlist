@@ -2,8 +2,9 @@
 
 # rlist
 
-[![Linux Build Status](https://travis-ci.org/renkun-ken/rlist.png?branch=master)](https://travis-ci.org/renkun-ken/rlist) 
-[![Windows Build status](https://ci.appveyor.com/api/projects/status/github/renkun-ken/rlist?svg=true)](https://ci.appveyor.com/project/renkun-ken/rlist)
+<!-- badges: start -->
+[![R-CMD-check](https://github.com/renkun-ken/rlist/workflows/R-CMD-check/badge.svg)](https://github.com/renkun-ken/rlist/actions)
+<!-- badges: end -->
 [![codecov.io](https://codecov.io/github/renkun-ken/rlist/coverage.svg?branch=master)](https://codecov.io/github/renkun-ken/rlist?branch=master)
 [![CRAN Version](https://www.r-pkg.org/badges/version/rlist)](https://cran.r-project.org/package=rlist)
 
@@ -154,7 +155,7 @@ Query the name of each developer who likes music and uses R, and put the results
 devs |> 
   list.filter("music" %in% interest & "r" %in% names(lang)) |>
   list.select(name,age) |>
-  list.stack
+  list.stack()
 ```
 
 ```
