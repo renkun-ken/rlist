@@ -9,7 +9,7 @@
 #' \code{modifyList}.
 #'
 #' @param .data \code{list}
-#' @param ... A group of labmda expressions
+#' @param ... A group of lambda expressions
 #' @param keep.null Should \code{NULL} values be preserved
 #'    for \code{modifyList}
 #' @importFrom utils modifyList
