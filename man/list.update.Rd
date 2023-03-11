@@ -9,7 +9,7 @@ list.update(.data, ..., keep.null = FALSE)
 \arguments{
 \item{.data}{\code{list}}
 
-\item{...}{A group of labmda expressions}
+\item{...}{A group of lambda expressions}
 
 \item{keep.null}{Should \code{NULL} values be preserved
 for \code{modifyList}}
